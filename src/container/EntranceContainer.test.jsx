@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import entrance from '../fixtures/entrance';
 import inputFields from '../fixtures/inputFields'
 
-import errorMessages from '../fixtures/errorMessages';
+import errorMessages from '../text/errorMessages';
 
 describe('EntranceContainer', () => {
   const { sender, postcardCount, writtenCount, isPrivate } = entrance;

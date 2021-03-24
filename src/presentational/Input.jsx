@@ -1,7 +1,16 @@
 import styled from '@emotion/styled';
 import React from 'react'
 
-export default function Input({ id, name, value, placeholder, errorMessage, onChange }) {
+export default function Input({
+  field: {
+    id,
+    name,
+    value,
+    placeholder,
+    errorMessage,
+    onChange,
+  },
+}) {
 
   function handleChange(event) {
     const { target: { value } } = event;

@@ -6,7 +6,7 @@ import { fireEvent, render } from '@testing-library/react';
 import { useSelector } from 'react-redux';
 
 import inputFields from '../fixtures/inputFields'
-import placeholders from '../fixtures/placeholders';
+import placeholders from '../text/placeholders';
 
 describe('EntranceCheckForm', () => {
 

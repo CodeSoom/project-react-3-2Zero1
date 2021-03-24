@@ -18,26 +18,22 @@ const initialInputFields = {
     secretMessage
   },
   write: {
-    firstPage: {
-      secretMessage,
-      sender: {
-        value: '',
-        error: '',
-      },
-      receiver: {
-        value: '',
-        error: '',
-      },
+    secretMessage,
+    sender: {
+      value: '',
+      error: '',
     },
-    secondPage: {
-      photo: {
-        value: '',
-        error: '',
-      },
-      photoMessage: {
-        value: '',
-        error: '',
-      },
+    receiver: {
+      value: '',
+      error: '',
+    },
+    photo: {
+      value: '',
+      error: '',
+    },
+    photoMessage: {
+      value: '',
+      error: '',
     },
   },
 };

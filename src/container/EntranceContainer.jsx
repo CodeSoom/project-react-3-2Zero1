@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import EntranceCheckForm from '../presentational/EntranceCheckForm';
 import EntranceWritePostcard from '../presentational/EntranceWritePostcard';
 
-import placeholders from '../fixtures/placeholders';
-import errorMessages from '../fixtures/errorMessages';
+import placeholders from '../text/placeholders';
+import errorMessages from '../text/errorMessages';
 
 import {
   changeInputFieldValue,

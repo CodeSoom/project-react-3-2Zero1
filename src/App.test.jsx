@@ -9,8 +9,8 @@ import {
 } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
-import entrance from '../fixtures/entrance';
-import inputFields from '../fixtures/inputFields';
+import entrance from './fixtures/entrance';
+import inputFields from './fixtures/inputFields';
 
 describe('App', () => {
   const { sender } = entrance;

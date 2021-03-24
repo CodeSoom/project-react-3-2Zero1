@@ -16,19 +16,21 @@ export default function EntranceCheckForm({
     onClick(value);
   }
 
+  const field = {
+    id: 'secretMessage',
+    name: '비밀 메시지',
+    value: value,
+    placeholder: placeholder,
+    errorMessage: errorMessage,
+    onChange: onChange,
+  }
+
   return (
   <>
     {
       isPrivate ? (
         <>
-          <Input
-            id={'secretMessage'}
-            name={'비밀 메시지'}
-            value={value}
-            placeholder={placeholder}
-            errorMessage={errorMessage}
-            onChange={onChange}
-          />
+          <Input field={field} />
           <div>비공개 엽서입니다. 문자로 받은 비밀 메시지를 입력 후 엽서 확인하기 버튼을 눌러주세요.</div>
         </>
       ) : null

@@ -13,31 +13,27 @@ describe('reducer', () => {
     }
   },
   write: {
-    firstPage: {
-      secretMessage: {
-        value: '',
-        error: '',
-      },
-      sender: {
-        value: '',
-        error: '',
-      },
-      receiver: {
-        value: '',
-        error: '',
-      }
+    secretMessage: {
+      value: '',
+      error: '',
     },
-    secondPage: {
-      photo: {
-        value: '',
-        error: '',
-      },
-      photoMessage: {
-        value: '',
-        error: '',
-      }
-    }
-  }
+    sender: {
+      value: '',
+      error: '',
+    },
+    receiver: {
+      value: '',
+      error: '',
+    },
+    photo: {
+      value: '',
+      error: '',
+    },
+    photoMessage: {
+      value: '',
+      error: '',
+    },
+  },
 };
   const initialState = {
     inputFields: initialInputFields,
