@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
-import EntrancePage from './EntrancePage';
+import EntrancePage from './page/EntrancePage';
+import WritePage from './page/WritePage';
 
 import {
   Switch,
@@ -19,6 +20,7 @@ export default function App() {
   return (
     <Switch>
         <Route exact path="/entrance" component={EntrancePage} />
+        <Route exact path="/write" component={WritePage} />
         {/* <Route component={NotFoundPage} /> */}
       </Switch>
   );

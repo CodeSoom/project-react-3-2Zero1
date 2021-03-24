@@ -3,9 +3,9 @@ import { fireEvent, render } from '@testing-library/react';
 
 import Input from './Input';
 
-import inputFields from './fixtures/inputFields';
-import errorMessages from './errorMessages';
-import placeholders from './placeholders';
+import inputFields from '../fixtures/inputFields';
+import errorMessages from '../fixtures/errorMessages';
+import placeholders from '../fixtures/placeholders';
 
 describe('Input', () => {
   const handleChange = jest.fn();

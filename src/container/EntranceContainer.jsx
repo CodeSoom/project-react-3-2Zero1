@@ -1,16 +1,16 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import EntranceCheckForm from './EntranceCheckForm';
-import EntranceWritePostcard from './EntranceWritePostcard';
+import EntranceCheckForm from '../presentational/EntranceCheckForm';
+import EntranceWritePostcard from '../presentational/EntranceWritePostcard';
 
-import placeholders from './placeholders';
-import errorMessages from './errorMessages';
+import placeholders from '../fixtures/placeholders';
+import errorMessages from '../fixtures/errorMessages';
 
 import {
   changeInputFieldValue,
   setInputFieldsError,
   loadPostcard,
-} from './slice';
+} from '../state/slice';
 
 export default function EntranceContainer() {
   const dispatch = useDispatch();
