@@ -1,13 +1,13 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 
-import Input from './Input';
+import InputPart from './InputPart';
 
 import inputFields from '../fixtures/inputFields';
 import errorMessages from '../text/errorMessages';
 import placeholders from '../text/placeholders';
 
-describe('Input', () => {
+describe('InputPart', () => {
   const onChange = jest.fn();
   const id = 'secretMessage';
 
@@ -21,7 +21,7 @@ describe('Input', () => {
       onChange,
     };
     return (
-      render(<Input field={field} /> )
+      render(<InputPart field={field} /> )
     );
   }
 
@@ -53,7 +53,7 @@ describe('Input', () => {
       const type = 'secretMessage';
 
       const placeholder = placeholders[type];
-      const errorMessage = errorMessages[type]['default'];
+      const errorMessage = errorMessages[type];
       
       const { getByPlaceholderText, getByText, getByLabelText } = renderInput(id, name, value, placeholder, errorMessage);
 

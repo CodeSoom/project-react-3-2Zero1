@@ -1,5 +1,5 @@
 import React from 'react'
-import Input from './Input'
+import InputPart from './InputPart'
 
 export default function EntranceCheckForm({
   isPrivate,
@@ -30,7 +30,7 @@ export default function EntranceCheckForm({
     {
       isPrivate ? (
         <>
-          <Input field={field} />
+          <InputPart field={field} />
           <div>비공개 엽서입니다. 문자로 받은 비밀 메시지를 입력 후 엽서 확인하기 버튼을 눌러주세요.</div>
         </>
       ) : null

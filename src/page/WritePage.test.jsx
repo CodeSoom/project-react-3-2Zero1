@@ -9,6 +9,7 @@ import inputFields from '../fixtures/inputFields';
 test('WritePage', () => {
   // useDispatch.mockImplementation(() => dispatch);
   useSelector.mockImplementation((selector) => selector({
+    writePageIndex: 0,
     inputFields,
   }));
   const params = { index: 0 };

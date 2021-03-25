@@ -5,79 +5,99 @@ import WriteFirstForm from '../presentational/WriteFirstForm';
 import placeholders from '../text/placeholders';
 import errorMessages from '../text/errorMessages';
 import { useDispatch, useSelector } from 'react-redux';
-import inputFields from '../fixtures/inputFields';
+import validator from '../utils/validator';
 
 import {
   changeInputFieldValue,
+  changeRadioChecked,
+  setInputFieldsError,
 } from '../state/slice';
 
-const getField = ({ id, error, name, value, onChange, placeholder }) => ({
+const getField = ({ field: { value, error }, id, name, onChange }) => ({
   id,
   name,
   value,
-  placeholder,
-  errorMessage: errorMessages[error],
+  placeholder: placeholders[id],
+  errorMessage: error ? errorMessages[id] : '',
   onChange,
 });
 
-export default function WriteFirstFormContainer() {
+export default function WriteFirstFormContainer({ onClickNext }) {
 
   const dispatch = useDispatch();
+
+  const getWritePageChangeHandler = (type) => {
+    return ((value) => {
+      dispatch(changeInputFieldValue({
+        page: 'write',
+        type,
+        value,
+      }));
+    });
+  };
   
   const { inputFields: {
     write: {
       sender,
       receiver,
       secretMessage,
-    }
+      isPrivate,
+    },
     }} = useSelector((state) => ({
       inputFields: state.inputFields
     }));
+
   const fields = {
     sender: getField({
-      ...sender,
+      field: sender,
       id: 'sender',
       name: '보내는 사람',
-      placeholder: placeholders['name'],
-      onChange: (value) => {
-        dispatch(changeInputFieldValue({
-          page: 'write',
-          type: 'sender',
-          value,
-        }));
-      },
+      onChange: getWritePageChangeHandler('sender'),
     }),
     receiver: getField({
-      ...receiver,
+      field: receiver,
       id: 'receiver',
       name: '받는 사람',
-      placeholder: placeholders['name'],
-      onChange: (value) => {
-        dispatch(changeInputFieldValue({
-          page: 'write',
-          type: 'receiver',
-          value,
-        }));
-      },
+      onChange: getWritePageChangeHandler('receiver'),
     }),
     secretMessage: getField({
-      ...secretMessage,
+      field: secretMessage,
       id: 'secretMessage',
-      placeholder: placeholders['secretMessage'],
       name: '비밀 메시지',
-      onChange: (value) => {
-        dispatch(changeInputFieldValue({
-          page: 'write',
-          type: 'secretMessage',
-          value,
-        }));
-      },
+      onChange: getWritePageChangeHandler('secretMessage'),
     }),
+  };
+
+  function handleRadioChange(event) {
+    const { target: { value } } = event;
+    dispatch(changeRadioChecked(value));
+    
   }
 
   function handleClick() {
-    // 폼 vali 확인
-    // 성공시 화면의 index+1 해주고 history를 second로 전진.
+    const sendCheck = validator.sender(sender.value);
+    const receiverCheck = validator.receiver(receiver.value);
+    const secretMessageCheck = validator.secretMessage(secretMessage.value);
+    
+    const checks = {
+      sender: sendCheck,
+      receiver: receiverCheck,
+      secretMessage: secretMessageCheck,
+    };
+
+    if(Object.entries(checks).filter(([_, check]) => !check).length !== 0) {
+      Object.entries(checks).forEach(([key, checked]) => {
+          dispatch(setInputFieldsError({
+            page: 'write',
+            type: key,
+            error: !checked,
+          }));
+      });
+      return;
+    }
+    
+    onClickNext();
+    
   }
 
   return (
@@ -85,6 +105,8 @@ export default function WriteFirstFormContainer() {
       <WriteFirstForm
         onHandleClick={handleClick}
         fields={fields}
+        isPrivate={isPrivate}
+        onHandleRadioChange={handleRadioChange}
       />
     </>
   );

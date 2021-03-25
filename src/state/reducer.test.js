@@ -1,7 +1,9 @@
 import reducer from './slice';
 
 import {
-  changeInputFieldValue
+  changeInputFieldValue,
+  increaseWritePageIndex,
+  decreaseWritePageIndex,
 } from './slice';
 
 describe('reducer', () => {
@@ -9,33 +11,35 @@ describe('reducer', () => {
   entrance: {
     secretMessage: {
       value: '',
-      error: '',
+      error: false,
     }
   },
   write: {
+    isPrivate: true,
     secretMessage: {
       value: '',
-      error: '',
+      error: false,
     },
     sender: {
       value: '',
-      error: '',
+      error: false,
     },
     receiver: {
       value: '',
-      error: '',
+      error: false,
     },
     photo: {
       value: '',
-      error: '',
+      error: false,
     },
     photoMessage: {
       value: '',
-      error: '',
+      error: false,
     },
   },
 };
   const initialState = {
+    writePageIndex: 0,
     inputFields: initialInputFields,
     entrance: {
       'sender': "",
@@ -64,6 +68,26 @@ describe('reducer', () => {
       }));
 
       expect(state.inputFields[page][type].value).toBe('hello');
+    });
+  });
+
+  describe('increaseWritePageIndex', () => {
+    it('increase writePageIndex + 1', () => {
+      const state = reducer(initialState, increaseWritePageIndex());
+
+      expect(state.writePageIndex).toBe(1);
+    });
+  });
+
+  describe('decreaseWritePageIndex', () => {
+    it('decrease writePageIndex -1 1', () => {
+      const editedState = {
+        ...initialState,
+        writePageIndex: 1.
+      };
+      const state = reducer(editedState, decreaseWritePageIndex());
+
+      expect(state.writePageIndex).toBe(0);
     });
   });
 });

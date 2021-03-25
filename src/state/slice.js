@@ -10,7 +10,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const secretMessage = {
   value: '',
-  error: '',
+  error: false,
 };
 
 const initialInputFields = {
@@ -18,22 +18,23 @@ const initialInputFields = {
     secretMessage
   },
   write: {
+    isPrivate: true,
     secretMessage,
     sender: {
       value: '',
-      error: '',
+      error: false,
     },
     receiver: {
       value: '',
-      error: '',
+      error: false,
     },
     photo: {
       value: '',
-      error: '',
+      error: false,
     },
     photoMessage: {
       value: '',
-      error: '',
+      error: false,
     },
   },
 };
@@ -41,6 +42,7 @@ const initialInputFields = {
 const { actions, reducer } = createSlice({
   name: 'application',
   initialState: {
+    writePageIndex: 0,
     inputFields: initialInputFields,
     entrance: {
       'sender': '',
@@ -50,41 +52,73 @@ const { actions, reducer } = createSlice({
     },
   },
   reducers: {
-    changeInputFieldValue(state, { payload: { page, type, value } }) {
-      const { inputFields } = state;
-      const types = inputFields[page];
-      const inputField = inputFields[page][type];
-
+    changeRadioChecked(state, { payload: value } ){
       return {
         ...state,
         inputFields: {
-          ...inputFields,
+          ...state.inputFields,
+          write:{
+            ...state.inputFields['write'],
+            isPrivate: value === 'true',
+          },
+        },
+      };
+    },
+    changeInputFieldValue(state, { payload: { page, type, value } }) {
+      return {
+        ...state,
+        inputFields: {
+          ...state.inputFields,
           [page]:{
-            ...types,
+            ...state.inputFields[page],
             [type]:{
-              ...inputField,
+              ...state.inputFields[page][type],
               value,
             },
           },
         },
       };
     },
-    setInputFieldsError(state, { payload: { type, error } }) {
-      const { inputFields } = state;
-      const inputField = inputFields[type];
-      
+    setInputFieldsError(state, { payload: { page, type, error } }) {
+      console.log({
+        ...state,
+        inputFields: {
+          ...state.inputFields,
+          [page]:{
+            ...state.inputFields[page],
+            [type]:{
+              ...state.inputFields[page][type],
+              error,
+            },
+          },
+        },
+      });
       return {
         ...state,
         inputFields: {
-          ...inputFields,
-          [type]:{
-            ...inputField,
-            error,
-          } 
-        }
+          ...state.inputFields,
+          [page]:{
+            ...state.inputFields[page],
+            [type]:{
+              ...state.inputFields[page][type],
+              error,
+            },
+          },
+        },
       };
     },
-    loadPostcard(){
+    increaseWritePageIndex(state){
+      return {
+        ...state,
+        writePageIndex: (+state.writePageIndex) + 1,
+      }
+    },
+    decreaseWritePageIndex(state){
+      return {
+        ...state,
+        writePageIndex: (+state.writePageIndex) - 1,
+      }
+    },
       // return async (dispatch, getState) => {
       //   const { accessToken, reviewFields: { score, description } } = getState();
     
@@ -95,13 +129,16 @@ const { actions, reducer } = createSlice({
       //   dispatch(loadReview({ restaurantId }));
       //   dispatch(clearReviewFields());
       // };
-    },
+    // },
   },
 });
 
 export const {
   changeInputFieldValue,
-  setInputFieldsError
+  setInputFieldsError,
+  changeRadioChecked,
+  increaseWritePageIndex,
+  decreaseWritePageIndex,
 } = actions;
 
 
