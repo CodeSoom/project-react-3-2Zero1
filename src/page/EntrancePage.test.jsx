@@ -1,12 +1,12 @@
 import React from 'react';
 
-import EntrancePage from './EntrancePage';
+import EntrancePage from '../page/EntrancePage';
 
 import { render } from '@testing-library/react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import inputFields from './fixtures/inputFields'
-import entrance from './fixtures/entrance';
+import inputFields from '../fixtures/inputFields'
+import entrance from '../fixtures/entrance';
 
 test('EntrancePage', () => {
   const SENDER = entrance.sender;

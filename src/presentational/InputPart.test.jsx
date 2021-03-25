@@ -1,50 +1,48 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 
-import Input from './Input';
+import InputPart from './InputPart';
 
-import inputFields from './fixtures/inputFields';
-import errorMessages from './errorMessages';
-import placeholders from './placeholders';
+import inputFields from '../fixtures/inputFields';
+import errorMessages from '../text/errorMessages';
+import placeholders from '../text/placeholders';
 
-describe('Input', () => {
-  const handleChange = jest.fn();
-  const { entrance: { secretMessage } } = inputFields;
+describe('InputPart', () => {
+  const onChange = jest.fn();
   const id = 'secretMessage';
 
   function renderInput(id, name, value, placeholder, errorMessage) {
+    const field = {
+      id,
+      name,
+      value,
+      placeholder,
+      errorMessage,
+      onChange,
+    };
     return (
-      render(
-        <Input
-          id={id}
-          name={name}
-          value={value}
-          placeholder={placeholder}
-          errorMessage={errorMessage}
-          onChange={handleChange}
-        />
-      )
+      render(<InputPart field={field} /> )
     );
   }
 
   context('without errorMessage', () => {
     it("doesn't show errorMessage", () => {
       const name = '비밀 메시지';
-      const { value, error } = secretMessage;
+      const value = 'hello';
       const type = 'secretMessage';
       const placeholder = placeholders[type];
-      const errorMessage = errorMessages[type][error];
+      const errorMessage = '';
       const { getByPlaceholderText, getByLabelText } = renderInput(id , name, value, placeholder, errorMessage);
 
       expect(getByLabelText(name)).not.toBeNull();
-      expect(getByPlaceholderText(secretMessage.placeholder)).not.toBeNull();
+      expect(getByPlaceholderText(placeholder)).not.toBeNull();
       
 
-      fireEvent.change(getByPlaceholderText(secretMessage.placeholder), {
-        target: { value: 'hello' },
+      fireEvent.change(getByPlaceholderText(placeholder), {
+        target: { value: 'Hello' },
       });
 
-      expect(handleChange).toBeCalled();
+      expect(onChange).toBeCalled();
     });
   });
 
@@ -52,8 +50,10 @@ describe('Input', () => {
     it("show errorMessage", () => {
       const name = '비밀 메시지';
       const value = '';
-      const placeholder = placeholders['secretMessage'];
-      const errorMessage = errorMessages['secretMessage']['default'];
+      const type = 'secretMessage';
+
+      const placeholder = placeholders[type];
+      const errorMessage = errorMessages[type];
       
       const { getByPlaceholderText, getByText, getByLabelText } = renderInput(id, name, value, placeholder, errorMessage);
 

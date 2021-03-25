@@ -5,7 +5,7 @@ import EntranceWritePostcard from './EntranceWritePostcard';
 import { render } from '@testing-library/react';
 
 import { useSelector } from 'react-redux';
-import entrance from './fixtures/entrance';
+import entrance from '../fixtures/entrance';
 
 describe('EntranceWritePostcard', () => {
   context('postcardCount is bigger than 0', () => {

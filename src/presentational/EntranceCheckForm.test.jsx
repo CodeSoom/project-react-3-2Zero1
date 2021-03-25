@@ -1,12 +1,12 @@
 import React from 'react';
 
-import EntranceCheckForm from './EntranceCheckForm';
+import EntranceCheckForm from '../presentational/EntranceCheckForm';
 
 import { fireEvent, render } from '@testing-library/react';
 import { useSelector } from 'react-redux';
 
-import inputFields from './fixtures/inputFields'
-import placeholders from './placeholders';
+import inputFields from '../fixtures/inputFields'
+import placeholders from '../text/placeholders';
 
 describe('EntranceCheckForm', () => {
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import entrance from './fixtures/entrance';
+import entrance from '../fixtures/entrance';
 import responseParser from './responseParser';
 
 import { render } from '@testing-library/react';

@@ -1,15 +1,15 @@
 import React from 'react';
 
-import EntranceContainer from './EntranceContainer';
+import EntranceContainer from '../container/EntranceContainer';
 
 import { fireEvent, render } from '@testing-library/react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import entrance from './fixtures/entrance';
-import inputFields from './fixtures/inputFields'
+import entrance from '../fixtures/entrance';
+import inputFields from '../fixtures/inputFields'
 
-import errorMessages from './errorMessages';
+import errorMessages from '../text/errorMessages';
 
 describe('EntranceContainer', () => {
   const { sender, postcardCount, writtenCount, isPrivate } = entrance;
