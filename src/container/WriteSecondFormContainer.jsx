@@ -1,19 +1,12 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 
-import InputPart from '../presentational/InputPart';
-
+import WriteSecondForm from '../presentational/WriteSecondForm';
 
 import { get, getField } from '../utils/utils';
-// import WriteSecondFormForm from '../presentational/WriteSecondFormForm';
 
-
-import {
-  setInputFieldsError,
-  changeInputFieldValue,
-} from '../state/slice';
 import errorMessages from '../text/errorMessages';
-
+import placeholders from '../text/placeholders';
 
 export default function WriteSecondFormContainer({ onClickNext, onClickPrevious, getChangeHandler }) {
   const { 
@@ -23,41 +16,41 @@ export default function WriteSecondFormContainer({ onClickNext, onClickPrevious,
     },
   } = useSelector(get('inputFields'));
 
-  const dispatch = useDispatch();
-
-  const photoMsg = getField({
-    field: photoMessage,
-    id: 'photoMessage',
-    name: '사진 메시지',
-    onChange: getChangeHandler('photoMessage'),
-  });
-
-  const photo1 = {
-    ...photo,
-    errorMessage: photo.error ? errorMessages['photo'] : '',
+  const fields = {
+    photo: {
+      ...photo,
+      errorMessage: photo.error ? errorMessages['photo'] : '',
+    },
+    photoMessage: {
+      field: photoMessage,
+      id: 'photoMessage',
+      name: '사진 메시지',
+      placeholder: placeholders['photoMessage'],
+      onChange: getChangeHandler('photoMessage'),
+    },
   };
 
-  
+
   
   function handlePreviewClick() {
-    onClickPrevious();
+    onClickNext();
+  };
+
+  function handleFileChange(event) {
+    const imageFile = URL.createObjectURL(event.target.files[0]);
+    console.log(imageFile);
+    if(imageFile){
+      const setImageFileName = getChangeHandler('photo');
+      setImageFileName(imageFile);
+    }
   }
-  
+
   return (
-    <>
-      <button
-        type="button"
-        onClick={handlePreviewClick}
-      >
-        이전
-      </button>
-      <div>이미지 첨부</div>
-      <div>세로로 된 사진을 사용하시는걸 권장합니다.</div>
-      <InputPart field={photoMsg} />
-      <button
-        type="button"
-        onClick={handlePreviewClick}
-      >미리보기</button>
-    </>
+    <WriteSecondForm
+      fields={fields}
+      onClickPrevious={onClickPrevious}
+      onChangeFile={handleFileChange}
+      onHandleClick={handlePreviewClick}
+    />
   );
 }
