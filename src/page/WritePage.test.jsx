@@ -8,12 +8,12 @@ import { MemoryRouter, } from 'react-router-dom';
 
 import inputFields from '../fixtures/inputFields';
 
-const mockPush = jest.fn();
+const mockGoBack = jest.fn();
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useHistory() {
-    return { goBack: mockPush };
+    return { goBack: mockGoBack };
   },
 }));
 
@@ -49,6 +49,64 @@ describe('WritePage', () => {
 
       expect(dispatch).not.toBeCalled();
     });
+
+    // context('with input fields error', () => {
+    //   beforeEach(() => {
+    //     useSelector.mockImplementation((selector) => selector({
+    //       writePageIndex: 0,
+    //       inputFields,
+    //     }));
+    //   });
+    //   it('do not call increasePageIndex action', () => {
+    //     const {
+    //       getByText,
+    //     } = renderWritePage();
+  
+    //     expect(getByText('엽서 작성하기')).not.toBeNull();
+  
+    //     fireEvent.click(getByText('엽서 작성하기'));
+  
+    //     expect(dispatch).not.toBeCalled();
+    //   });
+    // });
+    // context('without input fields error', () => {
+    //   beforeEach(() => {
+    //     useSelector.mockImplementation((selector) => selector({
+    //       writePageIndex: 0,
+    //       inputFields: {
+    //         ...inputFields,
+    //         write: {
+    //           ...inputFields.write,
+    //           sender: {
+    //             ...inputFields.write.sender,
+    //             value: 'sender',
+    //           },
+    //           receiver: {
+    //             ...inputFields.write.receiver,
+    //             value: 'receiver',
+    //           },
+    //           secretMessage: {
+    //             ...inputFields.write.secretMessage,
+    //             value: 'hello nice to meet you ! ',
+    //           },
+    //         },
+    //       },
+    //     }));
+    //   });
+    //   it('call increasePageIndex action', () => {
+    //     const {
+    //       getByText,
+    //     } = renderWritePage();
+  
+    //     expect(getByText('엽서 작성하기')).not.toBeNull();
+  
+    //     fireEvent.click(getByText('엽서 작성하기'));
+  
+    //     expect(dispatch).toBeCalledWith({
+    //       type: 'application/increasePageIndex',
+    //     });
+    //   });
+    // });
   });
 
   context('when writePageIndex is 1', () => {
@@ -73,6 +131,26 @@ describe('WritePage', () => {
       expect(dispatch).toBeCalledWith({
         type: 'application/decreaseWritePageIndex',
       });
+    });
+  });
+
+  context('when writePageIndex is 2', () => {
+    beforeEach(() => {
+      useSelector.mockImplementation((selector) => selector({
+        writePageIndex: 2,
+        inputFields,
+      }));
+    });
+
+    it('render preview', () => {
+      const {
+        getByText,
+      } = renderWritePage();
+
+      expect(getByText('미리 보기')).not.toBeNull();
+
+      // expect(getByText('이전')).not.toBeNull();
+
     });
   });
 });
