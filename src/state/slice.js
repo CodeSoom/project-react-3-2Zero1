@@ -80,19 +80,6 @@ const { actions, reducer } = createSlice({
       };
     },
     setInputFieldsError(state, { payload: { page, type, error } }) {
-      console.log({
-        ...state,
-        inputFields: {
-          ...state.inputFields,
-          [page]:{
-            ...state.inputFields[page],
-            [type]:{
-              ...state.inputFields[page][type],
-              error,
-            },
-          },
-        },
-      });
       return {
         ...state,
         inputFields: {
