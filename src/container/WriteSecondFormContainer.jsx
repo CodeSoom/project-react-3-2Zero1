@@ -4,10 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import WriteSecondForm from '../presentational/WriteSecondForm';
 
 import { get } from '../utils/utils';
-<<<<<<< HEAD
 import { getField } from '../utils/utils'
-=======
->>>>>>> e49463747c7ba7d4dc047e0784fa6ba1690c86d1
 import validator from '../utils/validator';
 
 import errorMessages from '../text/errorMessages';
