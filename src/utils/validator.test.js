@@ -13,8 +13,12 @@ test('validator', () => {
   expect(validator.secretMessage('testtest')).toBe(true);
   expect(validator.secretMessage('이것은 비밀 메시지 길이 체크 테스트 입니다. !!!!')).toBe(false);
 
+  expect(validator.photoMessage('')).toBe(false);
+  expect(validator.photoMessage('fake image')).toBe(true);
+
   expect(validator.photoMessage('test')).toBe(false);
   expect(validator.photoMessage('이것은 사진 메시지 길이 체크')).toBe(true);
-  expect(validator.photoMessage('이것은 사진 메시지 길이 체크 테스트 입니다. !!!!')).toBe(false);
+  expect(validator.photoMessage('이것은 사진 메시지 길이 체크 테스트 입니다. !!!!')).toBe(true);
+  expect(validator.photoMessage('이것은 사진 메시지 길이 체크 테스트 입니다. !!!!!!!!!!!!!!!!!!!!!')).toBe(false);
 
 });
