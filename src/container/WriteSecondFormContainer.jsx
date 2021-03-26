@@ -29,15 +29,27 @@ export default function WriteSecondFormContainer({ onClickNext, onClickPrevious,
       onChange: getChangeHandler('photoMessage'),
     },
   };
+
+
   
   function handlePreviewClick() {
     onClickNext();
   };
 
+  function handleFileChange(event) {
+    const imageFile = URL.createObjectURL(event.target.files[0]);
+    console.log(imageFile);
+    if(imageFile){
+      const setImageFileName = getChangeHandler('photo');
+      setImageFileName(imageFile);
+    }
+  }
+
   return (
     <WriteSecondForm
       fields={fields}
       onClickPrevious={onClickPrevious}
+      onChangeFile={handleFileChange}
       onHandleClick={handlePreviewClick}
     />
   );

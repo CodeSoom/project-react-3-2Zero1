@@ -6,9 +6,17 @@ import { fireEvent, render } from '@testing-library/react';
 
 import placeholders from '../text/placeholders';
 
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useHistory() {
+    return { goBack: mockPush };
+  },
+}));
+
 describe('WriteSecondForm', () => {
   const handleClick =  jest.fn();
   const handlePreviousClick = jest.fn();
+  const handleFileChange = jest.fn();
   const fields = {
     photo: {
       value: '',
@@ -32,6 +40,7 @@ describe('WriteSecondForm', () => {
       fields={fields}
       onHandleClick={handleClick}
       onClickPrevious={handlePreviousClick}
+      onChangeFile={handleFileChange}
     />
   );
 
