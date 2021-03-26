@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 
 import WriteFirstFormContainer from '../container/WriteFirstFormContainer';
 import WriteSecondFormContainer from '../container/WriteSecondFormContainer';
+import PreviewContainer from '../container/PreviewContainer';
 
 import { get } from '../utils/utils';
 
@@ -55,7 +56,7 @@ export default function WritePage() {
         getChangeHandler={getChangeHandler}
       />
     ),
-    // 2: <PreviewContainer />,
+    2: <PreviewContainer />,
     // 3: <WriteCompletedContainer />,
   };
   

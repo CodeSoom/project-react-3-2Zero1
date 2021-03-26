@@ -16,7 +16,7 @@ describe('RadioPart', () => {
   function renderRadioPart(isPrivate) {
     return render(
       <RadioPart
-        onHandleRadioChange={handleRadioChange}
+        onRadioChange={handleRadioChange}
         isPrivate={isPrivate}
       />
     );

@@ -9,7 +9,7 @@ export default function WriteFirstForm({
     secretMessage
   },
   onHandleClick,
-  onHandleRadioChange,
+  onRadioChange,
   isPrivate,
   onClickPrevious
 }) {
@@ -29,7 +29,7 @@ export default function WriteFirstForm({
     <InputPart field={secretMessage} />
     <div>엽서를 확인 또는 파기하기 위해 사용되며 받는 사람에게도 공유됩니다.</div>
     <RadioPart
-      onHandleRadioChange={onHandleRadioChange}
+      onRadioChange={onRadioChange}
       isPrivate={isPrivate}
     />
     <button

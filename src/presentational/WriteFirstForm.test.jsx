@@ -42,7 +42,7 @@ describe('WriteFirstForm', () => {
     <WriteFirstForm
       fields={fields}
       onHandleClick={onClick}
-      onHandleRadioChange={handleRadioChange}
+      onRadioChange={handleRadioChange}
       isPrivate={true}
       onClickPrevious={handlePreviousClick}
     />
