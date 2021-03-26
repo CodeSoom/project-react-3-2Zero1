@@ -25,6 +25,8 @@ describe('WriteSecondForm', () => {
     }
   };
 
+  console.log(placeholders['photoMessage']);
+
   const { getByLabelText, getAllByPlaceholderText, getByText } = render(
     <WriteSecondForm
       fields={fields}

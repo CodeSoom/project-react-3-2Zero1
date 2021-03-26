@@ -11,6 +11,7 @@ export default function WriteFirstForm({
   onClickPrevious
 }) {
 
+  console.log(photoMessage);
   function handlePreviewClick() {
     onClickPrevious();
   }
@@ -29,7 +30,9 @@ export default function WriteFirstForm({
     <button
       type="button"
       
-    >미리보기</button>
+    >
+      미리보기
+    </button>
   </>
   );
 }
