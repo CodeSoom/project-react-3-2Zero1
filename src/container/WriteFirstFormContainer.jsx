@@ -53,7 +53,6 @@ export default function WriteFirstFormContainer({ onClickNext, onClickPrevious, 
   function handleRadioChange(event) {
     const { target: { value } } = event;
     dispatch(changeRadioChecked(value));
-    
   }
 
   function handleClick() {
@@ -67,14 +66,15 @@ export default function WriteFirstFormContainer({ onClickNext, onClickPrevious, 
       secretMessage: secretMessageCheck,
     };
 
+    Object.entries(checks).forEach(([key, checked]) => {
+      dispatch(setInputFieldsError({
+        page: 'write',
+        type: key,
+        error: !checked,
+      }));
+  });
+
     if(Object.entries(checks).filter(([_, check]) => !check).length !== 0) {
-      Object.entries(checks).forEach(([key, checked]) => {
-          dispatch(setInputFieldsError({
-            page: 'write',
-            type: key,
-            error: !checked,
-          }));
-      });
       return;
     }
     onClickNext();
