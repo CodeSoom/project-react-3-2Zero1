@@ -57,8 +57,6 @@ export default function WriteFirstFormContainer({ onClickNext, onClickPrevious, 
   }
 
   function handleClick() {
-
-    //
     const sendCheck = validator.sender(sender.value);
     const receiverCheck = validator.receiver(receiver.value);
     const secretMessageCheck = validator.secretMessage(secretMessage.value);
@@ -68,8 +66,6 @@ export default function WriteFirstFormContainer({ onClickNext, onClickPrevious, 
       receiver: receiverCheck,
       secretMessage: secretMessageCheck,
     };
-
-    
 
     if(Object.entries(checks).filter(([_, check]) => !check).length !== 0) {
       Object.entries(checks).forEach(([key, checked]) => {

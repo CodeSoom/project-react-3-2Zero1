@@ -35,7 +35,6 @@ export default function WritePage() {
   }
   function handlePreviousClick() {
     if (writePageIndex == 0) {
-      const url = `/`;
       return history.goBack();
     }
     dispatch(decreaseWritePageIndex());

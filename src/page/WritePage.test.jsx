@@ -13,7 +13,7 @@ const mockPush = jest.fn();
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useHistory() {
-    return { push: mockPush };
+    return { goBack: mockPush };
   },
 }));
 
