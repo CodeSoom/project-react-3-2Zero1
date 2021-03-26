@@ -56,7 +56,13 @@ export default function WritePage() {
         getChangeHandler={getChangeHandler}
       />
     ),
-    2: <PreviewContainer />,
+    2: (
+      <PreviewContainer
+        onClickNext={handleNextClick}
+        onClickPrevious={handlePreviousClick}
+        getChangeHandler={getChangeHandler}
+      />
+    ),
     // 3: <WriteCompletedContainer />,
   };
   
