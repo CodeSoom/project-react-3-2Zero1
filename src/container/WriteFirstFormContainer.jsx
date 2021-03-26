@@ -6,6 +6,7 @@ import placeholders from '../text/placeholders';
 import errorMessages from '../text/errorMessages';
 import { useDispatch, useSelector } from 'react-redux';
 import validator from '../utils/validator';
+import { getField } from '../utils/utils'
 
 import {
   changeInputFieldValue,
@@ -13,29 +14,10 @@ import {
   setInputFieldsError,
 } from '../state/slice';
 
-const getField = ({ field: { value, error }, id, name, onChange }) => ({
-  id,
-  name,
-  value,
-  placeholder: placeholders[id],
-  errorMessage: error ? errorMessages[id] : '',
-  onChange,
-});
-
-export default function WriteFirstFormContainer({ onClickNext }) {
+export default function WriteFirstFormContainer({ onClickNext, onClickPrevious, getChangeHandler }) {
 
   const dispatch = useDispatch();
 
-  const getWritePageChangeHandler = (type) => {
-    return ((value) => {
-      dispatch(changeInputFieldValue({
-        page: 'write',
-        type,
-        value,
-      }));
-    });
-  };
-  
   const { inputFields: {
     write: {
       sender,
@@ -52,19 +34,19 @@ export default function WriteFirstFormContainer({ onClickNext }) {
       field: sender,
       id: 'sender',
       name: '보내는 사람',
-      onChange: getWritePageChangeHandler('sender'),
+      onChange: getChangeHandler('sender'),
     }),
     receiver: getField({
       field: receiver,
       id: 'receiver',
       name: '받는 사람',
-      onChange: getWritePageChangeHandler('receiver'),
+      onChange: getChangeHandler('receiver'),
     }),
     secretMessage: getField({
       field: secretMessage,
       id: 'secretMessage',
       name: '비밀 메시지',
-      onChange: getWritePageChangeHandler('secretMessage'),
+      onChange: getChangeHandler('secretMessage'),
     }),
   };
 
@@ -75,6 +57,8 @@ export default function WriteFirstFormContainer({ onClickNext }) {
   }
 
   function handleClick() {
+
+    //
     const sendCheck = validator.sender(sender.value);
     const receiverCheck = validator.receiver(receiver.value);
     const secretMessageCheck = validator.secretMessage(secretMessage.value);
@@ -84,6 +68,8 @@ export default function WriteFirstFormContainer({ onClickNext }) {
       receiver: receiverCheck,
       secretMessage: secretMessageCheck,
     };
+
+    
 
     if(Object.entries(checks).filter(([_, check]) => !check).length !== 0) {
       Object.entries(checks).forEach(([key, checked]) => {
@@ -95,10 +81,10 @@ export default function WriteFirstFormContainer({ onClickNext }) {
       });
       return;
     }
-    
     onClickNext();
-    
   }
+
+
 
   return (
     <>
@@ -107,6 +93,7 @@ export default function WriteFirstFormContainer({ onClickNext }) {
         fields={fields}
         isPrivate={isPrivate}
         onHandleRadioChange={handleRadioChange}
+        onClickPrevious={onClickPrevious}
       />
     </>
   );

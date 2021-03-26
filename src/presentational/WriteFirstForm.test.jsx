@@ -36,6 +36,7 @@ describe('WriteFirstForm', () => {
 
   const onClick = jest.fn();
   const handleRadioChange = jest.fn();
+  const handlePreviousClick = jest.fn();
 
   const { getByLabelText, getAllByPlaceholderText, getByText } = render(
     <WriteFirstForm
@@ -43,10 +44,15 @@ describe('WriteFirstForm', () => {
       onHandleClick={onClick}
       onHandleRadioChange={handleRadioChange}
       isPrivate={true}
+      onClickPrevious={handlePreviousClick}
     />
   );
 
-  it('render writeFirstFor', () => {
+  it('render writeFirstForm', () => {
+    fireEvent.click(getByText('이전'));
+    expect(handlePreviousClick).toBeCalled();
+
+    expect(getByText('엽서 작성하기')).not.toBeNull();
     Object.entries(fields).forEach(([_, {
       name,
       onChange,
