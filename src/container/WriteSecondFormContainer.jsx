@@ -38,6 +38,7 @@ export default function WriteSecondFormContainer({ onClickNext, onClickPrevious,
       onChange: getChangeHandler('photoMessage'),
     }),
   };
+  console.log(fields);
   
   function handleNextClick() {
     const photoCheck = validator.photo(photo.value);

@@ -2,7 +2,8 @@ import React, { useRef } from 'react'
 
 export default function ImagePart({
   photo: {
-    value
+    value,
+    errorMessage,
   },
   onHandleChangeFile,
 }) {
@@ -25,6 +26,7 @@ export default function ImagePart({
       {value ? (<img src={value} onClick={handleClick}/>) : (
         <div onClick={handleClick}>이미지를 선택해 주세요</div>
       )}
+      {errorMessage ? <div>{errorMessage}</div> : null}
       <input Style="display:none" ref={fileSelector} type="file" accept="image/*" onChange={onHandleChangeFile.bind(this)}/>
     </>
   );
