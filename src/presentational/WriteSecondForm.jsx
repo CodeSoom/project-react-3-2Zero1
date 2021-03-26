@@ -9,7 +9,7 @@ export default function WriteSecondForm({
   },
   onClickPrevious,
   onChangeFile,
-  onHandleClick,
+  onHandleNextClick,
 }) {
 
   function handlePreviewClick() {
@@ -32,7 +32,7 @@ export default function WriteSecondForm({
     <InputPart field={photoMessage} />
     <button
       type="button"
-      
+      onClick={onHandleNextClick}
     >
       미리보기
     </button>

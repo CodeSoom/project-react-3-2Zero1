@@ -3,12 +3,19 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import WriteSecondForm from '../presentational/WriteSecondForm';
 
-import { get, getField } from '../utils/utils';
+import { get } from '../utils/utils';
+import validator from '../utils/validator';
 
 import errorMessages from '../text/errorMessages';
 import placeholders from '../text/placeholders';
 
+import {
+  setInputFieldsError,
+} from '../state/slice';
+
 export default function WriteSecondFormContainer({ onClickNext, onClickPrevious, getChangeHandler }) {
+
+  const dispatch = useDispatch();
   const { 
     write: {
       photoMessage,
@@ -32,13 +39,31 @@ export default function WriteSecondFormContainer({ onClickNext, onClickPrevious,
 
 
   
-  function handlePreviewClick() {
+  function handleNextClick() {
+    const photoCheck = validator.photo(photo.value);
+    const photoMessageCheck = validator.photoMessage(photoMessage.value);
+    
+    const checks = {
+      photo: photoCheck,
+      photoMessage: photoMessageCheck,
+    };
+
+    if(Object.entries(checks).filter(([_, check]) => !check).length !== 0) {
+      Object.entries(checks).forEach(([key, checked]) => {
+          dispatch(setInputFieldsError({
+            page: 'write',
+            type: key,
+            error: !checked,
+          }));
+      });
+      return;
+    }
+
     onClickNext();
   };
 
   function handleFileChange(event) {
     const imageFile = URL.createObjectURL(event.target.files[0]);
-    console.log(imageFile);
     if(imageFile){
       const setImageFileName = getChangeHandler('photo');
       setImageFileName(imageFile);
@@ -50,7 +75,7 @@ export default function WriteSecondFormContainer({ onClickNext, onClickPrevious,
       fields={fields}
       onClickPrevious={onClickPrevious}
       onChangeFile={handleFileChange}
-      onHandleClick={handlePreviewClick}
+      onHandleNextClick={handleNextClick}
     />
   );
 }

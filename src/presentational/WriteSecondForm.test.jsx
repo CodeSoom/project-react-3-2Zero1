@@ -51,7 +51,7 @@ describe('WriteSecondForm', () => {
     expect(getByText('이미지 첨부')).not.toBeNull();
     expect(getByText('세로로 된 사진을 사용하시는걸 권장합니다.')).not.toBeNull();
     expect(getByLabelText('사진 메시지')).not.toBeNull();
-    expect(getByLabelText('사진 메시지').placeholder).toBe('10 ~ 20자');
+    expect(getByLabelText('사진 메시지').placeholder).toBe('10 ~ 30자');
 
     expect(getByText('미리보기')).not.toBeNull();
   });
