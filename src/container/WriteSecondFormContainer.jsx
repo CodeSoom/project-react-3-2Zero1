@@ -38,8 +38,6 @@ export default function WriteSecondFormContainer({ onClickNext, onClickPrevious,
       onChange: getChangeHandler('photoMessage'),
     }),
   };
-
-
   
   function handleNextClick() {
     const photoCheck = validator.photo(photo.value);
@@ -50,7 +48,14 @@ export default function WriteSecondFormContainer({ onClickNext, onClickPrevious,
       photoMessage: photoMessageCheck,
     };
 
-  
+    Object.entries(checks).forEach(([key, checked]) => {
+      dispatch(setInputFieldsError({
+        page: 'write',
+        type: key,
+        error: !checked,
+      }));
+    });
+
     if(Object.entries(checks).filter(([_, check]) => !check).length !== 0) {
       return;
     }
@@ -59,10 +64,11 @@ export default function WriteSecondFormContainer({ onClickNext, onClickPrevious,
   };
 
   function handleFileChange(event) {
-    const imageFile = URL.createObjectURL(event.target.files[0]);
-    if(imageFile){
+    const file = event.target.files[0];
+    if(file){
+      const imageUrl = URL.createObjectURL(file);
       const setImageFileName = getChangeHandler('photo');
-      setImageFileName(imageFile);
+      setImageFileName(imageUrl);
     }
   }
 
