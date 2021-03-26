@@ -149,7 +149,13 @@ describe('WritePage', () => {
 
       expect(getByText('미리 보기')).not.toBeNull();
 
-      // expect(getByText('이전')).not.toBeNull();
+      expect(getByText('이전')).not.toBeNull();
+
+      fireEvent.click(getByText('이전'));
+
+      expect(dispatch).toBeCalledWith({
+        type: 'application/decreaseWritePageIndex',
+      });
 
     });
   });

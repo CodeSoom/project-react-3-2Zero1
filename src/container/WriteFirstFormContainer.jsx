@@ -72,7 +72,7 @@ export default function WriteFirstFormContainer({ onClickNext, onClickPrevious, 
         type: key,
         error: !checked,
       }));
-  });
+    });
 
     if(Object.entries(checks).filter(([_, check]) => !check).length !== 0) {
       return;
@@ -88,7 +88,7 @@ export default function WriteFirstFormContainer({ onClickNext, onClickPrevious, 
         onHandleClick={handleClick}
         fields={fields}
         isPrivate={isPrivate}
-        onHandleRadioChange={handleRadioChange}
+        onRadioChange={handleRadioChange}
         onClickPrevious={onClickPrevious}
       />
     </>
