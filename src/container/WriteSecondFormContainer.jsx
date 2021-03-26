@@ -4,7 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import WriteSecondForm from '../presentational/WriteSecondForm';
 
 import { get } from '../utils/utils';
+<<<<<<< HEAD
 import { getField } from '../utils/utils'
+=======
+>>>>>>> e49463747c7ba7d4dc047e0784fa6ba1690c86d1
 import validator from '../utils/validator';
 
 import errorMessages from '../text/errorMessages';
@@ -50,16 +53,8 @@ export default function WriteSecondFormContainer({ onClickNext, onClickPrevious,
       photoMessage: photoMessageCheck,
     };
 
-    Object.entries(checks).forEach(([key, checked]) => {
-      dispatch(setInputFieldsError({
-        page: 'write',
-        type: key,
-        error: !checked,
-      }));
-  });
   
     if(Object.entries(checks).filter(([_, check]) => !check).length !== 0) {
-      
       return;
     }
 
