@@ -19,7 +19,7 @@ export default function App() {
 
   return (
     <Switch>
-        <Route exact path="/entrance" component={EntrancePage} />
+        <Route exact path="/" component={EntrancePage} />
         <Route exact path="/write" component={WritePage} />
         {/* <Route component={NotFoundPage} /> */}
       </Switch>

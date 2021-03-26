@@ -11,10 +11,18 @@ export default function WriteFirstForm({
   onHandleClick,
   onHandleRadioChange,
   isPrivate,
+  onClickPrevious
 }) {
 
   return (
   <>
+    <button
+      type="button"
+      onClick={onClickPrevious}
+    >
+      이전
+    </button>
+    <div>엽서 작성하기</div>
     <InputPart field={sender} />
     <InputPart field={receiver} />
     <div>관리자에게 쓰고 싶은 편지가 있다면 받는 사람을 ‘관리자’로 입력해주세요.</div>

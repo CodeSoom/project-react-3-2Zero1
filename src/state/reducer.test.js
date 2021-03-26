@@ -80,7 +80,7 @@ describe('reducer', () => {
   });
 
   describe('decreaseWritePageIndex', () => {
-    it('decrease writePageIndex -1 1', () => {
+    it('decrease writePageIndex -1', () => {
       const editedState = {
         ...initialState,
         writePageIndex: 1.
