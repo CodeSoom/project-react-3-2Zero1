@@ -2,8 +2,8 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-import WriteFirstFormContainer from '../container/WriteFirstFormContainer';
-import WriteSecondFormContainer from '../container/WriteSecondFormContainer';
+import InformationFormContainer from '../container/InformationFormContainer';
+import PhotoFormContainer from '../container/PhotoFormContainer';
 import PreviewContainer from '../container/PreviewContainer';
 
 import { get } from '../utils/utils';
@@ -19,7 +19,6 @@ export default function WritePage() {
   const history = useHistory();
   const dispatch = useDispatch();
   const writePageIndex = useSelector(get('writePageIndex'));
-  console.log(writePageIndex);
 
   const getChangeHandler = (type) => {
     return ((value) => {
@@ -43,20 +42,20 @@ export default function WritePage() {
 
   const writeContainers = {
     0: (
-      <WriteFirstFormContainer
-        onClickNext={handleNextClick}
-        onClickPrevious={handlePreviousClick}
-        getChangeHandler={getChangeHandler}
-      />
-    ),
-    1: (
-      <WriteSecondFormContainer
+      <InformationFormContainer
         onClickNext={handleNextClick}
         onClickPrevious={handlePreviousClick}
         getChangeHandler={getChangeHandler}
       />
     ),
     2: (
+      <PhotoFormContainer
+        onClickNext={handleNextClick}
+        onClickPrevious={handlePreviousClick}
+        getChangeHandler={getChangeHandler}
+      />
+    ),
+    3: (
       <PreviewContainer
         onClickNext={handleNextClick}
         onClickPrevious={handlePreviousClick}

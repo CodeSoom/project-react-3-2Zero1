@@ -1,6 +1,6 @@
 import React from 'react';
 
-import WriteSecondFormContainer from './WriteSecondFormContainer';
+import PhotoFormContainer from './PhotoFormContainer';
 
 import { fireEvent, render } from '@testing-library/react';
 
@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import inputFields from '../fixtures/inputFields';
 
-describe('WriteSecondFormContainer', () => {
+describe('PhotoFormContainer', () => {
   const dispatch = jest.fn();
   const getChangeHandler = () => jest.fn();
   const handleNextClick = jest.fn();
@@ -16,7 +16,7 @@ describe('WriteSecondFormContainer', () => {
 
   function renderSecondPage() {
     return render(
-      <WriteSecondFormContainer
+      <PhotoFormContainer
         getChangeHandler={getChangeHandler}
         onClickNext={handleNextClick}
         onClickPrevious={handlePreviousClick}

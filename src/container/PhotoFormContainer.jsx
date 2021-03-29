@@ -11,7 +11,7 @@ import {
   setInputFieldsError,
 } from '../state/slice';
 
-export default function WriteSecondFormContainer({ onClickNext, onClickPrevious, getChangeHandler }) {
+export default function PhotoFormContainer({ onClickNext, onClickPrevious, getChangeHandler }) {
 
   const dispatch = useDispatch();
   const { 
