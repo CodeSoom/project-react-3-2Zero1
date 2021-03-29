@@ -37,7 +37,7 @@ describe('WritePage', () => {
       }));
     });
 
-    it('render firstPage', () => {
+    it('render InformationFormPage', () => {
       const {
         getByText,
       } = renderWritePage();
@@ -65,8 +65,6 @@ describe('WritePage', () => {
           } = renderWritePage();
     
           expect(getByText('엽서 작성하기')).not.toBeNull();
-
-          console.log('불리기전', inputFields)
 
           fireEvent.click(getByText('다음'));
     
@@ -118,15 +116,15 @@ describe('WritePage', () => {
     });
   });
 
-  context('when writePageIndex is 1', () => {
+  context('when writePageIndex is 2', () => {
     beforeEach(() => {
       useSelector.mockImplementation((selector) => selector({
-        writePageIndex: 1,
+        writePageIndex: 2,
         inputFields,
       }));
     });
 
-    it('render secondPage', () => {
+    it('render PhotoFormPage', () => {
       const {
         getByText,
       } = renderWritePage();
@@ -148,7 +146,7 @@ describe('WritePage', () => {
           dispatch.mockClear();
           
           useSelector.mockImplementation((selector) => selector({
-            writePageIndex: 1,
+            writePageIndex: 2,
             inputFields,
           }));
         });
@@ -170,7 +168,7 @@ describe('WritePage', () => {
           dispatch.mockClear();
   
           useSelector.mockImplementation((selector) => selector({
-            writePageIndex: 1,
+            writePageIndex: 2,
             inputFields: {
               ...inputFields,
               write: {
@@ -202,10 +200,10 @@ describe('WritePage', () => {
     });
   });
 
-  context('when writePageIndex is 2', () => {
+  context('when writePageIndex is 3', () => {
     beforeEach(() => {
       useSelector.mockImplementation((selector) => selector({
-        writePageIndex: 2,
+        writePageIndex: 3,
         inputFields,
       }));
     });
@@ -224,10 +222,6 @@ describe('WritePage', () => {
       expect(dispatch).toBeCalledWith({
         type: 'application/decreaseWritePageIndex',
       });
-
     });
-    
-    
-    
   });
 });

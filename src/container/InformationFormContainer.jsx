@@ -14,7 +14,7 @@ import {
   setInputFieldsError,
 } from '../state/slice';
 
-export default function WriteFirstFormContainer({ onClickNext, onClickPrevious, getChangeHandler }) {
+export default function InformationFormContainer({ onClickNext, onClickPrevious, getChangeHandler }) {
 
   const dispatch = useDispatch();
 

@@ -20,8 +20,15 @@ describe('App', () => {
   beforeEach(() => {
     useDispatch.mockImplementation(() => dispatch);
     useSelector.mockImplementation((selector) => selector({
+      writePageIndex: 0,
       entrance,
       inputFields: inputFields,
+      postcard: {
+        isFront: true,
+        sender: '받는이',
+        sender: '보낸이',
+        contents: '이것은 내용입니다.',
+      },
     }));
   });
 
@@ -40,5 +47,21 @@ describe('App', () => {
       expect(container).toHaveTextContent(sender);
     });
   });
-  
+
+  context('with /write', () => {
+    it('renders writingPage', () => {
+      const { container } = renderApp({ path: '/write' });
+
+      expect(container).toHaveTextContent('엽서 작성하기');
+    });
+  });
+
+  context('with /postcard', () => {
+    it('renders postcardPage', () => {
+      const { container } = renderApp({ path: '/postcard' });
+
+      expect(container).toHaveTextContent('to');
+      expect(container).toHaveTextContent('from');
+    });
+  });
 });

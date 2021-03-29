@@ -1,6 +1,6 @@
 import React from 'react';
 
-import WriteFirstFormContainer from './WriteFirstFormContainer';
+import InformationFormContainer from './InformationFormContainer';
 
 import { fireEvent, render } from '@testing-library/react';
 
@@ -10,7 +10,7 @@ import placeholders from '../text/placeholders';
 
 import inputFields from '../fixtures/inputFields';
 
-describe('WriteFirstFormContainer', () => {
+describe('InformationFormContainer', () => {
   const dispatch = jest.fn();
   const getChangeHandler = () => jest.fn();
   const handleNextClick = jest.fn();
@@ -18,7 +18,7 @@ describe('WriteFirstFormContainer', () => {
 
   function renderFirstPage() {
     return render(
-      <WriteFirstFormContainer
+      <InformationFormContainer
         getChangeHandler={getChangeHandler}
         onClickNext={handleNextClick}
         onClickPrevious={handlePreviousClick}
