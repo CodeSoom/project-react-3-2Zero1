@@ -2,7 +2,7 @@ import React from 'react'
 import InputPart from './InputPart'
 import RadioPart from './RadioPart'
 
-export default function WriteFirstForm({
+export default function InformationForm({
   fields: {
     sender,
     receiver,

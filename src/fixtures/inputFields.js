@@ -18,6 +18,10 @@ const inputFields = {
       value: '',
       error: '',
     },
+    contents: {
+      value: '',
+      error: '',
+    },
     photo: {
       value: '',
       error: '',

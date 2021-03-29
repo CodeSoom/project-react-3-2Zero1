@@ -1,6 +1,6 @@
 import React from 'react'
 
-import WriteFirstForm from '../presentational/WriteFirstForm';
+import InformationForm from '../presentational/InformationForm';
 
 import placeholders from '../text/placeholders';
 import errorMessages from '../text/errorMessages';
@@ -17,8 +17,6 @@ import {
 export default function InformationFormContainer({ onClickNext, onClickPrevious, getChangeHandler }) {
 
   const dispatch = useDispatch();
-
-  console.log('불림');
 
   const { inputFields: {
     write: {
@@ -75,7 +73,7 @@ export default function InformationFormContainer({ onClickNext, onClickPrevious,
 
   return (
     <>
-      <WriteFirstForm
+      <InformationForm
         onHandleClick={handleClick}
         fields={fields}
         isPrivate={isPrivate}

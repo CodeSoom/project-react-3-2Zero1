@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 
-import WriteSecondForm from '../presentational/WriteSecondForm';
+import PhotoForm from '../presentational/PhotoForm';
 
 import { get } from '../utils/utils';
 import { getField } from '../utils/utils'
@@ -60,7 +60,7 @@ export default function PhotoFormContainer({ onClickNext, onClickPrevious, getCh
   }
 
   return (
-    <WriteSecondForm
+    <PhotoForm
       fields={fields}
       onClickPrevious={onClickPrevious}
       onChangeFile={handleFileChange}

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import WriteSecondForm from './WriteSecondForm';
+import PhotoForm from './PhotoForm';
 
 import { fireEvent, render } from '@testing-library/react';
 
@@ -13,7 +13,7 @@ jest.mock('react-router-dom', () => ({
   },
 }));
 
-describe('WriteSecondForm', () => {
+describe('PhotoForm', () => {
   const handleClick =  jest.fn();
   const handlePreviousClick = jest.fn();
   const handleFileChange = jest.fn();
@@ -34,7 +34,7 @@ describe('WriteSecondForm', () => {
   };
 
   const { getByLabelText, getByText } = render(
-    <WriteSecondForm
+    <PhotoForm
       fields={fields}
       onHandleClick={handleClick}
       onClickPrevious={handlePreviousClick}
@@ -42,7 +42,7 @@ describe('WriteSecondForm', () => {
     />
   );
 
-  it('render WriteSecondForm', () => {
+  it('render PhotoForm', () => {
     fireEvent.click(getByText('이전'));
     expect(handlePreviousClick).toBeCalled();
 
