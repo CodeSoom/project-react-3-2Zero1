@@ -5,10 +5,7 @@ import WriteSecondForm from '../presentational/WriteSecondForm';
 
 import { get } from '../utils/utils';
 import { getField } from '../utils/utils'
-import validator from '../utils/validator';
-
-import errorMessages from '../text/errorMessages';
-import placeholders from '../text/placeholders';
+import validate from '../utils/validate';
 
 import {
   setInputFieldsError,
@@ -28,40 +25,29 @@ export default function WriteSecondFormContainer({ onClickNext, onClickPrevious,
     photo: getField({
       field:photo,
       id: 'photo',
-      errorMessage: photo.error ? errorMessages['photo'] : '',
     }),
     photoMessage: getField({
       field: photoMessage,
       id: 'photoMessage',
       name: '사진 메시지',
-      placeholder: placeholders['photoMessage'],
       onChange: getChangeHandler('photoMessage'),
     }),
   };
-  console.log(fields);
   
   function handleNextClick() {
-    const photoCheck = validator.photo(photo.value);
-    const photoMessageCheck = validator.photoMessage(photoMessage.value);
-    
-    const checks = {
-      photo: photoCheck,
-      photoMessage: photoMessageCheck,
-    };
+    const checks = validate(fields);
 
-    Object.entries(checks).forEach(([key, checked]) => {
+    checks.forEach(([key, checked]) => {
       dispatch(setInputFieldsError({
         page: 'write',
         type: key,
         error: !checked,
       }));
     });
-
-    if(Object.entries(checks).filter(([_, check]) => !check).length !== 0) {
-      return;
+    
+    if(checks.filter(([_, check]) => !check).length === 0) {
+      onClickNext();
     }
-
-    onClickNext();
   };
 
   function handleFileChange(event) {
