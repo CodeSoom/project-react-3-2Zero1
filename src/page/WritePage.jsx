@@ -35,7 +35,7 @@ export default function WritePage() {
     dispatch(increaseWritePageIndex());
   }
   function handlePreviousClick() {
-    if (writePageIndex == 0) {
+    if (writePageIndex === 0) {
       return history.goBack();
     }
     dispatch(decreaseWritePageIndex());
