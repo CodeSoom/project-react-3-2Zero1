@@ -12,7 +12,9 @@ import {
   loadPostcard,
 } from '../state/slice';
 
-export default function EntranceContainer() {
+export default function EntranceContainer({
+  onHandleClickPostcard,
+}) {
   const dispatch = useDispatch();
 
   const { entrance, inputFields } = useSelector((state) => ({
@@ -40,7 +42,10 @@ export default function EntranceContainer() {
         return;
       }
     }
+    //서버 요청한 후에 private 이라면 key 값과 input값을 보내고 true false를 받는다. 실패했다면 에러 처리
     // dispatch(loadPostcard());
+    onHandleClickPostcard();
+
   }
 
   function handleChange(value) {

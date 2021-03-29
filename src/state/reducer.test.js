@@ -36,7 +36,7 @@ describe('reducer', () => {
       value: '',
       error: false,
     },
-  },
+  }
 };
   const initialState = {
     writePageIndex: 0,
@@ -46,6 +46,15 @@ describe('reducer', () => {
       'isPrivate': "",
       'postcardCount': 0,
       'writtenCount': 0, 
+    },
+    postcard: {
+      isFront: true,
+      sender: '',
+      receiver: '',
+      contents: '',
+      stampURL: '',
+      photoURL: '',
+      photoMessage: '',
     },
   };
   context('when previous state is undefined', () => {

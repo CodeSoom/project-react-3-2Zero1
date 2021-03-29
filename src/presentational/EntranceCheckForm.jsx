@@ -37,7 +37,7 @@ export default function EntranceCheckForm({
     }
     <button
       type="button"
-      onClick={handleClick(value)}
+      onClick={()=>handleClick(value)}
     >
       엽서 확인하기
     </button>

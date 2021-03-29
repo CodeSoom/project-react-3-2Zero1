@@ -18,6 +18,8 @@ export default function InformationFormContainer({ onClickNext, onClickPrevious,
 
   const dispatch = useDispatch();
 
+  console.log('불림');
+
   const { inputFields: {
     write: {
       sender,

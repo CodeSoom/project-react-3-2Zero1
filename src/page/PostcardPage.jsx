@@ -1,22 +1,24 @@
 import React from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
+import PostcardContainer from '../container/PostcardContainer';
+
+import { setPostcardFront } from '../state/slice';
 
 export default function PostcardPage() {
+  const history = useHistory();
+  const dispatch = useDispatch();
 
-  const { postcard: {
-    isFront,
-    receiver,
-    sender,
-    contents,
-  } } = useSelector((state) => ({
-    postcard: state.postcard,
-  }));
+   //이전 버튼 클릭시, isFront를 true로 돌려놓고 goBack
+  function handlePrivousClick(e) {
+    e.stopPropagation();
+    dispatch(setPostcardFront());
+    history.goBack();
+  }
 
   return (
-  <>
-    <div>{`to ${receiver}`}</div>
-    <div>{`from ${sender}`}</div>
-    <div>{contents}</div>
-  </>
+  <PostcardContainer
+   onHandlePrivousClick={handlePrivousClick}
+  />
   );
 }
