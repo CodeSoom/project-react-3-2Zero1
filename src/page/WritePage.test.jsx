@@ -66,6 +66,8 @@ describe('WritePage', () => {
     
           expect(getByText('엽서 작성하기')).not.toBeNull();
 
+          console.log('불리기전', inputFields)
+
           fireEvent.click(getByText('다음'));
     
           expect(dispatch).not.toBeCalledWith({
