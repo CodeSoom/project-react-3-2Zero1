@@ -49,64 +49,71 @@ describe('WritePage', () => {
 
       expect(dispatch).not.toBeCalled();
     });
+    context('when click next button', () => {
+      context('when some inputs is invalid', () => {
+        beforeEach(() => {
+          dispatch.mockClear();
+          
+          useSelector.mockImplementation((selector) => selector({
+            writePageIndex: 0,
+            inputFields,
+          }));
+        });
+        it('does not call increasePageIndex action', () => {
+          const {
+            getByText,
+          } = renderWritePage();
+    
+          expect(getByText('엽서 작성하기')).not.toBeNull();
 
-    // context('with input fields error', () => {
-    //   beforeEach(() => {
-    //     useSelector.mockImplementation((selector) => selector({
-    //       writePageIndex: 0,
-    //       inputFields,
-    //     }));
-    //   });
-    //   it('do not call increasePageIndex action', () => {
-    //     const {
-    //       getByText,
-    //     } = renderWritePage();
-  
-    //     expect(getByText('엽서 작성하기')).not.toBeNull();
-  
-    //     fireEvent.click(getByText('엽서 작성하기'));
-  
-    //     expect(dispatch).not.toBeCalled();
-    //   });
-    // });
-    // context('without input fields error', () => {
-    //   beforeEach(() => {
-    //     useSelector.mockImplementation((selector) => selector({
-    //       writePageIndex: 0,
-    //       inputFields: {
-    //         ...inputFields,
-    //         write: {
-    //           ...inputFields.write,
-    //           sender: {
-    //             ...inputFields.write.sender,
-    //             value: 'sender',
-    //           },
-    //           receiver: {
-    //             ...inputFields.write.receiver,
-    //             value: 'receiver',
-    //           },
-    //           secretMessage: {
-    //             ...inputFields.write.secretMessage,
-    //             value: 'hello nice to meet you ! ',
-    //           },
-    //         },
-    //       },
-    //     }));
-    //   });
-    //   it('call increasePageIndex action', () => {
-    //     const {
-    //       getByText,
-    //     } = renderWritePage();
-  
-    //     expect(getByText('엽서 작성하기')).not.toBeNull();
-  
-    //     fireEvent.click(getByText('엽서 작성하기'));
-  
-    //     expect(dispatch).toBeCalledWith({
-    //       type: 'application/increasePageIndex',
-    //     });
-    //   });
-    // });
+          fireEvent.click(getByText('다음'));
+    
+          expect(dispatch).not.toBeCalledWith({
+            type: 'application/increaseWritePageIndex',
+          });
+        });
+      });
+      context('when all inputs are valid', () => {
+        beforeEach(() => {
+          dispatch.mockClear();
+
+          useSelector.mockImplementation((selector) => selector({
+            writePageIndex: 0,
+            inputFields: {
+              ...inputFields,
+              write: {
+                ...inputFields.write,
+                sender: {
+                  ...inputFields.write.sender,
+                  value: '보낸이',
+                },
+                receiver: {
+                  ...inputFields.write.receiver,
+                  value: '받는이',
+                },
+                secretMessage: {
+                  ...inputFields.write.secretMessage,
+                  value: 'hello guys ! ',
+                },
+              },
+            },
+          }));
+        });
+        it('calls increasePageIndex action', () => {
+          const {
+            getByText,
+          } = renderWritePage();
+    
+          expect(getByText('엽서 작성하기')).not.toBeNull();
+    
+          fireEvent.click(getByText('다음'));
+    
+          expect(dispatch).toBeCalledWith({
+            type: 'application/increaseWritePageIndex',
+          });
+        });
+      });
+    });
   });
 
   context('when writePageIndex is 1', () => {
@@ -130,6 +137,65 @@ describe('WritePage', () => {
 
       expect(dispatch).toBeCalledWith({
         type: 'application/decreaseWritePageIndex',
+      });
+    });
+
+    context('when click next button', () => {
+      context('when inputs or photo is invalid', () => {
+        beforeEach(() => {
+          dispatch.mockClear();
+          
+          useSelector.mockImplementation((selector) => selector({
+            writePageIndex: 1,
+            inputFields,
+          }));
+        });
+        it('does not call increasePageIndex action', () => {
+          const {
+            getByText,
+          } = renderWritePage();
+    
+          fireEvent.click(getByText('미리보기'));
+    
+          expect(dispatch).not.toBeCalledWith({
+            type: 'application/increaseWritePageIndex',
+          });
+        });
+      });
+
+      context('when inputs and photo are valid', () => {
+        beforeEach(() => {
+          dispatch.mockClear();
+  
+          useSelector.mockImplementation((selector) => selector({
+            writePageIndex: 1,
+            inputFields: {
+              ...inputFields,
+              write: {
+                ...inputFields.write,
+                photo: {
+                  ...inputFields.write.photo,
+                  value: 'imagefile',
+                },
+                photoMessage: {
+                  ...inputFields.write.photoMessage,
+                  value: '사진 메시지 입니다. 정말 오랜만이야',
+                },
+              },
+            },
+          }));
+        });
+        it('calls increasePageIndex action', () => {
+          const {
+            getByText,
+          } = renderWritePage();
+    
+          fireEvent.click(getByText('미리보기'));
+    
+          expect(dispatch).toBeCalledWith({
+            type: 'application/increaseWritePageIndex',
+          });
+        });
       });
     });
   });
@@ -158,5 +224,8 @@ describe('WritePage', () => {
       });
 
     });
+    
+    
+    
   });
 });

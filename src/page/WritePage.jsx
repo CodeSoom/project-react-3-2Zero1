@@ -32,7 +32,10 @@ export default function WritePage() {
   };
 
   function handleNextClick() {
+    console.log('페이지 디스패치까지')
     dispatch(increaseWritePageIndex());
+    console.log('페이지 디스패치까지 불렸다.')
+
   }
   function handlePreviousClick() {
     if (writePageIndex == 0) {
