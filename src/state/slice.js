@@ -37,6 +37,17 @@ const initialInputFields = {
       error: false,
     },
   },
+  
+};
+
+const postcard = {
+  isFront: true,
+  sender: '',
+  receiver: '',
+  contents: '',
+  stampURL: '',
+  photoURL: '',
+  photoMessage: '',
 };
 
 const { actions, reducer } = createSlice({
@@ -50,6 +61,7 @@ const { actions, reducer } = createSlice({
       'postcardCount': 0,
       'writtenCount': 0, 
     },
+    postcard,
   },
   reducers: {
     changeRadioChecked(state, { payload: value } ){
@@ -100,11 +112,34 @@ const { actions, reducer } = createSlice({
         writePageIndex: (+state.writePageIndex) + 1,
       }
     },
-    decreaseWritePageIndex(state){
+    decreaseWritePageIndex(state) {
       return {
         ...state,
         writePageIndex: (+state.writePageIndex) - 1,
       }
+    },
+    flipPostcard(state) {
+      const {
+        postcard: {
+          isFront,
+        },
+      } = state;
+
+      return {
+        ...state,
+        postcard: {
+          isFront: !isFront,
+        },
+      }
+    },
+    setPostcardFront(state) {
+      return {
+        ...state,
+        postcard: {
+          ...state.postcard,
+          isFront: true,
+        },
+      };
     },
       // return async (dispatch, getState) => {
       //   const { accessToken, reviewFields: { score, description } } = getState();
@@ -126,6 +161,8 @@ export const {
   changeRadioChecked,
   increaseWritePageIndex,
   decreaseWritePageIndex,
+  flipPostcard,
+  setPostcardFront,
 } = actions;
 
 
