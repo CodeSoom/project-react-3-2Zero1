@@ -5,7 +5,7 @@ import WriteFirstForm from '../presentational/WriteFirstForm';
 import placeholders from '../text/placeholders';
 import errorMessages from '../text/errorMessages';
 import { useDispatch, useSelector } from 'react-redux';
-import validate from '../utils/validate';
+import validator from '../utils/validate';
 import { getField } from '../utils/utils'
 
 import {
@@ -56,7 +56,7 @@ export default function WriteFirstFormContainer({ onClickNext, onClickPrevious, 
   }
 
   function handleClick() {
-    const checks = validate(fields);
+    const checks = validator(fields);
 
     checks.forEach(([key, checked]) => {
       dispatch(setInputFieldsError({
