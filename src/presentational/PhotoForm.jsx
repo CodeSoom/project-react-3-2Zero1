@@ -2,7 +2,7 @@ import React from 'react'
 import ImagePart from './ImagePart';
 import InputPart from './InputPart'
 
-export default function WriteSecondForm({
+export default function PhotoForm({
   fields: {
     photo,
     photoMessage,

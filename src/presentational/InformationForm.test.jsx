@@ -1,12 +1,12 @@
 import React from 'react';
 
-import WriteFirstForm from './WriteFirstForm';
+import InformationForm from './InformationForm';
 
 import { fireEvent, render } from '@testing-library/react';
 
 import placeholders from '../text/placeholders';
 
-describe('WriteFirstForm', () => {
+describe('InformationForm', () => {
   const fields = {
     sender: {
       id: 'sender',
@@ -39,7 +39,7 @@ describe('WriteFirstForm', () => {
   const handlePreviousClick = jest.fn();
 
   const { getByLabelText, getAllByPlaceholderText, getByText } = render(
-    <WriteFirstForm
+    <InformationForm
       fields={fields}
       onHandleClick={onClick}
       onRadioChange={handleRadioChange}
@@ -48,7 +48,7 @@ describe('WriteFirstForm', () => {
     />
   );
 
-  it('render writeFirstForm', () => {
+  it('render InformationForm', () => {
     fireEvent.click(getByText('이전'));
     expect(handlePreviousClick).toBeCalled();
 

@@ -116,6 +116,33 @@ describe('WritePage', () => {
     });
   });
 
+  context('when writePageIndex is 1', () => {
+    beforeEach(() => {
+      useSelector.mockImplementation((selector) => selector({
+        writePageIndex: 1,
+        inputFields,
+      }));
+    });
+
+    it('render contentsForm', () => {
+      const {
+        getByText,
+      } = renderWritePage();
+
+      expect(getByText('내용 작성')).not.toBeNull();
+
+      expect(getByText('이전')).not.toBeNull();
+
+      fireEvent.click(getByText('이전'));
+
+      expect(dispatch).toBeCalledWith({
+        type: 'application/decreaseWritePageIndex',
+      });
+
+      expect()
+    });
+  });
+
   context('when writePageIndex is 2', () => {
     beforeEach(() => {
       useSelector.mockImplementation((selector) => selector({

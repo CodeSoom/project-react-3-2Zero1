@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import InformationFormContainer from '../container/InformationFormContainer';
+import ContentsFormContainer from '../container/ContentsFormContainer';
 import PhotoFormContainer from '../container/PhotoFormContainer';
 import PreviewContainer from '../container/PreviewContainer';
 
@@ -43,6 +44,13 @@ export default function WritePage() {
   const writeContainers = {
     0: (
       <InformationFormContainer
+        onClickNext={handleNextClick}
+        onClickPrevious={handlePreviousClick}
+        getChangeHandler={getChangeHandler}
+      />
+    ),
+    1: (
+      <ContentsFormContainer
         onClickNext={handleNextClick}
         onClickPrevious={handlePreviousClick}
         getChangeHandler={getChangeHandler}

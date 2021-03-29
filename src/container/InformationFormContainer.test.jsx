@@ -16,7 +16,7 @@ describe('InformationFormContainer', () => {
   const handleNextClick = jest.fn();
   const handlePreviousClick = jest.fn();
 
-  function renderFirstPage() {
+  function renderInformationForm() {
     return render(
       <InformationFormContainer
         getChangeHandler={getChangeHandler}
@@ -36,7 +36,7 @@ describe('InformationFormContainer', () => {
   it('show sender inputs', () => {
     const {
       getByLabelText,
-    } = renderFirstPage();
+    } = renderInformationForm();
 
     expect(getByLabelText('보내는 사람')).not.toBeNull();
     expect(getByLabelText('보내는 사람').placeholder).toBe(placeholders['sender']);
@@ -45,7 +45,7 @@ describe('InformationFormContainer', () => {
   it('show receiver inputs', () => {
     const {
       getByLabelText,
-    } = renderFirstPage();
+    } = renderInformationForm();
 
     expect(getByLabelText('받는 사람')).not.toBeNull();
     expect(getByLabelText('받는 사람').placeholder).toBe(placeholders['receiver']);
@@ -56,7 +56,7 @@ describe('InformationFormContainer', () => {
     const {
       getByText,
       getByLabelText,
-    } = renderFirstPage();
+    } = renderInformationForm();
 
     expect(getByLabelText('비밀 메시지')).not.toBeNull();
     expect(getByLabelText('비밀 메시지').placeholder).toBe(placeholders['secretMessage']);
