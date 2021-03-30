@@ -19,10 +19,14 @@ describe('Postcard', () => {
   const onHandlePrivousClick = jest.fn();
   const handleCompleteClick = jest.fn();
 
-  function renderPostcard(showCompleteButton) {
+  function renderPostcard({
+    showCompleteButton,
+    isFrontPage,
+  }) {
     return render(
       <Postcard
         postcard={postcard}
+        isFrontPage={isFrontPage}
         onHandleClickPage={handleClickPage}
         onHandlePrivousClick={onHandlePrivousClick}
         showCompleteButton={showCompleteButton}
@@ -30,23 +34,18 @@ describe('Postcard', () => {
       />
     );
   }
-  context('when showCompleteButton is true', () => {
-    it('renderCompleteButton', () => {
-      const { getByText } = renderPostcard(true);
-
+  context('when isFrontPage false and showCompleteButton is true', () => {
+    it('render complete button', () => {
+      const { getByText } = renderPostcard({
+        showCompleteButton: true,
+        isFrontPage: false,
+      });
+  
       expect(getByText('완료')).not.toBeNull();
-
+  
       fireEvent.click(getByText('완료'));
-
+  
       expect(handleCompleteClick).toBeCalled();
-    });
-  });
-
-  context('when showCompleteButton is false', () => {
-    it('renderCompleteButton', () => {
-      const { queryByText } = renderPostcard(false);
-
-      expect(queryByText('완료')).toBeNull();
     });
   });
 });
