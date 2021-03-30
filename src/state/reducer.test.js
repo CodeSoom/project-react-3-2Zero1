@@ -28,6 +28,10 @@ describe('reducer', () => {
       value: '',
       error: false,
     },
+    contents: {
+      value: '',
+      error: '',
+    },
     photo: {
       value: '',
       error: false,
@@ -48,7 +52,7 @@ describe('reducer', () => {
       'writtenCount': 0, 
     },
     postcard: {
-      isFront: true,
+      isFrontPage: true,
       sender: '',
       receiver: '',
       contents: '',

@@ -17,7 +17,7 @@ describe('PostcardContainer', () => {
   useSelector.mockImplementation((selector) => selector(
     {
       postcard: {
-        isFront: true,
+        isFrontPage: true,
         sender: '보낸이',
         receiver: '받는이',
         contents: '이것은 내용입니다.',
@@ -28,11 +28,11 @@ describe('PostcardContainer', () => {
     }
   ));
   
-  context('when isFront is true', () => {
+  context('when isFrontPage is true', () => {
     it('show front Page', () => {
       useSelector.mockImplementation((selector) => selector({
         postcard: {
-          isFront: true,
+          isFrontPage: true,
           sender: '보낸이',
           receiver: '받는이',
           contents: '이것은 내용입니다.',
@@ -48,11 +48,11 @@ describe('PostcardContainer', () => {
     });
   });
 
-  context('when isFront is false', () => {
+  context('when isFrontPage is false', () => {
     it('show back Page', () => {
       useSelector.mockImplementation((selector) => selector({
         postcard: {
-          isFront: false,
+          isFrontPage: false,
           sender: '보낸이',
           receiver: '받는이',
           contents: '이것은 내용입니다.',
@@ -66,10 +66,10 @@ describe('PostcardContainer', () => {
     });
   });
   context('when click page and previuous button', () => {
-    it('change isFront oppositely', () => {
+    it('change isFrontPage oppositely', () => {
       useSelector.mockImplementation((selector) => selector({
         postcard: {
-          isFront: true,
+          isFrontPage: true,
           sender: '보낸이',
           receiver: '받는이',
           contents: '이것은 내용입니다.',

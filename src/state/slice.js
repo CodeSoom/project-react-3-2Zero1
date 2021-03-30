@@ -28,6 +28,10 @@ const initialInputFields = {
       value: '',
       error: false,
     },
+    contents: {
+      value: '',
+      error: '',
+    },
     photo: {
       value: '',
       error: false,
@@ -41,7 +45,7 @@ const initialInputFields = {
 };
 
 const postcard = {
-  isFront: true,
+  isFrontPage: true,
   sender: '',
   receiver: '',
   contents: '',
@@ -121,14 +125,14 @@ const { actions, reducer } = createSlice({
     flipPostcard(state) {
       const {
         postcard: {
-          isFront,
+          isFrontPage,
         },
       } = state;
 
       return {
         ...state,
         postcard: {
-          isFront: !isFront,
+          isFrontPage: !isFrontPage,
         },
       }
     },
@@ -137,7 +141,7 @@ const { actions, reducer } = createSlice({
         ...state,
         postcard: {
           ...state.postcard,
-          isFront: true,
+          isFrontPage: true,
         },
       };
     },

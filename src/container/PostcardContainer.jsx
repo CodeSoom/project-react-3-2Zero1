@@ -13,7 +13,7 @@ export default function PostcardContainer({ onHandlePrivousClick }) {
 
   const dispatch = useDispatch();
   const { 
-    isFront,
+    isFrontPage,
     receiver,
     sender,
     contents,
@@ -33,7 +33,7 @@ export default function PostcardContainer({ onHandlePrivousClick }) {
       >
         이전
       </div>
-      ({isFront ? (
+      ({isFrontPage ? (
       <PostcardFront
         sender={sender}
         receiver={receiver}

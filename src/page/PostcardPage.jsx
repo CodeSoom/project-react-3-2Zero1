@@ -9,7 +9,7 @@ export default function PostcardPage() {
   const history = useHistory();
   const dispatch = useDispatch();
 
-   //이전 버튼 클릭시, isFront를 true로 돌려놓고 goBack
+   //이전 버튼 클릭시, isFrontPage를 true로 돌려놓고 goBack
   function handlePrivousClick(e) {
     e.stopPropagation();
     dispatch(setPostcardFront());
