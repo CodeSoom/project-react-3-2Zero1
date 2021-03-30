@@ -24,7 +24,7 @@ describe('App', () => {
       entrance,
       inputFields: inputFields,
       postcard: {
-        isFront: true,
+        isFrontPage: true,
         sender: '받는이',
         sender: '보낸이',
         contents: '이것은 내용입니다.',
