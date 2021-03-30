@@ -49,68 +49,66 @@ describe('WritePage', () => {
 
       expect(dispatch).not.toBeCalled();
     });
-    context('when click next button', () => {
-      context('when some inputs is invalid', () => {
-        beforeEach(() => {
-          dispatch.mockClear();
-          
-          useSelector.mockImplementation((selector) => selector({
-            writePageIndex: 0,
-            inputFields,
-          }));
-        });
-        it('does not call increasePageIndex action', () => {
-          const {
-            getByText,
-          } = renderWritePage();
-    
-          expect(getByText('엽서 작성하기')).not.toBeNull();
+    context('when all inputs are not valid', () => {
+      beforeEach(() => {
+        dispatch.mockClear();
+        
+        useSelector.mockImplementation((selector) => selector({
+          writePageIndex: 0,
+          inputFields,
+        }));
+      });
+      it('does not call increasePageIndex action', () => {
+        const {
+          getByText,
+        } = renderWritePage();
+  
+        expect(getByText('엽서 작성하기')).not.toBeNull();
 
-          fireEvent.click(getByText('다음'));
-    
-          expect(dispatch).not.toBeCalledWith({
-            type: 'application/increaseWritePageIndex',
-          });
+        fireEvent.click(getByText('다음'));
+  
+        expect(dispatch).not.toBeCalledWith({
+          type: 'application/increaseWritePageIndex',
         });
       });
-      context('when all inputs are valid', () => {
-        beforeEach(() => {
-          dispatch.mockClear();
+    });
+    context('when all inputs are valid', () => {
+      beforeEach(() => {
+        dispatch.mockClear();
 
-          useSelector.mockImplementation((selector) => selector({
-            writePageIndex: 0,
-            inputFields: {
-              ...inputFields,
-              write: {
-                ...inputFields.write,
-                sender: {
-                  ...inputFields.write.sender,
-                  value: '보낸이',
-                },
-                receiver: {
-                  ...inputFields.write.receiver,
-                  value: '받는이',
-                },
-                secretMessage: {
-                  ...inputFields.write.secretMessage,
-                  value: 'hello guys ! ',
-                },
+        useSelector.mockImplementation((selector) => selector({
+          writePageIndex: 0,
+          inputFields: {
+            ...inputFields,
+            write: {
+              ...inputFields.write,
+              sender: {
+                ...inputFields.write.sender,
+                value: '보낸이',
+              },
+              receiver: {
+                ...inputFields.write.receiver,
+                value: '받는이',
+              },
+              secretMessage: {
+                ...inputFields.write.secretMessage,
+                value: 'hello guys ! ',
               },
             },
-          }));
-        });
-        it('calls increasePageIndex action', () => {
-          const {
-            getByText,
-          } = renderWritePage();
-    
-          expect(getByText('엽서 작성하기')).not.toBeNull();
-    
-          fireEvent.click(getByText('다음'));
-    
-          expect(dispatch).toBeCalledWith({
-            type: 'application/increaseWritePageIndex',
-          });
+          },
+        }));
+      });
+      it('calls increasePageIndex action', () => {
+        const {
+          getByText,
+        } = renderWritePage();
+  
+        expect(getByText('엽서 작성하기')).not.toBeNull();
+  
+        fireEvent.click(getByText('다음'));
+  
+        expect(dispatch).toBeCalledWith({
+          type: 'application/increaseWritePageIndex',
         });
       });
     });
@@ -139,7 +137,6 @@ describe('WritePage', () => {
         type: 'application/decreaseWritePageIndex',
       });
 
-      expect()
     });
   });
 
@@ -167,61 +164,59 @@ describe('WritePage', () => {
       });
     });
 
-    context('when click next button', () => {
-      context('when inputs or photo is invalid', () => {
-        beforeEach(() => {
-          dispatch.mockClear();
-          
-          useSelector.mockImplementation((selector) => selector({
-            writePageIndex: 2,
-            inputFields,
-          }));
-        });
-        it('does not call increasePageIndex action', () => {
-          const {
-            getByText,
-          } = renderWritePage();
-    
-          fireEvent.click(getByText('미리보기'));
-    
-          expect(dispatch).not.toBeCalledWith({
-            type: 'application/increaseWritePageIndex',
-          });
+    context('when inputs or photo is invalid', () => {
+      beforeEach(() => {
+        dispatch.mockClear();
+        
+        useSelector.mockImplementation((selector) => selector({
+          writePageIndex: 2,
+          inputFields,
+        }));
+      });
+      it('does not call increasePageIndex action', () => {
+        const {
+          getByText,
+        } = renderWritePage();
+  
+        fireEvent.click(getByText('미리보기'));
+  
+        expect(dispatch).not.toBeCalledWith({
+          type: 'application/increaseWritePageIndex',
         });
       });
+    });
 
-      context('when inputs and photo are valid', () => {
-        beforeEach(() => {
-          dispatch.mockClear();
-  
-          useSelector.mockImplementation((selector) => selector({
-            writePageIndex: 2,
-            inputFields: {
-              ...inputFields,
-              write: {
-                ...inputFields.write,
-                photo: {
-                  ...inputFields.write.photo,
-                  value: 'imagefile',
-                },
-                photoMessage: {
-                  ...inputFields.write.photoMessage,
-                  value: '사진 메시지 입니다. 정말 오랜만이야',
-                },
+    context('when inputs and photo are valid', () => {
+      beforeEach(() => {
+        dispatch.mockClear();
+
+        useSelector.mockImplementation((selector) => selector({
+          writePageIndex: 2,
+          inputFields: {
+            ...inputFields,
+            write: {
+              ...inputFields.write,
+              photo: {
+                ...inputFields.write.photo,
+                value: 'imagefile',
+              },
+              photoMessage: {
+                ...inputFields.write.photoMessage,
+                value: '사진 메시지 입니다. 정말 오랜만이야',
               },
             },
-          }));
-        });
-        it('calls increasePageIndex action', () => {
-          const {
-            getByText,
-          } = renderWritePage();
-    
-          fireEvent.click(getByText('미리보기'));
-    
-          expect(dispatch).toBeCalledWith({
-            type: 'application/increaseWritePageIndex',
-          });
+          },
+        }));
+      });
+      it('calls increasePageIndex action', () => {
+        const {
+          getByText,
+        } = renderWritePage();
+  
+        fireEvent.click(getByText('미리보기'));
+  
+        expect(dispatch).toBeCalledWith({
+          type: 'application/increaseWritePageIndex',
         });
       });
     });
