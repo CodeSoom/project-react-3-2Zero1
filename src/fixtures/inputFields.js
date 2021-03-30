@@ -30,6 +30,9 @@ const inputFields = {
       value: '',
       error: '',
     },
+    preview: {
+      isFrontPage: true,
+    },
   },
 };
 

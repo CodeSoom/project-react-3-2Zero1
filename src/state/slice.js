@@ -40,6 +40,9 @@ const initialInputFields = {
       value: '',
       error: false,
     },
+    preview: {
+      isFrontPage: true,
+    },
   },
   
 };
@@ -122,6 +125,21 @@ const { actions, reducer } = createSlice({
         writePageIndex: (+state.writePageIndex) - 1,
       }
     },
+    flipPreviewPostcard(state) {
+      return {
+        ...state,
+        inputFields: {
+          ...state.inputFields,
+          write:{
+            ...state.inputFields['write'],
+            preview:{
+              ...state.inputFields['write']['preview'],
+              isFrontPage: !state.inputFields['write']['preview']['isFrontPage'],
+            },
+          },
+        },
+      };
+    },
     flipPostcard(state) {
       const {
         postcard: {
@@ -166,6 +184,7 @@ export const {
   increaseWritePageIndex,
   decreaseWritePageIndex,
   flipPostcard,
+  flipPreviewPostcard,
   setPostcardFront,
 } = actions;
 
