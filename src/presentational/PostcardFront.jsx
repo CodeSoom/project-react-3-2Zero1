@@ -11,6 +11,9 @@ export default function PostcardFront({
     <div>
         <div>{`to ${receiver}`}</div>
         <div>{`from ${sender}`}</div>
+        <img
+          src={stampUrl}
+        />
         <div>{contents}</div>
       </div>
   );

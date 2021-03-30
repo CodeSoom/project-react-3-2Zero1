@@ -7,7 +7,8 @@ export default function PostcardBack({
 
   return (
     <div>
-        <div>{photoMessage}</div>
-      </div>
+      <img src={photoUrl} />
+      <div>{photoMessage}</div>
+    </div>
   );
 }

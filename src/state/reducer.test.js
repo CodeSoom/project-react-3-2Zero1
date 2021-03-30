@@ -40,6 +40,9 @@ describe('reducer', () => {
       value: '',
       error: false,
     },
+    preview: {
+      isFrontPage: true,
+    }
   }
 };
   const initialState = {
