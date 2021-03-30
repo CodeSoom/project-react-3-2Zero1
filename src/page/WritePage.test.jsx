@@ -13,7 +13,9 @@ const mockGoBack = jest.fn();
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useHistory() {
-    return { goBack: mockGoBack };
+    return {
+      goBack: mockGoBack,
+    };
   },
 }));
 
@@ -289,5 +291,24 @@ describe('WritePage', () => {
         });
       });
     });
+  });
+
+  context('when writePageIndex is 4', () => {
+    beforeEach(() => {
+      useSelector.mockImplementation((selector) => selector({
+        writePageIndex: 4,
+      }));
+    });
+    it('render writeCompletePage', () => {
+      const {
+        getByText,
+      } = renderWritePage();
+      
+      expect(getByText('홈로고')).not.toBeNull();
+
+      fireEvent.click(getByText('홈로고'));
+
+      expect(mockGoBack).toBeCalled();
+    })
   });
 });
