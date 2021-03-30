@@ -6,6 +6,7 @@ import InformationFormContainer from '../container/InformationFormContainer';
 import ContentsFormContainer from '../container/ContentsFormContainer';
 import PhotoFormContainer from '../container/PhotoFormContainer';
 import PreviewContainer from '../container/PreviewContainer';
+import WriteCompleteContainer from '../container/WriteCompleteContainer';
 
 import { get } from '../utils/utils';
 
@@ -40,6 +41,11 @@ export default function WritePage() {
     }
     dispatch(decreaseWritePageIndex());
   }
+  function handleHomeClick() {
+    const url = '/';
+    history.goBack()
+    // history.push(url);
+  }
 
   const writeContainers = {
     0: (
@@ -70,7 +76,11 @@ export default function WritePage() {
         getChangeHandler={getChangeHandler}
       />
     ),
-    // 3: <WriteCompletedContainer />,
+    4: (
+      <WriteCompleteContainer
+        onClickHome={handleHomeClick}
+      />
+    ),
   };
   
   return (

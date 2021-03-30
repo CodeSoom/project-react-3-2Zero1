@@ -44,6 +44,7 @@ export default function PreviewContainer({ onClickNext, onClickPrevious }) {
 
   function handleCompleteClick(e) {
     e.stopPropagation();
+    //TODO: 서버로 등록하는 요청을 보내며, 응답이 왔을 때 onClickNext를 부른다.
     onClickNext();
   }
 
