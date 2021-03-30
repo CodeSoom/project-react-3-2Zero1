@@ -226,7 +226,23 @@ describe('WritePage', () => {
     beforeEach(() => {
       useSelector.mockImplementation((selector) => selector({
         writePageIndex: 3,
-        inputFields,
+        inputFields: {
+          ...inputFields,
+          write: {
+            ...inputFields.write,
+            photo: {
+              ...inputFields.write.photo,
+              value: 'imagefile',
+            },
+            photoMessage: {
+              ...inputFields.write.photoMessage,
+              value: '사진 메시지 입니다. 정말 오랜만이야',
+            },
+            preview: {
+              isFrontPage: given.isFrontPage,
+            },
+          },
+        },
       }));
     });
 
@@ -243,6 +259,34 @@ describe('WritePage', () => {
 
       expect(dispatch).toBeCalledWith({
         type: 'application/decreaseWritePageIndex',
+      });
+    });
+    
+    context('isFrontPage is true', () => {
+      given('isFrontPage', () => true);
+      it('does not show complete button', () => {
+        const {
+          queryByText,
+        } = renderWritePage();
+
+        expect(queryByText('완료')).toBeNull();
+      });
+    });
+
+    context('isFrontPage is false', () => {
+      given('isFrontPage', () => false);
+      it('shows complete button', () => {
+        const {
+          getByText,
+        } = renderWritePage();
+
+        expect(getByText('완료')).not.toBeNull();
+
+        fireEvent.click(getByText('완료'));
+
+        expect(dispatch).toBeCalledWith({
+          type: 'application/increaseWritePageIndex',
+        });
       });
     });
   });

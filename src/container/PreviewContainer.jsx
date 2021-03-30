@@ -29,7 +29,6 @@ export default function PreviewContainer({ onClickNext, onClickPrevious }) {
   } = useSelector(get('inputFields'));
 
   const postcard = {
-    isFrontPage: preview.isFrontPage,
     sender: sender.value,
     receiver: receiver.value,
     contents: contents.value,
@@ -38,11 +37,14 @@ export default function PreviewContainer({ onClickNext, onClickPrevious }) {
     photoMessage: photoMessage.value,
   };
 
-  console.log(postcard);
-
   function handleClickPage(e) {
     e.stopPropagation();
     dispatch(flipPreviewPostcard());
+  }
+
+  function handleCompleteClick(e) {
+    e.stopPropagation();
+    onClickNext();
   }
 
   return (
@@ -50,10 +52,11 @@ export default function PreviewContainer({ onClickNext, onClickPrevious }) {
       <div>미리 보기</div>
       <Postcard
         postcard={postcard}
+        isFrontPage={preview.isFrontPage}
         onHandleClickPage={handleClickPage}
         onHandlePrivousClick={onClickPrevious}
         showCompleteButton={true}
-        onHandleCompleteClick={onClickNext}
+        onHandleCompleteClick={handleCompleteClick}
       />
     </>
   );

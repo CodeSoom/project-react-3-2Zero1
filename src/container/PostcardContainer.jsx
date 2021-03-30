@@ -12,6 +12,7 @@ export default function PostcardContainer({ onHandlePrivousClick }) {
 
   const dispatch = useDispatch();
   const postcard = useSelector(get('postcard'));
+  const { isFrontPage } = postcard;
 
   function handleClickPage() {
     dispatch(flipPostcard());
@@ -19,7 +20,8 @@ export default function PostcardContainer({ onHandlePrivousClick }) {
 
   return (
     <Postcard
-      postcard = {postcard}
+      postcard={postcard}
+      isFrontPage={isFrontPage}
       onHandlePrivousClick={onHandlePrivousClick}
       onHandleClickPage={handleClickPage}
       showCompleteButton={false}
