@@ -11,7 +11,6 @@ import {
 
 export default function Postcard({ 
   postcard: {
-    isFrontPage,
     receiver,
     sender,
     contents,
@@ -19,6 +18,7 @@ export default function Postcard({
     stampUrl,
     photoUrl,
   },
+  isFrontPage,
   onHandleClickPage,
   onHandlePrivousClick,
   showCompleteButton,
@@ -32,13 +32,6 @@ export default function Postcard({
       >
         이전
       </div>
-      {showCompleteButton ? (
-      <div
-        onClick={onHandleCompleteClick}
-      >
-        완료
-      </div>
-      ) : null}
       ({isFrontPage ? (
       <PostcardFront
         sender={sender}
@@ -51,6 +44,8 @@ export default function Postcard({
         <PostcardBack
           photoUrl={photoUrl}
           photoMessage={photoMessage}
+          showCompleteButton={showCompleteButton}
+          onHandleCompleteClick={onHandleCompleteClick}
         />
       )})
     </div>
