@@ -3,7 +3,7 @@ const inputFields = {
     secretMessage: {
       value: '',
       error: '',
-    }
+    },
   },
   write: {
     secretMessage: {

@@ -1,7 +1,5 @@
 import React from 'react';
 
-import App from './App';
-
 import { render } from '@testing-library/react';
 
 import {
@@ -9,6 +7,10 @@ import {
 } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
+
+import App from './App';
+
+
 import entrance from './fixtures/entrance';
 import inputFields from './fixtures/inputFields';
 
@@ -22,11 +24,11 @@ describe('App', () => {
     useSelector.mockImplementation((selector) => selector({
       writePageIndex: 0,
       entrance,
-      inputFields: inputFields,
+      inputFields,
       postcard: {
         isFrontPage: true,
         sender: '받는이',
-        sender: '보낸이',
+        receiver: '보낸이',
         contents: '이것은 내용입니다.',
       },
     }));
@@ -39,7 +41,7 @@ describe('App', () => {
       </MemoryRouter>
     ));
   }
-  
+
   context('with /', () => {
     it('renders entrancePage', () => {
       const { container } = renderApp({ path: '/' });

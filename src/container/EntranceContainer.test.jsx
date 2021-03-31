@@ -1,18 +1,15 @@
 import React from 'react';
 
-import EntranceContainer from '../container/EntranceContainer';
-
 import { fireEvent, render } from '@testing-library/react';
-
 import { useDispatch, useSelector } from 'react-redux';
 
-import entrance from '../fixtures/entrance';
-import inputFields from '../fixtures/inputFields'
+import EntranceContainer from './EntranceContainer';
 
-import errorMessages from '../text/errorMessages';
+import entrance from '../fixtures/entrance';
+import inputFields from '../fixtures/inputFields';
 
 describe('EntranceContainer', () => {
-  const { sender, postcardCount, writtenCount, isPrivate } = entrance;
+  const { sender, postcardCount, writtenCount } = entrance;
   const dispatch = jest.fn();
   beforeEach(() => {
     dispatch.mockClear();
@@ -20,12 +17,12 @@ describe('EntranceContainer', () => {
     useDispatch.mockImplementation(() => dispatch);
     useSelector.mockImplementation((selector) => selector({
       entrance,
-      inputFields: inputFields,
+      inputFields,
     }));
   });
 
   function entranceRender() {
-    return render(<EntranceContainer />);
+    return render((<EntranceContainer />));
   }
 
   it('show title', () => {
@@ -38,7 +35,7 @@ describe('EntranceContainer', () => {
     beforeEach(() => {
       useSelector.mockImplementation((selector) => selector({
         entrance,
-        inputFields: inputFields,
+        inputFields,
       }));
     });
 
@@ -48,47 +45,44 @@ describe('EntranceContainer', () => {
       expect(getByPlaceholderText('5 ~ 20자')).not.toBeNull();
       expect(getByText('비공개 엽서입니다. 문자로 받은 비밀 메시지를 입력 후 엽서 확인하기 버튼을 눌러주세요.')).not.toBeNull();
     });
-    
+
     context('when click check postcard button', () => {
       context('with secretMessage over 5 and under 21', () => {
         beforeEach(() => {
-          inputFields.entrance.secretMessage.value = 'happy day!'
-          
+          inputFields.entrance.secretMessage.value = 'happy day!';
+
           useSelector.mockImplementation((selector) => selector({
             entrance,
-            inputFields: inputFields,
+            inputFields,
           }));
         });
 
         it('request', () => {
-          const { getByText } = entranceRender();
-
+          entranceRender();
         });
       });
       context('without secretMessage over 5 and under 21', () => {
         beforeEach(() => {
-          inputFields.entrance.secretMessage.value = ''
+          inputFields.entrance.secretMessage.value = '';
           useSelector.mockImplementation((selector) => selector({
             entrance,
-            inputFields: inputFields,
+            inputFields,
           }));
         });
 
         it('show ErrorMessage', () => {
           const { getByText } = entranceRender();
-          const errorMessage = errorMessages['secretMessage']['default'];
           fireEvent.click(getByText('엽서 확인하기'));
           expect(dispatch).toBeCalledWith({
             type: 'application/setInputFieldsError',
             payload: {
               type: 'secretMessage',
-              error: 'default'
+              error: 'default',
             },
           });
         });
       });
     });
-    
   });
 
   context('when postcard is not private', () => {
@@ -96,9 +90,9 @@ describe('EntranceContainer', () => {
       useSelector.mockImplementation((selector) => selector({
         entrance: {
           ...entrance,
-          isPrivate: false
+          isPrivate: false,
         },
-        inputFields: inputFields,
+        inputFields,
       }));
     });
 
@@ -115,7 +109,7 @@ describe('EntranceContainer', () => {
 
     expect(getByText('엽서 확인하기')).not.toBeNull();
     fireEvent.click(getByText('엽서 확인하기'));
-    //공개 형이라면 바로 로드
+    // 공개 형이라면 바로 로드
     // 비공개 형이라면 체크한 후에 로드
     // expect(dispatch).toBeCalledWith({
     //   type: 'application/changeInputFieldValue',
@@ -131,9 +125,9 @@ describe('EntranceContainer', () => {
       useSelector.mockImplementation((selector) => selector({
         entrance: {
           ...entrance,
-          postcardCount: 0
+          postcardCount: 0,
         },
-        inputFields: inputFields,
+        inputFields,
       }));
     });
 
@@ -147,7 +141,7 @@ describe('EntranceContainer', () => {
     beforeEach(() => {
       useSelector.mockImplementation((selector) => selector({
         entrance,
-        inputFields: inputFields,
+        inputFields,
       }));
     });
 
@@ -158,7 +152,7 @@ describe('EntranceContainer', () => {
       expect(getByText('엽서 작성하기')).not.toBeNull();
     });
   });
-  
+
   it('show how many people write postcard', () => {
     const { getByText } = entranceRender();
 

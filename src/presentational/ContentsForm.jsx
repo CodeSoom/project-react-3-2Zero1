@@ -1,5 +1,4 @@
-import React from 'react'
-import InputPart from './InputPart'
+import React from 'react';
 
 export default function ContentsForm({
   contents: {
@@ -11,35 +10,36 @@ export default function ContentsForm({
   onHandleClick,
   onClickPrevious,
 }) {
-
   function handleChange(event) {
-    const { target: { value } } = event;
-    onChange(value);
+    const { target: { value: targetValue } } = event;
+    onChange(targetValue);
   }
 
-  function handleClick(value) {
-    onHandleClick(value);
+  function handleClick(v) {
+    onHandleClick(v);
   }
 
   return (
-  <>
-    <button
-      onClick={onClickPrevious}
-    >
-      이전
-    </button>
-    <div>내용 작성</div>
-    <textarea
-      value={value}
-      placeholder={placeholder}
-      onChange={handleChange}
-    ></textarea>
-    {errorMessage ? <div>{errorMessage}</div> : null}
-    <button
-      onClick={handleClick}
-    >
-      다음
-    </button>
-  </>
+    <>
+      <button
+        type="button"
+        onClick={onClickPrevious}
+      >
+        이전
+      </button>
+      <div>내용 작성</div>
+      <textarea
+        value={value}
+        placeholder={placeholder}
+        onChange={handleChange}
+      />
+      {errorMessage ? <div>{errorMessage}</div> : null}
+      <button
+        type="button"
+        onClick={handleClick}
+      >
+        다음
+      </button>
+    </>
   );
 }

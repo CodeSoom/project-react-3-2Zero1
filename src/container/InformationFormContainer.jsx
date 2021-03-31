@@ -1,15 +1,13 @@
-import React from 'react'
+import React from 'react';
+
+import { useDispatch, useSelector } from 'react-redux';
 
 import InformationForm from '../presentational/InformationForm';
 
-import placeholders from '../text/placeholders';
-import errorMessages from '../text/errorMessages';
-import { useDispatch, useSelector } from 'react-redux';
 import validator from '../utils/validate';
-import { getField } from '../utils/utils'
+import { getField } from '../utils/utils';
 
 import {
-  changeInputFieldValue,
   changeRadioChecked,
   setInputFieldsError,
 } from '../state/slice';
@@ -20,7 +18,6 @@ export default function InformationFormContainer({
   getChangeHandler,
   checkValidAccess,
 }) {
-
   const dispatch = useDispatch();
 
   const {
@@ -32,11 +29,13 @@ export default function InformationFormContainer({
         secretMessage,
         isPrivate,
       },
-    }
-  } = useSelector((state) => ({
+    },
+  } = useSelector((state) => (
+    {
       writePageIndex: state.writePageIndex,
       inputFields: state.inputFields,
-  }));
+    }
+  ));
 
   checkValidAccess(writePageIndex);
 
@@ -76,8 +75,8 @@ export default function InformationFormContainer({
         error: !checked,
       }));
     });
-    
-    if(checks.filter(([_, check]) => !check).length === 0) {
+
+    if (checks.filter(([_, check]) => !check).length === 0) {
       onClickNext();
     }
   }

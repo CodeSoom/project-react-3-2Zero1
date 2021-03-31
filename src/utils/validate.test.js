@@ -9,7 +9,7 @@ test('validate', () => {
     receiver: {
       value: '',
       error: false,
-    }
+    },
   })).toEqual([
     ['sender', false], ['receiver', false],
   ]);
@@ -22,7 +22,7 @@ test('validate', () => {
     receiver: {
       value: 'name2',
       error: false,
-    }
+    },
   })).toEqual([
     ['sender', true], ['receiver', true],
   ]);

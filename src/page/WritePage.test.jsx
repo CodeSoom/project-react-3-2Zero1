@@ -1,10 +1,10 @@
 import React from 'react';
 
-import WritePage from './WritePage';
-
 import { fireEvent, render } from '@testing-library/react';
 import { useDispatch, useSelector } from 'react-redux';
-import { MemoryRouter, } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
+
+import WritePage from './WritePage';
 
 import inputFields from '../fixtures/inputFields';
 
@@ -26,11 +26,11 @@ describe('WritePage', () => {
 
   useDispatch.mockImplementation(() => dispatch);
   function renderWritePage(params) {
-    return render(
+    return render((
       <MemoryRouter>
         <WritePage params={params} />
       </MemoryRouter>
-    );
+    ));
   }
 
   context('when writePageIndex is 0', () => {
@@ -56,7 +56,7 @@ describe('WritePage', () => {
     context('when all inputs are not valid', () => {
       beforeEach(() => {
         dispatch.mockClear();
-        
+
         useSelector.mockImplementation((selector) => selector({
           writePageIndex: 0,
           inputFields,
@@ -66,11 +66,11 @@ describe('WritePage', () => {
         const {
           getByText,
         } = renderWritePage({ index: 0 });
-  
+
         expect(getByText('엽서 작성하기')).not.toBeNull();
 
         fireEvent.click(getByText('다음'));
-  
+
         expect(dispatch).not.toBeCalledWith({
           type: 'application/increaseWritePageIndex',
         });
@@ -106,11 +106,11 @@ describe('WritePage', () => {
         const {
           getByText,
         } = renderWritePage({ index: 0 });
-  
+
         expect(getByText('엽서 작성하기')).not.toBeNull();
-  
+
         fireEvent.click(getByText('다음'));
-  
+
         expect(dispatch).toBeCalledWith({
           type: 'application/increaseWritePageIndex',
         });
@@ -140,7 +140,7 @@ describe('WritePage', () => {
       expect(dispatch).toBeCalledWith({
         type: 'application/decreaseWritePageIndex',
       });
-      //TODO : 다음 버튼 클릭시 에러 메시지 있으면 넘어가지 않도록 하는 테스트 코드 작성해야함.
+      // TODO : 다음 버튼 클릭시 에러 메시지 있으면 넘어가지 않도록 하는 테스트 코드 작성해야함.
     });
   });
 
@@ -171,7 +171,7 @@ describe('WritePage', () => {
     context('when inputs or photo is invalid', () => {
       beforeEach(() => {
         dispatch.mockClear();
-        
+
         useSelector.mockImplementation((selector) => selector({
           writePageIndex: 2,
           inputFields,
@@ -181,9 +181,9 @@ describe('WritePage', () => {
         const {
           getByText,
         } = renderWritePage({ index: 2 });
-  
+
         fireEvent.click(getByText('미리보기'));
-  
+
         expect(dispatch).not.toBeCalledWith({
           type: 'application/increaseWritePageIndex',
         });
@@ -216,9 +216,9 @@ describe('WritePage', () => {
         const {
           getByText,
         } = renderWritePage({ index: 2 });
-  
+
         fireEvent.click(getByText('미리보기'));
-  
+
         expect(dispatch).toBeCalledWith({
           type: 'application/increaseWritePageIndex',
         });
@@ -265,7 +265,7 @@ describe('WritePage', () => {
         type: 'application/decreaseWritePageIndex',
       });
     });
-    
+
     context('isFrontPage is true', () => {
       given('isFrontPage', () => true);
       it('does not show complete button', () => {
@@ -305,12 +305,12 @@ describe('WritePage', () => {
       const {
         getByText,
       } = renderWritePage({ index: 4 });
-      
+
       expect(getByText('홈로고')).not.toBeNull();
 
       fireEvent.click(getByText('홈로고'));
 
       expect(mockGoBack).toBeCalled();
-    })
+    });
   });
 });

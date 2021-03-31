@@ -1,10 +1,9 @@
-import React from 'react'
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import PhotoForm from '../presentational/PhotoForm';
 
-import { get } from '../utils/utils';
-import { getField } from '../utils/utils'
+import { getField } from '../utils/utils';
 import validate from '../utils/validate';
 
 import {
@@ -17,7 +16,6 @@ export default function PhotoFormContainer({
   getChangeHandler,
   checkValidAccess,
 }) {
-
   const dispatch = useDispatch();
 
   const {
@@ -25,19 +23,21 @@ export default function PhotoFormContainer({
     inputFields: {
       write: {
         photo,
-        photoMessage
+        photoMessage,
       },
-    }
-  } = useSelector((state) => ({
+    },
+  } = useSelector((state) => (
+    {
       writePageIndex: state.writePageIndex,
       inputFields: state.inputFields,
-  }));
+    }
+  ));
 
   checkValidAccess(writePageIndex);
 
   const fields = {
     photo: getField({
-      field:photo,
+      field: photo,
       id: 'photo',
     }),
     photoMessage: getField({
@@ -47,7 +47,7 @@ export default function PhotoFormContainer({
       onChange: getChangeHandler('photoMessage'),
     }),
   };
-  
+
   function handleNextClick() {
     const checks = validate(fields);
 
@@ -58,27 +58,27 @@ export default function PhotoFormContainer({
         error: !checked,
       }));
     });
-    
-    if(checks.filter(([_, check]) => !check).length === 0) {
+
+    if (checks.filter(([_, check]) => !check).length === 0) {
       onClickNext();
     }
-  };
+  }
 
   function handleFileChange(event) {
     const file = event.target.files[0];
-    if(file){
+    if (file) {
       const imageUrl = URL.createObjectURL(file);
       const setImageFileName = getChangeHandler('photo');
       setImageFileName(imageUrl);
     }
   }
 
-  return (
+  return ((
     <PhotoForm
       fields={fields}
       onClickPrevious={onClickPrevious}
       onChangeFile={handleFileChange}
       onHandleNextClick={handleNextClick}
     />
-  );
+  ));
 }

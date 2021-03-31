@@ -1,5 +1,5 @@
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 
 import InformationFormContainer from '../container/InformationFormContainer';
@@ -21,15 +21,13 @@ export default function WritePage({ params }) {
 
   const dispatch = useDispatch();
 
-  const getChangeHandler = (type) => {
-    return ((value) => {
-      dispatch(changeInputFieldValue({
-        page: 'write',
-        type,
-        value,
-      }));
-    });
-  };
+  const getChangeHandler = (type) => ((value) => {
+    dispatch(changeInputFieldValue({
+      page: 'write',
+      type,
+      value,
+    }));
+  });
 
   function handleNextClick() {
     dispatch(increaseWritePageIndex());
@@ -38,7 +36,8 @@ export default function WritePage({ params }) {
 
   function handlePreviousClick() {
     if (index === 0) {
-      return history.goBack();
+      history.goBack();
+      return;
     }
     dispatch(decreaseWritePageIndex());
     history.replace(`/write/${+index - 1}`);
@@ -48,10 +47,10 @@ export default function WritePage({ params }) {
     history.goBack();
   }
 
-  function checkValidAccess(indexInRedux){
-    if(index > indexInRedux) {
-      //TODO:잘못된 접근이라고 표시한 후에
-      //입장 페이지로 보내버림
+  function checkValidAccess(indexInRedux) {
+    if (index > indexInRedux) {
+      // TODO:잘못된 접근이라고 표시한 후에
+      // 입장 페이지로 보내버림
       history.push('/');
     }
   }
@@ -96,10 +95,9 @@ export default function WritePage({ params }) {
       />
     ),
   };
-  
   return (
-  <>
-    {writeContainers[index]}
-  </>
+    <>
+      {writeContainers[index]}
+    </>
   );
 }

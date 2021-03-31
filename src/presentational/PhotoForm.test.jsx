@@ -1,10 +1,12 @@
 import React from 'react';
 
-import PhotoForm from './PhotoForm';
-
 import { fireEvent, render } from '@testing-library/react';
 
+import PhotoForm from './PhotoForm';
+
 import placeholders from '../text/placeholders';
+
+const mockPush = jest.fn();
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
@@ -14,7 +16,7 @@ jest.mock('react-router-dom', () => ({
 }));
 
 describe('PhotoForm', () => {
-  const handleClick =  jest.fn();
+  const handleClick = jest.fn();
   const handlePreviousClick = jest.fn();
   const handleFileChange = jest.fn();
   const fields = {
@@ -23,24 +25,24 @@ describe('PhotoForm', () => {
       errorMessage: '',
       onChange: jest.fn(),
     },
-    photoMessage:{
+    photoMessage: {
       id: 'photoMessage',
       name: '사진 메시지',
       value: '',
-      placeholder: placeholders['photoMessage'],
+      placeholder: placeholders.photoMessage,
       errorMessage: '',
       onChange: jest.fn(),
-    }
+    },
   };
 
-  const { getByLabelText, getByText } = render(
+  const { getByLabelText, getByText } = render((
     <PhotoForm
       fields={fields}
       onHandleClick={handleClick}
       onClickPrevious={handlePreviousClick}
       onChangeFile={handleFileChange}
     />
-  );
+  ));
 
   it('render PhotoForm', () => {
     fireEvent.click(getByText('이전'));

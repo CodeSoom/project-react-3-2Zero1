@@ -15,7 +15,7 @@ const secretMessage = {
 
 const initialInputFields = {
   entrance: {
-    secretMessage
+    secretMessage,
   },
   write: {
     isPrivate: true,
@@ -44,7 +44,6 @@ const initialInputFields = {
       isFrontPage: true,
     },
   },
-  
 };
 
 const postcard = {
@@ -63,21 +62,21 @@ const { actions, reducer } = createSlice({
     writePageIndex: 0,
     inputFields: initialInputFields,
     entrance: {
-      'sender': '',
-      'isPrivate': '',
-      'postcardCount': 0,
-      'writtenCount': 0, 
+      sender: '',
+      isPrivate: '',
+      postcardCount: 0,
+      writtenCount: 0,
     },
     postcard,
   },
   reducers: {
-    changeRadioChecked(state, { payload: value } ){
+    changeRadioChecked(state, { payload: value }) {
       return {
         ...state,
         inputFields: {
           ...state.inputFields,
-          write:{
-            ...state.inputFields['write'],
+          write: {
+            ...state.inputFields.write,
             isPrivate: value === 'true',
           },
         },
@@ -88,9 +87,9 @@ const { actions, reducer } = createSlice({
         ...state,
         inputFields: {
           ...state.inputFields,
-          [page]:{
+          [page]: {
             ...state.inputFields[page],
-            [type]:{
+            [type]: {
               ...state.inputFields[page][type],
               value,
             },
@@ -103,9 +102,9 @@ const { actions, reducer } = createSlice({
         ...state,
         inputFields: {
           ...state.inputFields,
-          [page]:{
+          [page]: {
             ...state.inputFields[page],
-            [type]:{
+            [type]: {
               ...state.inputFields[page][type],
               error,
             },
@@ -113,28 +112,28 @@ const { actions, reducer } = createSlice({
         },
       };
     },
-    increaseWritePageIndex(state){
+    increaseWritePageIndex(state) {
       return {
         ...state,
         writePageIndex: (+state.writePageIndex) + 1,
-      }
+      };
     },
     decreaseWritePageIndex(state) {
       return {
         ...state,
         writePageIndex: (+state.writePageIndex) - 1,
-      }
+      };
     },
     flipPreviewPostcard(state) {
       return {
         ...state,
         inputFields: {
           ...state.inputFields,
-          write:{
-            ...state.inputFields['write'],
-            preview:{
-              ...state.inputFields['write']['preview'],
-              isFrontPage: !state.inputFields['write']['preview']['isFrontPage'],
+          write: {
+            ...state.inputFields.write,
+            preview: {
+              ...state.inputFields.write.preview,
+              isFrontPage: !state.inputFields.write.preview.isFrontPage,
             },
           },
         },
@@ -152,7 +151,7 @@ const { actions, reducer } = createSlice({
         postcard: {
           isFrontPage: !isFrontPage,
         },
-      }
+      };
     },
     setPostcardFront(state) {
       return {
@@ -163,17 +162,15 @@ const { actions, reducer } = createSlice({
         },
       };
     },
-      // return async (dispatch, getState) => {
-      //   const { accessToken, reviewFields: { score, description } } = getState();
-    
-      //   await postReview({
-      //     accessToken, restaurantId, score, description,
-      //   });
-    
-      //   dispatch(loadReview({ restaurantId }));
-      //   dispatch(clearReviewFields());
-      // };
-    // },
+    // return async (dispatch, getState) => {
+    //   const { accessToken, reviewFields: { score, description } } = getState();
+    //   await postReview({
+    //     accessToken, restaurantId, score, description,
+    //   });
+    //   dispatch(loadReview({ restaurantId }));
+    //   dispatch(clearReviewFields());
+    // };
+  // },
   },
 });
 

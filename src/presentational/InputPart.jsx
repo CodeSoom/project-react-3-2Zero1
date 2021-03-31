@@ -1,5 +1,4 @@
-import styled from '@emotion/styled';
-import React from 'react'
+import React from 'react';
 
 export default function InputPart({
   field: {
@@ -11,13 +10,9 @@ export default function InputPart({
     onChange,
   },
 }) {
-  const Input = styled.input({
-    borderColor: errorMessage ? '#FF0000' : '#d2d2d2', 
-  });
-
   function handleChange(event) {
-    const { target: { value } } = event;
-    onChange(value);
+    const { target: { value: targetValue } } = event;
+    onChange(targetValue);
   }
 
   return (

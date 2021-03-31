@@ -1,11 +1,4 @@
-import React from 'react';
-
-import entrance from '../fixtures/entrance';
 import responseParser from './responseParser';
-
-import { render } from '@testing-library/react';
-
-
 
 describe('responseParser', () => {
   context('response is null', () => {
@@ -20,13 +13,11 @@ describe('responseParser', () => {
     });
   });
 
-  context("response has data", () => {
-    it("return value of data", () => {
-      //TODO : 나중에 response가 쓸일이 있을때 다시 수정하기 착각으로 먼저 만들어버림.
+  context('response has data', () => {
+    it('return value of data', () => {
+      // TODO : 나중에 response가 쓸일이 있을때 다시 수정하기 착각으로 먼저 만들어버림.
       // expect(responseParser(entrance)).toBe(entrance);
       expect(responseParser({})).toBe(null);
     });
   });
-});('responseParser', () => {
-  
 });

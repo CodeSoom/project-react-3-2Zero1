@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 export default function PostcardBack({
   photoMessage,
@@ -6,17 +6,12 @@ export default function PostcardBack({
   showCompleteButton,
   onHandleCompleteClick,
 }) {
-
   return (
     <div>
-      {showCompleteButton ? (
-      <div
-        onClick={onHandleCompleteClick}
-      >
-        완료
-      </div>
-      ) : null}
-      <img src={photoUrl} />
+      {
+        showCompleteButton ? (<div onClick={onHandleCompleteClick}>완료</div>) : null
+      }
+      <img src={photoUrl} alt="photoImage" />
       <div>{photoMessage}</div>
     </div>
   );
