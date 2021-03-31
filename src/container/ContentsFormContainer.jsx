@@ -15,17 +15,28 @@ import {
 } from '../state/slice';
 import ContentsForm from '../presentational/ContentsForm';
 
-export default function ContentsFormContainer({ onClickNext, onClickPrevious, getChangeHandler }) {
+export default function ContentsFormContainer({
+  onClickNext,
+  onClickPrevious,
+  getChangeHandler,
+  checkValidAccess,
+}) {
 
   const dispatch = useDispatch();
 
-  const { inputFields: {
-    write: {
-      contents,
-    },
-    }} = useSelector((state) => ({
-      inputFields: state.inputFields
+  const {
+    writePageIndex,
+    inputFields: {
+      write: {
+        contents,
+      },
+    }
+  } = useSelector((state) => ({
+      writePageIndex: state.writePageIndex,
+      inputFields: state.inputFields,
     }));
+
+    checkValidAccess(writePageIndex);
 
   const fields = {
     contents: getField({

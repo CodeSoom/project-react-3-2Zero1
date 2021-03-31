@@ -15,6 +15,7 @@ describe('InformationFormContainer', () => {
   const getChangeHandler = () => jest.fn();
   const handleNextClick = jest.fn();
   const handlePreviousClick = jest.fn();
+  const checkValidAccess = jest.fn();
 
   function renderInformationForm() {
     return render(
@@ -22,6 +23,7 @@ describe('InformationFormContainer', () => {
         getChangeHandler={getChangeHandler}
         onClickNext={handleNextClick}
         onClickPrevious={handlePreviousClick}
+        checkValidAccess={checkValidAccess}
       />
     );
   }
@@ -29,9 +31,16 @@ describe('InformationFormContainer', () => {
   useDispatch.mockImplementation(() => dispatch);
   useSelector.mockImplementation((selector) => selector(
     {
-      inputFields
+      writePageIndex: 1,
+      inputFields,
     },
   ));
+
+  it('check access is valid', () => {
+    renderInformationForm();
+
+    expect(checkValidAccess).toBeCalled();
+  });
   
   it('show sender inputs', () => {
     const {

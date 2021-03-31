@@ -21,7 +21,7 @@ export default function App() {
   return (
     <Switch>
         <Route exact path="/" component={EntrancePage} />
-        <Route exact path="/write" component={WritePage} />
+        <Route exact path="/write/:index" component={WritePage} />
         <Route exact path="/postcard" component={PostcardPage} />
         {/* <Route component={NotFoundPage} /> */}
       </Switch>

@@ -13,6 +13,7 @@ describe('PhotoFormContainer', () => {
   const getChangeHandler = () => jest.fn();
   const handleNextClick = jest.fn();
   const handlePreviousClick = jest.fn();
+  const checkValidAccess = jest.fn();
 
   function renderSecondPage() {
     return render(
@@ -20,6 +21,7 @@ describe('PhotoFormContainer', () => {
         getChangeHandler={getChangeHandler}
         onClickNext={handleNextClick}
         onClickPrevious={handlePreviousClick}
+        checkValidAccess={checkValidAccess}
       />
     );
   }
@@ -27,7 +29,8 @@ describe('PhotoFormContainer', () => {
   useDispatch.mockImplementation(() => dispatch);
   useSelector.mockImplementation((selector) => selector(
     {
-      inputFields
+      writePageIndex: 2,
+      inputFields,
     },
   ));
 
@@ -40,6 +43,8 @@ describe('PhotoFormContainer', () => {
       getByText,
       getByLabelText,
     } = renderSecondPage();
+    
+    expect(checkValidAccess).toBeCalled();
 
     expect(getByText('세로로 된 사진을 사용하시는걸 권장합니다.')).not.toBeNull();
 
@@ -55,6 +60,7 @@ describe('PhotoFormContainer', () => {
 
       useSelector.mockImplementation((selector) => selector(
         {
+          writePageIndex: 2,
           inputFields: {
             ...inputFields,
             write: {
@@ -89,6 +95,7 @@ describe('PhotoFormContainer', () => {
 
       useSelector.mockImplementation((selector) => selector(
         {
+          writePageIndex: 2,
           inputFields,
         },
       ));
@@ -103,5 +110,4 @@ describe('PhotoFormContainer', () => {
       expect(handleNextClick).not.toBeCalled();
     });
   });
-
 });

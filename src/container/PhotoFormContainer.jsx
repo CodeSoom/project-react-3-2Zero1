@@ -11,15 +11,29 @@ import {
   setInputFieldsError,
 } from '../state/slice';
 
-export default function PhotoFormContainer({ onClickNext, onClickPrevious, getChangeHandler }) {
+export default function PhotoFormContainer({
+  onClickNext,
+  onClickPrevious,
+  getChangeHandler,
+  checkValidAccess,
+}) {
 
   const dispatch = useDispatch();
-  const { 
-    write: {
-      photoMessage,
-      photo,
-    },
-  } = useSelector(get('inputFields'));
+
+  const {
+    writePageIndex,
+    inputFields: {
+      write: {
+        photo,
+        photoMessage
+      },
+    }
+  } = useSelector((state) => ({
+      writePageIndex: state.writePageIndex,
+      inputFields: state.inputFields,
+  }));
+
+  checkValidAccess(writePageIndex);
 
   const fields = {
     photo: getField({

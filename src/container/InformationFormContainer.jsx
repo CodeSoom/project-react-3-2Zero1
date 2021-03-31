@@ -14,20 +14,31 @@ import {
   setInputFieldsError,
 } from '../state/slice';
 
-export default function InformationFormContainer({ onClickNext, onClickPrevious, getChangeHandler }) {
+export default function InformationFormContainer({
+  onClickNext,
+  onClickPrevious,
+  getChangeHandler,
+  checkValidAccess,
+}) {
 
   const dispatch = useDispatch();
 
-  const { inputFields: {
-    write: {
-      sender,
-      receiver,
-      secretMessage,
-      isPrivate,
-    },
-    }} = useSelector((state) => ({
-      inputFields: state.inputFields
-    }));
+  const {
+    writePageIndex,
+    inputFields: {
+      write: {
+        sender,
+        receiver,
+        secretMessage,
+        isPrivate,
+      },
+    }
+  } = useSelector((state) => ({
+      writePageIndex: state.writePageIndex,
+      inputFields: state.inputFields,
+  }));
+
+  checkValidAccess(writePageIndex);
 
   const fields = {
     sender: getField({

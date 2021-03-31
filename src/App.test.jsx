@@ -50,7 +50,7 @@ describe('App', () => {
 
   context('with /write', () => {
     it('renders writingPage', () => {
-      const { container } = renderApp({ path: '/write' });
+      const { container } = renderApp({ path: '/write/0' });
 
       expect(container).toHaveTextContent('엽서 작성하기');
     });

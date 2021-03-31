@@ -15,6 +15,7 @@ describe('ContentsFormContainer', () => {
   const getChangeHandler = () => jest.fn();
   const handleNextClick = jest.fn();
   const handlePreviousClick = jest.fn();
+  const checkValidAccess = jest.fn();
 
   function renderContentsForm() {
     return render(
@@ -22,6 +23,7 @@ describe('ContentsFormContainer', () => {
         getChangeHandler={getChangeHandler}
         onClickNext={handleNextClick}
         onClickPrevious={handlePreviousClick}
+        checkValidAccess={checkValidAccess}
       />
     );
   }
@@ -29,7 +31,8 @@ describe('ContentsFormContainer', () => {
   useDispatch.mockImplementation(() => dispatch);
   useSelector.mockImplementation((selector) => selector(
     {
-      inputFields
+      writePageIndex: 1,
+      inputFields,
     },
   ));
   
@@ -39,6 +42,8 @@ describe('ContentsFormContainer', () => {
     } = renderContentsForm();
 
     expect(getByPlaceholderText(placeholders['contents'])).not.toBeNull();
+
+    expect(checkValidAccess).toBeCalled();
   });
 
 });

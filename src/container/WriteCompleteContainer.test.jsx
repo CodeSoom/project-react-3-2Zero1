@@ -3,17 +3,29 @@ import React from 'react';
 import WriteCompleteContainer from './WriteCompleteContainer';
 
 import { render } from '@testing-library/react';
+import { useSelector } from 'react-redux';
 
 
 describe('WriteCompleteContainer', () => {
   const handleClickHome = jest.fn();
+  const checkValidAccess = jest.fn();
+  
+  useSelector.mockImplementation((selector) => selector(
+    {
+      writePageIndex: 3,
+    },
+  ));
 
   it('render WriteCompleteContainer', () => {
     const { getByText } = render(
       <WriteCompleteContainer
         onClickHome={handleClickHome}
+        checkValidAccess={checkValidAccess}
       />
     );
+
+    expect(checkValidAccess).toBeCalled();
+
     expect(getByText('홈로고')).not.toBeNull();
 
     expect(getByText('엽서 제작이 완료 되었습니다.')).not.toBeNull();

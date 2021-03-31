@@ -1,10 +1,20 @@
 import React from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function WriteCompleteContainer({
   onClickHome,
+  checkValidAccess,
 }) {
   const dispatch = useDispatch();
+
+  const {
+    writePageIndex,
+  } = useSelector((state) => ({
+      writePageIndex: state.writePageIndex,
+  }));
+
+  checkValidAccess(writePageIndex);
+
   function handleClickHome() {
     // dispatch(resetPostcard());
     onClickHome();

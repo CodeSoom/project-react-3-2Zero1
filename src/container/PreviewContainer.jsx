@@ -14,19 +14,32 @@ import {
 } from '../state/slice';
 import Postcard from '../presentational/Postcard';
 
-export default function PreviewContainer({ onClickNext, onClickPrevious }) {
+export default function PreviewContainer({
+  onClickNext,
+  onClickPrevious,
+  checkValidAccess,
+}) {
 
   const dispatch = useDispatch();
-  const { 
-    write: {
-      sender,
+
+  const {
+    writePageIndex,
+    inputFields: {
+      write: {
+        sender,
       receiver,
       contents,
       preview,
       photoMessage,
       photo,
-    },
-  } = useSelector(get('inputFields'));
+      },
+    }
+  } = useSelector((state) => ({
+      writePageIndex: state.writePageIndex,
+      inputFields: state.inputFields,
+  }));
+
+  checkValidAccess(writePageIndex);
 
   const postcard = {
     sender: sender.value,
