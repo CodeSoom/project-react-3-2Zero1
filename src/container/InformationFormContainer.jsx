@@ -1,33 +1,43 @@
-import React from 'react'
+import React from 'react';
+
+import { useDispatch, useSelector } from 'react-redux';
 
 import InformationForm from '../presentational/InformationForm';
 
-import placeholders from '../text/placeholders';
-import errorMessages from '../text/errorMessages';
-import { useDispatch, useSelector } from 'react-redux';
 import validator from '../utils/validate';
-import { getField } from '../utils/utils'
+import { getField } from '../utils/utils';
 
 import {
-  changeInputFieldValue,
   changeRadioChecked,
   setInputFieldsError,
 } from '../state/slice';
 
-export default function InformationFormContainer({ onClickNext, onClickPrevious, getChangeHandler }) {
-
+export default function InformationFormContainer({
+  onClickNext,
+  onClickPrevious,
+  getChangeHandler,
+  checkValidAccess,
+}) {
   const dispatch = useDispatch();
 
-  const { inputFields: {
-    write: {
-      sender,
-      receiver,
-      secretMessage,
-      isPrivate,
+  const {
+    writePageIndex,
+    inputFields: {
+      write: {
+        sender,
+        receiver,
+        secretMessage,
+        isPrivate,
+      },
     },
-    }} = useSelector((state) => ({
-      inputFields: state.inputFields
-    }));
+  } = useSelector((state) => (
+    {
+      writePageIndex: state.writePageIndex,
+      inputFields: state.inputFields,
+    }
+  ));
+
+  checkValidAccess(writePageIndex);
 
   const fields = {
     sender: getField({
@@ -65,8 +75,8 @@ export default function InformationFormContainer({ onClickNext, onClickPrevious,
         error: !checked,
       }));
     });
-    
-    if(checks.filter(([_, check]) => !check).length === 0) {
+
+    if (checks.filter(([_, check]) => !check).length === 0) {
       onClickNext();
     }
   }

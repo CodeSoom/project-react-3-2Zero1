@@ -1,20 +1,17 @@
-import React from 'react'
+import React from 'react';
 
 export default function PostcardFront({
   sender,
   receiver,
   contents,
-  stampUrl
+  stampUrl,
 }) {
-
   return (
     <div>
-        <div>{`to ${receiver}`}</div>
-        <div>{`from ${sender}`}</div>
-        <img
-          src={stampUrl}
-        />
-        <div>{contents}</div>
-      </div>
+      <div>{`to ${receiver}`}</div>
+      <div>{`from ${sender}`}</div>
+      <img src={stampUrl} alt="stamp" />
+      <div>{contents}</div>
+    </div>
   );
 }

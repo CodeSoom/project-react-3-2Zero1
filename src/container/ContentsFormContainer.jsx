@@ -1,31 +1,38 @@
-import React from 'react'
+import React from 'react';
 
-import InformationForm from '../presentational/InformationForm';
-
-import placeholders from '../text/placeholders';
-import errorMessages from '../text/errorMessages';
 import { useDispatch, useSelector } from 'react-redux';
 import validator from '../utils/validate';
-import { getField } from '../utils/utils'
+import { getField } from '../utils/utils';
 
-import {
-  changeInputFieldValue,
-  changeRadioChecked,
-  setInputFieldsError,
-} from '../state/slice';
 import ContentsForm from '../presentational/ContentsForm';
 
-export default function ContentsFormContainer({ onClickNext, onClickPrevious, getChangeHandler }) {
+import {
+  setInputFieldsError,
+} from '../state/slice';
 
+export default function ContentsFormContainer({
+  onClickNext,
+  onClickPrevious,
+  getChangeHandler,
+  checkValidAccess,
+}) {
   const dispatch = useDispatch();
 
-  const { inputFields: {
-    write: {
-      contents,
+  const {
+    writePageIndex,
+    inputFields: {
+      write: {
+        contents,
+      },
     },
-    }} = useSelector((state) => ({
-      inputFields: state.inputFields
-    }));
+  } = useSelector((state) => (
+    {
+      writePageIndex: state.writePageIndex,
+      inputFields: state.inputFields,
+    }
+  ));
+
+  checkValidAccess(writePageIndex);
 
   const fields = {
     contents: getField({
@@ -45,33 +52,17 @@ export default function ContentsFormContainer({ onClickNext, onClickPrevious, ge
         error: !checked,
       }));
     });
-    
-    if(checks.filter(([_, check]) => !check).length === 0) {
+
+    if (checks.filter(([_, check]) => !check).length === 0) {
       onClickNext();
     }
   }
 
-  return (
-    <>
+  return ((
     <ContentsForm
       contents={fields.contents}
       onHandleClick={handleClick}
       onClickPrevious={onClickPrevious}
     />
-      {/* <button
-        onClick={onClickPrevious}
-      >
-        이전
-      </button>
-      <div>내용 작성</div>
-      <textarea
-        placeholder={placeholders['contents']}
-      ></textarea>
-      <button
-        onClick={handleClick}
-      >
-        다음
-      </button> */}
-    </>
-  );
+  ));
 }

@@ -1,6 +1,6 @@
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { useHistory, useParams } from 'react-router-dom';
 
 import InformationFormContainer from '../container/InformationFormContainer';
 import ContentsFormContainer from '../container/ContentsFormContainer';
@@ -8,43 +8,51 @@ import PhotoFormContainer from '../container/PhotoFormContainer';
 import PreviewContainer from '../container/PreviewContainer';
 import WriteCompleteContainer from '../container/WriteCompleteContainer';
 
-import { get } from '../utils/utils';
-
 import {
   increaseWritePageIndex,
   decreaseWritePageIndex,
   changeInputFieldValue,
 } from '../state/slice';
 
-export default function WritePage() {
+export default function WritePage({ params }) {
+  const { index } = params || useParams();
 
   const history = useHistory();
-  const dispatch = useDispatch();
-  const writePageIndex = useSelector(get('writePageIndex'));
 
-  const getChangeHandler = (type) => {
-    return ((value) => {
-      dispatch(changeInputFieldValue({
-        page: 'write',
-        type,
-        value,
-      }));
-    });
-  };
+  const dispatch = useDispatch();
+
+  const getChangeHandler = (type) => ((value) => {
+    dispatch(changeInputFieldValue({
+      page: 'write',
+      type,
+      value,
+    }));
+  });
 
   function handleNextClick() {
     dispatch(increaseWritePageIndex());
+    history.replace(`/write/${+index + 1}`);
   }
+
   function handlePreviousClick() {
-    if (writePageIndex === 0) {
-      return history.goBack();
+    if (index === 0) {
+      history.goBack();
+      return;
     }
     dispatch(decreaseWritePageIndex());
+    history.replace(`/write/${+index - 1}`);
   }
+
   function handleHomeClick() {
-    const url = '/';
-    history.goBack()
-    // history.push(url);
+    history.goBack();
+  }
+
+  function checkValidAccess(indexInRedux) {
+    if (index > indexInRedux) {
+      // TODO:잘못된 접근이라고 표시한 후에
+      // 입장 페이지로 보내버림
+      history.push('/');
+    }
   }
 
   const writeContainers = {
@@ -53,6 +61,7 @@ export default function WritePage() {
         onClickNext={handleNextClick}
         onClickPrevious={handlePreviousClick}
         getChangeHandler={getChangeHandler}
+        checkValidAccess={checkValidAccess}
       />
     ),
     1: (
@@ -60,6 +69,7 @@ export default function WritePage() {
         onClickNext={handleNextClick}
         onClickPrevious={handlePreviousClick}
         getChangeHandler={getChangeHandler}
+        checkValidAccess={checkValidAccess}
       />
     ),
     2: (
@@ -67,6 +77,7 @@ export default function WritePage() {
         onClickNext={handleNextClick}
         onClickPrevious={handlePreviousClick}
         getChangeHandler={getChangeHandler}
+        checkValidAccess={checkValidAccess}
       />
     ),
     3: (
@@ -74,18 +85,19 @@ export default function WritePage() {
         onClickNext={handleNextClick}
         onClickPrevious={handlePreviousClick}
         getChangeHandler={getChangeHandler}
+        checkValidAccess={checkValidAccess}
       />
     ),
     4: (
       <WriteCompleteContainer
         onClickHome={handleHomeClick}
+        checkValidAccess={checkValidAccess}
       />
     ),
   };
-  
   return (
-  <>
-    {writeContainers[writePageIndex]}
-  </>
+    <>
+      {writeContainers[index]}
+    </>
   );
 }

@@ -1,32 +1,38 @@
-import React from 'react'
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
-import PhotoForm from '../presentational/PhotoForm';
-
-import { get } from '../utils/utils';
-import { getField } from '../utils/utils'
-
-import errorMessages from '../text/errorMessages';
-import placeholders from '../text/placeholders';
 
 import {
   flipPreviewPostcard,
 } from '../state/slice';
 import Postcard from '../presentational/Postcard';
 
-export default function PreviewContainer({ onClickNext, onClickPrevious }) {
-
+export default function PreviewContainer({
+  onClickNext,
+  onClickPrevious,
+  checkValidAccess,
+}) {
   const dispatch = useDispatch();
-  const { 
-    write: {
-      sender,
-      receiver,
-      contents,
-      preview,
-      photoMessage,
-      photo,
+
+  const {
+    writePageIndex,
+    inputFields: {
+      write: {
+        sender,
+        receiver,
+        contents,
+        preview,
+        photoMessage,
+        photo,
+      },
     },
-  } = useSelector(get('inputFields'));
+  } = useSelector((state) => (
+    {
+      writePageIndex: state.writePageIndex,
+      inputFields: state.inputFields,
+    }
+  ));
+
+  checkValidAccess(writePageIndex);
 
   const postcard = {
     sender: sender.value,
@@ -37,6 +43,8 @@ export default function PreviewContainer({ onClickNext, onClickPrevious }) {
     photoMessage: photoMessage.value,
   };
 
+  const showCompleteButton = true;
+
   function handleClickPage(e) {
     e.stopPropagation();
     dispatch(flipPreviewPostcard());
@@ -44,10 +52,9 @@ export default function PreviewContainer({ onClickNext, onClickPrevious }) {
 
   function handleCompleteClick(e) {
     e.stopPropagation();
-    //TODO: 서버로 등록하는 요청을 보내며, 응답이 왔을 때 onClickNext를 부른다.
+    // TODO: 서버로 등록하는 요청을 보내며, 응답이 왔을 때 onClickNext를 부른다.
     onClickNext();
   }
-
   return (
     <>
       <div>미리 보기</div>
@@ -56,7 +63,7 @@ export default function PreviewContainer({ onClickNext, onClickPrevious }) {
         isFrontPage={preview.isFrontPage}
         onHandleClickPage={handleClickPage}
         onHandlePrivousClick={onClickPrevious}
-        showCompleteButton={true}
+        showCompleteButton={showCompleteButton}
         onHandleCompleteClick={handleCompleteClick}
       />
     </>

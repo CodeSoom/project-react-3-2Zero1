@@ -1,29 +1,43 @@
-import React from 'react'
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import PhotoForm from '../presentational/PhotoForm';
 
-import { get } from '../utils/utils';
-import { getField } from '../utils/utils'
+import { getField } from '../utils/utils';
 import validate from '../utils/validate';
 
 import {
   setInputFieldsError,
 } from '../state/slice';
 
-export default function PhotoFormContainer({ onClickNext, onClickPrevious, getChangeHandler }) {
-
+export default function PhotoFormContainer({
+  onClickNext,
+  onClickPrevious,
+  getChangeHandler,
+  checkValidAccess,
+}) {
   const dispatch = useDispatch();
-  const { 
-    write: {
-      photoMessage,
-      photo,
+
+  const {
+    writePageIndex,
+    inputFields: {
+      write: {
+        photo,
+        photoMessage,
+      },
     },
-  } = useSelector(get('inputFields'));
+  } = useSelector((state) => (
+    {
+      writePageIndex: state.writePageIndex,
+      inputFields: state.inputFields,
+    }
+  ));
+
+  checkValidAccess(writePageIndex);
 
   const fields = {
     photo: getField({
-      field:photo,
+      field: photo,
       id: 'photo',
     }),
     photoMessage: getField({
@@ -33,7 +47,7 @@ export default function PhotoFormContainer({ onClickNext, onClickPrevious, getCh
       onChange: getChangeHandler('photoMessage'),
     }),
   };
-  
+
   function handleNextClick() {
     const checks = validate(fields);
 
@@ -44,27 +58,27 @@ export default function PhotoFormContainer({ onClickNext, onClickPrevious, getCh
         error: !checked,
       }));
     });
-    
-    if(checks.filter(([_, check]) => !check).length === 0) {
+
+    if (checks.filter(([_, check]) => !check).length === 0) {
       onClickNext();
     }
-  };
+  }
 
   function handleFileChange(event) {
     const file = event.target.files[0];
-    if(file){
+    if (file) {
       const imageUrl = URL.createObjectURL(file);
       const setImageFileName = getChangeHandler('photo');
       setImageFileName(imageUrl);
     }
   }
 
-  return (
+  return ((
     <PhotoForm
       fields={fields}
       onClickPrevious={onClickPrevious}
       onChangeFile={handleFileChange}
       onHandleNextClick={handleNextClick}
     />
-  );
+  ));
 }

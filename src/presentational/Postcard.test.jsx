@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { fireEvent, getByText, render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 
-import Postcard from '../presentational/Postcard';
+import Postcard from './Postcard';
 
 describe('Postcard', () => {
   const postcard = {
@@ -23,7 +23,7 @@ describe('Postcard', () => {
     showCompleteButton,
     isFrontPage,
   }) {
-    return render(
+    return render((
       <Postcard
         postcard={postcard}
         isFrontPage={isFrontPage}
@@ -32,7 +32,7 @@ describe('Postcard', () => {
         showCompleteButton={showCompleteButton}
         onHandleCompleteClick={handleCompleteClick}
       />
-    );
+    ));
   }
   context('when isFrontPage false and showCompleteButton is true', () => {
     it('render complete button', () => {
@@ -40,11 +40,11 @@ describe('Postcard', () => {
         showCompleteButton: true,
         isFrontPage: false,
       });
-  
+
       expect(getByText('완료')).not.toBeNull();
-  
+
       fireEvent.click(getByText('완료'));
-  
+
       expect(handleCompleteClick).toBeCalled();
     });
   });

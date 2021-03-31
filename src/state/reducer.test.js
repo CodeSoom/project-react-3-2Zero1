@@ -8,51 +8,51 @@ import {
 
 describe('reducer', () => {
   const initialInputFields = {
-  entrance: {
-    secretMessage: {
-      value: '',
-      error: false,
-    }
-  },
-  write: {
-    isPrivate: true,
-    secretMessage: {
-      value: '',
-      error: false,
+    entrance: {
+      secretMessage: {
+        value: '',
+        error: false,
+      },
     },
-    sender: {
-      value: '',
-      error: false,
+    write: {
+      isPrivate: true,
+      secretMessage: {
+        value: '',
+        error: false,
+      },
+      sender: {
+        value: '',
+        error: false,
+      },
+      receiver: {
+        value: '',
+        error: false,
+      },
+      contents: {
+        value: '',
+        error: '',
+      },
+      photo: {
+        value: '',
+        error: false,
+      },
+      photoMessage: {
+        value: '',
+        error: false,
+      },
+      preview: {
+        isFrontPage: true,
+      },
     },
-    receiver: {
-      value: '',
-      error: false,
-    },
-    contents: {
-      value: '',
-      error: '',
-    },
-    photo: {
-      value: '',
-      error: false,
-    },
-    photoMessage: {
-      value: '',
-      error: false,
-    },
-    preview: {
-      isFrontPage: true,
-    }
-  }
-};
+  };
   const initialState = {
     writePageIndex: 0,
     inputFields: initialInputFields,
     entrance: {
-      'sender': "",
-      'isPrivate': "",
-      'postcardCount': 0,
-      'writtenCount': 0, 
+      sender: '',
+      isPrivate: '',
+      postcardCount: 0,
+      writtenCount: 0,
     },
     postcard: {
       isFrontPage: true,
@@ -74,13 +74,13 @@ describe('reducer', () => {
 
   describe('changeInputFieldValue', () => {
     it('changes InputFieldValue', () => {
-      const page = 'entrance'
+      const page = 'entrance';
       const type = 'secretMessage';
 
       const state = reducer(initialState, changeInputFieldValue({
         page,
         type,
-        value: 'hello'
+        value: 'hello',
       }));
 
       expect(state.inputFields[page][type].value).toBe('hello');
@@ -99,7 +99,7 @@ describe('reducer', () => {
     it('decrease writePageIndex -1', () => {
       const editedState = {
         ...initialState,
-        writePageIndex: 1.
+        writePageIndex: 1,
       };
       const state = reducer(editedState, decreaseWritePageIndex());
 

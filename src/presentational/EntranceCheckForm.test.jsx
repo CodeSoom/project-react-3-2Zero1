@@ -1,23 +1,23 @@
 import React from 'react';
 
-import EntranceCheckForm from '../presentational/EntranceCheckForm';
-
-import { fireEvent, render } from '@testing-library/react';
 import { useSelector } from 'react-redux';
 
-import inputFields from '../fixtures/inputFields'
+import { fireEvent, render } from '@testing-library/react';
+
+import EntranceCheckForm from './EntranceCheckForm';
+
+import inputFields from '../fixtures/inputFields';
 import placeholders from '../text/placeholders';
 
 describe('EntranceCheckForm', () => {
-
   useSelector.mockImplementation((selector) => selector({
-    inputFields: inputFields,
+    inputFields,
   }));
 
   const onClick = jest.fn();
   const onChange = jest.fn();
   const value = '';
-  const placeholder = placeholders['secretMessage'];
+  const placeholder = placeholders.secretMessage;
   const errorMessage = '';
 
   function renderEntranceCheckForm(isPrivate) {
@@ -26,14 +26,14 @@ describe('EntranceCheckForm', () => {
       placeholder,
       errorMessage,
     };
-    return render(
+    return render((
       <EntranceCheckForm
         isPrivate={isPrivate}
         onClick={onClick}
         onChange={onChange}
         field={field}
       />
-    );
+    ));
   }
 
   context('postcard is private', () => {
@@ -53,10 +53,10 @@ describe('EntranceCheckForm', () => {
       expect(queryByText('비공개 엽서입니다. 문자로 받은 비밀 메시지를 입력 후 엽서 확인하기 버튼을 눌러주세요.')).toBeNull();
     });
   });
-  
+
   it('show check postcard button', () => {
     const { getByText } = renderEntranceCheckForm(false);
-    
+
     expect(getByText('엽서 확인하기')).not.toBeNull();
     fireEvent.click(getByText('엽서 확인하기'));
     expect(onClick).toBeCalled();

@@ -3,7 +3,6 @@ import { fireEvent, render } from '@testing-library/react';
 
 import InputPart from './InputPart';
 
-import inputFields from '../fixtures/inputFields';
 import errorMessages from '../text/errorMessages';
 import placeholders from '../text/placeholders';
 
@@ -11,7 +10,7 @@ describe('InputPart', () => {
   const onChange = jest.fn();
   const id = 'secretMessage';
 
-  function renderInput(id, name, value, placeholder, errorMessage) {
+  function renderInput(name, value, placeholder, errorMessage) {
     const field = {
       id,
       name,
@@ -21,7 +20,7 @@ describe('InputPart', () => {
       onChange,
     };
     return (
-      render(<InputPart field={field} /> )
+      render(<InputPart field={field} />)
     );
   }
 
@@ -32,11 +31,13 @@ describe('InputPart', () => {
       const type = 'secretMessage';
       const placeholder = placeholders[type];
       const errorMessage = '';
-      const { getByPlaceholderText, getByLabelText } = renderInput(id , name, value, placeholder, errorMessage);
+      const {
+        getByPlaceholderText,
+        getByLabelText,
+      } = renderInput(name, value, placeholder, errorMessage);
 
       expect(getByLabelText(name)).not.toBeNull();
       expect(getByPlaceholderText(placeholder)).not.toBeNull();
-      
 
       fireEvent.change(getByPlaceholderText(placeholder), {
         target: { value: 'Hello' },
@@ -47,15 +48,19 @@ describe('InputPart', () => {
   });
 
   context('with errorMessage', () => {
-    it("show errorMessage", () => {
+    it('show errorMessage', () => {
       const name = '비밀 메시지';
       const value = '';
       const type = 'secretMessage';
 
       const placeholder = placeholders[type];
       const errorMessage = errorMessages[type];
-      
-      const { getByPlaceholderText, getByText, getByLabelText } = renderInput(id, name, value, placeholder, errorMessage);
+
+      const {
+        getByPlaceholderText,
+        getByText,
+        getByLabelText,
+      } = renderInput(name, value, placeholder, errorMessage);
 
       expect(getByLabelText(name)).not.toBeNull();
       expect(getByPlaceholderText(placeholder)).not.toBeNull();

@@ -1,10 +1,9 @@
 import React from 'react';
 
-import PreviewContainer from './PreviewContainer';
-
 import { fireEvent, render } from '@testing-library/react';
-
 import { useDispatch, useSelector } from 'react-redux';
+
+import PreviewContainer from './PreviewContainer';
 
 import inputFields from '../fixtures/inputFields';
 
@@ -12,38 +11,41 @@ describe('PreviewContainer', () => {
   const dispatch = jest.fn();
   const handleCompleteClick = jest.fn();
   const handlePreviousClick = jest.fn();
+  const checkValidAccess = jest.fn();
   function renderSecondPage() {
-    return render(
+    return render((
       <PreviewContainer
         onClickNext={handleCompleteClick}
         onClickPrevious={handlePreviousClick}
+        checkValidAccess={checkValidAccess}
       />
-    );
+    ));
   }
   useDispatch.mockImplementation(() => dispatch);
   useSelector.mockImplementation((selector) => selector(
     {
+      writePageIndex: 3,
       inputFields: {
         ...inputFields,
-      write: {
-        ...inputFields['write'],
-        sender: {
-          error: false,
-          value: '보낸이'
+        write: {
+          ...inputFields.write,
+          sender: {
+            error: false,
+            value: '보낸이',
+          },
+          receiver: {
+            error: false,
+            value: '받는이',
+          },
+          photoMessage: {
+            error: false,
+            value: '사진 메시지 입니다. 테스트 용으로 입력한 값입니다. ! !!!',
+          },
+          preview: {
+            isFrontPage: given.isFrontPage,
+          },
         },
-        receiver: {
-          error: false,
-          value: '받는이'
-        },
-        photoMessage: {
-          error: false,
-          value: '사진 메시지 입니다. 테스트 용으로 입력한 값입니다. ! !!!'
-        },
-        preview: {
-          isFrontPage: given.isFrontPage,
-        }
-      }
-      }
+      },
     },
   ));
 
@@ -51,6 +53,8 @@ describe('PreviewContainer', () => {
     given('isFrontPage', () => true);
     it('show front page', () => {
       const { getByText } = renderSecondPage();
+
+      expect(checkValidAccess).toBeCalled();
 
       expect(getByText('미리 보기')).not.toBeNull();
 
@@ -61,13 +65,14 @@ describe('PreviewContainer', () => {
         type: 'application/flipPreviewPostcard',
       });
     });
-    
   });
 
   context('when isFirstPage is false', () => {
     given('isFrontPage', () => false);
     it('show back page', () => {
       const { getByText } = renderSecondPage();
+
+      expect(checkValidAccess).toBeCalled();
 
       expect(getByText('미리 보기')).not.toBeNull();
 

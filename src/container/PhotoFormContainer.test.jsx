@@ -1,10 +1,10 @@
 import React from 'react';
 
+import { fireEvent, render } from '@testing-library/react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import PhotoFormContainer from './PhotoFormContainer';
 
-import { fireEvent, render } from '@testing-library/react';
-
-import { useDispatch, useSelector } from 'react-redux';
 
 import inputFields from '../fixtures/inputFields';
 
@@ -13,21 +13,24 @@ describe('PhotoFormContainer', () => {
   const getChangeHandler = () => jest.fn();
   const handleNextClick = jest.fn();
   const handlePreviousClick = jest.fn();
+  const checkValidAccess = jest.fn();
 
   function renderSecondPage() {
-    return render(
+    return render((
       <PhotoFormContainer
         getChangeHandler={getChangeHandler}
         onClickNext={handleNextClick}
         onClickPrevious={handlePreviousClick}
+        checkValidAccess={checkValidAccess}
       />
-    );
+    ));
   }
 
   useDispatch.mockImplementation(() => dispatch);
   useSelector.mockImplementation((selector) => selector(
     {
-      inputFields
+      writePageIndex: 2,
+      inputFields,
     },
   ));
 
@@ -40,6 +43,8 @@ describe('PhotoFormContainer', () => {
       getByText,
       getByLabelText,
     } = renderSecondPage();
+
+    expect(checkValidAccess).toBeCalled();
 
     expect(getByText('세로로 된 사진을 사용하시는걸 권장합니다.')).not.toBeNull();
 
@@ -55,6 +60,7 @@ describe('PhotoFormContainer', () => {
 
       useSelector.mockImplementation((selector) => selector(
         {
+          writePageIndex: 2,
           inputFields: {
             ...inputFields,
             write: {
@@ -73,7 +79,7 @@ describe('PhotoFormContainer', () => {
       ));
     });
 
-    it("call handleNextClick", () => {
+    it('call handleNextClick', () => {
       const {
         getByText,
       } = renderSecondPage();
@@ -89,12 +95,13 @@ describe('PhotoFormContainer', () => {
 
       useSelector.mockImplementation((selector) => selector(
         {
+          writePageIndex: 2,
           inputFields,
         },
       ));
     });
 
-    it("do not call handleNextClick", () => {
+    it('do not call handleNextClick', () => {
       const {
         getByText,
       } = renderSecondPage();
@@ -103,5 +110,4 @@ describe('PhotoFormContainer', () => {
       expect(handleNextClick).not.toBeCalled();
     });
   });
-
 });

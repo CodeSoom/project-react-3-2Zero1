@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 export default function RadioButton({
   id,
@@ -8,18 +8,17 @@ export default function RadioButton({
   onChange,
   checked,
 }) {
-
   return (
-  <>
-    <label htmlFor={id}>{label}</label>
-    <input
-      id={id}
-      name={name}
-      type="radio"
-      value={value}
-      onChange={onChange}
-      checked={checked}
-    />
-  </>
+    <>
+      <label htmlFor={id}>{label}</label>
+      <input
+        id={id}
+        name={name}
+        type="radio"
+        value={value}
+        onChange={onChange}
+        checked={checked}
+      />
+    </>
   );
 }

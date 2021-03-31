@@ -1,14 +1,10 @@
 import React from 'react';
 
-import PostcardPage from './PostcardPage';
-
 import { fireEvent, render } from '@testing-library/react';
 import { useDispatch, useSelector } from 'react-redux';
-import { MemoryRouter, } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 
-import {
-  setPostcardFront,
-} from '../state/slice';
+import PostcardPage from './PostcardPage';
 
 const mockGoBack = jest.fn();
 
@@ -25,11 +21,11 @@ describe('PostcardPage', () => {
   useDispatch.mockImplementation(() => dispatch);
 
   function renderPostcardPage() {
-    return render(
+    return render((
       <MemoryRouter>
         <PostcardPage />
       </MemoryRouter>
-    );
+    ));
   }
 
   context('when isFrontPage is true', () => {
@@ -43,7 +39,7 @@ describe('PostcardPage', () => {
           stampURL: 'http://fpost.co.kr/board/data/editor/1905/af0187ebd1e86d0b3a359707fba988b3_1557538963_0631.jpg',
           photoURL: 'http://fpost.co.kr/board/data/editor/1905/af0187ebd1e86d0b3a359707fba988b3_1557538963_0631.jpg',
           photoMessage: 'ㄱ나니? 너와 그때 그시절.....',
-        }
+        },
       }));
       const { getByText } = renderPostcardPage();
       expect(getByText('to 받는이')).not.toBeNull();
@@ -52,7 +48,7 @@ describe('PostcardPage', () => {
 
       fireEvent.click(getByText('이전'));
       // expect(mockGoBack).toBeCalled();
-      //TODO : 어떻게 테스트하지 ?
+      // TODO : 어떻게 테스트하지 ?
       expect(dispatch).toBeCalledWith({
         type: 'application/setPostcardFront',
       });
@@ -70,7 +66,7 @@ describe('PostcardPage', () => {
           stampURL: 'http://fpost.co.kr/board/data/editor/1905/af0187ebd1e86d0b3a359707fba988b3_1557538963_0631.jpg',
           photoURL: 'http://fpost.co.kr/board/data/editor/1905/af0187ebd1e86d0b3a359707fba988b3_1557538963_0631.jpg',
           photoMessage: 'ㄱ나니? 너와 그때 그시절.....',
-        }
+        },
       }));
       const { getByText } = renderPostcardPage();
       expect(getByText('ㄱ나니? 너와 그때 그시절.....')).not.toBeNull();

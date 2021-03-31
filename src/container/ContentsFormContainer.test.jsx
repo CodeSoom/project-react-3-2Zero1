@@ -1,13 +1,12 @@
 import React from 'react';
 
-import ContentsFormContainer from './ContentsFormContainer';
-
-import { fireEvent, getByPlaceholderText, render } from '@testing-library/react';
+import { render } from '@testing-library/react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import placeholders from '../text/placeholders';
+import ContentsFormContainer from './ContentsFormContainer';
 
+import placeholders from '../text/placeholders';
 import inputFields from '../fixtures/inputFields';
 
 describe('ContentsFormContainer', () => {
@@ -15,30 +14,34 @@ describe('ContentsFormContainer', () => {
   const getChangeHandler = () => jest.fn();
   const handleNextClick = jest.fn();
   const handlePreviousClick = jest.fn();
+  const checkValidAccess = jest.fn();
 
   function renderContentsForm() {
-    return render(
+    return render((
       <ContentsFormContainer
         getChangeHandler={getChangeHandler}
         onClickNext={handleNextClick}
         onClickPrevious={handlePreviousClick}
+        checkValidAccess={checkValidAccess}
       />
-    );
+    ));
   }
 
   useDispatch.mockImplementation(() => dispatch);
   useSelector.mockImplementation((selector) => selector(
     {
-      inputFields
+      writePageIndex: 1,
+      inputFields,
     },
   ));
-  
+
   it('show contest textarea', () => {
     const {
       getByPlaceholderText,
     } = renderContentsForm();
 
-    expect(getByPlaceholderText(placeholders['contents'])).not.toBeNull();
-  });
+    expect(getByPlaceholderText(placeholders.contents)).not.toBeNull();
 
+    expect(checkValidAccess).toBeCalled();
+  });
 });

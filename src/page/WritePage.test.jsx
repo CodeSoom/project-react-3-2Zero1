@@ -1,20 +1,22 @@
 import React from 'react';
 
-import WritePage from './WritePage';
-
 import { fireEvent, render } from '@testing-library/react';
 import { useDispatch, useSelector } from 'react-redux';
-import { MemoryRouter, } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
+
+import WritePage from './WritePage';
 
 import inputFields from '../fixtures/inputFields';
 
 const mockGoBack = jest.fn();
+const mockReplace = jest.fn();
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useHistory() {
     return {
       goBack: mockGoBack,
+      replace: mockReplace,
     };
   },
 }));
@@ -23,12 +25,12 @@ describe('WritePage', () => {
   const dispatch = jest.fn();
 
   useDispatch.mockImplementation(() => dispatch);
-  function renderWritePage() {
-    return render(
+  function renderWritePage(params) {
+    return render((
       <MemoryRouter>
-        <WritePage />
+        <WritePage params={params} />
       </MemoryRouter>
-    );
+    ));
   }
 
   context('when writePageIndex is 0', () => {
@@ -42,7 +44,7 @@ describe('WritePage', () => {
     it('render InformationFormPage', () => {
       const {
         getByText,
-      } = renderWritePage();
+      } = renderWritePage({ index: 0 });
 
       expect(getByText('엽서 작성하기')).not.toBeNull();
       expect(getByText('이전')).not.toBeNull();
@@ -54,7 +56,7 @@ describe('WritePage', () => {
     context('when all inputs are not valid', () => {
       beforeEach(() => {
         dispatch.mockClear();
-        
+
         useSelector.mockImplementation((selector) => selector({
           writePageIndex: 0,
           inputFields,
@@ -63,12 +65,12 @@ describe('WritePage', () => {
       it('does not call increasePageIndex action', () => {
         const {
           getByText,
-        } = renderWritePage();
-  
+        } = renderWritePage({ index: 0 });
+
         expect(getByText('엽서 작성하기')).not.toBeNull();
 
         fireEvent.click(getByText('다음'));
-  
+
         expect(dispatch).not.toBeCalledWith({
           type: 'application/increaseWritePageIndex',
         });
@@ -103,12 +105,12 @@ describe('WritePage', () => {
       it('calls increasePageIndex action', () => {
         const {
           getByText,
-        } = renderWritePage();
-  
+        } = renderWritePage({ index: 0 });
+
         expect(getByText('엽서 작성하기')).not.toBeNull();
-  
+
         fireEvent.click(getByText('다음'));
-  
+
         expect(dispatch).toBeCalledWith({
           type: 'application/increaseWritePageIndex',
         });
@@ -127,7 +129,7 @@ describe('WritePage', () => {
     it('render contentsForm', () => {
       const {
         getByText,
-      } = renderWritePage();
+      } = renderWritePage({ index: 1 });
 
       expect(getByText('내용 작성')).not.toBeNull();
 
@@ -138,7 +140,7 @@ describe('WritePage', () => {
       expect(dispatch).toBeCalledWith({
         type: 'application/decreaseWritePageIndex',
       });
-      //TODO : 다음 버튼 클릭시 에러 메시지 있으면 넘어가지 않도록 하는 테스트 코드 작성해야함.
+      // TODO : 다음 버튼 클릭시 에러 메시지 있으면 넘어가지 않도록 하는 테스트 코드 작성해야함.
     });
   });
 
@@ -153,7 +155,7 @@ describe('WritePage', () => {
     it('render PhotoFormPage', () => {
       const {
         getByText,
-      } = renderWritePage();
+      } = renderWritePage({ index: 2 });
 
       expect(getByText('이미지 첨부')).not.toBeNull();
 
@@ -169,7 +171,7 @@ describe('WritePage', () => {
     context('when inputs or photo is invalid', () => {
       beforeEach(() => {
         dispatch.mockClear();
-        
+
         useSelector.mockImplementation((selector) => selector({
           writePageIndex: 2,
           inputFields,
@@ -178,10 +180,10 @@ describe('WritePage', () => {
       it('does not call increasePageIndex action', () => {
         const {
           getByText,
-        } = renderWritePage();
-  
+        } = renderWritePage({ index: 2 });
+
         fireEvent.click(getByText('미리보기'));
-  
+
         expect(dispatch).not.toBeCalledWith({
           type: 'application/increaseWritePageIndex',
         });
@@ -213,10 +215,10 @@ describe('WritePage', () => {
       it('calls increasePageIndex action', () => {
         const {
           getByText,
-        } = renderWritePage();
-  
+        } = renderWritePage({ index: 2 });
+
         fireEvent.click(getByText('미리보기'));
-  
+
         expect(dispatch).toBeCalledWith({
           type: 'application/increaseWritePageIndex',
         });
@@ -251,7 +253,7 @@ describe('WritePage', () => {
     it('render preview', () => {
       const {
         getByText,
-      } = renderWritePage();
+      } = renderWritePage({ index: 3 });
 
       expect(getByText('미리 보기')).not.toBeNull();
 
@@ -263,13 +265,13 @@ describe('WritePage', () => {
         type: 'application/decreaseWritePageIndex',
       });
     });
-    
+
     context('isFrontPage is true', () => {
       given('isFrontPage', () => true);
       it('does not show complete button', () => {
         const {
           queryByText,
-        } = renderWritePage();
+        } = renderWritePage({ index: 3 });
 
         expect(queryByText('완료')).toBeNull();
       });
@@ -280,7 +282,7 @@ describe('WritePage', () => {
       it('shows complete button', () => {
         const {
           getByText,
-        } = renderWritePage();
+        } = renderWritePage({ index: 3 });
 
         expect(getByText('완료')).not.toBeNull();
 
@@ -302,13 +304,13 @@ describe('WritePage', () => {
     it('render writeCompletePage', () => {
       const {
         getByText,
-      } = renderWritePage();
-      
+      } = renderWritePage({ index: 4 });
+
       expect(getByText('홈로고')).not.toBeNull();
 
       fireEvent.click(getByText('홈로고'));
 
       expect(mockGoBack).toBeCalled();
-    })
+    });
   });
 });

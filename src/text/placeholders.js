@@ -3,5 +3,5 @@ export default {
   sender: '2 ~ 5자',
   contents: '30 ~ 200자',
   receiver: '2 ~ 5자',
-  photoMessage: '10 ~ 30자'
+  photoMessage: '10 ~ 30자',
 };

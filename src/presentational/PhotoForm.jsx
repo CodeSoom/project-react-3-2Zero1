@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 import ImagePart from './ImagePart';
-import InputPart from './InputPart'
+import InputPart from './InputPart';
 
 export default function PhotoForm({
   fields: {
@@ -11,31 +11,30 @@ export default function PhotoForm({
   onChangeFile,
   onHandleNextClick,
 }) {
-
   function handlePreviewClick() {
     onClickPrevious();
   }
 
   return (
-  <>
-    <button
+    <>
+      <button
         type="button"
         onClick={handlePreviewClick}
-    >
-      이전
-    </button>
-    <div>이미지 첨부</div>
-    <ImagePart
-      photo={photo}
-      onHandleChangeFile={onChangeFile}
-    />
-    <InputPart field={photoMessage} />
-    <button
-      type="button"
-      onClick={onHandleNextClick}
-    >
-      미리보기
-    </button>
-  </>
+      >
+        이전
+      </button>
+      <div>이미지 첨부</div>
+      <ImagePart
+        photo={photo}
+        onHandleChangeFile={onChangeFile}
+      />
+      <InputPart field={photoMessage} />
+      <button
+        type="button"
+        onClick={onHandleNextClick}
+      >
+        미리보기
+      </button>
+    </>
   );
 }

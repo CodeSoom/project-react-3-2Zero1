@@ -1,5 +1,5 @@
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import PostcardContainer from '../container/PostcardContainer';
 
@@ -9,7 +9,6 @@ export default function PostcardPage() {
   const history = useHistory();
   const dispatch = useDispatch();
 
-   //이전 버튼 클릭시, isFrontPage를 true로 돌려놓고 goBack
   function handlePrivousClick(e) {
     e.stopPropagation();
     dispatch(setPostcardFront());
@@ -17,8 +16,8 @@ export default function PostcardPage() {
   }
 
   return (
-  <PostcardContainer
-   onHandlePrivousClick={handlePrivousClick}
-  />
+    <PostcardContainer
+      onHandlePrivousClick={handlePrivousClick}
+    />
   );
 }

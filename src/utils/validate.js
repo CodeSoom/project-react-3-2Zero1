@@ -5,12 +5,10 @@ const conditions = {
   contents: (value) => !(value.length > 200 || value.length < 30),
   photoMessage: (value) => !(value.length > 30 || value.length < 10),
   photo: (value) => !!value,
-}
+};
 
 
 function validate(fields) {
-  return Object.entries(fields).map(([key, field]) => {
-    return ([key, conditions[key](field.value)]);
-  });
-};
+  return Object.entries(fields).map(([key, field]) => ([key, conditions[key](field.value)]));
+}
 export default validate;

@@ -9,7 +9,12 @@ export function equal(key, value) {
   return (obj) => obj[key] === value;
 }
 
-export function getField ({ field: { value, error }, id, name, onChange }) {
+export function getField({
+  field: { value, error },
+  id,
+  name,
+  onChange,
+}) {
   return ({
     id,
     name,
@@ -18,4 +23,4 @@ export function getField ({ field: { value, error }, id, name, onChange }) {
     errorMessage: error ? errorMessages[id] : '',
     onChange,
   });
-};
+}
