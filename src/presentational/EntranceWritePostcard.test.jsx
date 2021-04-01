@@ -10,7 +10,7 @@ import entrance from '../fixtures/entrance';
 
 describe('EntranceWritePostcard', () => {
   context('postcardCount is bigger than 0', () => {
-    it('show postcard write button and message', () => {
+    it('shows postcard write button and message', () => {
       const { sender, postcardCount } = entrance;
       useSelector.mockImplementation((selector) => selector(entrance));
 
@@ -26,7 +26,7 @@ describe('EntranceWritePostcard', () => {
   });
 
   context('postcardCount is 0', () => {
-    it('show message that cannot write postcard', () => {
+    it('shows message that cannot write postcard', () => {
       const { sender } = entrance;
       useSelector.mockImplementation((selector) => selector(entrance));
 

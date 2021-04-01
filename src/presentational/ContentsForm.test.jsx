@@ -52,7 +52,7 @@ describe('ContentsForm', () => {
   });
 
   context('with error', () => {
-    it('show errorMessage', () => {
+    it('shows errorMessage', () => {
       const { getByPlaceholderText, getByText } = renderContentsForm(true);
 
       expect(getByPlaceholderText(placeholders.contents)).not.toBeNull();

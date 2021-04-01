@@ -35,7 +35,7 @@ describe('Postcard', () => {
     ));
   }
   context('when isFrontPage false and showCompleteButton is true', () => {
-    it('render complete button', () => {
+    it('renders complete button', () => {
       const { getByText } = renderPostcard({
         showCompleteButton: true,
         isFrontPage: false,
