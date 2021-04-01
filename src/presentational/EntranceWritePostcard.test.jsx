@@ -12,6 +12,7 @@ describe('EntranceWritePostcard', () => {
   context('postcardCount is bigger than 0', () => {
     it('shows postcard write button and message', () => {
       const { sender, postcardCount } = entrance;
+      
       useSelector.mockImplementation((selector) => selector(entrance));
 
       const { getByText } = render((

@@ -29,7 +29,7 @@ export default function InformationFormContainer({
       inputFields: state.inputFields,
     }
   ));
-  
+
   const {
     write: {
       sender,
