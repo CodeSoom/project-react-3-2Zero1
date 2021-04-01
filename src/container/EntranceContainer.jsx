@@ -13,6 +13,7 @@ import {
 
 export default function EntranceContainer({
   onHandleClickPostcard,
+  onHandleClickWritePostcard,
 }) {
   const dispatch = useDispatch();
 
@@ -74,6 +75,7 @@ export default function EntranceContainer({
       <EntranceWritePostcard
         sender={sender}
         postcardCount={postcardCount}
+        onHandleClickWritePostcard={onHandleClickWritePostcard}
       />
       <div>{`현재 까지 ${writtenCount}명의 엽서가 작성 되었습니다.`}</div>
       <button type="button">다른 사람 엽서 보러가기</button>
