@@ -42,7 +42,7 @@ describe('App', () => {
     ));
   }
 
-  context('with /', () => {
+  context('when path is /', () => {
     it('renders entrancePage', () => {
       const { container } = renderApp({ path: '/' });
 
@@ -50,7 +50,7 @@ describe('App', () => {
     });
   });
 
-  context('with /write', () => {
+  context('when path is /write', () => {
     it('renders writingPage', () => {
       const { container } = renderApp({ path: '/write/0' });
 
@@ -58,7 +58,7 @@ describe('App', () => {
     });
   });
 
-  context('with /postcard', () => {
+  context('when path is /postcard', () => {
     it('renders postcardPage', () => {
       const { container } = renderApp({ path: '/postcard' });
 
