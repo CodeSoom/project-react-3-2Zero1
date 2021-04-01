@@ -39,7 +39,7 @@ describe('ContentsForm', () => {
     const { getByPlaceholderText } = renderContentsForm();
 
     expect(getByPlaceholderText(placeholders.contents)).not.toBeNull();
-    
+
     fireEvent.change(getByPlaceholderText(placeholders.contents), { target: { value: 'input' } });
     expect(handleChange).toBeCalled();
   });

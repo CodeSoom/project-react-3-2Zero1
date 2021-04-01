@@ -10,9 +10,11 @@ import inputFields from '../fixtures/inputFields';
 
 describe('EntranceContainer', () => {
   const { sender, postcardCount, writtenCount } = entrance;
+
   const dispatch = jest.fn();
   const onHandleClickPostcard = jest.fn();
   const onHandleClickWritePostcard = jest.fn();
+
   beforeEach(() => {
     dispatch.mockClear();
 
@@ -103,7 +105,7 @@ describe('EntranceContainer', () => {
       }));
     });
 
-    it("doesn'tshow secretMessage form and information", () => {
+    it("doesn't show secretMessage form and information", () => {
       const { queryByPlaceholderText, queryByText } = entranceRender();
 
       expect(queryByPlaceholderText('5 ~ 20자')).toBeNull();
