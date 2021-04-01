@@ -55,7 +55,7 @@ export default function ContentsFormContainer({
       }));
     });
 
-    if (checks.filter(([_, check]) => !check).length === 0) {
+    if (checks.filter(([, check]) => !check).length === 0) {
       onClickNext();
     }
   }

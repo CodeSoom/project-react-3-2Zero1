@@ -18,10 +18,16 @@ export default function Postcard({
   onHandleCompleteClick,
 }) {
   return (
-    <div onClick={onHandleClickPage}>
-      <div onClick={onHandlePrivousClick}>
+    <button
+      type="button"
+      onClick={onHandleClickPage}
+    >
+      <button
+        type="button"
+        onClick={onHandlePrivousClick}
+      >
         이전
-      </div>
+      </button>
       {
         isFrontPage ? (
           <PostcardFront
@@ -40,6 +46,6 @@ export default function Postcard({
             />
           )
       }
-    </div>
+    </button>
   );
 }

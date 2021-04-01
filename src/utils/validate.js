@@ -7,7 +7,6 @@ const conditions = {
   photo: (value) => !!value,
 };
 
-
 function validate(fields) {
   return Object.entries(fields).map(([key, field]) => ([key, conditions[key](field.value)]));
 }

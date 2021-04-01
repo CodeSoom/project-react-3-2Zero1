@@ -13,7 +13,6 @@ export default function InformationForm({
   isPrivate,
   onClickPrevious,
 }) {
-
   return (
     <>
       <button

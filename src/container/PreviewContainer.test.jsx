@@ -9,7 +9,7 @@ import inputFields from '../fixtures/inputFields';
 
 describe('PreviewContainer', () => {
   const dispatch = jest.fn();
-  
+
   const handleCompleteClick = jest.fn();
   const handlePreviousClick = jest.fn();
   const checkValidAccess = jest.fn();

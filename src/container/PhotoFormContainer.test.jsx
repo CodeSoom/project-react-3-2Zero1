@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import PhotoFormContainer from './PhotoFormContainer';
 
-
 import inputFields from '../fixtures/inputFields';
 
 describe('PhotoFormContainer', () => {
