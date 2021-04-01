@@ -14,6 +14,7 @@ export default function EntrancePage() {
     const url = '/write/0';
     history.push(url);
   }
+
   return (
     <EntranceContainer
       onHandleClickPostcard={handleClickPostcard}

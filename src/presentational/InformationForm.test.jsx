@@ -40,7 +40,6 @@ describe('InformationForm', () => {
   const handleRadioChange = jest.fn();
   const handlePreviousClick = jest.fn();
 
-
   const { getByLabelText, getAllByPlaceholderText, getByText } = render((
     <InformationForm
       fields={fields}

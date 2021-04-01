@@ -10,7 +10,9 @@ import Postcard from '../presentational/Postcard';
 
 export default function PostcardContainer({ onHandlePrivousClick }) {
   const dispatch = useDispatch();
+
   const postcard = useSelector(get('postcard'));
+
   const { isFrontPage } = postcard;
 
   function handleClickPage() {

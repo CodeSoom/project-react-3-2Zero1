@@ -7,6 +7,7 @@ import { setPostcardFront } from '../state/slice';
 
 export default function PostcardPage() {
   const history = useHistory();
+
   const dispatch = useDispatch();
 
   function handlePrivousClick(e) {

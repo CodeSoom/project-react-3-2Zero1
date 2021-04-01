@@ -8,6 +8,7 @@ import placeholders from '../text/placeholders';
 
 describe('InputPart', () => {
   const onChange = jest.fn();
+
   const id = 'secretMessage';
 
   function renderInput(name, value, placeholder, errorMessage) {

@@ -8,6 +8,7 @@ export default function RadioPart({
 }) {
   const privateValue = true;
   const publicValue = false;
+  
   return (
     <>
       <div>공개 여부</div>

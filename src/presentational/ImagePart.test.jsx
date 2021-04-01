@@ -6,6 +6,7 @@ import errorMessages from '../text/errorMessages';
 
 describe('ImagePart', () => {
   const onHandleChangeFile = jest.fn();
+
   function renderImage({ path = '', errorMessage = '' }) {
     return (
       render(<ImagePart
