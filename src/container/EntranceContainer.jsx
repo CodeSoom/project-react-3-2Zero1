@@ -17,11 +17,14 @@ export default function EntranceContainer({
 }) {
   const dispatch = useDispatch();
 
-  const { entrance, inputFields } = useSelector((state) => ({
+  const {
+    entrance,
+    inputFields,
+  } = useSelector((state) => ({
     entrance: state.entrance,
     inputFields: state.inputFields,
   }));
-
+  
   const {
     sender,
     postcardCount,
@@ -30,11 +33,9 @@ export default function EntranceContainer({
   } = entrance;
 
   const { entrance: { secretMessage } } = inputFields;
-
   const { value, error } = secretMessage;
 
   const placeholder = placeholders.secretMessage;
-
   const errorMessage = errorMessages.secretMessage[error];
 
   function handleCheckPostcardClick(v) {

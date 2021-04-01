@@ -22,20 +22,22 @@ export default function InformationFormContainer({
 
   const {
     writePageIndex,
-    inputFields: {
-      write: {
-        sender,
-        receiver,
-        secretMessage,
-        isPrivate,
-      },
-    },
+    inputFields,
   } = useSelector((state) => (
     {
       writePageIndex: state.writePageIndex,
       inputFields: state.inputFields,
     }
   ));
+  
+  const {
+    write: {
+      sender,
+      receiver,
+      secretMessage,
+      isPrivate,
+    },
+  } = inputFields;
 
   checkValidAccess(writePageIndex);
 

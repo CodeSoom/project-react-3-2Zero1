@@ -20,17 +20,19 @@ export default function ContentsFormContainer({
 
   const {
     writePageIndex,
-    inputFields: {
-      write: {
-        contents,
-      },
-    },
+    inputFields,
   } = useSelector((state) => (
     {
       writePageIndex: state.writePageIndex,
       inputFields: state.inputFields,
     }
   ));
+
+  const {
+    write: {
+      contents,
+    },
+  } = inputFields;
 
   checkValidAccess(writePageIndex);
 

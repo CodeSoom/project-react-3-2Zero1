@@ -5,9 +5,7 @@ export default function WriteCompleteContainer({
   onClickHome,
   checkValidAccess,
 }) {
-  const {
-    writePageIndex,
-  } = useSelector((state) => ({
+  const { writePageIndex } = useSelector((state) => ({
     writePageIndex: state.writePageIndex,
   }));
 
