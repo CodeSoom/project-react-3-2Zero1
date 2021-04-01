@@ -20,18 +20,20 @@ export default function PhotoFormContainer({
 
   const {
     writePageIndex,
-    inputFields: {
-      write: {
-        photo,
-        photoMessage,
-      },
-    },
+    inputFields,
   } = useSelector((state) => (
     {
       writePageIndex: state.writePageIndex,
       inputFields: state.inputFields,
     }
   ));
+  
+  const {
+    write: {
+      photo,
+      photoMessage,
+    },
+  } = inputFields;
 
   checkValidAccess(writePageIndex);
 

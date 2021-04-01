@@ -13,24 +13,23 @@ export default function PreviewContainer({
 }) {
   const dispatch = useDispatch();
 
-  const {
-    writePageIndex,
-    inputFields: {
-      write: {
-        sender,
-        receiver,
-        contents,
-        preview,
-        photoMessage,
-        photo,
-      },
-    },
-  } = useSelector((state) => (
+  const { writePageIndex, inputFields } = useSelector((state) => (
     {
       writePageIndex: state.writePageIndex,
       inputFields: state.inputFields,
     }
   ));
+
+  const {
+    write: {
+      sender,
+      receiver,
+      contents,
+      preview,
+      photoMessage,
+      photo,
+    },
+  } = inputFields;
 
   checkValidAccess(writePageIndex);
 
