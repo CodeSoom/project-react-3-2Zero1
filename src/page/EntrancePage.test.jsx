@@ -39,7 +39,7 @@ describe('EntrancePage', () => {
   });
 
   context('when postcardCount is bigger than 0', () => {
-    it('render postcard write button', () => {
+  it('render postcard write button', () => {
       useSelector.mockImplementation((selector) => selector({
         entrance,
         inputFields,
