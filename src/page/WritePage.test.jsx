@@ -54,6 +54,7 @@ describe('WritePage', () => {
 
       expect(dispatch).not.toBeCalled();
     });
+
     context('when all inputs are not valid', () => {
       beforeEach(() => {
         dispatch.mockClear();
@@ -63,7 +64,7 @@ describe('WritePage', () => {
           inputFields,
         }));
       });
-      
+
       it('does not call increasePageIndex action', () => {
         const {
           getByText,
@@ -78,6 +79,7 @@ describe('WritePage', () => {
         });
       });
     });
+
     context('when all inputs are valid', () => {
       beforeEach(() => {
         dispatch.mockClear();
@@ -214,6 +216,7 @@ describe('WritePage', () => {
           },
         }));
       });
+      
       it('calls increasePageIndex action', () => {
         const {
           getByText,

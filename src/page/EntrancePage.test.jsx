@@ -19,9 +19,11 @@ jest.mock('react-router-dom', () => ({
 
 describe('EntrancePage', () => {
   const SENDER = entrance.sender;
+
   const dispatch = jest.fn();
 
   useDispatch.mockImplementation(() => dispatch);
+  
   useSelector.mockImplementation((selector) => selector({
     entrance,
     inputFields,
@@ -58,6 +60,7 @@ describe('EntrancePage', () => {
       expect(mockPush).toBeCalled();
     });
   });
+
   context('when postcardCount is 0', () => {
     it('does not render postcard write button', () => {
       useSelector.mockImplementation((selector) => selector({
@@ -67,7 +70,7 @@ describe('EntrancePage', () => {
         },
         inputFields,
       }));
-      
+
       const { queryByText } = renderEntrance();
 
       expect(queryByText('엽서 작성하기')).toBeNull();
