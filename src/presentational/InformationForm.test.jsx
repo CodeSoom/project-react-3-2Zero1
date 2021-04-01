@@ -55,7 +55,7 @@ describe('InformationForm', () => {
     expect(handlePreviousClick).toBeCalled();
 
     expect(getByText('엽서 작성하기')).not.toBeNull();
-    Object.entries(fields).forEach(([_, {
+    Object.entries(fields).forEach(([, {
       name,
       onChange,
     }]) => {

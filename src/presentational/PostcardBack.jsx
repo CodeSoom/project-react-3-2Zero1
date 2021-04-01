@@ -9,7 +9,14 @@ export default function PostcardBack({
   return (
     <div>
       {
-        showCompleteButton ? (<div onClick={onHandleCompleteClick}>완료</div>) : null
+        showCompleteButton ? (
+          <button
+            type="button"
+            onClick={onHandleCompleteClick}
+          >
+            완료
+          </button>
+        ) : null
       }
       <img src={photoUrl} alt="photoImage" />
       <div>{photoMessage}</div>

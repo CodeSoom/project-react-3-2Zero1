@@ -16,7 +16,6 @@ describe('RadioPart', () => {
     ));
   }
 
-
   it('renders common text', () => {
     const { getByText } = renderRadioPart(true);
 

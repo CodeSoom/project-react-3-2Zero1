@@ -154,7 +154,7 @@ describe('EntranceContainer', () => {
       }));
     });
 
-    it("show writing parts", () => {
+    it('show writing parts', () => {
       const { getByText } = entranceRender();
 
       expect(getByText(`${sender}님으로 부터 받은 엽서로 ${postcardCount}번의 엽서를 작성하실 수 있어요 ! 코로나로 인해 만나보지 못한 소중한 사람에게 추억이 될 엽서를 작성해보세요 !`)).not.toBeNull();

@@ -24,7 +24,7 @@ export default function EntranceContainer({
     entrance: state.entrance,
     inputFields: state.inputFields,
   }));
-  
+
   const {
     sender,
     postcardCount,

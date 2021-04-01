@@ -150,7 +150,7 @@ describe('WritePage', () => {
     context('when contents are valid', () => {
       beforeEach(() => {
         dispatch.mockClear();
-  
+
         useSelector.mockImplementation((selector) => selector({
           writePageIndex: 1,
           inputFields: {

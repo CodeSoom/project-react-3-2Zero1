@@ -27,7 +27,7 @@ describe('EntranceCheckForm', () => {
       placeholder,
       errorMessage,
     };
-    
+
     return render((
       <EntranceCheckForm
         isPrivate={isPrivate}
