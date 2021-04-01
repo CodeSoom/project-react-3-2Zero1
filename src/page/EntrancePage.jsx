@@ -12,7 +12,6 @@ export default function EntrancePage() {
 
   function handleClickWritePostcard() {
     const url = '/write/0';
-    console.log(history);
     history.push(url);
   }
 

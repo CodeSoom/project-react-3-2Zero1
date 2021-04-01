@@ -36,7 +36,7 @@ export default function WritePage({ params }) {
 
   function handlePreviousClick() {
     if (+index === 0) {
-      //이곳에서 입력값 모두 초기화.
+      // 이곳에서 입력값 모두 초기화.
       history.goBack();
       return;
     }

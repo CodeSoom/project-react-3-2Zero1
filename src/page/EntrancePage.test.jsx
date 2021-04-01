@@ -39,7 +39,6 @@ describe('EntrancePage', () => {
   });
 
   context('when postcardCount is bigger than 0', () => {
-    
     it('render postcard write button', () => {
       useSelector.mockImplementation((selector) => selector({
         entrance,
@@ -49,7 +48,7 @@ describe('EntrancePage', () => {
 
       expect(getByText('엽서 작성하기')).not.toBeNull();
       expect(getByText(`${SENDER}님으로 부터 받은 엽서로 ${entrance.postcardCount}번의 엽서를 작성하실 수 있어요 ! 코로나로 인해 만나보지 못한 소중한 사람에게 추억이 될 엽서를 작성해보세요 !`))
-      .not.toBeNull();
+        .not.toBeNull();
 
       fireEvent.click(getByText('엽서 작성하기'));
       expect(mockPush).toBeCalled();
