@@ -146,6 +146,61 @@ describe('WritePage', () => {
       });
       // TODO : 다음 버튼 클릭시 에러 메시지 있으면 넘어가지 않도록 하는 테스트 코드 작성해야함.
     });
+
+    context('when contents are valid', () => {
+      beforeEach(() => {
+        dispatch.mockClear();
+  
+        useSelector.mockImplementation((selector) => selector({
+          writePageIndex: 1,
+          inputFields: {
+            ...inputFields,
+            write: {
+              ...inputFields.write,
+              contents: {
+                ...inputFields.write.contents,
+                value: '이것은 테스트 입니다. 30자를 넘겨야만 하는 테스트이기 때문에 아무 글자나 적습니다. 이해해 주시길 바랍니다.',
+              },
+            },
+          },
+        }));
+      });
+
+      it('calls increasePageIndex action', () => {
+        const {
+          getByText,
+        } = renderWritePage({ index: 1 });
+
+        fireEvent.click(getByText('다음'));
+
+        expect(dispatch).toBeCalledWith({
+          type: 'application/increaseWritePageIndex',
+        });
+      });
+    });
+
+    context('when contents are invalid', () => {
+      beforeEach(() => {
+        dispatch.mockClear();
+
+        useSelector.mockImplementation((selector) => selector({
+          writePageIndex: 1,
+          inputFields,
+        }));
+      });
+
+      it('does not call increasePageIndex action', () => {
+        const {
+          getByText,
+        } = renderWritePage({ index: 1 });
+
+        fireEvent.click(getByText('다음'));
+
+        expect(dispatch).not.toBeCalledWith({
+          type: 'application/increaseWritePageIndex',
+        });
+      });
+    });
   });
 
   context('when writePageIndex is 2', () => {
@@ -216,7 +271,7 @@ describe('WritePage', () => {
           },
         }));
       });
-      
+
       it('calls increasePageIndex action', () => {
         const {
           getByText,
