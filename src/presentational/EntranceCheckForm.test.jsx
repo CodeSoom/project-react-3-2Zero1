@@ -16,6 +16,7 @@ describe('EntranceCheckForm', () => {
 
   const onClick = jest.fn();
   const onChange = jest.fn();
+
   const value = '';
   const placeholder = placeholders.secretMessage;
   const errorMessage = '';
@@ -58,6 +59,7 @@ describe('EntranceCheckForm', () => {
     const { getByText } = renderEntranceCheckForm(false);
 
     expect(getByText('엽서 확인하기')).not.toBeNull();
+
     fireEvent.click(getByText('엽서 확인하기'));
     expect(onClick).toBeCalled();
   });

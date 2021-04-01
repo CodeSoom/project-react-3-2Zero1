@@ -14,5 +14,6 @@ test('PostcardBack', () => {
       photoMessage={photoMessage}
     />
   ));
+
   expect(getByText(photoMessage)).not.toBeNull();
 });

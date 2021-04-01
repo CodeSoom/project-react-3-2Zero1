@@ -20,6 +20,7 @@ jest.mock('react-router-dom', () => ({
 describe('EntrancePage', () => {
   const SENDER = entrance.sender;
   const dispatch = jest.fn();
+
   useDispatch.mockImplementation(() => dispatch);
   useSelector.mockImplementation((selector) => selector({
     entrance,
@@ -31,19 +32,22 @@ describe('EntrancePage', () => {
       <EntrancePage />
     ));
   }
+
   it('renders EntrancePage', () => {
     const { getByText } = renderEntrance();
+
     expect(getByText(`${SENDER}님으로 부터 엽서가 도착했어요.`)).not.toBeNull();
     expect(getByText('다른 사람 엽서 보러가기')).not.toBeNull();
     expect(getByText('엽서 파기하기')).not.toBeNull();
   });
 
   context('when postcardCount is bigger than 0', () => {
-  it('renders postcard write button', () => {
+    it('renders postcard write button', () => {
       useSelector.mockImplementation((selector) => selector({
         entrance,
         inputFields,
       }));
+
       const { getByText } = renderEntrance();
 
       expect(getByText('엽서 작성하기')).not.toBeNull();
@@ -63,6 +67,7 @@ describe('EntrancePage', () => {
         },
         inputFields,
       }));
+      
       const { queryByText } = renderEntrance();
 
       expect(queryByText('엽서 작성하기')).toBeNull();

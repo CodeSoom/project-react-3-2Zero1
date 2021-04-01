@@ -41,7 +41,9 @@ describe('PostcardPage', () => {
           photoMessage: 'ㄱ나니? 너와 그때 그시절.....',
         },
       }));
+
       const { getByText } = renderPostcardPage();
+
       expect(getByText('to 받는이')).not.toBeNull();
       expect(getByText('from 보낸이')).not.toBeNull();
       expect(getByText('이것은 내용입니다.')).not.toBeNull();
@@ -68,7 +70,9 @@ describe('PostcardPage', () => {
           photoMessage: 'ㄱ나니? 너와 그때 그시절.....',
         },
       }));
+
       const { getByText } = renderPostcardPage();
+
       expect(getByText('ㄱ나니? 너와 그때 그시절.....')).not.toBeNull();
     });
   });

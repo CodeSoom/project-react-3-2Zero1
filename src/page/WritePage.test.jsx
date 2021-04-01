@@ -25,6 +25,7 @@ describe('WritePage', () => {
   const dispatch = jest.fn();
 
   useDispatch.mockImplementation(() => dispatch);
+
   function renderWritePage(params) {
     return render((
       <MemoryRouter>
@@ -62,6 +63,7 @@ describe('WritePage', () => {
           inputFields,
         }));
       });
+      
       it('does not call increasePageIndex action', () => {
         const {
           getByText,
@@ -102,6 +104,7 @@ describe('WritePage', () => {
           },
         }));
       });
+
       it('calls increasePageIndex action', () => {
         const {
           getByText,
@@ -132,7 +135,6 @@ describe('WritePage', () => {
       } = renderWritePage({ index: 1 });
 
       expect(getByText('내용 작성')).not.toBeNull();
-
       expect(getByText('이전')).not.toBeNull();
 
       fireEvent.click(getByText('이전'));
@@ -158,7 +160,6 @@ describe('WritePage', () => {
       } = renderWritePage({ index: 2 });
 
       expect(getByText('이미지 첨부')).not.toBeNull();
-
       expect(getByText('이전')).not.toBeNull();
 
       fireEvent.click(getByText('이전'));
@@ -177,6 +178,7 @@ describe('WritePage', () => {
           inputFields,
         }));
       });
+
       it('does not call increasePageIndex action', () => {
         const {
           getByText,
@@ -256,7 +258,6 @@ describe('WritePage', () => {
       } = renderWritePage({ index: 3 });
 
       expect(getByText('미리 보기')).not.toBeNull();
-
       expect(getByText('이전')).not.toBeNull();
 
       fireEvent.click(getByText('이전'));

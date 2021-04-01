@@ -17,6 +17,7 @@ test('RadioButton', () => {
       checked={false}
     />
   ));
+
   const radio = getByLabelText('label');
 
   expect(radio).not.toBeNull();

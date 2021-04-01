@@ -42,6 +42,7 @@ export default function WritePage({ params }) {
     }
 
     dispatch(decreaseWritePageIndex());
+
     history.replace(`/write/${+index - 1}`);
   }
 

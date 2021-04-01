@@ -59,11 +59,13 @@ export default function EntranceContainer({
       value: v,
     }));
   }
+
   const field = {
     value,
     placeholder,
     errorMessage,
   };
+
   return (
     <>
       <div>{`${sender}님으로 부터 엽서가 도착했어요.`}</div>

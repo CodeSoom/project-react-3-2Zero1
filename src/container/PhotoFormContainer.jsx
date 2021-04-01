@@ -27,7 +27,7 @@ export default function PhotoFormContainer({
       inputFields: state.inputFields,
     }
   ));
-  
+
   const {
     write: {
       photo,

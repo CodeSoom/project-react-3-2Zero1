@@ -19,6 +19,7 @@ describe('PhotoForm', () => {
   const handleClick = jest.fn();
   const handlePreviousClick = jest.fn();
   const handleFileChange = jest.fn();
+
   const fields = {
     photo: {
       value: '',

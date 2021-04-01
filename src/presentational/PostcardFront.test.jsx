@@ -18,6 +18,7 @@ test('PostcardFront', () => {
       stampUrl={stampUrl}
     />
   ));
+
   expect(getByText(`to ${receiver}`)).not.toBeNull();
   expect(getByText(`from ${sender}`)).not.toBeNull();
   expect(getByText(contents)).not.toBeNull();
