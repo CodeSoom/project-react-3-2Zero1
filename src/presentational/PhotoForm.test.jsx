@@ -44,7 +44,7 @@ describe('PhotoForm', () => {
     />
   ));
 
-  it('render PhotoForm', () => {
+  it('renders PhotoForm', () => {
     fireEvent.click(getByText('이전'));
     expect(handlePreviousClick).toBeCalled();
 

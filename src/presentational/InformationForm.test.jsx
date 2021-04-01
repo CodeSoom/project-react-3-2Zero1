@@ -51,7 +51,7 @@ describe('InformationForm', () => {
     />
   ));
 
-  it('render InformationForm', () => {
+  it('renders InformationForm', () => {
     fireEvent.click(getByText('이전'));
     expect(handlePreviousClick).toBeCalled();
 

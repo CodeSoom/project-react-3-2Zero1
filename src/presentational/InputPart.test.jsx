@@ -48,7 +48,7 @@ describe('InputPart', () => {
   });
 
   context('with errorMessage', () => {
-    it('show errorMessage', () => {
+    it('shows errorMessage', () => {
       const name = '비밀 메시지';
       const value = '';
       const type = 'secretMessage';

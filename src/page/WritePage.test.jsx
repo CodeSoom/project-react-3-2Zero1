@@ -41,7 +41,7 @@ describe('WritePage', () => {
       }));
     });
 
-    it('render InformationFormPage', () => {
+    it('renders InformationFormPage', () => {
       const {
         getByText,
       } = renderWritePage({ index: 0 });
@@ -126,7 +126,7 @@ describe('WritePage', () => {
       }));
     });
 
-    it('render contentsForm', () => {
+    it('renders contentsForm', () => {
       const {
         getByText,
       } = renderWritePage({ index: 1 });
@@ -152,7 +152,7 @@ describe('WritePage', () => {
       }));
     });
 
-    it('render PhotoFormPage', () => {
+    it('renders PhotoFormPage', () => {
       const {
         getByText,
       } = renderWritePage({ index: 2 });
@@ -250,7 +250,7 @@ describe('WritePage', () => {
       }));
     });
 
-    it('render preview', () => {
+    it('renders preview', () => {
       const {
         getByText,
       } = renderWritePage({ index: 3 });
@@ -301,7 +301,7 @@ describe('WritePage', () => {
         writePageIndex: 4,
       }));
     });
-    it('render writeCompletePage', () => {
+    it('renders writeCompletePage', () => {
       const {
         getByText,
       } = renderWritePage({ index: 4 });

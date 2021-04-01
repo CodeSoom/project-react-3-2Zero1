@@ -88,7 +88,7 @@ describe('reducer', () => {
   });
 
   describe('increaseWritePageIndex', () => {
-    it('increase writePageIndex + 1', () => {
+    it('increases writePageIndex + 1', () => {
       const state = reducer(initialState, increaseWritePageIndex());
 
       expect(state.writePageIndex).toBe(1);
@@ -96,7 +96,7 @@ describe('reducer', () => {
   });
 
   describe('decreaseWritePageIndex', () => {
-    it('decrease writePageIndex -1', () => {
+    it('decreases writePageIndex -1', () => {
       const editedState = {
         ...initialState,
         writePageIndex: 1,

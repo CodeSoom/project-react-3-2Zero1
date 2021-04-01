@@ -29,7 +29,7 @@ describe('PostcardPage', () => {
   }
 
   context('when isFrontPage is true', () => {
-    it('show front Page', () => {
+    it('shows front Page', () => {
       useSelector.mockImplementation((selector) => selector({
         postcard: {
           isFrontPage: true,
@@ -56,7 +56,7 @@ describe('PostcardPage', () => {
   });
 
   context('when isFrontPage is false', () => {
-    it('show back Page', () => {
+    it('shows back Page', () => {
       useSelector.mockImplementation((selector) => selector({
         postcard: {
           isFrontPage: false,

@@ -31,7 +31,7 @@ describe('EntrancePage', () => {
       <EntrancePage />
     ));
   }
-  it('render EntrancePage', () => {
+  it('renders EntrancePage', () => {
     const { getByText } = renderEntrance();
     expect(getByText(`${SENDER}님으로 부터 엽서가 도착했어요.`)).not.toBeNull();
     expect(getByText('다른 사람 엽서 보러가기')).not.toBeNull();
@@ -39,7 +39,7 @@ describe('EntrancePage', () => {
   });
 
   context('when postcardCount is bigger than 0', () => {
-  it('render postcard write button', () => {
+  it('renders postcard write button', () => {
       useSelector.mockImplementation((selector) => selector({
         entrance,
         inputFields,

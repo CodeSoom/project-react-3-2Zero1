@@ -37,7 +37,7 @@ describe('EntranceCheckForm', () => {
   }
 
   context('postcard is private', () => {
-    it('show secret message input and information message', () => {
+    it('shows secret message input and information message', () => {
       const { getByText, getByPlaceholderText } = renderEntranceCheckForm(true);
 
       expect(getByPlaceholderText('5 ~ 20자')).not.toBeNull();
@@ -54,7 +54,7 @@ describe('EntranceCheckForm', () => {
     });
   });
 
-  it('show check postcard button', () => {
+  it('shows check postcard button', () => {
     const { getByText } = renderEntranceCheckForm(false);
 
     expect(getByText('엽서 확인하기')).not.toBeNull();
