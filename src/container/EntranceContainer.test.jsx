@@ -11,6 +11,8 @@ import inputFields from '../fixtures/inputFields';
 describe('EntranceContainer', () => {
   const { sender, postcardCount, writtenCount } = entrance;
   const dispatch = jest.fn();
+  const onHandleClickPostcard = jest.fn();
+  const onHandleClickWritePostcard = jest.fn();
   beforeEach(() => {
     dispatch.mockClear();
 
@@ -22,7 +24,12 @@ describe('EntranceContainer', () => {
   });
 
   function entranceRender() {
-    return render((<EntranceContainer />));
+    return render((
+      <EntranceContainer
+        onHandleClickPostcard={onHandleClickPostcard}
+        onHandleClickWritePostcard={onHandleClickWritePostcard}
+      />
+    ));
   }
 
   it('show title', () => {
@@ -145,11 +152,14 @@ describe('EntranceContainer', () => {
       }));
     });
 
-    it("doesn't show writing parts", () => {
+    it("show writing parts", () => {
       const { getByText } = entranceRender();
 
       expect(getByText(`${sender}님으로 부터 받은 엽서로 ${postcardCount}번의 엽서를 작성하실 수 있어요 ! 코로나로 인해 만나보지 못한 소중한 사람에게 추억이 될 엽서를 작성해보세요 !`)).not.toBeNull();
       expect(getByText('엽서 작성하기')).not.toBeNull();
+
+      fireEvent.click(getByText('엽서 작성하기'));
+      expect(onHandleClickWritePostcard).toBeCalled();
     });
   });
 
