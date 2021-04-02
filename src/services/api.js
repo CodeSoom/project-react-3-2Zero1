@@ -9,7 +9,7 @@ export async function fetchEntrance({ key }) {
     body: JSON.stringify({ key }),
   });
   const data = await response.json();
-
+  
   return data;
 }
 

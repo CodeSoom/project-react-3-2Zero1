@@ -1,5 +1,5 @@
-export async function load() {
-  return {};
+export async function fetchEntrance({ key }) {
+  return [];
 }
 
 export async function xxx() {
