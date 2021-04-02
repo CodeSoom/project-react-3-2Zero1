@@ -43,7 +43,7 @@ export default function EntranceContainer({
       if (v.length < 5 || v.length > 21) {
         dispatch(setInputFieldsError({
           type: 'secretMessage',
-          error: 'default',
+          error: true,
         }));
         return;
       }

@@ -55,6 +55,7 @@ describe('EntranceContainer', () => {
       expect(getByText('비공개 엽서입니다. 문자로 받은 비밀 메시지를 입력 후 엽서 확인하기 버튼을 눌러주세요.')).not.toBeNull();
 
       fireEvent.change(getByPlaceholderText('5 ~ 20자'), { target: { value: 'hello' } });
+      
       expect(dispatch).toBeCalledWith({
         payload: {
           type: 'secretMessage',
@@ -100,7 +101,7 @@ describe('EntranceContainer', () => {
             type: 'application/setInputFieldsError',
             payload: {
               type: 'secretMessage',
-              error: 'default',
+              error: true,
             },
           });
         });
