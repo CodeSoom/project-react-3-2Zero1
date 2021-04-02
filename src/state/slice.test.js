@@ -187,7 +187,7 @@ describe('reducer', () => {
 
   describe('setEntrance', () => {
     it('set entrance variables', () => {
-      const initialState = {
+      const initialEntranceState = {
         entrance: {
           sender: '',
           isPrivate: '',
@@ -196,10 +196,10 @@ describe('reducer', () => {
         },
       };
 
-      const state = reducer(initialState, setEntrance(entrance));
+      const state = reducer(initialEntranceState, setEntrance(entrance));
 
       expect(state.entrance).toEqual(entrance);
-    });  
+    });
   });
 
   describe('loadEntrance', () => {
