@@ -10,6 +10,7 @@ import inputFields from '../fixtures/inputFields';
 
 const mockGoBack = jest.fn();
 const mockReplace = jest.fn();
+const mockPush = jest.fn();
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
@@ -17,6 +18,7 @@ jest.mock('react-router-dom', () => ({
     return {
       goBack: mockGoBack,
       replace: mockReplace,
+      push: mockPush,
     };
   },
 }));
@@ -45,6 +47,7 @@ describe('WritePage', () => {
     it('renders InformationFormPage', () => {
       const {
         getByText,
+        getByLabelText,
       } = renderWritePage({ index: 0 });
 
       expect(getByText('엽서 작성하기')).not.toBeNull();
@@ -53,6 +56,17 @@ describe('WritePage', () => {
       fireEvent.click(getByText('이전'));
 
       expect(dispatch).not.toBeCalled();
+
+      fireEvent.change(getByLabelText('비밀 메시지'), { target: { value: 'hello' } });
+      
+      expect(dispatch).toBeCalledWith({
+        type: 'application/changeInputFieldValue',
+        payload: {
+          page: 'write',
+          type: 'secretMessage',
+          value: 'hello',
+        },
+      });
     });
 
     context('when all inputs are not valid', () => {
@@ -370,6 +384,19 @@ describe('WritePage', () => {
       fireEvent.click(getByText('홈로고'));
 
       expect(mockGoBack).toBeCalled();
+    });
+  });
+
+  context('when invalid access', () => {
+    beforeEach(() => {
+      useSelector.mockImplementation((selector) => selector({
+        writePageIndex: 1,
+      }));
+    });
+    it("call push to '/'", () => {
+      renderWritePage({ index: 4 });
+
+      expect(mockPush).toBeCalledWith('/');
     });
   });
 });
