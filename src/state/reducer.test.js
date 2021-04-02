@@ -1,4 +1,6 @@
-import reducer, {
+import reducer from './slice';
+
+import {
   changeInputFieldValue,
   increaseWritePageIndex,
   decreaseWritePageIndex,
