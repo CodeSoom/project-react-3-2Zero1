@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import InformationFormContainer from './InformationFormContainer';
@@ -69,5 +69,21 @@ describe('InformationFormContainer', () => {
     expect(getByText('엽서를 확인 또는 파기하기 위해 사용되며 받는 사람에게도 공유됩니다.')).not.toBeNull();
 
     expect(getByText('다음')).not.toBeNull();
+  });
+
+  it('show radio buttons about isPrivate', () => {
+    const {
+      getByLabelText,
+    } = renderInformationForm();
+
+    expect(getByLabelText('비공개')).not.toBeNull();
+    expect(getByLabelText('공개')).not.toBeNull();
+
+    fireEvent.click(getByLabelText('공개'));
+
+    expect(dispatch).toBeCalledWith({
+      type: 'application/changeRadioChecked',
+      payload: false,
+    });
   });
 });
