@@ -34,7 +34,7 @@ describe('EntranceContainer', () => {
     ));
   }
 
-  it('show title', () => {
+  it('shows title', () => {
     const { getByText } = entranceRender();
 
     expect(getByText(`${sender}님으로 부터 엽서가 도착했어요.`)).not.toBeNull();
@@ -48,7 +48,7 @@ describe('EntranceContainer', () => {
       }));
     });
 
-    it('show secretMessage form and information', () => {
+    it('shows secretMessage form and information', () => {
       const { getByText, getByPlaceholderText } = entranceRender();
 
       expect(getByPlaceholderText('5 ~ 20자')).not.toBeNull();
@@ -64,7 +64,7 @@ describe('EntranceContainer', () => {
       });
     });
 
-    context('when click check postcard button', () => {
+    context('when clicks check postcard button', () => {
       context('with secretMessage over 5 and under 21', () => {
         beforeEach(() => {
           inputFields.entrance.secretMessage.value = 'happy day!';
@@ -93,7 +93,7 @@ describe('EntranceContainer', () => {
           }));
         });
 
-        it('show ErrorMessage', () => {
+        it('shows ErrorMessage', () => {
           const { getByText } = entranceRender();
           fireEvent.click(getByText('엽서 확인하기'));
           expect(dispatch).toBeCalledWith({
@@ -127,7 +127,7 @@ describe('EntranceContainer', () => {
     });
   });
 
-  it('show check postcard button', () => {
+  it('shows check postcard button', () => {
     const { getByText } = entranceRender();
 
     expect(getByText('엽서 확인하기')).not.toBeNull();
@@ -168,7 +168,7 @@ describe('EntranceContainer', () => {
       }));
     });
 
-    it('show writing parts', () => {
+    it('shows writing parts', () => {
       const { getByText } = entranceRender();
 
       expect(getByText(`${sender}님으로 부터 받은 엽서로 ${postcardCount}번의 엽서를 작성하실 수 있어요 ! 코로나로 인해 만나보지 못한 소중한 사람에게 추억이 될 엽서를 작성해보세요 !`)).not.toBeNull();
@@ -179,13 +179,13 @@ describe('EntranceContainer', () => {
     });
   });
 
-  it('show how many people write postcard', () => {
+  it('shows how many people write postcard', () => {
     const { getByText } = entranceRender();
 
     expect(getByText(`현재 까지 ${writtenCount}명의 엽서가 작성 되었습니다.`)).not.toBeNull();
   });
 
-  it("show 'go to other postcard' and 'expire' button", () => {
+  it("shows go to other postcard' and 'expire' button", () => {
     const { getByText } = entranceRender();
 
     expect(getByText('다른 사람 엽서 보러가기')).not.toBeNull();
