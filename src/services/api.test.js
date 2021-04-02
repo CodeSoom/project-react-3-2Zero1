@@ -1,5 +1,6 @@
 import {
   fetchEntrance,
+  fetchXXX,
 } from './api';
 
 import ENTRANCE from '../fixtures/entrance';
@@ -22,4 +23,11 @@ describe('api', () => {
       expect(entrance).toEqual(ENTRANCE);
     });
   });
+  describe('fetchXXX', () => {
+
+    it('mock', () => {
+      fetchXXX();
+    });
+  });
+  
 });
