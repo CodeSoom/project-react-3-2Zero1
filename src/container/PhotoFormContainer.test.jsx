@@ -9,7 +9,7 @@ import inputFields from '../fixtures/inputFields';
 
 describe('PhotoFormContainer', () => {
   window.URL.createObjectURL = jest.fn();
-  
+
   const dispatch = jest.fn();
   const imageChangeHandler = jest.fn();
   const getChangeHandler = () => imageChangeHandler;
@@ -65,10 +65,10 @@ describe('PhotoFormContainer', () => {
         const {
           getByLabelText,
         } = renderSecondPage();
-  
+
         const image = new Image();
         fireEvent.change(getByLabelText('파일 선택자'), { target: { files: [image] } });
-    
+
         expect(imageChangeHandler).toBeCalled();
       });
     });
@@ -78,9 +78,9 @@ describe('PhotoFormContainer', () => {
         const {
           getByLabelText,
         } = renderSecondPage();
-  
+
         fireEvent.change(getByLabelText('파일 선택자'), { target: { files: [] } });
-    
+
         expect(imageChangeHandler).not.toBeCalled();
       });
     });

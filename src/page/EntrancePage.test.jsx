@@ -38,9 +38,9 @@ describe('EntrancePage', () => {
       },
       inputFields,
     }));
-    
+
     const { getByText } = renderEntrance({ key: '발신자' });
-    
+
     expect(getByText(`${SENDER}님으로 부터 엽서가 도착했어요.`)).not.toBeNull();
 
     fireEvent.click(getByText('엽서 확인하기'));

@@ -1,6 +1,6 @@
 import {
   fetchEntrance,
-  fetchXXX
+  fetchXXX,
 } from './api';
 
 import ENTRANCE from '../fixtures/entrance';
@@ -25,7 +25,6 @@ describe('api', () => {
   });
 
   describe('fetchXXX', () => {
-
     it('mock', () => {
       fetchXXX();
     });

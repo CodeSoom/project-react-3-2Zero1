@@ -7,7 +7,6 @@ export default function ImagePart({
   },
   onHandleChangeFile,
 }) {
-
   const fileSelector = useRef(null);
 
   function handleClick() {
