@@ -77,7 +77,7 @@ const { actions, reducer } = createSlice({
           ...state.inputFields,
           write: {
             ...state.inputFields.write,
-            isPrivate: value === 'true',
+            isPrivate: value,
           },
         },
       };

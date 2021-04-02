@@ -64,7 +64,7 @@ export default function InformationFormContainer({
 
   function handleRadioChange(event) {
     const { target: { value } } = event;
-    dispatch(changeRadioChecked(value));
+    dispatch(changeRadioChecked(value === 'true'));
   }
 
   function handleClick() {
