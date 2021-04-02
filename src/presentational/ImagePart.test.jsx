@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 
 import ImagePart from './ImagePart';
 import errorMessages from '../text/errorMessages';
@@ -27,6 +27,8 @@ describe('ImagePart', () => {
       const { getByText } = renderImage({});
 
       expect(getByText('이미지를 선택해 주세요')).not.toBeNull();
+
+      fireEvent.click(getByText('이미지를 선택해 주세요'));
     });
   });
 

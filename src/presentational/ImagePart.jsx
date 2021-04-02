@@ -7,12 +7,6 @@ export default function ImagePart({
   },
   onHandleChangeFile,
 }) {
-  const img = (isDefault = true) => ({
-    display: 'inline-block',
-    width: '200px',
-    height: '350px',
-    Background: isDefault ? 'gray' : '#ffffff',
-  });
 
   const fileSelector = useRef(null);
 
@@ -41,7 +35,9 @@ export default function ImagePart({
         )
       }
       {errorMessage ? <div>{errorMessage}</div> : null}
+      <label Style="display:none" htmlFor="fileSelector">파일 선택자</label>
       <input
+        id="fileSelector"
         Style="display:none"
         ref={fileSelector}
         type="file"
