@@ -53,6 +53,15 @@ describe('EntranceContainer', () => {
 
       expect(getByPlaceholderText('5 ~ 20자')).not.toBeNull();
       expect(getByText('비공개 엽서입니다. 문자로 받은 비밀 메시지를 입력 후 엽서 확인하기 버튼을 눌러주세요.')).not.toBeNull();
+
+      fireEvent.change(getByPlaceholderText('5 ~ 20자'), { target: { value: 'hello' } });
+      expect(dispatch).toBeCalledWith({
+        payload: {
+          type: 'secretMessage',
+          value: 'hello',
+        },
+        type: 'application/changeInputFieldValue',
+      });
     });
 
     context('when click check postcard button', () => {
@@ -66,7 +75,7 @@ describe('EntranceContainer', () => {
           }));
         });
 
-        it('call onHandleClickPostcard function', () => {
+        it('calls onHandleClickPostcard function', () => {
           const { getByText } = entranceRender();
           expect(getByText('엽서 확인하기')).not.toBeNull();
     
