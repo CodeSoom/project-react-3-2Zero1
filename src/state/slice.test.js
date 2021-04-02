@@ -1,4 +1,5 @@
 import reducer, {
+  changeRadioChecked,
   changeInputFieldValue,
   increaseWritePageIndex,
   decreaseWritePageIndex,
@@ -67,6 +68,14 @@ describe('reducer', () => {
       const state = reducer(undefined, { type: 'action' });
 
       expect(state).toEqual(initialState);
+    });
+  });
+
+  describe('changeRadioChecked', () => {
+    it('changes isPrivate in write variable', () => {
+      const state = reducer(initialState, changeRadioChecked({ value: false }));
+
+      expect(state.inputFields.write.isPrivate.value).toBe(false);
     });
   });
 
