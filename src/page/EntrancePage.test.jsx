@@ -23,20 +23,20 @@ describe('EntrancePage', () => {
   const dispatch = jest.fn();
 
   useDispatch.mockImplementation(() => dispatch);
-  
+
   useSelector.mockImplementation((selector) => selector({
     entrance,
     inputFields,
   }));
 
-  function renderEntrance() {
+  function renderEntrance(params) {
     return render((
-      <EntrancePage />
+      <EntrancePage params={params} />
     ));
   }
 
   it('renders EntrancePage', () => {
-    const { getByText } = renderEntrance();
+    const { getByText } = renderEntrance({ key: '발신자' });
 
     expect(getByText(`${SENDER}님으로 부터 엽서가 도착했어요.`)).not.toBeNull();
     expect(getByText('다른 사람 엽서 보러가기')).not.toBeNull();
@@ -50,7 +50,7 @@ describe('EntrancePage', () => {
         inputFields,
       }));
 
-      const { getByText } = renderEntrance();
+      const { getByText } = renderEntrance({ key: '발신자' });
 
       expect(getByText('엽서 작성하기')).not.toBeNull();
       expect(getByText(`${SENDER}님으로 부터 받은 엽서로 ${entrance.postcardCount}번의 엽서를 작성하실 수 있어요 ! 코로나로 인해 만나보지 못한 소중한 사람에게 추억이 될 엽서를 작성해보세요 !`))
@@ -71,7 +71,7 @@ describe('EntrancePage', () => {
         inputFields,
       }));
 
-      const { queryByText } = renderEntrance();
+      const { queryByText } = renderEntrance({ key: '발신자' });
 
       expect(queryByText('엽서 작성하기')).toBeNull();
     });
