@@ -10,7 +10,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import App from './App';
 
-
 import entrance from './fixtures/entrance';
 import inputFields from './fixtures/inputFields';
 
@@ -44,7 +43,7 @@ describe('App', () => {
 
   context('when path is /', () => {
     it('renders entrancePage', () => {
-      const { container } = renderApp({ path: '/' });
+      const { container } = renderApp({ path: `/${sender}` });
 
       expect(container).toHaveTextContent(sender);
     });

@@ -11,9 +11,10 @@ import PostcardPage from './page/PostcardPage';
 export default function App() {
   return (
     <Switch>
-      <Route exact path="/" component={EntrancePage} />
       <Route exact path="/write/:index" component={WritePage} />
       <Route exact path="/postcard" component={PostcardPage} />
+      <Route exact path="/:key" component={EntrancePage} />
+
       {/* <Route component={NotFoundPage} /> */}
     </Switch>
   );
