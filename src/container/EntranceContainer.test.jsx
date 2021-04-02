@@ -109,22 +109,57 @@ describe('EntranceContainer', () => {
     });
   });
 
-  context('when postcard is not private', () => {
-    beforeEach(() => {
-      useSelector.mockImplementation((selector) => selector({
-        entrance: {
-          ...entrance,
-          isPrivate: false,
-        },
-        inputFields,
-      }));
+  context('when click check postcard button', () => {
+    context('with isPrivate is false', () => {
+      beforeEach(() => {
+        useSelector.mockImplementation((selector) => selector({
+          entrance: {
+            ...entrance,
+            isPrivate: false,
+          },
+          inputFields,
+        }));
+      });
+
+      it("doesn't check secretMessage is valid", () => {
+        const { queryByText } = entranceRender();
+  
+        fireEvent.click(queryByText('엽서 확인하기'));
+
+        expect(dispatch).not.toBeCalledWith({
+          type: 'application/setInputFieldsError',
+          payload: {
+            type: 'secretMessage',
+            error: true,
+          },
+        });
+      });
     });
 
-    it("doesn't show secretMessage form and information", () => {
-      const { queryByPlaceholderText, queryByText } = entranceRender();
-
-      expect(queryByPlaceholderText('5 ~ 20자')).toBeNull();
-      expect(queryByText('비공개 엽서입니다. 문자로 받은 비밀 메시지를 입력 후 엽서 확인하기 버튼을 눌러주세요.')).toBeNull();
+    context('with isPrivate is true', () => {
+      beforeEach(() => {
+        useSelector.mockImplementation((selector) => selector({
+          entrance: {
+            ...entrance,
+            isPrivate: true,
+          },
+          inputFields,
+        }));
+      });
+  
+      it("check secretMessage is valid", () => {
+        const { queryByText } = entranceRender();
+  
+        fireEvent.click(queryByText('엽서 확인하기'));
+        
+        expect(dispatch).toBeCalledWith({
+          type: 'application/setInputFieldsError',
+          payload: {
+            type: 'secretMessage',
+            error: true,
+          },
+        });
+      });
     });
   });
 
