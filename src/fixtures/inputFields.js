@@ -6,6 +6,7 @@ const inputFields = {
     },
   },
   write: {
+    isPrivate: true,
     secretMessage: {
       value: '',
       error: '',
