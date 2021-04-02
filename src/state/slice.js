@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-// import {
-//   fetchRegions,
-// } from './services/api';
+import {
+  fetchEntrance,
+} from '../services/api';
 
 // import { saveItem } from './services/storage';
 
@@ -162,6 +162,14 @@ const { actions, reducer } = createSlice({
         },
       };
     },
+    setEntrance(state, { payload: value }) {
+      return {
+        ...state,
+        entrance: {
+          ...value.data,
+        },
+      };
+    },
     // return async (dispatch, getState) => {
     //   const { accessToken, reviewFields: { score, description } } = getState();
     //   await postReview({
@@ -183,16 +191,14 @@ export const {
   flipPostcard,
   flipPreviewPostcard,
   setPostcardFront,
+  setEntrance,
 } = actions;
 
-
-// export function loadReview({ restaurantId }) {
-//   return async (dispatch) => {
-//     const restaurant = await fetchRestaurant({ restaurantId });
-
-//     dispatch(setReviews(restaurant.reviews));
-//   };
-// }
-
+export function loadEntrance({ key }) {
+  return async (dispatch) => {
+    const entrance = await fetchEntrance({ key });
+    dispatch(setEntrance(entrance));
+  };
+}
 
 export default reducer;
