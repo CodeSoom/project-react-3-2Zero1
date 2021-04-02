@@ -1,3 +1,6 @@
+import thunk from 'redux-thunk';
+import configureStore from 'redux-mock-store';
+
 import reducer, {
   changeRadioChecked,
   changeInputFieldValue,
@@ -8,11 +11,20 @@ import reducer, {
   flipPostcard,
   setPostcardFront,
   setEntrance,
+
+  loadEntrance,
 } from './slice';
 
 import entrance from '../fixtures/entrance';
 
+const middlewares = [thunk];
+const mockStore = configureStore(middlewares);
+
+jest.mock('../services/api');
+
 describe('reducer', () => {
+  let store;
+
   const initialInputFields = {
     entrance: {
       secretMessage: {
@@ -188,5 +200,19 @@ describe('reducer', () => {
 
       expect(state.entrance).toEqual(entrance);
     });  
+  });
+
+  describe('loadEntrance', () => {
+    beforeEach(() => {
+      store = mockStore({});
+    });
+
+    it('runs setEntrance', async () => {
+      await store.dispatch(loadEntrance({ key: 'key' }));
+
+      const actions = store.getActions();
+
+      expect(actions[0]).toEqual(setEntrance([]));
+    });
   });
 });
