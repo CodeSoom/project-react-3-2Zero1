@@ -8,8 +8,11 @@ import PhotoFormContainer from './PhotoFormContainer';
 import inputFields from '../fixtures/inputFields';
 
 describe('PhotoFormContainer', () => {
+  window.URL.createObjectURL = jest.fn();
+  
   const dispatch = jest.fn();
-  const getChangeHandler = () => jest.fn();
+  const imageChangeHandler = jest.fn();
+  const getChangeHandler = () => imageChangeHandler;
   const handleNextClick = jest.fn();
   const handlePreviousClick = jest.fn();
   const checkValidAccess = jest.fn();
@@ -51,6 +54,36 @@ describe('PhotoFormContainer', () => {
     expect(getByLabelText('사진 메시지').placeholder).toBe('10 ~ 30자');
 
     expect(getByText('미리보기')).not.toBeNull();
+  });
+
+  context('when call onChange', () => {
+    beforeEach(() => {
+      imageChangeHandler.mockClear();
+    });
+    context('with file', () => {
+      it('calls imageChangeHandler', () => {
+        const {
+          getByLabelText,
+        } = renderSecondPage();
+  
+        const image = new Image();
+        fireEvent.change(getByLabelText('파일 선택자'), { target: { files: [image] } });
+    
+        expect(imageChangeHandler).toBeCalled();
+      });
+    });
+
+    context('without file', () => {
+      it('does not call imageChangeHandler', () => {
+        const {
+          getByLabelText,
+        } = renderSecondPage();
+  
+        fireEvent.change(getByLabelText('파일 선택자'), { target: { files: [] } });
+    
+        expect(imageChangeHandler).not.toBeCalled();
+      });
+    });
   });
 
   context('when photo image or photoMessage field is not empty', () => {
