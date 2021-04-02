@@ -166,7 +166,7 @@ const { actions, reducer } = createSlice({
       return {
         ...state,
         entrance: {
-          ...value.data,
+          ...value,
         },
       };
     },

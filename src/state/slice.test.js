@@ -1,9 +1,16 @@
 import reducer, {
   changeRadioChecked,
   changeInputFieldValue,
+  setInputFieldsError,
   increaseWritePageIndex,
   decreaseWritePageIndex,
+  flipPreviewPostcard,
+  flipPostcard,
+  setPostcardFront,
+  setEntrance,
 } from './slice';
+
+import entrance from '../fixtures/entrance';
 
 describe('reducer', () => {
   const initialInputFields = {
@@ -94,6 +101,18 @@ describe('reducer', () => {
     });
   });
 
+  describe('setInputFieldsError', () => {
+    it('change error in InputFields', () => {
+      const state = reducer(initialState, setInputFieldsError({
+        page: 'entrance',
+        type: 'secretMessage',
+        error: true,
+      }));
+
+      expect(state.inputFields.entrance.secretMessage.error).toBe(true);
+    });
+  });
+
   describe('increaseWritePageIndex', () => {
     it('increases writePageIndex + 1', () => {
       const state = reducer(initialState, increaseWritePageIndex());
@@ -112,5 +131,62 @@ describe('reducer', () => {
 
       expect(state.writePageIndex).toBe(0);
     });
+  });
+
+  describe('decreaseWritePageIndex', () => {
+    it('decreases writePageIndex -1', () => {
+      const editedState = {
+        ...initialState,
+        writePageIndex: 1,
+      };
+      const state = reducer(editedState, decreaseWritePageIndex());
+
+      expect(state.writePageIndex).toBe(0);
+    });
+  });
+
+  describe('flipPreviewPostcard', () => {
+    it('change isFrontPage in preview inputField', () => {
+      const state = reducer(initialState, flipPreviewPostcard());
+
+      const previousIsFrontPage = initialState.inputFields.write.preview.isFrontPage;
+
+      expect(state.inputFields.write.preview.isFrontPage).toBe(!previousIsFrontPage);
+    });
+  });
+
+  describe('flipPostcard', () => {
+    it('change isFrontPage in postcard', () => {
+      const state = reducer(initialState, flipPostcard());
+
+      const previousIsFrontPage = initialState.postcard.isFrontPage;
+
+      expect(state.postcard.isFrontPage).toBe(!previousIsFrontPage);
+    });
+  });
+
+  describe('setPostcardFront', () => {
+    it('set isFrontPage in postcard with true', () => {
+      const state = reducer(initialState, setPostcardFront());
+
+      expect(state.postcard.isFrontPage).toBe(true);
+    });
+  });
+
+  describe('setEntrance', () => {
+    it('set entrance variables', () => {
+      const initialState = {
+        entrance: {
+          sender: '',
+          isPrivate: '',
+          postcardCount: 0,
+          writtenCount: 0,
+        },
+      };
+
+      const state = reducer(initialState, setEntrance(entrance));
+
+      expect(state.entrance).toEqual(entrance);
+    });  
   });
 });
