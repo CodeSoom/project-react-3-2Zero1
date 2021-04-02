@@ -1,7 +1,4 @@
-import { get, equal, getField } from './utils';
-
-import errorMessages from '../text/errorMessages';
-import placeholders from '../text/placeholders';
+import { get, equal } from './utils';
 
 test('get', () => {
   const state = {
@@ -25,41 +22,4 @@ test('equal', () => {
 
   expect(f(state)).toBeTruthy();
   expect(g(state)).toBeFalsy();
-});
-
-test('getField', () => {
-  const id = 'sender';
-  const value = 'value';
-  const name = 'sender';
-  const onChange = () => {};
-  const withError = {
-    field: { value, error: false },
-    id,
-    name,
-    onChange,
-  };
-  const withoutError = {
-    field: { value, error: true },
-    id,
-    name,
-    onChange,
-  };
-
-  expect(getField(withError)).toEqual({
-    id,
-    name,
-    value,
-    placeholder: placeholders[id],
-    errorMessage: '',
-    onChange,
-  });
-  
-  expect(getField(withoutError)).toEqual({
-    id,
-    name,
-    value,
-    placeholder: placeholders[id],
-    errorMessage: errorMessages[id],
-    onChange,
-  });
 });
