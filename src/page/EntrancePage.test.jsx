@@ -24,11 +24,6 @@ describe('EntrancePage', () => {
 
   useDispatch.mockImplementation(() => dispatch);
 
-  useSelector.mockImplementation((selector) => selector({
-    entrance,
-    inputFields,
-  }));
-
   function renderEntrance(params) {
     return render((
       <EntrancePage params={params} />
@@ -36,9 +31,22 @@ describe('EntrancePage', () => {
   }
 
   it('renders EntrancePage', () => {
+    useSelector.mockImplementation((selector) => selector({
+      entrance: {
+        ...entrance,
+        isPrivate: false,
+      },
+      inputFields,
+    }));
+    
     const { getByText } = renderEntrance({ key: '발신자' });
-
+    
     expect(getByText(`${SENDER}님으로 부터 엽서가 도착했어요.`)).not.toBeNull();
+
+    fireEvent.click(getByText('엽서 확인하기'));
+
+    expect(mockPush).toBeCalled();
+
     expect(getByText('다른 사람 엽서 보러가기')).not.toBeNull();
     expect(getByText('엽서 파기하기')).not.toBeNull();
   });
