@@ -1,4 +1,4 @@
-export async function fetchEntrance({ key }) {
+export async function fetchEntrance() {
   return [];
 }
 
