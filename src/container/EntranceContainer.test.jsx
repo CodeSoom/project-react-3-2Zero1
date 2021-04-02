@@ -66,8 +66,13 @@ describe('EntranceContainer', () => {
           }));
         });
 
-        it('request', () => {
-          entranceRender();
+        it('call onHandleClickPostcard function', () => {
+          const { getByText } = entranceRender();
+          expect(getByText('엽서 확인하기')).not.toBeNull();
+    
+          fireEvent.click(getByText('엽서 확인하기'));
+
+          expect(onHandleClickPostcard).toBeCalled();
         });
       });
       context('without secretMessage over 5 and under 21', () => {
@@ -117,7 +122,7 @@ describe('EntranceContainer', () => {
     const { getByText } = entranceRender();
 
     expect(getByText('엽서 확인하기')).not.toBeNull();
-    fireEvent.click(getByText('엽서 확인하기'));
+    
     // 공개 형이라면 바로 로드
     // 비공개 형이라면 체크한 후에 로드
     // expect(dispatch).toBeCalledWith({
