@@ -25,65 +25,65 @@ jest.mock('../services/api');
 describe('reducer', () => {
   let store;
 
-  const initialInputFields = {
-    entrance: {
-      secretMessage: {
-        value: '',
-        error: false,
-      },
-    },
-    write: {
-      isPrivate: true,
-      secretMessage: {
-        value: '',
-        error: false,
-      },
-      sender: {
-        value: '',
-        error: false,
-      },
-      receiver: {
-        value: '',
-        error: false,
-      },
-      contents: {
-        value: '',
-        error: '',
-      },
-      photo: {
-        value: '',
-        error: false,
-      },
-      photoMessage: {
-        value: '',
-        error: false,
-      },
-      preview: {
-        isFrontPage: true,
-      },
-    },
-  };
-  const initialState = {
-    writePageIndex: 0,
-    inputFields: initialInputFields,
-    entrance: {
-      sender: '',
-      isPrivate: '',
-      postcardCount: 0,
-      writtenCount: 0,
-    },
-    postcard: {
-      isFrontPage: true,
-      sender: '',
-      receiver: '',
-      contents: '',
-      stampURL: '',
-      photoURL: '',
-      photoMessage: '',
-    },
-  };
   context('when previous state is undefined', () => {
     it('returns initialState', () => {
+      const initialInputFields = {
+        entrance: {
+          secretMessage: {
+            value: '',
+            error: false,
+          },
+        },
+        write: {
+          isPrivate: true,
+          secretMessage: {
+            value: '',
+            error: false,
+          },
+          sender: {
+            value: '',
+            error: false,
+          },
+          receiver: {
+            value: '',
+            error: false,
+          },
+          contents: {
+            value: '',
+            error: '',
+          },
+          photo: {
+            value: '',
+            error: false,
+          },
+          photoMessage: {
+            value: '',
+            error: false,
+          },
+          preview: {
+            isFrontPage: true,
+          },
+        },
+      };
+      const initialState = {
+        writePageIndex: 0,
+        inputFields: initialInputFields,
+        entrance: {
+          sender: '',
+          isPrivate: '',
+          postcardCount: 0,
+          writtenCount: 0,
+        },
+        postcard: {
+          isFrontPage: true,
+          sender: '',
+          receiver: '',
+          contents: '',
+          stampURL: '',
+          photoURL: '',
+          photoMessage: '',
+        },
+      };
       const state = reducer(undefined, { type: 'action' });
 
       expect(state).toEqual(initialState);
@@ -92,9 +92,17 @@ describe('reducer', () => {
 
   describe('changeRadioChecked', () => {
     it('changes isPrivate in write variable', () => {
-      const state = reducer(initialState, changeRadioChecked({ value: false }));
+      const initialState = {
+        inputFields: {
+          write: {
+            isPrivate: false,
+          },
+        },
+      };
 
-      expect(state.inputFields.write.isPrivate.value).toBe(false);
+      const state = reducer(initialState, changeRadioChecked({ value: true }));
+
+      expect(state.inputFields.write.isPrivate.value).toBe(true);
     });
   });
 
@@ -102,6 +110,16 @@ describe('reducer', () => {
     it('changes InputFieldValue', () => {
       const page = 'entrance';
       const type = 'secretMessage';
+
+      const initialState = {
+        inputFields: {
+          [page]: {
+            [type]: {
+              value: '',
+            },
+          },
+        },
+      };
 
       const state = reducer(initialState, changeInputFieldValue({
         page,
@@ -115,9 +133,22 @@ describe('reducer', () => {
 
   describe('setInputFieldsError', () => {
     it('change error in InputFields', () => {
+      const page = 'entrance';
+      const type = 'secretMessage';
+
+      const initialState = {
+        inputFields: {
+          [page]: {
+            [type]: {
+              error: false,
+            },
+          },
+        },
+      };
+
       const state = reducer(initialState, setInputFieldsError({
-        page: 'entrance',
-        type: 'secretMessage',
+        page,
+        type,
         error: true,
       }));
 
@@ -127,6 +158,10 @@ describe('reducer', () => {
 
   describe('increaseWritePageIndex', () => {
     it('increases writePageIndex + 1', () => {
+      const initialState = {
+        writePageIndex: 0,
+      };
+
       const state = reducer(initialState, increaseWritePageIndex());
 
       expect(state.writePageIndex).toBe(1);
@@ -135,23 +170,11 @@ describe('reducer', () => {
 
   describe('decreaseWritePageIndex', () => {
     it('decreases writePageIndex -1', () => {
-      const editedState = {
-        ...initialState,
+      const initialState = {
         writePageIndex: 1,
       };
-      const state = reducer(editedState, decreaseWritePageIndex());
 
-      expect(state.writePageIndex).toBe(0);
-    });
-  });
-
-  describe('decreaseWritePageIndex', () => {
-    it('decreases writePageIndex -1', () => {
-      const editedState = {
-        ...initialState,
-        writePageIndex: 1,
-      };
-      const state = reducer(editedState, decreaseWritePageIndex());
+      const state = reducer(initialState, decreaseWritePageIndex());
 
       expect(state.writePageIndex).toBe(0);
     });
@@ -159,26 +182,43 @@ describe('reducer', () => {
 
   describe('flipPreviewPostcard', () => {
     it('change isFrontPage in preview inputField', () => {
+      const initialState = {
+        inputFields: {
+          write: {
+            preview: {
+              isFrontPage: false,
+            },
+          },
+        },
+      };
+
       const state = reducer(initialState, flipPreviewPostcard());
 
-      const previousIsFrontPage = initialState.inputFields.write.preview.isFrontPage;
-
-      expect(state.inputFields.write.preview.isFrontPage).toBe(!previousIsFrontPage);
+      expect(state.inputFields.write.preview.isFrontPage).toBe(true);
     });
   });
 
   describe('flipPostcard', () => {
     it('change isFrontPage in postcard', () => {
+      const initialState = {
+        postcard: {
+          isFrontPage: false,
+        },
+      };
+
       const state = reducer(initialState, flipPostcard());
 
-      const previousIsFrontPage = initialState.postcard.isFrontPage;
-
-      expect(state.postcard.isFrontPage).toBe(!previousIsFrontPage);
+      expect(state.postcard.isFrontPage).toBe(true);
     });
   });
 
   describe('setPostcardFront', () => {
     it('set isFrontPage in postcard with true', () => {
+      const initialState = {
+        postcard: {
+          isFrontPage: false,
+        },
+      };
       const state = reducer(initialState, setPostcardFront());
 
       expect(state.postcard.isFrontPage).toBe(true);
@@ -187,7 +227,7 @@ describe('reducer', () => {
 
   describe('setEntrance', () => {
     it('set entrance variables', () => {
-      const initialEntranceState = {
+      const initialState = {
         entrance: {
           sender: '',
           isPrivate: '',
@@ -196,7 +236,7 @@ describe('reducer', () => {
         },
       };
 
-      const state = reducer(initialEntranceState, setEntrance(entrance));
+      const state = reducer(initialState, setEntrance(entrance));
 
       expect(state.entrance).toEqual(entrance);
     });
