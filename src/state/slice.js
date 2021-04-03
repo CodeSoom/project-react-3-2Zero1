@@ -171,15 +171,6 @@ const { actions, reducer } = createSlice({
         },
       };
     },
-    // return async (dispatch, getState) => {
-    //   const { accessToken, reviewFields: { score, description } } = getState();
-    //   await postReview({
-    //     accessToken, restaurantId, score, description,
-    //   });
-    //   dispatch(loadReview({ restaurantId }));
-    //   dispatch(clearReviewFields());
-    // };
-  // },
   },
 });
 
