@@ -8,18 +8,19 @@ import {
 
 // import { equal } from './utils';
 
-const secretMessage = {
-  value: '',
-  error: false,
-};
-
 const initialInputFields = {
   entrance: {
-    secretMessage,
+    secretMessage: {
+      value: '',
+      error: false,
+    },
   },
   write: {
     isPrivate: true,
-    secretMessage,
+    secretMessage: {
+      value: '',
+      error: false,
+    },
     sender: {
       value: '',
       error: false,
