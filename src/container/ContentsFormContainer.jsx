@@ -29,9 +29,7 @@ export default function ContentsFormContainer({
   ));
 
   const {
-    write: {
-      contents,
-    },
+    write: { contents },
   } = inputFields;
 
   checkValidAccess(writePageIndex);
