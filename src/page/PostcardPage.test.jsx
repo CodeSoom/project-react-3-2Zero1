@@ -53,7 +53,7 @@ describe('PostcardPage', () => {
       expect(getByText('이것은 내용입니다.')).not.toBeNull();
 
       fireEvent.click(getByText('이전'));
-      
+
       expect(dispatch).toBeCalledWith({
         type: 'application/setPostcardFront',
       });
