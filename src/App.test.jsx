@@ -43,7 +43,7 @@ describe('App', () => {
 
   context('when path is /', () => {
     it('renders entrancePage', () => {
-      const { container } = renderApp({ path: `/${sender}` });
+      const { container } = renderApp({ path: `/entrance/${sender}` });
 
       expect(container).toHaveTextContent(sender);
     });

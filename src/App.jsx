@@ -7,7 +7,6 @@ import {
 import EntrancePage from './page/EntrancePage';
 import WritePage from './page/WritePage';
 import PostcardPage from './page/PostcardPage';
-import TestPage from './page/TestPage';
 import NotFoundPage from './page/NotFoundPage';
 
 export default function App() {
@@ -16,8 +15,8 @@ export default function App() {
     <Switch>
       <Route exact path="/write/:index" component={WritePage} />
       <Route exact path="/postcard" component={PostcardPage} />
-      <Route exact path="/:key" component={EntrancePage} />
-      <Route exact path="/" component={TestPage} />
+      <Route exact path="/entrance/:key" component={EntrancePage} />
+      <Route exact path="/" component={EntrancePage} />
       <Route component={NotFoundPage} />
     </Switch>
   );
