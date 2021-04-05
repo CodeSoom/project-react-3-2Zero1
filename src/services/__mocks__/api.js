@@ -1,5 +1,5 @@
 export async function fetchEntrance() {
-  return [];
+  return { data: [] };
 }
 
 export async function xxx() {
