@@ -1,16 +1,19 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
+import React from 'react';
+// import React, { useEffect } from 'react';z
+// import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+// import { useHistory, useParams } from 'react-router-dom';
 import EntranceContainer from '../container/EntranceContainer';
 
-import {
-  loadEntrance,
-} from '../state/slice';
+// import {
+//   loadEntrance,
+// } from '../state/slice';
 
-export default function EntrancePage({ params }) {
-  const dispatch = useDispatch();
+// export default function EntrancePage({ params }) {
+export default function EntrancePage() {
+  // const dispatch = useDispatch();
 
-  const { key } = params || useParams();
+  // const { key } = params || useParams();
 
   const history = useHistory();
 
@@ -24,9 +27,9 @@ export default function EntrancePage({ params }) {
     history.push(url);
   }
 
-  useEffect(() => {
-    dispatch(loadEntrance({ key }));
-  });
+  // useEffect(() => {
+  //   dispatch(loadEntrance({ key }));
+  // });
 
   return (
     <EntranceContainer

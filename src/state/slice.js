@@ -1,7 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import mockEntrance from '../fixtures/entrance';
-
 import {
   fetchEntrance,
 } from '../services/api';
@@ -65,9 +63,9 @@ const { actions, reducer } = createSlice({
     writePageIndex: 0,
     inputFields: initialInputFields,
     entrance: {
-      sender: '',
-      isPrivate: '',
-      postcardCount: 0,
+      sender: '테스트',
+      isPrivate: false,
+      postcardCount: 5,
       writtenCount: 0,
     },
     postcard,
@@ -192,7 +190,7 @@ export function loadEntrance({ key }) {
   return async (dispatch) => {
     const entrance = await fetchEntrance({ key });
 
-    dispatch(setEntrance(entrance.data ? entrance.data : mockEntrance));
+    dispatch(setEntrance(entrance.data));
   };
 }
 
