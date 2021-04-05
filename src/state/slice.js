@@ -4,6 +4,8 @@ import {
   fetchEntrance,
 } from '../services/api';
 
+import mockEntrance from '../fixtures/entrance';
+
 // import { saveItem } from './services/storage';
 
 // import { equal } from './utils';
@@ -189,7 +191,8 @@ export const {
 export function loadEntrance({ key }) {
   return async (dispatch) => {
     const entrance = await fetchEntrance({ key });
-    dispatch(setEntrance(entrance));
+    // TODO : API가 아직 없기 때문에 mock 데이터를 보여준다. 
+    dispatch(setEntrance(entrance || mockEntrance));
   };
 }
 
