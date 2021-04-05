@@ -189,10 +189,12 @@ export const {
 } = actions;
 
 export function loadEntrance({ key }) {
+  
   return async (dispatch) => {
     const entrance = await fetchEntrance({ key });
     // TODO : API가 아직 없기 때문에 mock 데이터를 보여준다.
-    dispatch(setEntrance(entrance || mockEntrance));
+    // dispatch(setEntrance(entrance.data));
+    dispatch(setEntrance(mockEntrance));
   };
 }
 
