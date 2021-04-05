@@ -15,7 +15,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "homepage": "https://codesoom.github.io/project-react-3-2Zero1/",
   "devDependencies": {
     "@babel/core": "^7.9.6",
