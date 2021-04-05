@@ -11,6 +11,8 @@ import App from './App';
 
 import store from './state/store';
 
+import './assets/css/global.css';
+
 ReactDOM.render(
   (
     <Provider store={store}>

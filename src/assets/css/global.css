@@ -1,0 +1,21 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 16px;
+  line-height: 1.5;
+  background: #202020;
+  color: #FFFFFF;
+  word-break: keep-all;
+}
+
+body, input, button, textarea, select {
+  font-family: 'Spoqa Han Sans Neo';
+}
+
+ul {
+  list-style: none;
+}
