@@ -191,7 +191,8 @@ export const {
 export function loadEntrance({ key }) {
   return async (dispatch) => {
     const entrance = await fetchEntrance({ key });
-
+    console.log('-==============1',entrance.data);
+    console.log('-==============2',mockEntrance);
     dispatch(setEntrance(entrance.data ? entrance.data : mockEntrance));
   };
 }
