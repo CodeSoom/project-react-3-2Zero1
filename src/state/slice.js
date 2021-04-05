@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import mockEntrance from '../fixtures/entrance';
+
 import {
   fetchEntrance,
 } from '../services/api';
-
-import mockEntrance from '../fixtures/entrance';
 
 // import { saveItem } from './services/storage';
 
@@ -189,12 +189,10 @@ export const {
 } = actions;
 
 export function loadEntrance({ key }) {
-  
   return async (dispatch) => {
     const entrance = await fetchEntrance({ key });
-    // TODO : API가 아직 없기 때문에 mock 데이터를 보여준다.
-    // dispatch(setEntrance(entrance.data));
-    dispatch(setEntrance(mockEntrance));
+    
+    dispatch(setEntrance(entrance.data ? entrance.data : mockEntrance));
   };
 }
 
