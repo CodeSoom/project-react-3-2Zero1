@@ -191,7 +191,7 @@ export const {
 export function loadEntrance({ key }) {
   return async (dispatch) => {
     const entrance = await fetchEntrance({ key });
-    
+
     dispatch(setEntrance(entrance.data ? entrance.data : mockEntrance));
   };
 }
