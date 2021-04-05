@@ -10,7 +10,6 @@ import PostcardPage from './page/PostcardPage';
 import NotFoundPage from './page/NotFoundPage';
 
 export default function App() {
-  console.log('라우팅');
   return (
     <Switch>
       <Route exact path="/write/:index" component={WritePage} />
