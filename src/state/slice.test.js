@@ -69,9 +69,9 @@ describe('reducer', () => {
         writePageIndex: 0,
         inputFields: initialInputFields,
         entrance: {
-          sender: '',
-          isPrivate: '',
-          postcardCount: 0,
+          sender: '테스트',
+          isPrivate: false,
+          postcardCount: 5,
           writtenCount: 0,
         },
         postcard: {
