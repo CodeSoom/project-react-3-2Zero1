@@ -49,6 +49,7 @@ export default function WritePage({ params }) {
   }
 
   function handleHomeClick() {
+    // TODO : input Fields의 값들 모두 초기화 해야함.
     history.goBack();
   }
 
