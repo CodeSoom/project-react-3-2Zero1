@@ -5,16 +5,12 @@ import styled from '@emotion/styled';
 import PostcardFront from './PostcardFront';
 import PostcardBack from './PostcardBack';
 
+import Button from '../style/Button';
+
 const PostcardLayout = styled.div(() => ({
   position: 'relative',
   width: '100%',
   height: '100%',
-}));
-
-const Button = styled.button(() => ({
-  fontSize: '16px',
-  margin: '10px',
-  padding: '5px 8px',
 }));
 
 export default function Postcard({
