@@ -329,6 +329,7 @@ describe('WritePage', () => {
         getByText,
       } = renderWritePage({ index: 3 });
 
+      expect(getByText('미리 보기')).not.toBeNull();
       expect(getByText('이전')).not.toBeNull();
 
       fireEvent.click(getByText('이전'));

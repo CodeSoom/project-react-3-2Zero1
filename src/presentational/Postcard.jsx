@@ -1,21 +1,6 @@
 import React from 'react';
-
-import styled from '@emotion/styled';
-
 import PostcardFront from './PostcardFront';
 import PostcardBack from './PostcardBack';
-
-const PostcardLayout = styled.div(() => ({
-  position: 'relative',
-  width: '100%',
-  height: '100%',
-}));
-
-const Button = styled.button(() => ({
-  fontSize: '16px',
-  margin: '10px',
-  padding: '5px 8px',
-}));
 
 export default function Postcard({
   postcard: {
@@ -33,16 +18,16 @@ export default function Postcard({
   onHandleCompleteClick,
 }) {
   return (
-    <PostcardLayout
+    <button
       type="button"
       onClick={onHandleClickPage}
     >
-      <Button
+      <button
         type="button"
         onClick={onHandlePrivousClick}
       >
         이전
-      </Button>
+      </button>
       {
         isFrontPage ? (
           <PostcardFront
@@ -61,6 +46,6 @@ export default function Postcard({
             />
           )
       }
-    </PostcardLayout>
+    </button>
   );
 }

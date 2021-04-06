@@ -58,6 +58,8 @@ describe('PreviewContainer', () => {
 
       expect(checkValidAccess).toBeCalled();
 
+      expect(getByText('미리 보기')).not.toBeNull();
+
       fireEvent.click(getByText('to 받는이'));
       expect(getByText('to 받는이')).not.toBeNull();
 
@@ -73,6 +75,8 @@ describe('PreviewContainer', () => {
       const { getByText } = renderSecondPage();
 
       expect(checkValidAccess).toBeCalled();
+
+      expect(getByText('미리 보기')).not.toBeNull();
 
       expect(getByText('사진 메시지 입니다. 테스트 용으로 입력한 값입니다. ! !!!')).not.toBeNull();
     });
