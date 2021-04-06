@@ -1,6 +1,37 @@
 import React from 'react';
+
+import styled from '@emotion/styled';
+
 import InputPart from './InputPart';
 import RadioPart from './RadioPart';
+
+const Title = styled.div(() => ({
+  position: 'absolute',
+  top: '10px',
+  width: '100%',
+  textAlign: 'center',
+  fontSize: '20px',
+}));
+
+const Button = styled.button(() => ({
+  fontSize: '16px',
+  margin: '10px',
+  padding: '5px 8px',
+}));
+
+const Information = styled.p(() => ({
+  margin: '0 15px',
+  fontSize: '12px',
+  color: 'gray',
+}));
+
+const CompleteButton = styled.button(() => ({
+  position: 'absolute',
+  right: '10px',
+  top: '10px',
+  fontSize: '16px',
+  padding: '5px 8px',
+}));
 
 export default function InformationForm({
   fields: {
@@ -15,28 +46,30 @@ export default function InformationForm({
 }) {
   return (
     <>
-      <button
+      <Button
         type="button"
         onClick={onClickPrevious}
       >
         이전
-      </button>
-      <div>엽서 작성하기</div>
-      <InputPart field={sender} />
-      <InputPart field={receiver} />
-      <div>관리자에게 쓰고 싶은 편지가 있다면 받는 사람을 ‘관리자’로 입력해주세요.</div>
-      <InputPart field={secretMessage} />
-      <div>엽서를 확인 또는 파기하기 위해 사용되며 받는 사람에게도 공유됩니다.</div>
-      <RadioPart
-        onRadioChange={onRadioChange}
-        isPrivate={isPrivate}
-      />
-      <button
-        type="button"
-        onClick={onHandleClick}
-      >
-        다음
-      </button>
+      </Button>
+      <Title>엽서 작성하기</Title>
+      <div>
+        <InputPart field={sender} />
+        <InputPart field={receiver} />
+        <Information>관리자에게 쓰고 싶은 편지가 있다면 받는 사람을 ‘관리자’로 입력해주세요.</Information>
+        <InputPart field={secretMessage} />
+        <Information>엽서를 확인 또는 파기하기 위해 사용되며 받는 사람에게도 공유됩니다.</Information>
+        <RadioPart
+          onRadioChange={onRadioChange}
+          isPrivate={isPrivate}
+        />
+        <CompleteButton
+          type="button"
+          onClick={onHandleClick}
+        >
+          다음
+        </CompleteButton>
+      </div>
     </>
   );
 }

@@ -1,5 +1,12 @@
 import React from 'react';
 
+import styled from '@emotion/styled';
+
+const Wrapper = styled.div(() => ({
+  display: 'inline-block',
+  margin: '0 5px',
+}));
+
 export default function RadioButton({
   id,
   label,
@@ -9,7 +16,7 @@ export default function RadioButton({
   checked,
 }) {
   return (
-    <>
+    <Wrapper>
       <label htmlFor={id}>{label}</label>
       <input
         id={id}
@@ -19,6 +26,6 @@ export default function RadioButton({
         onChange={onChange}
         checked={checked}
       />
-    </>
+    </Wrapper>
   );
 }
