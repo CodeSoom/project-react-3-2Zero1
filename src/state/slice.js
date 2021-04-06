@@ -64,7 +64,7 @@ const { actions, reducer } = createSlice({
     inputFields: initialInputFields,
     entrance: {
       sender: '테스트',
-      isPrivate: true,
+      isPrivate: false,
       postcardCount: 5,
       writtenCount: 0,
     },
