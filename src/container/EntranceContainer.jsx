@@ -1,5 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
+import styled from '@emotion/styled';
+
 import EntranceCheckForm from '../presentational/EntranceCheckForm';
 import EntranceWritePostcard from '../presentational/EntranceWritePostcard';
 
@@ -10,6 +13,22 @@ import {
   changeInputFieldValue,
   setInputFieldsError,
 } from '../state/slice';
+
+const Wrapper = styled.div(() => ({
+  marginTop: '20px',
+  textAlign: 'center',
+}));
+
+const Title = styled.div(() => ({
+  marginTop: '20px',
+  fontSize: '20px',
+}));
+
+const Button = styled.button(() => ({
+  fontSize: '16px',
+  margin: '10px',
+  padding: '5px 8px',
+}));
 
 export default function EntranceContainer({
   onHandleClickPostcard,
@@ -67,8 +86,8 @@ export default function EntranceContainer({
   };
 
   return (
-    <>
-      <div>{`${sender}님으로 부터 엽서가 도착했어요.`}</div>
+    <Wrapper>
+      <Title>{`${sender}님으로 부터 엽서가 도착했어요.`}</Title>
       <EntranceCheckForm
         isPrivate={isPrivate}
         field={field}
@@ -81,8 +100,8 @@ export default function EntranceContainer({
         onHandleClickWritePostcard={onHandleClickWritePostcard}
       />
       <div>{`현재 까지 ${writtenCount}명의 엽서가 작성 되었습니다.`}</div>
-      <button type="button">다른 사람 엽서 보러가기</button>
-      <button type="button">엽서 파기하기</button>
-    </>
+      <Button type="button">다른 사람 엽서 보러가기</Button>
+      <Button type="button">엽서 파기하기</Button>
+    </Wrapper>
   );
 }
