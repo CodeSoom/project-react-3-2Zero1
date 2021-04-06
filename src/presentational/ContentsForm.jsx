@@ -22,6 +22,7 @@ const CompleteButton = styled.button(() => ({
   right: '10px',
   top: '10px',
   padding: '5px 8px',
+  fontSize: '16px',
 }));
 
 const Error = styled.p(() => ({
