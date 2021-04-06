@@ -57,7 +57,6 @@ export default function PreviewContainer({
   }
   return (
     <>
-      <div>미리 보기</div>
       <Postcard
         postcard={postcard}
         isFrontPage={preview.isFrontPage}
