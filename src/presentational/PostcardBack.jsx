@@ -13,6 +13,7 @@ const CompleteButton = styled.button(() => ({
 const Photo = styled.img(() => ({
   display: 'block',
   width: '95%',
+  height: '90%',
   margin: '0 auto 0 auto',
 }));
 
