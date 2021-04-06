@@ -148,7 +148,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ \"./node_modules/react-router-dom/esm/react-router-dom.js\");\n/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ \"./node_modules/react-redux/es/index.js\");\n/* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./App */ \"./src/App.jsx\");\n/* harmony import */ var _state_store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./state/store */ \"./src/state/store.js\");\n\n\n\n\n\n\nreact_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_redux__WEBPACK_IMPORTED_MODULE_2__.Provider, {\n  store: _state_store__WEBPACK_IMPORTED_MODULE_4__.default\n}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.BrowserRouter, {\n  basename: \"/project-react-3-2Zero1\"\n}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_App__WEBPACK_IMPORTED_MODULE_3__.default, null))), document.getElementById('app'));\n\n//# sourceURL=webpack://postcard/./src/index.jsx?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ \"./node_modules/react-router-dom/esm/react-router-dom.js\");\n/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ \"./node_modules/react-redux/es/index.js\");\n/* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./App */ \"./src/App.jsx\");\n/* harmony import */ var _state_store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./state/store */ \"./src/state/store.js\");\n/* harmony import */ var _assets_css_global_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./assets/css/global.css */ \"./src/assets/css/global.css\");\n\n\n\n\n\n\n\nreact_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_redux__WEBPACK_IMPORTED_MODULE_2__.Provider, {\n  store: _state_store__WEBPACK_IMPORTED_MODULE_4__.default\n}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.BrowserRouter, {\n  basename: \"/project-react-3-2Zero1\"\n}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_App__WEBPACK_IMPORTED_MODULE_3__.default, null))), document.getElementById('app'));\n\n//# sourceURL=webpack://postcard/./src/index.jsx?");
 
 /***/ }),
 
@@ -328,80 +328,25 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
-/***/ "./src/services/api.js":
-/*!*****************************!*\
-  !*** ./src/services/api.js ***!
-  \*****************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ "./node_modules/css-loader/dist/cjs.js!./src/assets/css/global.css":
+/*!*************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./src/assets/css/global.css ***!
+  \*************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"fetchEntrance\": () => (/* binding */ fetchEntrance),\n/* harmony export */   \"fetchXXX\": () => (/* binding */ fetchXXX)\n/* harmony export */ });\nasync function fetchEntrance({\n  key\n}) {\n  const url = 'http://localhost/entrance.php';\n  const response = await fetch(url, {\n    method: 'POST',\n    headers: {\n      'Content-Type': 'application/json',\n      'Access-Control-Allow-Headers': '*'\n    },\n    body: JSON.stringify({\n      key\n    })\n  });\n  const data = await response.json();\n  return data;\n}\nasync function fetchXXX() {// TODO : 이후 개발\n}\n\n//# sourceURL=webpack://postcard/./src/services/api.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\");\n/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);\n// Imports\n\nvar ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});\n// Module\n___CSS_LOADER_EXPORT___.push([module.id, \"* {\\n  margin: 0;\\n  padding: 0;\\n  box-sizing: border-box;\\n}\\n\\nbody {\\n  font-size: 16px;\\n  line-height: 1.5;\\n  background: #202020;\\n  color: #FFFFFF;\\n  word-break: keep-all;\\n}\\n\\nbody, input, button, textarea, select {\\n  font-family: 'Spoqa Han Sans Neo';\\n}\\n\\nul {\\n  list-style: none;\\n}\", \"\"]);\n// Exports\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);\n\n\n//# sourceURL=webpack://postcard/./src/assets/css/global.css?./node_modules/css-loader/dist/cjs.js");
 
 /***/ }),
 
-/***/ "./src/state/slice.js":
-/*!****************************!*\
-  !*** ./src/state/slice.js ***!
-  \****************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ "./node_modules/css-loader/dist/runtime/api.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/css-loader/dist/runtime/api.js ***!
+  \*****************************************************/
+/***/ ((module) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"changeInputFieldValue\": () => (/* binding */ changeInputFieldValue),\n/* harmony export */   \"setInputFieldsError\": () => (/* binding */ setInputFieldsError),\n/* harmony export */   \"changeRadioChecked\": () => (/* binding */ changeRadioChecked),\n/* harmony export */   \"increaseWritePageIndex\": () => (/* binding */ increaseWritePageIndex),\n/* harmony export */   \"decreaseWritePageIndex\": () => (/* binding */ decreaseWritePageIndex),\n/* harmony export */   \"flipPostcard\": () => (/* binding */ flipPostcard),\n/* harmony export */   \"flipPreviewPostcard\": () => (/* binding */ flipPreviewPostcard),\n/* harmony export */   \"setPostcardFront\": () => (/* binding */ setPostcardFront),\n/* harmony export */   \"setEntrance\": () => (/* binding */ setEntrance),\n/* harmony export */   \"loadEntrance\": () => (/* binding */ loadEntrance),\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @reduxjs/toolkit */ \"./node_modules/@reduxjs/toolkit/dist/redux-toolkit.esm.js\");\n/* harmony import */ var _services_api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../services/api */ \"./src/services/api.js\");\n\n // import { saveItem } from './services/storage';\n// import { equal } from './utils';\n\nconst initialInputFields = {\n  entrance: {\n    secretMessage: {\n      value: '',\n      error: false\n    }\n  },\n  write: {\n    isPrivate: true,\n    secretMessage: {\n      value: '',\n      error: false\n    },\n    sender: {\n      value: '',\n      error: false\n    },\n    receiver: {\n      value: '',\n      error: false\n    },\n    contents: {\n      value: '',\n      error: ''\n    },\n    photo: {\n      value: '',\n      error: false\n    },\n    photoMessage: {\n      value: '',\n      error: false\n    },\n    preview: {\n      isFrontPage: true\n    }\n  }\n};\nconst postcard = {\n  isFrontPage: true,\n  sender: '',\n  receiver: '',\n  contents: '',\n  stampURL: '',\n  photoURL: '',\n  photoMessage: ''\n};\nconst {\n  actions,\n  reducer\n} = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createSlice)({\n  name: 'application',\n  initialState: {\n    writePageIndex: 0,\n    inputFields: initialInputFields,\n    entrance: {\n      sender: '테스트',\n      isPrivate: false,\n      postcardCount: 5,\n      writtenCount: 0\n    },\n    postcard\n  },\n  reducers: {\n    changeRadioChecked(state, {\n      payload: value\n    }) {\n      return { ...state,\n        inputFields: { ...state.inputFields,\n          write: { ...state.inputFields.write,\n            isPrivate: value\n          }\n        }\n      };\n    },\n\n    changeInputFieldValue(state, {\n      payload: {\n        page,\n        type,\n        value\n      }\n    }) {\n      return { ...state,\n        inputFields: { ...state.inputFields,\n          [page]: { ...state.inputFields[page],\n            [type]: { ...state.inputFields[page][type],\n              value\n            }\n          }\n        }\n      };\n    },\n\n    setInputFieldsError(state, {\n      payload: {\n        page,\n        type,\n        error\n      }\n    }) {\n      return { ...state,\n        inputFields: { ...state.inputFields,\n          [page]: { ...state.inputFields[page],\n            [type]: { ...state.inputFields[page][type],\n              error\n            }\n          }\n        }\n      };\n    },\n\n    increaseWritePageIndex(state) {\n      return { ...state,\n        writePageIndex: +state.writePageIndex + 1\n      };\n    },\n\n    decreaseWritePageIndex(state) {\n      return { ...state,\n        writePageIndex: +state.writePageIndex - 1\n      };\n    },\n\n    flipPreviewPostcard(state) {\n      return { ...state,\n        inputFields: { ...state.inputFields,\n          write: { ...state.inputFields.write,\n            preview: { ...state.inputFields.write.preview,\n              isFrontPage: !state.inputFields.write.preview.isFrontPage\n            }\n          }\n        }\n      };\n    },\n\n    flipPostcard(state) {\n      const {\n        postcard: {\n          isFrontPage\n        }\n      } = state;\n      return { ...state,\n        postcard: {\n          isFrontPage: !isFrontPage\n        }\n      };\n    },\n\n    setPostcardFront(state) {\n      return { ...state,\n        postcard: { ...state.postcard,\n          isFrontPage: true\n        }\n      };\n    },\n\n    setEntrance(state, {\n      payload: value\n    }) {\n      return { ...state,\n        entrance: { ...value\n        }\n      };\n    }\n\n  }\n});\nconst {\n  changeInputFieldValue,\n  setInputFieldsError,\n  changeRadioChecked,\n  increaseWritePageIndex,\n  decreaseWritePageIndex,\n  flipPostcard,\n  flipPreviewPostcard,\n  setPostcardFront,\n  setEntrance\n} = actions;\nfunction loadEntrance({\n  key\n}) {\n  return async dispatch => {\n    const entrance = await (0,_services_api__WEBPACK_IMPORTED_MODULE_0__.fetchEntrance)({\n      key\n    });\n    dispatch(setEntrance(entrance.data));\n  };\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (reducer);\n\n//# sourceURL=webpack://postcard/./src/state/slice.js?");
-
-/***/ }),
-
-/***/ "./src/state/store.js":
-/*!****************************!*\
-  !*** ./src/state/store.js ***!
-  \****************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @reduxjs/toolkit */ \"./node_modules/@reduxjs/toolkit/dist/redux-toolkit.esm.js\");\n/* harmony import */ var _slice__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./slice */ \"./src/state/slice.js\");\n\n\nconst store = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.configureStore)({\n  reducer: _slice__WEBPACK_IMPORTED_MODULE_0__.default\n});\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (store);\n\n//# sourceURL=webpack://postcard/./src/state/store.js?");
-
-/***/ }),
-
-/***/ "./src/text/errorMessages.js":
-/*!***********************************!*\
-  !*** ./src/text/errorMessages.js ***!
-  \***********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({\n  secretMessage: '비밀 메시지 길이는 5자 ~ 15자 입니다.',\n  sender: '이름 길이는 2자 ~ 5자 입니다.',\n  receiver: '이름 길이는 2자 ~ 5자 입니다.',\n  contents: '내용의 길이는 30 ~ 200자 입니다.',\n  photoMessage: '사진 메시지 길이는 10자 ~ 30자 입니다.',\n  photo: '이미지를 선택해주세요.'\n});\n\n//# sourceURL=webpack://postcard/./src/text/errorMessages.js?");
-
-/***/ }),
-
-/***/ "./src/text/placeholders.js":
-/*!**********************************!*\
-  !*** ./src/text/placeholders.js ***!
-  \**********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({\n  secretMessage: '5 ~ 20자',\n  sender: '2 ~ 5자',\n  contents: '30 ~ 200자',\n  receiver: '2 ~ 5자',\n  photoMessage: '10 ~ 30자'\n});\n\n//# sourceURL=webpack://postcard/./src/text/placeholders.js?");
-
-/***/ }),
-
-/***/ "./src/utils/utils.js":
-/*!****************************!*\
-  !*** ./src/utils/utils.js ***!
-  \****************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"get\": () => (/* binding */ get),\n/* harmony export */   \"equal\": () => (/* binding */ equal),\n/* harmony export */   \"getField\": () => (/* binding */ getField)\n/* harmony export */ });\n/* harmony import */ var _text_placeholders__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../text/placeholders */ \"./src/text/placeholders.js\");\n/* harmony import */ var _text_errorMessages__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../text/errorMessages */ \"./src/text/errorMessages.js\");\n\n\nfunction get(key) {\n  return obj => obj[key];\n}\nfunction equal(key, value) {\n  return obj => obj[key] === value;\n}\nfunction getField({\n  field: {\n    value,\n    error\n  },\n  id,\n  name,\n  onChange\n}) {\n  return {\n    id,\n    name,\n    value,\n    placeholder: _text_placeholders__WEBPACK_IMPORTED_MODULE_0__.default[id],\n    errorMessage: error ? _text_errorMessages__WEBPACK_IMPORTED_MODULE_1__.default[id] : '',\n    onChange\n  };\n}\n\n//# sourceURL=webpack://postcard/./src/utils/utils.js?");
-
-/***/ }),
-
-/***/ "./src/utils/validate.js":
-/*!*******************************!*\
-  !*** ./src/utils/validate.js ***!
-  \*******************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst conditions = {\n  sender: value => !(value.length > 5 || value.length < 2),\n  receiver: value => !(value.length > 5 || value.length < 2),\n  secretMessage: value => !(value.length > 15 || value.length < 5),\n  contents: value => !(value.length > 200 || value.length < 30),\n  photoMessage: value => !(value.length > 30 || value.length < 10),\n  photo: value => !!value\n};\n\nfunction validate(fields) {\n  return Object.entries(fields).map(([key, field]) => [key, conditions[key](field.value)]);\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (validate);\n\n//# sourceURL=webpack://postcard/./src/utils/validate.js?");
+eval("\n\n/*\n  MIT License http://www.opensource.org/licenses/mit-license.php\n  Author Tobias Koppers @sokra\n*/\n// css base code, injected by the css-loader\n// eslint-disable-next-line func-names\nmodule.exports = function (cssWithMappingToString) {\n  var list = []; // return the list of modules as css string\n\n  list.toString = function toString() {\n    return this.map(function (item) {\n      var content = cssWithMappingToString(item);\n\n      if (item[2]) {\n        return \"@media \".concat(item[2], \" {\").concat(content, \"}\");\n      }\n\n      return content;\n    }).join(\"\");\n  }; // import a list of modules into the list\n  // eslint-disable-next-line func-names\n\n\n  list.i = function (modules, mediaQuery, dedupe) {\n    if (typeof modules === \"string\") {\n      // eslint-disable-next-line no-param-reassign\n      modules = [[null, modules, \"\"]];\n    }\n\n    var alreadyImportedModules = {};\n\n    if (dedupe) {\n      for (var i = 0; i < this.length; i++) {\n        // eslint-disable-next-line prefer-destructuring\n        var id = this[i][0];\n\n        if (id != null) {\n          alreadyImportedModules[id] = true;\n        }\n      }\n    }\n\n    for (var _i = 0; _i < modules.length; _i++) {\n      var item = [].concat(modules[_i]);\n\n      if (dedupe && alreadyImportedModules[item[0]]) {\n        // eslint-disable-next-line no-continue\n        continue;\n      }\n\n      if (mediaQuery) {\n        if (!item[2]) {\n          item[2] = mediaQuery;\n        } else {\n          item[2] = \"\".concat(mediaQuery, \" and \").concat(item[2]);\n        }\n      }\n\n      list.push(item);\n    }\n  };\n\n  return list;\n};\n\n//# sourceURL=webpack://postcard/./node_modules/css-loader/dist/runtime/api.js?");
 
 /***/ }),
 
@@ -974,6 +919,28 @@ eval("\n\nif (false) {} else {\n  module.exports = __webpack_require__(/*! ./cjs
 
 /***/ }),
 
+/***/ "./src/assets/css/global.css":
+/*!***********************************!*\
+  !*** ./src/assets/css/global.css ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ \"./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js\");\n/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _node_modules_css_loader_dist_cjs_js_global_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js!./global.css */ \"./node_modules/css-loader/dist/cjs.js!./src/assets/css/global.css\");\n\n            \n\nvar options = {};\n\noptions.insert = \"head\";\noptions.singleton = false;\n\nvar update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_global_css__WEBPACK_IMPORTED_MODULE_1__.default, options);\n\n\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_global_css__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});\n\n//# sourceURL=webpack://postcard/./src/assets/css/global.css?");
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js":
+/*!****************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js ***!
+  \****************************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("\n\nvar isOldIE = function isOldIE() {\n  var memo;\n  return function memorize() {\n    if (typeof memo === 'undefined') {\n      // Test for IE <= 9 as proposed by Browserhacks\n      // @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805\n      // Tests for existence of standard globals is to allow style-loader\n      // to operate correctly into non-standard environments\n      // @see https://github.com/webpack-contrib/style-loader/issues/177\n      memo = Boolean(window && document && document.all && !window.atob);\n    }\n\n    return memo;\n  };\n}();\n\nvar getTarget = function getTarget() {\n  var memo = {};\n  return function memorize(target) {\n    if (typeof memo[target] === 'undefined') {\n      var styleTarget = document.querySelector(target); // Special case to return head of iframe instead of iframe itself\n\n      if (window.HTMLIFrameElement && styleTarget instanceof window.HTMLIFrameElement) {\n        try {\n          // This will throw an exception if access to iframe is blocked\n          // due to cross-origin restrictions\n          styleTarget = styleTarget.contentDocument.head;\n        } catch (e) {\n          // istanbul ignore next\n          styleTarget = null;\n        }\n      }\n\n      memo[target] = styleTarget;\n    }\n\n    return memo[target];\n  };\n}();\n\nvar stylesInDom = [];\n\nfunction getIndexByIdentifier(identifier) {\n  var result = -1;\n\n  for (var i = 0; i < stylesInDom.length; i++) {\n    if (stylesInDom[i].identifier === identifier) {\n      result = i;\n      break;\n    }\n  }\n\n  return result;\n}\n\nfunction modulesToDom(list, options) {\n  var idCountMap = {};\n  var identifiers = [];\n\n  for (var i = 0; i < list.length; i++) {\n    var item = list[i];\n    var id = options.base ? item[0] + options.base : item[0];\n    var count = idCountMap[id] || 0;\n    var identifier = \"\".concat(id, \" \").concat(count);\n    idCountMap[id] = count + 1;\n    var index = getIndexByIdentifier(identifier);\n    var obj = {\n      css: item[1],\n      media: item[2],\n      sourceMap: item[3]\n    };\n\n    if (index !== -1) {\n      stylesInDom[index].references++;\n      stylesInDom[index].updater(obj);\n    } else {\n      stylesInDom.push({\n        identifier: identifier,\n        updater: addStyle(obj, options),\n        references: 1\n      });\n    }\n\n    identifiers.push(identifier);\n  }\n\n  return identifiers;\n}\n\nfunction insertStyleElement(options) {\n  var style = document.createElement('style');\n  var attributes = options.attributes || {};\n\n  if (typeof attributes.nonce === 'undefined') {\n    var nonce =  true ? __webpack_require__.nc : 0;\n\n    if (nonce) {\n      attributes.nonce = nonce;\n    }\n  }\n\n  Object.keys(attributes).forEach(function (key) {\n    style.setAttribute(key, attributes[key]);\n  });\n\n  if (typeof options.insert === 'function') {\n    options.insert(style);\n  } else {\n    var target = getTarget(options.insert || 'head');\n\n    if (!target) {\n      throw new Error(\"Couldn't find a style target. This probably means that the value for the 'insert' parameter is invalid.\");\n    }\n\n    target.appendChild(style);\n  }\n\n  return style;\n}\n\nfunction removeStyleElement(style) {\n  // istanbul ignore if\n  if (style.parentNode === null) {\n    return false;\n  }\n\n  style.parentNode.removeChild(style);\n}\n/* istanbul ignore next  */\n\n\nvar replaceText = function replaceText() {\n  var textStore = [];\n  return function replace(index, replacement) {\n    textStore[index] = replacement;\n    return textStore.filter(Boolean).join('\\n');\n  };\n}();\n\nfunction applyToSingletonTag(style, index, remove, obj) {\n  var css = remove ? '' : obj.media ? \"@media \".concat(obj.media, \" {\").concat(obj.css, \"}\") : obj.css; // For old IE\n\n  /* istanbul ignore if  */\n\n  if (style.styleSheet) {\n    style.styleSheet.cssText = replaceText(index, css);\n  } else {\n    var cssNode = document.createTextNode(css);\n    var childNodes = style.childNodes;\n\n    if (childNodes[index]) {\n      style.removeChild(childNodes[index]);\n    }\n\n    if (childNodes.length) {\n      style.insertBefore(cssNode, childNodes[index]);\n    } else {\n      style.appendChild(cssNode);\n    }\n  }\n}\n\nfunction applyToTag(style, options, obj) {\n  var css = obj.css;\n  var media = obj.media;\n  var sourceMap = obj.sourceMap;\n\n  if (media) {\n    style.setAttribute('media', media);\n  } else {\n    style.removeAttribute('media');\n  }\n\n  if (sourceMap && typeof btoa !== 'undefined') {\n    css += \"\\n/*# sourceMappingURL=data:application/json;base64,\".concat(btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))), \" */\");\n  } // For old IE\n\n  /* istanbul ignore if  */\n\n\n  if (style.styleSheet) {\n    style.styleSheet.cssText = css;\n  } else {\n    while (style.firstChild) {\n      style.removeChild(style.firstChild);\n    }\n\n    style.appendChild(document.createTextNode(css));\n  }\n}\n\nvar singleton = null;\nvar singletonCounter = 0;\n\nfunction addStyle(obj, options) {\n  var style;\n  var update;\n  var remove;\n\n  if (options.singleton) {\n    var styleIndex = singletonCounter++;\n    style = singleton || (singleton = insertStyleElement(options));\n    update = applyToSingletonTag.bind(null, style, styleIndex, false);\n    remove = applyToSingletonTag.bind(null, style, styleIndex, true);\n  } else {\n    style = insertStyleElement(options);\n    update = applyToTag.bind(null, style, options);\n\n    remove = function remove() {\n      removeStyleElement(style);\n    };\n  }\n\n  update(obj);\n  return function updateStyle(newObj) {\n    if (newObj) {\n      if (newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap) {\n        return;\n      }\n\n      update(obj = newObj);\n    } else {\n      remove();\n    }\n  };\n}\n\nmodule.exports = function (list, options) {\n  options = options || {}; // Force single-tag solution on IE6-9, which has a hard limit on the # of <style>\n  // tags it will allow on a page\n\n  if (!options.singleton && typeof options.singleton !== 'boolean') {\n    options.singleton = isOldIE();\n  }\n\n  list = list || [];\n  var lastIdentifiers = modulesToDom(list, options);\n  return function update(newList) {\n    newList = newList || [];\n\n    if (Object.prototype.toString.call(newList) !== '[object Array]') {\n      return;\n    }\n\n    for (var i = 0; i < lastIdentifiers.length; i++) {\n      var identifier = lastIdentifiers[i];\n      var index = getIndexByIdentifier(identifier);\n      stylesInDom[index].references--;\n    }\n\n    var newLastIdentifiers = modulesToDom(newList, options);\n\n    for (var _i = 0; _i < lastIdentifiers.length; _i++) {\n      var _identifier = lastIdentifiers[_i];\n\n      var _index = getIndexByIdentifier(_identifier);\n\n      if (stylesInDom[_index].references === 0) {\n        stylesInDom[_index].updater();\n\n        stylesInDom.splice(_index, 1);\n      }\n    }\n\n    lastIdentifiers = newLastIdentifiers;\n  };\n};\n\n//# sourceURL=webpack://postcard/./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js?");
+
+/***/ }),
+
 /***/ "./node_modules/symbol-observable/es/index.js":
 /*!****************************************************!*\
   !*** ./node_modules/symbol-observable/es/index.js ***!
@@ -1026,6 +993,83 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nfunction valueOf(obj) {\n  return obj.valueOf ? obj.valueOf() : Object.prototype.valueOf.call(obj);\n}\n\nfunction valueEqual(a, b) {\n  // Test for strict equality first.\n  if (a === b) return true;\n\n  // Otherwise, if either of them == null they are not equal.\n  if (a == null || b == null) return false;\n\n  if (Array.isArray(a)) {\n    return (\n      Array.isArray(b) &&\n      a.length === b.length &&\n      a.every(function(item, index) {\n        return valueEqual(item, b[index]);\n      })\n    );\n  }\n\n  if (typeof a === 'object' || typeof b === 'object') {\n    var aValue = valueOf(a);\n    var bValue = valueOf(b);\n\n    if (aValue !== a || bValue !== b) return valueEqual(aValue, bValue);\n\n    return Object.keys(Object.assign({}, a, b)).every(function(key) {\n      return valueEqual(a[key], b[key]);\n    });\n  }\n\n  return false;\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (valueEqual);\n\n\n//# sourceURL=webpack://postcard/./node_modules/value-equal/esm/value-equal.js?");
+
+/***/ }),
+
+/***/ "./src/services/api.js":
+/*!*****************************!*\
+  !*** ./src/services/api.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"fetchEntrance\": () => (/* binding */ fetchEntrance),\n/* harmony export */   \"fetchXXX\": () => (/* binding */ fetchXXX)\n/* harmony export */ });\nasync function fetchEntrance({ key }) {\n  const url = 'http://localhost/entrance.php';\n  const response = await fetch(url, {\n    method: 'POST',\n    headers: {\n      'Content-Type': 'application/json',\n      'Access-Control-Allow-Headers': '*',\n    },\n    body: JSON.stringify({ key }),\n  });\n  const data = await response.json();\n\n  return data;\n}\n\nasync function fetchXXX() {\n  // TODO : 이후 개발\n}\n\n\n//# sourceURL=webpack://postcard/./src/services/api.js?");
+
+/***/ }),
+
+/***/ "./src/state/slice.js":
+/*!****************************!*\
+  !*** ./src/state/slice.js ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"changeInputFieldValue\": () => (/* binding */ changeInputFieldValue),\n/* harmony export */   \"setInputFieldsError\": () => (/* binding */ setInputFieldsError),\n/* harmony export */   \"changeRadioChecked\": () => (/* binding */ changeRadioChecked),\n/* harmony export */   \"increaseWritePageIndex\": () => (/* binding */ increaseWritePageIndex),\n/* harmony export */   \"decreaseWritePageIndex\": () => (/* binding */ decreaseWritePageIndex),\n/* harmony export */   \"flipPostcard\": () => (/* binding */ flipPostcard),\n/* harmony export */   \"flipPreviewPostcard\": () => (/* binding */ flipPreviewPostcard),\n/* harmony export */   \"setPostcardFront\": () => (/* binding */ setPostcardFront),\n/* harmony export */   \"setEntrance\": () => (/* binding */ setEntrance),\n/* harmony export */   \"loadEntrance\": () => (/* binding */ loadEntrance),\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @reduxjs/toolkit */ \"./node_modules/@reduxjs/toolkit/dist/redux-toolkit.esm.js\");\n/* harmony import */ var _services_api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../services/api */ \"./src/services/api.js\");\n\n\n\n\n// import { saveItem } from './services/storage';\n\n// import { equal } from './utils';\n\nconst initialInputFields = {\n  entrance: {\n    secretMessage: {\n      value: '',\n      error: false,\n    },\n  },\n  write: {\n    isPrivate: true,\n    secretMessage: {\n      value: '',\n      error: false,\n    },\n    sender: {\n      value: '',\n      error: false,\n    },\n    receiver: {\n      value: '',\n      error: false,\n    },\n    contents: {\n      value: '',\n      error: '',\n    },\n    photo: {\n      value: '',\n      error: false,\n    },\n    photoMessage: {\n      value: '',\n      error: false,\n    },\n    preview: {\n      isFrontPage: true,\n    },\n  },\n};\n\nconst postcard = {\n  isFrontPage: true,\n  sender: '',\n  receiver: '',\n  contents: '',\n  stampURL: '',\n  photoURL: '',\n  photoMessage: '',\n};\n\nconst { actions, reducer } = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.createSlice)({\n  name: 'application',\n  initialState: {\n    writePageIndex: 0,\n    inputFields: initialInputFields,\n    entrance: {\n      sender: '테스트',\n      isPrivate: false,\n      postcardCount: 5,\n      writtenCount: 0,\n    },\n    postcard,\n  },\n  reducers: {\n    changeRadioChecked(state, { payload: value }) {\n      return {\n        ...state,\n        inputFields: {\n          ...state.inputFields,\n          write: {\n            ...state.inputFields.write,\n            isPrivate: value,\n          },\n        },\n      };\n    },\n    changeInputFieldValue(state, { payload: { page, type, value } }) {\n      return {\n        ...state,\n        inputFields: {\n          ...state.inputFields,\n          [page]: {\n            ...state.inputFields[page],\n            [type]: {\n              ...state.inputFields[page][type],\n              value,\n            },\n          },\n        },\n      };\n    },\n    setInputFieldsError(state, { payload: { page, type, error } }) {\n      return {\n        ...state,\n        inputFields: {\n          ...state.inputFields,\n          [page]: {\n            ...state.inputFields[page],\n            [type]: {\n              ...state.inputFields[page][type],\n              error,\n            },\n          },\n        },\n      };\n    },\n    increaseWritePageIndex(state) {\n      return {\n        ...state,\n        writePageIndex: (+state.writePageIndex) + 1,\n      };\n    },\n    decreaseWritePageIndex(state) {\n      return {\n        ...state,\n        writePageIndex: (+state.writePageIndex) - 1,\n      };\n    },\n    flipPreviewPostcard(state) {\n      return {\n        ...state,\n        inputFields: {\n          ...state.inputFields,\n          write: {\n            ...state.inputFields.write,\n            preview: {\n              ...state.inputFields.write.preview,\n              isFrontPage: !state.inputFields.write.preview.isFrontPage,\n            },\n          },\n        },\n      };\n    },\n    flipPostcard(state) {\n      const {\n        postcard: {\n          isFrontPage,\n        },\n      } = state;\n\n      return {\n        ...state,\n        postcard: {\n          isFrontPage: !isFrontPage,\n        },\n      };\n    },\n    setPostcardFront(state) {\n      return {\n        ...state,\n        postcard: {\n          ...state.postcard,\n          isFrontPage: true,\n        },\n      };\n    },\n    setEntrance(state, { payload: value }) {\n      return {\n        ...state,\n        entrance: {\n          ...value,\n        },\n      };\n    },\n  },\n});\n\nconst {\n  changeInputFieldValue,\n  setInputFieldsError,\n  changeRadioChecked,\n  increaseWritePageIndex,\n  decreaseWritePageIndex,\n  flipPostcard,\n  flipPreviewPostcard,\n  setPostcardFront,\n  setEntrance,\n} = actions;\n\nfunction loadEntrance({ key }) {\n  return async (dispatch) => {\n    const entrance = await (0,_services_api__WEBPACK_IMPORTED_MODULE_0__.fetchEntrance)({ key });\n\n    dispatch(setEntrance(entrance.data));\n  };\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (reducer);\n\n\n//# sourceURL=webpack://postcard/./src/state/slice.js?");
+
+/***/ }),
+
+/***/ "./src/state/store.js":
+/*!****************************!*\
+  !*** ./src/state/store.js ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @reduxjs/toolkit */ \"./node_modules/@reduxjs/toolkit/dist/redux-toolkit.esm.js\");\n/* harmony import */ var _slice__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./slice */ \"./src/state/slice.js\");\n\n\n\n\nconst store = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.configureStore)({ reducer: _slice__WEBPACK_IMPORTED_MODULE_0__.default });\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (store);\n\n\n//# sourceURL=webpack://postcard/./src/state/store.js?");
+
+/***/ }),
+
+/***/ "./src/text/errorMessages.js":
+/*!***********************************!*\
+  !*** ./src/text/errorMessages.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({\n  secretMessage: '비밀 메시지 길이는 5자 ~ 15자 입니다.',\n  sender: '이름 길이는 2자 ~ 5자 입니다.',\n  receiver: '이름 길이는 2자 ~ 5자 입니다.',\n  contents: '내용의 길이는 30 ~ 200자 입니다.',\n  photoMessage: '사진 메시지 길이는 10자 ~ 30자 입니다.',\n  photo: '이미지를 선택해주세요.',\n});\n\n\n//# sourceURL=webpack://postcard/./src/text/errorMessages.js?");
+
+/***/ }),
+
+/***/ "./src/text/placeholders.js":
+/*!**********************************!*\
+  !*** ./src/text/placeholders.js ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({\n  secretMessage: '5 ~ 20자',\n  sender: '2 ~ 5자',\n  contents: '30 ~ 200자',\n  receiver: '2 ~ 5자',\n  photoMessage: '10 ~ 30자',\n});\n\n\n//# sourceURL=webpack://postcard/./src/text/placeholders.js?");
+
+/***/ }),
+
+/***/ "./src/utils/utils.js":
+/*!****************************!*\
+  !*** ./src/utils/utils.js ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"get\": () => (/* binding */ get),\n/* harmony export */   \"equal\": () => (/* binding */ equal),\n/* harmony export */   \"getField\": () => (/* binding */ getField)\n/* harmony export */ });\n/* harmony import */ var _text_placeholders__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../text/placeholders */ \"./src/text/placeholders.js\");\n/* harmony import */ var _text_errorMessages__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../text/errorMessages */ \"./src/text/errorMessages.js\");\n\n\n\nfunction get(key) {\n  return (obj) => obj[key];\n}\n\nfunction equal(key, value) {\n  return (obj) => obj[key] === value;\n}\n\nfunction getField({\n  field: { value, error },\n  id,\n  name,\n  onChange,\n}) {\n  return ({\n    id,\n    name,\n    value,\n    placeholder: _text_placeholders__WEBPACK_IMPORTED_MODULE_0__.default[id],\n    errorMessage: error ? _text_errorMessages__WEBPACK_IMPORTED_MODULE_1__.default[id] : '',\n    onChange,\n  });\n}\n\n\n//# sourceURL=webpack://postcard/./src/utils/utils.js?");
+
+/***/ }),
+
+/***/ "./src/utils/validate.js":
+/*!*******************************!*\
+  !*** ./src/utils/validate.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst conditions = {\n  sender: (value) => !(value.length > 5 || value.length < 2),\n  receiver: (value) => !(value.length > 5 || value.length < 2),\n  secretMessage: (value) => !(value.length > 15 || value.length < 5),\n  contents: (value) => !(value.length > 200 || value.length < 30),\n  photoMessage: (value) => !(value.length > 30 || value.length < 10),\n  photo: (value) => !!value,\n};\n\nfunction validate(fields) {\n  return Object.entries(fields).map(([key, field]) => ([key, conditions[key](field.value)]));\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (validate);\n\n\n//# sourceURL=webpack://postcard/./src/utils/validate.js?");
 
 /***/ })
 
