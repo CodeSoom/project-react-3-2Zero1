@@ -5,12 +5,13 @@ import styled from '@emotion/styled';
 import InputPart from './InputPart';
 import RadioPart from './RadioPart';
 
-const Title = styled.div(() => ({
+const Title = styled.span(() => ({
   position: 'absolute',
   top: '10px',
-  width: '100%',
+  left: '50%',
   textAlign: 'center',
   fontSize: '20px',
+  transform: 'translateX(-50%)',
 }));
 
 const Button = styled.button(() => ({
@@ -46,30 +47,28 @@ export default function InformationForm({
 }) {
   return (
     <>
+      <Title>엽서 작성하기</Title>
       <Button
         type="button"
         onClick={onClickPrevious}
       >
         이전
       </Button>
-      <Title>엽서 작성하기</Title>
-      <div>
-        <InputPart field={sender} />
-        <InputPart field={receiver} />
-        <Information>관리자에게 쓰고 싶은 편지가 있다면 받는 사람을 ‘관리자’로 입력해주세요.</Information>
-        <InputPart field={secretMessage} />
-        <Information>엽서를 확인 또는 파기하기 위해 사용되며 받는 사람에게도 공유됩니다.</Information>
-        <RadioPart
-          onRadioChange={onRadioChange}
-          isPrivate={isPrivate}
-        />
-        <CompleteButton
-          type="button"
-          onClick={onHandleClick}
-        >
-          다음
-        </CompleteButton>
-      </div>
+      <CompleteButton
+        type="button"
+        onClick={onHandleClick}
+      >
+        다음
+      </CompleteButton>
+      <InputPart field={sender} />
+      <InputPart field={receiver} />
+      <Information>관리자에게 쓰고 싶은 편지가 있다면 받는 사람을 ‘관리자’로 입력해주세요.</Information>
+      <InputPart field={secretMessage} />
+      <Information>엽서를 확인 또는 파기하기 위해 사용되며 받는 사람에게도 공유됩니다.</Information>
+      <RadioPart
+        onRadioChange={onRadioChange}
+        isPrivate={isPrivate}
+      />
     </>
   );
 }
