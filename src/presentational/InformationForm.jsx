@@ -32,6 +32,7 @@ const CompleteButton = styled.button(() => ({
   top: '10px',
   fontSize: '16px',
   padding: '5px 8px',
+  fontSize: '16px',
 }));
 
 export default function InformationForm({
