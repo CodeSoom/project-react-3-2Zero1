@@ -30,7 +30,6 @@ const CompleteButton = styled.button(() => ({
   position: 'absolute',
   right: '10px',
   top: '10px',
-  fontSize: '16px',
   padding: '5px 8px',
   fontSize: '16px',
 }));
