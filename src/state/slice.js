@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import {
   fetchEntrance,
+  postPhoto,
 } from '../services/api';
 
 // import { saveItem } from './services/storage';
@@ -191,6 +192,18 @@ export function loadEntrance({ key }) {
     const entrance = await fetchEntrance({ key });
 
     dispatch(setEntrance(entrance.data));
+  };
+}
+
+export function sendPhoto({ file }) {
+  return async (dispatch) => {
+    const photo = await postPhoto({ file });
+
+    dispatch(changeInputFieldValue({
+      page: 'write',
+      type: 'photo',
+      value: photo,
+    }));
   };
 }
 
