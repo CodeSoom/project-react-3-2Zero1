@@ -13,6 +13,7 @@ import reducer, {
   setEntrance,
 
   loadEntrance,
+  sendPhoto,
 } from './slice';
 
 import entrance from '../fixtures/entrance';
@@ -253,6 +254,25 @@ describe('reducer', () => {
       const actions = store.getActions();
 
       expect(actions[0]).toEqual(setEntrance([]));
+    });
+  });
+
+  describe('sendPhoto', () => {
+    beforeEach(() => {
+      store = mockStore({});
+    });
+
+    it('runs changeInputFieldValue', async () => {
+      const fileName = 'test';
+      await store.dispatch(sendPhoto({ file: new File([''], fileName) }));
+
+      const actions = store.getActions();
+
+      expect(actions[0]).toEqual(changeInputFieldValue({
+        page: 'write',
+        type: 'photo',
+        value: fileName,
+      }));
     });
   });
 });

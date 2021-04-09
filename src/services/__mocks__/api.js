@@ -3,5 +3,6 @@ export async function fetchEntrance() {
 }
 
 export async function postPhoto() {
-  return { data: {} };
+  const fileName = 'test';
+  return fileName;
 }
