@@ -8,6 +8,7 @@ import validate from '../utils/validate';
 
 import {
   setInputFieldsError,
+  sendPhoto,
 } from '../state/slice';
 
 export default function PhotoFormContainer({
@@ -69,9 +70,7 @@ export default function PhotoFormContainer({
   function handleFileChange(event) {
     const file = event.target.files[0];
     if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      const setImageFileName = getChangeHandler('photo');
-      setImageFileName(imageUrl);
+      dispatch(sendPhoto({ file }));
     }
   }
 

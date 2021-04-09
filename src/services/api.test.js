@@ -1,6 +1,6 @@
 import {
   fetchEntrance,
-  fetchXXX,
+  postPhoto,
 } from './api';
 
 import ENTRANCE from '../fixtures/entrance';
@@ -24,9 +24,19 @@ describe('api', () => {
     });
   });
 
-  describe('fetchXXX', () => {
-    it('mock', () => {
-      fetchXXX();
+  describe('postPhoto', () => {
+    const imageURL = 'url';
+    beforeEach(() => {
+      mockFetch({
+        data: {
+          photo: imageURL,
+        },
+      });
+    });
+    it('mock', async () => {
+      const photo = await postPhoto({ file: 'file' });
+
+      expect(photo).toBe(imageURL);
     });
   });
 });
