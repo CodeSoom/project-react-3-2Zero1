@@ -1,3 +1,5 @@
+const getDomain = (path) => `http://ec2-52-78-19-244.ap-northeast-2.compute.amazonaws.com:3000/${path}`;
+
 export async function fetchEntrance({ key }) {
   const url = 'http://localhost/entrance.php';
   const response = await fetch(url, {
@@ -14,7 +16,7 @@ export async function fetchEntrance({ key }) {
 }
 
 export async function postPhoto({ file }) {
-  const url = 'http://localhost:3000/photo';
+  const url = getDomain('photo');
   const formData = new FormData();
   formData.append('photo', file);
 
