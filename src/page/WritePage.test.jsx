@@ -371,6 +371,17 @@ describe('WritePage', () => {
     beforeEach(() => {
       useSelector.mockImplementation((selector) => selector({
         writePageIndex: 4,
+        inputFields: {
+          write: {
+            sender: {
+              value: 'sender',
+            },
+            complete: {
+              url: 'localhost',
+              secretMessage: 'secretMessage',
+            },
+          },
+        },
       }));
     });
     it('renders writeCompletePage', () => {
@@ -390,6 +401,17 @@ describe('WritePage', () => {
     beforeEach(() => {
       useSelector.mockImplementation((selector) => selector({
         writePageIndex: 1,
+        inputFields: {
+          write: {
+            sender: {
+              value: '',
+            },
+            complete: {
+              url: '',
+              secretMessage: '',
+            },
+          },
+        },
       }));
     });
     it("call push to '/'", () => {

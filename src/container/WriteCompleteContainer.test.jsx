@@ -12,6 +12,17 @@ describe('WriteCompleteContainer', () => {
   useSelector.mockImplementation((selector) => selector(
     {
       writePageIndex: 3,
+      inputFields: {
+        write: {
+          sender: {
+            value: 'sender',
+          },
+          complete: {
+            url: 'localhost',
+            secretMessage: 'secretMessage',
+          },
+        },
+      },
     },
   ));
 

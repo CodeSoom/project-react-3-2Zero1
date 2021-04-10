@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 
 import styled from '@emotion/styled';
 
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+
 const Wrapper = styled.div(() => ({
   margin: '0 20px',
 }));
@@ -39,19 +41,33 @@ export default function WriteCompleteContainer({
   onClickHome,
   checkValidAccess,
 }) {
-  const { writePageIndex } = useSelector((state) => ({
+  const { writePageIndex, inputFields } = useSelector((state) => ({
     writePageIndex: state.writePageIndex,
+    inputFields: state.inputFields,
   }));
+
+  const {
+    write: {
+      sender: {
+        value: senderName,
+      },
+      complete: {
+        url,
+        secretMessage,
+      },
+    },
+  } = inputFields;
+  const host = 'localhost:3000/entrance/';
+
+  const secretMessageText = secretMessage ? `\n\n비밀 메시지: ${secretMessage}` : '';
+
+  const copyText = `${senderName}님으로 부터 엽서가 도착했습니다.\n\n엽서 링크 :${host}${url} ${secretMessageText}\n\n링크와 비밀메시지는 관련된 사람 이외의 사람에게 공유하지 말아주세요!\n\n공유가 된다면 다른 사람에 의해 삭제될 수 있습니다.`;
 
   checkValidAccess(writePageIndex);
 
   function handleClickHome() {
     // dispatch(resetPostcard());
     onClickHome();
-  }
-
-  function handleClickCopyMessage() {
-    // 메시지 클립보드에 입력하는 코드.
   }
   return (
     <Wrapper>
@@ -66,12 +82,11 @@ export default function WriteCompleteContainer({
       <Text>카카오톡이나 문자 메시지에 붙혀 넣고 전송해보세요!</Text>
       <Text>반드시 전송 메시지를 복사해주세요. 페이지를 이탈 시 해당 엽서는 찾을 수 없습니다.</Text>
       <CenterBox>
-        <Button
-          onClick={handleClickCopyMessage}
-          type="button"
-        >
-          전송 메시지 복사
-        </Button>
+        <CopyToClipboard text={copyText}>
+          <Button type="button">
+            전송 메시지 복사
+          </Button>
+        </CopyToClipboard>
       </CenterBox>
       <Information>
         링크와 비밀메시지는 관련된 사람 이외에 공유 하지 말아주세요! 공유가 된다면 다른 사람이 삭제할 수도 있어요!
