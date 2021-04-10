@@ -1,9 +1,11 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import styled from '@emotion/styled';
 
-import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { resetPostcardInputFields } from '../state/slice';
 
 const Wrapper = styled.div(() => ({
   margin: '0 20px',
@@ -41,6 +43,8 @@ export default function WriteCompleteContainer({
   onClickHome,
   checkValidAccess,
 }) {
+  const dispatch = useDispatch();
+
   const { writePageIndex, inputFields } = useSelector((state) => ({
     writePageIndex: state.writePageIndex,
     inputFields: state.inputFields,
@@ -66,7 +70,7 @@ export default function WriteCompleteContainer({
   checkValidAccess(writePageIndex);
 
   function handleClickHome() {
-    // dispatch(resetPostcard());
+    dispatch(resetPostcardInputFields());
     onClickHome();
   }
   return (

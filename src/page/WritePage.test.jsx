@@ -394,6 +394,9 @@ describe('WritePage', () => {
       fireEvent.click(getByText('홈로고'));
 
       expect(mockGoBack).toBeCalled();
+      expect(dispatch).toBeCalledWith({
+        type: 'application/resetPostcardInputFields',
+      });
     });
   });
 

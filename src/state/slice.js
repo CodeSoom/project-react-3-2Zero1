@@ -192,6 +192,53 @@ const { actions, reducer } = createSlice({
         },
       };
     },
+    resetPostcardInputFields(state) {
+      return {
+        ...state,
+        inputFields: {
+          entrance: {
+            secretMessage: {
+              value: '',
+              error: false,
+            },
+          },
+          write: {
+            isPrivate: true,
+            secretMessage: {
+              value: '',
+              error: false,
+            },
+            sender: {
+              value: '',
+              error: false,
+            },
+            receiver: {
+              value: '',
+              error: false,
+            },
+            contents: {
+              value: '',
+              error: '',
+            },
+            photo: {
+              value: '',
+              error: false,
+            },
+            photoMessage: {
+              value: '',
+              error: false,
+            },
+            preview: {
+              isFrontPage: true,
+            },
+            complete: {
+              key: '',
+              secretMessage: '',
+            },
+          },
+        },
+      };
+    },
   },
 });
 
@@ -206,6 +253,7 @@ export const {
   setPostcardFront,
   setEntrance,
   setWriteCompleteValues,
+  resetPostcardInputFields,
 } = actions;
 
 export function loadEntrance({ key }) {

@@ -12,6 +12,7 @@ import reducer, {
   setPostcardFront,
   setEntrance,
   setWriteCompleteValues,
+  resetPostcardInputFields,
 
   loadEntrance,
   sendPhoto,
@@ -274,6 +275,98 @@ describe('reducer', () => {
 
       expect(state.inputFields[page][type].url).toBe(url);
       expect(state.inputFields[page][type].secretMessage).toBe(secretMessage);
+    });
+  });
+
+  describe('resetPostcardInputFields', () => {
+    it('reset resetPostcardInputFields in inputFields', () => {
+      const inputFields = {
+        entrance: {
+          value: '1',
+          error: 'false',
+        },
+        write: {
+          isPrivate: true,
+          secretMessage: {
+            value: 'secretMessage',
+            error: false,
+          },
+          sender: {
+            value: 'sender',
+            error: false,
+          },
+          receiver: {
+            value: 'receiver',
+            error: false,
+          },
+          contents: {
+            value: 'contents',
+            error: '',
+          },
+          photo: {
+            value: 'photo',
+            error: false,
+          },
+          photoMessage: {
+            value: 'photoMessage',
+            error: false,
+          },
+          preview: {
+            isFrontPage: true,
+          },
+          complete: {
+            key: 'complete',
+            secretMessage: '',
+          },
+        },
+      };
+
+      const initialState = { inputFields };
+
+      const state = reducer(initialState, resetPostcardInputFields());
+
+      expect(state.inputFields).toEqual({
+        entrance: {
+          secretMessage: {
+            value: '',
+            error: false,
+          },
+        },
+        write: {
+          isPrivate: true,
+          secretMessage: {
+            value: '',
+            error: false,
+          },
+          sender: {
+            value: '',
+            error: false,
+          },
+          receiver: {
+            value: '',
+            error: false,
+          },
+          contents: {
+            value: '',
+            error: '',
+          },
+          photo: {
+            value: '',
+            error: false,
+          },
+          photoMessage: {
+            value: '',
+            error: false,
+          },
+          preview: {
+            isFrontPage: true,
+          },
+          complete: {
+            key: '',
+            secretMessage: '',
+          },
+        },
+      });
     });
   });
 

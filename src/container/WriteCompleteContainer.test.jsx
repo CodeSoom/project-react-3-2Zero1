@@ -1,13 +1,17 @@
 import React from 'react';
 
 import { fireEvent, render } from '@testing-library/react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import WriteCompleteContainer from './WriteCompleteContainer';
 
 describe('WriteCompleteContainer', () => {
+  const dispatch = jest.fn();
+
   const handleClickHome = jest.fn();
   const checkValidAccess = jest.fn();
+
+  useDispatch.mockImplementation(() => dispatch);
 
   useSelector.mockImplementation((selector) => selector(
     {
