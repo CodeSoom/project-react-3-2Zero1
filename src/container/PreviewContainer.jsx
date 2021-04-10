@@ -38,7 +38,6 @@ export default function PreviewContainer({
     sender: sender.value,
     receiver: receiver.value,
     contents: contents.value,
-    stampUrl: photo.value,
     photoUrl: photo.value,
     photoMessage: photoMessage.value,
   };

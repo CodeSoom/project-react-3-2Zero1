@@ -53,7 +53,6 @@ const postcard = {
   sender: '',
   receiver: '',
   contents: '',
-  stampURL: '',
   photoURL: '',
   photoMessage: '',
 };

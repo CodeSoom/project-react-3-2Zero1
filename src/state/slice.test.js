@@ -80,7 +80,6 @@ describe('reducer', () => {
           sender: '',
           receiver: '',
           contents: '',
-          stampURL: '',
           photoURL: '',
           photoMessage: '',
         },
