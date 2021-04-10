@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   fetchEntrance,
   postPhoto,
+  postPostcard,
 } from '../services/api';
 
 // import { saveItem } from './services/storage';
@@ -45,6 +46,10 @@ const initialInputFields = {
     preview: {
       isFrontPage: true,
     },
+    complete: {
+      key: '',
+      secretMessage: '',
+    },
   },
 };
 
@@ -69,6 +74,7 @@ const { actions, reducer } = createSlice({
       writtenCount: 0,
     },
     postcard,
+
   },
   reducers: {
     changeRadioChecked(state, { payload: value }) {
@@ -171,6 +177,21 @@ const { actions, reducer } = createSlice({
         },
       };
     },
+    setWriteCompleteValues(state, { payload: { url, secretMessage } }) {
+      return {
+        ...state,
+        inputFields: {
+          ...state.inputFields,
+          write: {
+            ...state.inputFields.write,
+            complete: {
+              url,
+              secretMessage,
+            },
+          },
+        },
+      };
+    },
   },
 });
 
@@ -184,6 +205,7 @@ export const {
   flipPreviewPostcard,
   setPostcardFront,
   setEntrance,
+  setWriteCompleteValues,
 } = actions;
 
 export function loadEntrance({ key }) {
@@ -203,6 +225,20 @@ export function sendPhoto({ file }) {
       type: 'photo',
       value: photo,
     }));
+  };
+}
+
+export function sendPostcard({ postcardValues, onClickNext }) {
+  return async (dispatch) => {
+    const data = await postPostcard(postcardValues);
+
+    const { url, secretMessage } = data;
+    // TODO: dispatch를 이용하여 데이터를 작성 완료 페이지를 위한 상태를 넣어줌.
+    dispatch(setWriteCompleteValues({
+      url,
+      secretMessage,
+    }));
+    onClickNext();
   };
 }
 

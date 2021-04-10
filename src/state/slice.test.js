@@ -11,9 +11,11 @@ import reducer, {
   flipPostcard,
   setPostcardFront,
   setEntrance,
+  setWriteCompleteValues,
 
   loadEntrance,
   sendPhoto,
+  sendPostcard,
 } from './slice';
 
 import entrance from '../fixtures/entrance';
@@ -63,6 +65,10 @@ describe('reducer', () => {
           },
           preview: {
             isFrontPage: true,
+          },
+          complete: {
+            key: '',
+            secretMessage: '',
           },
         },
       };
@@ -242,6 +248,35 @@ describe('reducer', () => {
     });
   });
 
+  describe('setWriteCompleteValues', () => {
+    it('set WriteCompleteValues in inputFields', () => {
+      const page = 'write';
+      const type = 'complete';
+
+      const url = 'url';
+      const secretMessage = 'secretMessage';
+
+      const initialState = {
+        inputFields: {
+          [page]: {
+            [type]: {
+              url: '',
+              secretMessage: '',
+            },
+          },
+        },
+      };
+
+      const state = reducer(initialState, setWriteCompleteValues({
+        url,
+        secretMessage,
+      }));
+
+      expect(state.inputFields[page][type].url).toBe(url);
+      expect(state.inputFields[page][type].secretMessage).toBe(secretMessage);
+    });
+  });
+
   describe('loadEntrance', () => {
     beforeEach(() => {
       store = mockStore({});
@@ -271,6 +306,38 @@ describe('reducer', () => {
         page: 'write',
         type: 'photo',
         value: fileName,
+      }));
+    });
+  });
+
+  describe('sendPostcard', () => {
+    beforeEach(() => {
+      store = mockStore({});
+    });
+
+    it('runs changeInputFieldValue', async () => {
+      const postcard = {
+        key: 'test', // TODO : 입장 페이지가 완료되면 key값을 받아 넣어주도록 변경해야함.
+        sender: 'sender',
+        receiver: 'receiver',
+        contents: 'contents',
+        photo: 'photo',
+        photoMessage: 'photoMessage',
+        secretMessage: 'secretMessage',
+        isPrivate: 'isPrivate',
+      };
+
+      const onClickNext = jest.fn();
+      await store.dispatch(sendPostcard({
+        postcard,
+        onClickNext,
+      }));
+
+      const actions = store.getActions();
+
+      expect(actions[0]).toEqual(setWriteCompleteValues({
+        url: 'url',
+        secretMessage: 'secretMessage',
       }));
     });
   });

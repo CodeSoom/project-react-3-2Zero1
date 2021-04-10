@@ -31,3 +31,38 @@ export async function postPhoto({ file }) {
 
   return result.data.photo;
 }
+
+export async function postPostcard({
+  key,
+  sender,
+  receiver,
+  contents,
+  photo,
+  photoMessage,
+  secretMessage,
+  isPrivate,
+}) {
+  const url = 'http://localhost:3000/write';
+  // const url = getDomain('write');
+
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Headers': '*',
+    },
+    body: JSON.stringify({
+      key,
+      sender,
+      receiver,
+      contents,
+      photo,
+      photoMessage,
+      secretMessage,
+      isPrivate,
+    }),
+  });
+  const result = await response.json();
+
+  return result.data;
+}

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import {
   flipPreviewPostcard,
+  sendPostcard,
 } from '../state/slice';
 
 import Postcard from '../presentational/Postcard';
@@ -28,18 +29,23 @@ export default function PreviewContainer({
       contents,
       preview,
       photoMessage,
+      secretMessage,
       photo,
+      isPrivate,
     },
   } = inputFields;
 
   checkValidAccess(writePageIndex);
-
   const postcard = {
+    key: 'test', // TODO : 입장 페이지가 완료되면 key값을 받아 넣어주도록 변경해야함.
     sender: sender.value,
     receiver: receiver.value,
     contents: contents.value,
     photoUrl: photo.value,
+    stampUrl: photo.value,
     photoMessage: photoMessage.value,
+    secretMessage: secretMessage.value,
+    isPrivate: isPrivate.value,
   };
 
   const showCompleteButton = true;
@@ -51,8 +57,7 @@ export default function PreviewContainer({
 
   function handleCompleteClick(e) {
     e.stopPropagation();
-    // TODO: 서버로 등록하는 요청을 보내며, 응답이 왔을 때 onClickNext를 부른다.
-    onClickNext();
+    dispatch(sendPostcard({ postcardValues: postcard, onClickNext }));
   }
   return (
     <>

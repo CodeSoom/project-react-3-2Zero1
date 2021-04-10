@@ -1,6 +1,7 @@
 import {
   fetchEntrance,
   postPhoto,
+  postPostcard,
 } from './api';
 
 import ENTRANCE from '../fixtures/entrance';
@@ -33,10 +34,39 @@ describe('api', () => {
         },
       });
     });
-    it('mock', async () => {
+    it('return imageURL', async () => {
       const photo = await postPhoto({ file: 'file' });
 
       expect(photo).toBe(imageURL);
+    });
+  });
+  describe('postPostcard', () => {
+    const url = 'url';
+    const secretMessage = 'secretMessage';
+    beforeEach(() => {
+      mockFetch({
+        data: {
+          url,
+          secretMessage,
+        },
+      });
+    });
+    it('return url and secretMessage', async () => {
+      const postcard = await postPostcard({
+        key: 'test',
+        sender: 'sender',
+        receiver: 'receiver',
+        contents: 'contents',
+        photo: 'photo',
+        photoMessage: 'photoMessage',
+        secretMessage: 'secretMessage',
+        isPrivate: 'isPrivate',
+      });
+
+      expect(postcard).toEqual({
+        url,
+        secretMessage,
+      });
     });
   });
 });
