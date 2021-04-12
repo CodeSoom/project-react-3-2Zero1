@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import styled from '@emotion/styled';
@@ -15,6 +15,7 @@ import {
   changeInputFieldValue,
   setInputFieldsError,
   checkValidPostcard,
+  loadEntrance,
 } from '../state/slice';
 
 const Wrapper = styled.div(() => ({
@@ -34,10 +35,15 @@ const Button = styled.button(() => ({
 }));
 
 export default function EntranceContainer({
+  postcardKey,
   onHandleClickPostcard,
   onHandleClickWritePostcard,
 }) {
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loadEntrance({ postcardKey }));
+  });
 
   const {
     entrance,
@@ -70,7 +76,9 @@ export default function EntranceContainer({
         return;
       }
     }
+
     const key = loadItem('postcardKey');
+
     dispatch(checkValidPostcard({
       key,
       secretMessage: secretMessage.value,

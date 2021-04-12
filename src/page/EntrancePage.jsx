@@ -1,17 +1,11 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 
 import queryString from 'query-string';
 import EntranceContainer from '../container/EntranceContainer';
 
-import {
-  loadEntrance,
-} from '../state/slice';
-
 export default function EntrancePage({ location }) {
   const { key } = queryString.parse(location.search);
-  const dispatch = useDispatch();
 
   const history = useHistory();
 
@@ -25,12 +19,9 @@ export default function EntrancePage({ location }) {
     history.push(url);
   }
 
-  useEffect(() => {
-    dispatch(loadEntrance({ key }));
-  });
-
   return (
     <EntranceContainer
+      postcardKey={key}
       onHandleClickPostcard={handleClickPostcard}
       onHandleClickWritePostcard={handleClickWritePostcard}
     />
