@@ -24,9 +24,9 @@ describe('EntrancePage', () => {
 
   useDispatch.mockImplementation(() => dispatch);
 
-  function renderEntrance(params) {
+  function renderEntrance(location) {
     return render((
-      <EntrancePage params={params} />
+      <EntrancePage location={location} />
     ));
   }
 
@@ -39,7 +39,9 @@ describe('EntrancePage', () => {
       inputFields,
     }));
 
-    const { getByText } = renderEntrance({ key: '발신자' });
+    const { getByText } = renderEntrance({
+      location: { search: '?key=test' },
+    });
 
     expect(getByText(`${SENDER}님으로 부터 엽서가 도착했어요.`)).not.toBeNull();
 
