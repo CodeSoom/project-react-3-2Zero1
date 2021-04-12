@@ -15,6 +15,8 @@ describe('EntranceContainer', () => {
   const onHandleClickPostcard = jest.fn();
   const onHandleClickWritePostcard = jest.fn();
 
+  const postcardKey = 'test';
+
   beforeEach(() => {
     dispatch.mockClear();
 
@@ -28,6 +30,7 @@ describe('EntranceContainer', () => {
   function entranceRender() {
     return render((
       <EntranceContainer
+        postcardKey={postcardKey}
         onHandleClickPostcard={onHandleClickPostcard}
         onHandleClickWritePostcard={onHandleClickWritePostcard}
       />
