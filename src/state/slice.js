@@ -1,9 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { saveItem } from '../services/storage';
+
 import {
   fetchEntrance,
   postPhoto,
   postPostcard,
+  postCheckValidPostcard,
 } from '../services/api';
 
 // import { saveItem } from './services/storage';
@@ -260,6 +263,9 @@ export function loadEntrance({ key }) {
   return async (dispatch) => {
     const entrance = await fetchEntrance({ key });
 
+    // 성공할 경우
+    saveItem('postcardKey', key);
+
     dispatch(setEntrance(entrance.data));
   };
 }
@@ -287,6 +293,20 @@ export function sendPostcard({ postcardValues, onClickNext }) {
       secretMessage,
     }));
     onClickNext();
+  };
+}
+
+export function checkValidPostcard({ key, secretMessage, onHandleClickPostcard }) {
+  return async () => {
+    const data = await postCheckValidPostcard({ key, secretMessage });
+
+    const { success } = data;
+
+    if (success) {
+      onHandleClickPostcard();
+    } else {
+      // TODO: 비밀 메시지가 틀렸다는 에러를 표시해줌.
+    }
   };
 }
 
