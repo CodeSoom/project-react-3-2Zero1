@@ -66,3 +66,26 @@ export async function postPostcard({
 
   return result.data;
 }
+
+export async function postCheckValidPostcard({
+  key,
+  secretMessage,
+}) {
+  const url = 'http://localhost:3000/check';
+  // const url = getDomain('check');
+
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Headers': '*',
+    },
+    body: JSON.stringify({
+      key,
+      secretMessage,
+    }),
+  });
+  const result = await response.json();
+
+  return result.data;
+}

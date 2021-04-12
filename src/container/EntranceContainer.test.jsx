@@ -82,7 +82,10 @@ describe('EntranceContainer', () => {
 
           fireEvent.click(getByText('엽서 확인하기'));
 
-          expect(onHandleClickPostcard).toBeCalled();
+          // TODO: 공개 || 비공개일 경우 각각 다른 action들이 발생하는 것에 대한 테스트 코드를 작성 해야함.
+          // expect(dispatch).toBeCalledWith({
+          //   type: 'application/',
+          // });
         });
       });
       context('without secretMessage over 5 and under 21', () => {
@@ -147,17 +150,34 @@ describe('EntranceContainer', () => {
         }));
       });
 
-      it('check secretMessage is valid', () => {
-        const { queryByText } = entranceRender();
+      context('when postcard check button is clicked', () => {
+        it('checks secretMessage is valid', () => {
+          const { queryByText } = entranceRender();
 
-        fireEvent.click(queryByText('엽서 확인하기'));
+          fireEvent.click(queryByText('엽서 확인하기'));
 
-        expect(dispatch).toBeCalledWith({
-          type: 'application/setInputFieldsError',
-          payload: {
-            type: 'secretMessage',
-            error: true,
-          },
+          expect(dispatch).toBeCalledWith({
+            type: 'application/setInputFieldsError',
+            payload: {
+              type: 'secretMessage',
+              error: true,
+            },
+          });
+        });
+        context('with valid secretMessage', () => {
+          it('request api to check input secretMessage is correct', () => {
+            const { queryByText } = entranceRender();
+
+            fireEvent.click(queryByText('엽서 확인하기'));
+
+            expect(dispatch).toBeCalledWith({
+              type: 'application/setInputFieldsError',
+              payload: {
+                type: 'secretMessage',
+                error: true,
+              },
+            });
+          });
         });
       });
     });

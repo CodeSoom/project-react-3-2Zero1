@@ -2,6 +2,7 @@ import {
   fetchEntrance,
   postPhoto,
   postPostcard,
+  postCheckValidPostcard,
 } from './api';
 
 import ENTRANCE from '../fixtures/entrance';
@@ -40,6 +41,7 @@ describe('api', () => {
       expect(photo).toBe(imageURL);
     });
   });
+
   describe('postPostcard', () => {
     const url = 'url';
     const secretMessage = 'secretMessage';
@@ -66,6 +68,46 @@ describe('api', () => {
       expect(postcard).toEqual({
         url,
         secretMessage,
+      });
+    });
+  });
+
+  describe('postCheckValidPostcard', () => {
+    context('when isPrivate is true', () => {
+      beforeEach(() => {
+        mockFetch({
+          data: {
+            success: true,
+          },
+        });
+      });
+
+      it('return success', async () => {
+        const postcard = await postCheckValidPostcard({
+          key: 'test',
+          secretMessage: 'secretMessage',
+        });
+
+        expect(postcard.success).toEqual(true);
+      });
+    });
+
+    context('when isPrivate is false', () => {
+      beforeEach(() => {
+        mockFetch({
+          data: {
+            success: true,
+          },
+        });
+      });
+
+      it('return success', async () => {
+        const postcard = await postCheckValidPostcard({
+          key: 'test',
+          secretMessage: '',
+        });
+
+        expect(postcard.success).toEqual(true);
       });
     });
   });

@@ -9,9 +9,12 @@ import EntranceWritePostcard from '../presentational/EntranceWritePostcard';
 import placeholders from '../text/placeholders';
 import errorMessages from '../text/errorMessages';
 
+import { loadItem } from '../services/storage';
+
 import {
   changeInputFieldValue,
   setInputFieldsError,
+  checkValidPostcard,
 } from '../state/slice';
 
 const Wrapper = styled.div(() => ({
@@ -67,9 +70,12 @@ export default function EntranceContainer({
         return;
       }
     }
-    // 서버 요청한 후에 private 이라면 key 값과 input값을 보내고 true false를 받는다. 실패했다면 에러 처리
-    // dispatch(loadPostcard());
-    onHandleClickPostcard();
+    const key = loadItem('postcardKey');
+    dispatch(checkValidPostcard({
+      key,
+      secretMessage: secretMessage.value,
+      onHandleClickPostcard,
+    }));
   }
 
   function handleChange(v) {
