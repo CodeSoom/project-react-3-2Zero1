@@ -1,8 +1,7 @@
-const getDomain = (path) => `http://ec2-52-78-19-244.ap-northeast-2.compute.amazonaws.com:3000/${path}`;
+// const getDomain = (path) => `http://ec2-52-78-19-244.ap-northeast-2.compute.amazonaws.com:3000/${path}`;
 
 export async function fetchEntrance({ key }) {
-  // const url = 'http://localhost:3000/entrance';
-  const url = getDomain('entrance');
+  const url = 'http://localhost:3000/entrance';
   const response = await fetch(url, {
     method: 'POST',
     headers: {
@@ -17,8 +16,8 @@ export async function fetchEntrance({ key }) {
 }
 
 export async function postPhoto({ file }) {
-  // const url = 'http://localhost:3000/photo';
-  const url = getDomain('photo');
+  const url = 'http://localhost:3000/photo';
+  // const url = getDomain('photo');
   const formData = new FormData();
   formData.append('photo', file);
 
@@ -43,8 +42,8 @@ export async function postPostcard({
   secretMessage,
   isPrivate,
 }) {
-  // const url = 'http://localhost:3000/write';
-  const url = getDomain('write');
+  const url = 'http://localhost:3000/write';
+  // const url = getDomain('write');
 
   const response = await fetch(url, {
     method: 'POST',
@@ -72,8 +71,8 @@ export async function postCheckValidPostcard({
   key,
   secretMessage,
 }) {
-  // const url = 'http://localhost:3000/check';
-  const url = getDomain('check');
+  const url = 'http://localhost:3000/check';
+  // const url = getDomain('check');
 
   const response = await fetch(url, {
     method: 'POST',
@@ -95,8 +94,8 @@ export async function fetchPostcard({
   key,
   secretMessage,
 }) {
-  // const url = 'http://localhost:3000/postcard';
-  const url = getDomain('postcard');
+  const url = 'http://localhost:3000/postcard';
+  // const url = getDomain('postcard');
 
   const response = await fetch(url, {
     method: 'POST',
