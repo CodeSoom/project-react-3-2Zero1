@@ -64,8 +64,6 @@ export default function EntranceContainer({
     dispatch(loadEntrance({ key: postcardKey }));
   }, []);
 
-  
-
   const { entrance: { secretMessage } } = inputFields;
 
   function handleCheckPostcardClick(v) {
@@ -101,7 +99,7 @@ export default function EntranceContainer({
     id: 'secretMessage',
     name: '',
     onChange: handleChange,
-  })
+  });
 
   return (
     <Wrapper>

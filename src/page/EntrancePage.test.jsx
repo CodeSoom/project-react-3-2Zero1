@@ -21,13 +21,12 @@ describe('EntrancePage', () => {
   const SENDER = entrance.sender;
 
   const dispatch = jest.fn();
-  
+
   beforeEach(() => {
     dispatch.mockClear();
     mockPush.mockClear();
     useDispatch.mockImplementation(() => dispatch);
   });
-
 
   function renderEntrance(location) {
     return render((

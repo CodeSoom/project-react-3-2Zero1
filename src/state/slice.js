@@ -57,15 +57,6 @@ const initialInputFields = {
   },
 };
 
-const postcard = {
-  isFrontPage: true,
-  sender: '',
-  receiver: '',
-  contents: '',
-  photoUrl: '',
-  photoMessage: '',
-};
-
 const { actions, reducer } = createSlice({
   name: 'application',
   initialState: {
@@ -78,7 +69,14 @@ const { actions, reducer } = createSlice({
       writtenCount: 0,
       movePage: false,
     },
-    postcard,
+    postcard: {
+      isFrontPage: true,
+      sender: '',
+      receiver: '',
+      contents: '',
+      photoUrl: '',
+      photoMessage: '',
+    },
   },
   reducers: {
     changeRadioChecked(state, { payload: value }) {
@@ -312,13 +310,13 @@ export function sendPostcard({ postcardValues, onClickNext }) {
   };
 }
 
-export function checkValidPostcard({ key, secretMessage, }) {
+export function checkValidPostcard({ key, secretMessage }) {
   return async (dispatch) => {
     const data = await postCheckValidPostcard({ key, secretMessage });
 
     if (data.success) {
       saveItem('secretMessage', secretMessage);
-      
+
       dispatch(admitPostcardAccess());
     } else {
       dispatch(setInputFieldsError({
@@ -344,7 +342,7 @@ export function loadPostcard({ key, secretMessage }) {
     dispatch(setPostcard({
       sender,
       receiver,
-      photoUrl:photo,
+      photoUrl: photo,
       contents,
       photoMessage,
     }));

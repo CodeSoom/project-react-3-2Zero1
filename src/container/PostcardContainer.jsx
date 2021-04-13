@@ -15,12 +15,12 @@ import Postcard from '../presentational/Postcard';
 export default function PostcardContainer({ onHandlePrivousClick }) {
   const key = loadItem('postcardKey');
   const secretMessage = loadItem('secretMessage');
-  
+
+  const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(loadPostcard({ key, secretMessage }));
   }, []);
-
-  const dispatch = useDispatch();
 
   const postcard = useSelector(get('postcard'));
 

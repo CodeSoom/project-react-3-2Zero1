@@ -49,7 +49,7 @@ export default function PreviewContainer({
     stampUrl: photo.value,
     photoMessage: photoMessage.value,
     secretMessage: secretMessage.value,
-    isPrivate: isPrivate,
+    isPrivate,
   };
 
   const showCompleteButton = true;

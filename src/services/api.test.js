@@ -122,7 +122,7 @@ describe('api', () => {
           photoUrl: 'photoUrl',
           contents: 'contents',
           photoMessage: 'photoMessage',
-        }
+        },
       });
     });
 

@@ -29,7 +29,6 @@ export default function EntranceCheckForm({
     onClick(v);
   }
 
-
   return (
     <Wrapper>
       {
