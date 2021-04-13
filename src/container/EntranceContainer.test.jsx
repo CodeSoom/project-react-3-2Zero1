@@ -117,7 +117,7 @@ describe('EntranceContainer', () => {
             }));
           });
 
-          it('shows ErrorMessage', () => {
+          it('calls setInputFieldsError', () => {
             const { getByText } = entranceRender();
             fireEvent.click(getByText('엽서 확인하기'));
             expect(dispatch).toBeCalledWith({
