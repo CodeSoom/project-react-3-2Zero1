@@ -327,7 +327,6 @@ describe('reducer', () => {
           },
         },
       };
-      
 
       const initialState = { inputFields };
 
@@ -488,14 +487,14 @@ describe('reducer', () => {
     });
     context('when response is success', () => {
       it('calls admitPostcardAccess', async () => {
-        postCheckValidPostcard.mockImplementation(() => Promise.resolve({success: true}));
+        postCheckValidPostcard.mockImplementation(() => Promise.resolve({ success: true }));
         const key = 'test';
         const secretMessage = 'secretMessage';
-  
+
         await store.dispatch(checkValidPostcard({ key, secretMessage }));
-  
+
         const actions = store.getActions();
-  
+
         expect(actions[0]).toEqual(admitPostcardAccess());
       });
     });
@@ -505,11 +504,11 @@ describe('reducer', () => {
         postCheckValidPostcard.mockImplementation(() => Promise.resolve({ success: false }));
         const key = 'test';
         const secretMessage = 'secretMessage';
-  
+
         await store.dispatch(checkValidPostcard({ key, secretMessage }));
-  
+
         const actions = store.getActions();
-  
+
         expect(actions[0]).toEqual(setInputFieldsError({
           page: 'entrance',
           type: 'secretMessage',

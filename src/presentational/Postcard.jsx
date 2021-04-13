@@ -19,7 +19,6 @@ export default function Postcard({
     sender,
     contents,
     photoMessage,
-    stampUrl,
     photoUrl,
   },
   isFrontPage,
