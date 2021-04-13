@@ -14,11 +14,7 @@ export async function postPostcard() {
   };
 }
 
-export async function postCheckValidPostcard() {
-  return {
-    success: true,
-  };
-}
+export const postCheckValidPostcard = jest.fn();
 
 export async function fetchPostcard() {
   return {

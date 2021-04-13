@@ -21,8 +21,13 @@ describe('EntrancePage', () => {
   const SENDER = entrance.sender;
 
   const dispatch = jest.fn();
+  
+  beforeEach(() => {
+    dispatch.mockClear();
+    mockPush.mockClear();
+    useDispatch.mockImplementation(() => dispatch);
+  });
 
-  useDispatch.mockImplementation(() => dispatch);
 
   function renderEntrance(location) {
     return render((
@@ -45,10 +50,7 @@ describe('EntrancePage', () => {
 
     expect(getByText(`${SENDER}님으로 부터 엽서가 도착했어요.`)).not.toBeNull();
 
-    fireEvent.click(getByText('엽서 확인하기'));
-
-    // TODO: 공개 || 비공개일 경우 각각 다른 action들이 발생하는 것에 대한 테스트 코드를 작성 해야함.
-    // expect(mockPush).toBeCalled();
+    expect(getByText('엽서 확인하기')).not.toBeNull();
 
     expect(getByText('다른 사람 엽서 보러가기')).not.toBeNull();
     expect(getByText('엽서 파기하기')).not.toBeNull();
@@ -83,6 +85,25 @@ describe('EntrancePage', () => {
       }));
 
       const { queryByText } = renderEntrance({ key: '발신자' });
+
+      expect(queryByText('엽서 작성하기')).toBeNull();
+    });
+  });
+
+  context('when pageMove is true', () => {
+    it('call history push with /postcard', () => {
+      useSelector.mockImplementation((selector) => selector({
+        entrance: {
+          ...entrance,
+          postcardCount: 0,
+          movePage: true,
+        },
+        inputFields,
+      }));
+
+      const { queryByText } = renderEntrance({ key: '발신자' });
+
+      expect(mockPush).toBeCalled();
 
       expect(queryByText('엽서 작성하기')).toBeNull();
     });

@@ -3,6 +3,7 @@ const entrance = {
   isPrivate: true,
   postcardCount: 4,
   writtenCount: 1000,
+  movePage: false,
 };
 
 export default entrance;

@@ -28,7 +28,6 @@ export default function Postcard({
   showCompleteButton,
   onHandleCompleteClick,
 }) {
-  console.log(receiver,"============");
   return (
     <PostcardLayout
       type="button"
