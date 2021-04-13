@@ -3,6 +3,7 @@ import {
   postPhoto,
   postPostcard,
   postCheckValidPostcard,
+  fetchPostcard,
 } from './api';
 
 import ENTRANCE from '../fixtures/entrance';
@@ -108,6 +109,32 @@ describe('api', () => {
         });
 
         expect(postcard.success).toEqual(true);
+      });
+    });
+  });
+
+  describe('setPostcard', () => {
+    beforeEach(() => {
+      mockFetch({
+        data: {
+          sender: 'sender',
+          receiver: 'receiver',
+          photoUrl: 'photoUrl',
+          contents: 'contents',
+          photoMessage: 'photoMessage',
+        }
+      });
+    });
+
+    it('returns postcard', async () => {
+      const postcard = await fetchPostcard({ key: test, secretMessage: 'secretMessage' });
+
+      expect(postcard).toEqual({
+        sender: 'sender',
+        receiver: 'receiver',
+        photoUrl: 'photoUrl',
+        contents: 'contents',
+        photoMessage: 'photoMessage',
       });
     });
   });

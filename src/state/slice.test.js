@@ -13,10 +13,13 @@ import reducer, {
   setEntrance,
   setWriteCompleteValues,
   resetPostcardInputFields,
+  setPostcard,
 
   loadEntrance,
   sendPhoto,
   sendPostcard,
+  checkValidPostcard,
+  loadPostcard,
 } from './slice';
 
 import entrance from '../fixtures/entrance';
@@ -87,7 +90,7 @@ describe('reducer', () => {
           sender: '',
           receiver: '',
           contents: '',
-          photoURL: '',
+          photoUrl: '',
           photoMessage: '',
         },
       };
@@ -320,6 +323,7 @@ describe('reducer', () => {
           },
         },
       };
+      
 
       const initialState = { inputFields };
 
@@ -367,6 +371,31 @@ describe('reducer', () => {
           },
         },
       });
+    });
+  });
+
+  describe('setPostcard', () => {
+    it('set postcard variables', () => {
+      const initialState = {
+        postcard: {
+          sender: '',
+          receiver: '',
+          photoUrl: '',
+          contents: '',
+          photoMessage: '',
+        },
+      };
+      const postcard = {
+        sender: 'sender',
+        receiver: 'receiver',
+        photoUrl: 'photoUrl',
+        contents: 'contents',
+        photoMessage: 'photoMessage',
+      };
+
+      const state = reducer(initialState, setPostcard(postcard));
+
+      expect(state.postcard).toEqual(postcard);
     });
   });
 
@@ -431,6 +460,46 @@ describe('reducer', () => {
       expect(actions[0]).toEqual(setWriteCompleteValues({
         url: 'url',
         secretMessage: 'secretMessage',
+      }));
+    });
+  });
+
+  describe('checkValidPostcard', () => {
+    beforeEach(() => {
+      store = mockStore({});
+    });
+
+    it('runs changeInputFieldValue', async () => {
+      const key = 'test';
+      const secretMessage = 'secretMessage';
+
+      const onHandleClickPostcard = jest.fn();
+
+      await store.dispatch(checkValidPostcard({ key, secretMessage, onHandleClickPostcard }));
+
+      expect(onHandleClickPostcard).toBeCalled();
+    });
+  });
+
+  describe('loadPostcard', () => {
+    beforeEach(() => {
+      store = mockStore({});
+    });
+
+    it('runs setPostcard', async () => {
+      const key = 'test';
+      const secretMessage = 'secretMessage';
+
+      await store.dispatch(loadPostcard({ key, secretMessage }));
+
+      const actions = store.getActions();
+
+      expect(actions[0]).toEqual(setPostcard({
+        sender: 'sender',
+        receiver: 'receiver',
+        photoUrl: 'photoUrl',
+        contents: 'contents',
+        photoMessage: 'photoMessage',
       }));
     });
   });

@@ -1,6 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { loadItem } from '../services/storage';
+
 import {
   flipPreviewPostcard,
   sendPostcard,
@@ -14,6 +16,8 @@ export default function PreviewContainer({
   checkValidAccess,
 }) {
   const dispatch = useDispatch();
+
+  const key = loadItem('postcardKey');
 
   const { writePageIndex, inputFields } = useSelector((state) => (
     {
@@ -37,7 +41,7 @@ export default function PreviewContainer({
 
   checkValidAccess(writePageIndex);
   const postcard = {
-    key: 'test', // TODO : 입장 페이지가 완료되면 key값을 받아 넣어주도록 변경해야함.
+    key, // TODO : 입장 페이지가 완료되면 key값을 받아 넣어주도록 변경해야함.
     sender: sender.value,
     receiver: receiver.value,
     contents: contents.value,
@@ -45,7 +49,7 @@ export default function PreviewContainer({
     stampUrl: photo.value,
     photoMessage: photoMessage.value,
     secretMessage: secretMessage.value,
-    isPrivate: isPrivate.value,
+    isPrivate: isPrivate,
   };
 
   const showCompleteButton = true;

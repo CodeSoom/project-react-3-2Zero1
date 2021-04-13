@@ -13,3 +13,19 @@ export async function postPostcard() {
     secretMessage: 'secretMessage',
   };
 }
+
+export async function postCheckValidPostcard() {
+  return {
+    success: true,
+  };
+}
+
+export async function fetchPostcard() {
+  return {
+    sender: 'sender',
+    receiver: 'receiver',
+    photo: 'photoUrl',
+    contents: 'contents',
+    photoMessage: 'photoMessage',
+  };
+}

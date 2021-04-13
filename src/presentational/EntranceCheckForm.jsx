@@ -23,25 +23,12 @@ const Information = styled.p(() => ({
 export default function EntranceCheckForm({
   isPrivate,
   onClick,
-  onChange,
-  field: {
-    value,
-    placeholder,
-    errorMessage,
-  },
+  field,
 }) {
   function handleClick(v) {
     onClick(v);
   }
 
-  const field = {
-    id: 'secretMessage',
-    name: '비밀 메시지',
-    value,
-    placeholder,
-    errorMessage,
-    onChange,
-  };
 
   return (
     <Wrapper>
@@ -55,7 +42,7 @@ export default function EntranceCheckForm({
       }
       <Button
         type="button"
-        onClick={() => handleClick(value)}
+        onClick={() => handleClick(field.value)}
       >
         엽서 확인하기
       </Button>

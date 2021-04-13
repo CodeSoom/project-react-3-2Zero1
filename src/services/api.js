@@ -16,7 +16,8 @@ export async function fetchEntrance({ key }) {
 }
 
 export async function postPhoto({ file }) {
-  const url = getDomain('photo');
+  const url = 'http://localhost:3000/photo';
+  // const url = getDomain('photo');
   const formData = new FormData();
   formData.append('photo', file);
 
@@ -28,7 +29,6 @@ export async function postPhoto({ file }) {
     body: formData,
   });
   const result = await response.json();
-
   return result.data.photo;
 }
 
@@ -37,14 +37,14 @@ export async function postPostcard({
   sender,
   receiver,
   contents,
-  photo,
+  photoUrl,
   photoMessage,
   secretMessage,
   isPrivate,
 }) {
   const url = 'http://localhost:3000/write';
   // const url = getDomain('write');
-
+  
   const response = await fetch(url, {
     method: 'POST',
     headers: {
@@ -56,7 +56,7 @@ export async function postPostcard({
       sender,
       receiver,
       contents,
-      photo,
+      photoUrl,
       photoMessage,
       secretMessage,
       isPrivate,
@@ -73,6 +73,29 @@ export async function postCheckValidPostcard({
 }) {
   const url = 'http://localhost:3000/check';
   // const url = getDomain('check');
+
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Headers': '*',
+    },
+    body: JSON.stringify({
+      key,
+      secretMessage,
+    }),
+  });
+  const result = await response.json();
+
+  return result.data;
+}
+
+export async function fetchPostcard({
+  key,
+  secretMessage,
+}) {
+  const url = 'http://localhost:3000/postcard';
+  // const url = getDomain('postcard');
 
   const response = await fetch(url, {
     method: 'POST',
