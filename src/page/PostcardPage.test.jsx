@@ -27,7 +27,7 @@ describe('PostcardPage', () => {
         sender: '보낸이',
         receiver: '받는이',
         contents: '이것은 내용입니다.',
-        photoURL: 'http://fpost.co.kr/board/data/editor/1905/af0187ebd1e86d0b3a359707fba988b3_1557538963_0631.jpg',
+        photoUrl: 'http://fpost.co.kr/board/data/editor/1905/af0187ebd1e86d0b3a359707fba988b3_1557538963_0631.jpg',
         photoMessage: 'ㄱ나니? 너와 그때 그시절.....',
       },
     }));

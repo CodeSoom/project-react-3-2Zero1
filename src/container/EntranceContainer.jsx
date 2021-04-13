@@ -6,8 +6,7 @@ import styled from '@emotion/styled';
 import EntranceCheckForm from '../presentational/EntranceCheckForm';
 import EntranceWritePostcard from '../presentational/EntranceWritePostcard';
 
-import placeholders from '../text/placeholders';
-import errorMessages from '../text/errorMessages';
+import { getField } from '../utils/utils';
 
 import { loadItem } from '../services/storage';
 
@@ -42,8 +41,8 @@ export default function EntranceContainer({
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(loadEntrance({ postcardKey }));
-  });
+    dispatch(loadEntrance({ key: postcardKey }));
+  }, []);
 
   const {
     entrance,
@@ -61,15 +60,12 @@ export default function EntranceContainer({
   } = entrance;
 
   const { entrance: { secretMessage } } = inputFields;
-  const { value, error } = secretMessage;
-
-  const placeholder = placeholders.secretMessage;
-  const errorMessage = errorMessages.secretMessage[error];
 
   function handleCheckPostcardClick(v) {
     if (isPrivate) {
       if (v.length < 5 || v.length > 21) {
         dispatch(setInputFieldsError({
+          page: 'entrance',
           type: 'secretMessage',
           error: true,
         }));
@@ -88,16 +84,18 @@ export default function EntranceContainer({
 
   function handleChange(v) {
     dispatch(changeInputFieldValue({
+      page: 'entrance',
       type: 'secretMessage',
       value: v,
     }));
   }
 
-  const field = {
-    value,
-    placeholder,
-    errorMessage,
-  };
+  const field = getField({
+    field: secretMessage,
+    id: 'secretMessage',
+    name: '',
+    onChange: handleChange,
+  })
 
   return (
     <Wrapper>
@@ -106,7 +104,6 @@ export default function EntranceContainer({
         isPrivate={isPrivate}
         field={field}
         onClick={handleCheckPostcardClick}
-        onChange={handleChange}
       />
       <EntranceWritePostcard
         sender={sender}

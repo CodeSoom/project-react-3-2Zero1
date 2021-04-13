@@ -7,6 +7,7 @@ import {
   postPhoto,
   postPostcard,
   postCheckValidPostcard,
+  fetchPostcard,
 } from '../services/api';
 
 // import { saveItem } from './services/storage';
@@ -61,7 +62,7 @@ const postcard = {
   sender: '',
   receiver: '',
   contents: '',
-  photoURL: '',
+  photoUrl: '',
   photoMessage: '',
 };
 
@@ -150,15 +151,12 @@ const { actions, reducer } = createSlice({
       };
     },
     flipPostcard(state) {
-      const {
-        postcard: {
-          isFrontPage,
-        },
-      } = state;
-
+      const { postcard } = state;
+      const { isFrontPage } = postcard;
       return {
         ...state,
         postcard: {
+          ...postcard,
           isFrontPage: !isFrontPage,
         },
       };
@@ -242,6 +240,15 @@ const { actions, reducer } = createSlice({
         },
       };
     },
+    setPostcard(state, { payload: value }) {
+      return {
+        ...state,
+        postcard: {
+          ...state.postcard,
+          ...value,
+        },
+      };
+    },
   },
 });
 
@@ -257,6 +264,7 @@ export const {
   setEntrance,
   setWriteCompleteValues,
   resetPostcardInputFields,
+  setPostcard,
 } = actions;
 
 export function loadEntrance({ key }) {
@@ -273,7 +281,6 @@ export function loadEntrance({ key }) {
 export function sendPhoto({ file }) {
   return async (dispatch) => {
     const photo = await postPhoto({ file });
-
     dispatch(changeInputFieldValue({
       page: 'write',
       type: 'photo',
@@ -285,7 +292,6 @@ export function sendPhoto({ file }) {
 export function sendPostcard({ postcardValues, onClickNext }) {
   return async (dispatch) => {
     const data = await postPostcard(postcardValues);
-
     const { url, secretMessage } = data;
     // TODO: dispatch를 이용하여 데이터를 작성 완료 페이지를 위한 상태를 넣어줌.
     dispatch(setWriteCompleteValues({
@@ -303,10 +309,30 @@ export function checkValidPostcard({ key, secretMessage, onHandleClickPostcard }
     const { success } = data;
 
     if (success) {
+      saveItem('secretMessage', secretMessage);
       onHandleClickPostcard();
-    } else {
-      // TODO: 비밀 메시지가 틀렸다는 에러를 표시해줌.
     }
+  };
+}
+
+export function loadPostcard({ key, secretMessage }) {
+  return async (dispatch) => {
+    const data = await fetchPostcard({ key, secretMessage });
+    const {
+      sender,
+      receiver,
+      photo,
+      contents,
+      photoMessage,
+    } = data;
+    // TODO: dispatch를 이용하여 데이터를 작성 완료 페이지를 위한 상태를 넣어줌.
+    dispatch(setPostcard({
+      sender,
+      receiver,
+      photoUrl:photo,
+      contents,
+      photoMessage,
+    }));
   };
 }
 

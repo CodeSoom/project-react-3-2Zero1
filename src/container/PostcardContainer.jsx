@@ -29,7 +29,6 @@ export default function PostcardContainer({ onHandlePrivousClick }) {
   function handleClickPage() {
     dispatch(flipPostcard());
   }
-  console.log(postcard);
   return (
     <Postcard
       postcard={postcard}

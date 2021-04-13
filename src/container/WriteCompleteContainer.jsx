@@ -61,7 +61,7 @@ export default function WriteCompleteContainer({
       },
     },
   } = inputFields;
-  const host = 'localhost:3000/entrance/';
+  const host = 'localhost:8080?key=';
 
   const secretMessageText = secretMessage ? `\n\n비밀 메시지: ${secretMessage}` : '';
 
