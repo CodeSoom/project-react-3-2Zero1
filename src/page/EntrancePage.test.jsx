@@ -102,7 +102,7 @@ describe('EntrancePage', () => {
 
       const { queryByText } = renderEntrance({ key: '발신자' });
 
-      expect(mockPush).toBeCalledWith('/postcard');
+      expect(mockPush).toBeCalled();
 
       expect(queryByText('엽서 작성하기')).toBeNull();
     });
