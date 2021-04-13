@@ -28,6 +28,7 @@ export default function Postcard({
   showCompleteButton,
   onHandleCompleteClick,
 }) {
+  console.log(receiver,"============");
   return (
     <PostcardLayout
       type="button"
@@ -45,7 +46,7 @@ export default function Postcard({
             sender={sender}
             receiver={receiver}
             contents={contents}
-            stampUrl={stampUrl}
+            stampUrl={photoUrl}
           />
         )
           : (
