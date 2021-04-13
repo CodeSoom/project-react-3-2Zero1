@@ -62,7 +62,7 @@ export default function EntranceContainer({
     }
 
     dispatch(loadEntrance({ key: postcardKey }));
-  }, []);
+  }, [movePage]);
 
   const { entrance: { secretMessage } } = inputFields;
 
