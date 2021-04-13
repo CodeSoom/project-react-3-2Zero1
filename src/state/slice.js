@@ -76,9 +76,9 @@ const { actions, reducer } = createSlice({
       isPrivate: false,
       postcardCount: 5,
       writtenCount: 0,
+      movePage: false,
     },
     postcard,
-
   },
   reducers: {
     changeRadioChecked(state, { payload: value }) {
@@ -249,6 +249,15 @@ const { actions, reducer } = createSlice({
         },
       };
     },
+    admitPostcardAccess(state) {
+      return {
+        ...state,
+        entrance: {
+          ...state.entrance,
+          movePage: true,
+        },
+      };
+    },
   },
 });
 
@@ -265,6 +274,7 @@ export const {
   setWriteCompleteValues,
   resetPostcardInputFields,
   setPostcard,
+  admitPostcardAccess,
 } = actions;
 
 export function loadEntrance({ key }) {
@@ -302,15 +312,20 @@ export function sendPostcard({ postcardValues, onClickNext }) {
   };
 }
 
-export function checkValidPostcard({ key, secretMessage, onHandleClickPostcard }) {
-  return async () => {
+export function checkValidPostcard({ key, secretMessage, }) {
+  return async (dispatch) => {
     const data = await postCheckValidPostcard({ key, secretMessage });
 
-    const { success } = data;
-
-    if (success) {
+    if (data.success) {
       saveItem('secretMessage', secretMessage);
-      onHandleClickPostcard();
+      
+      dispatch(admitPostcardAccess());
+    } else {
+      dispatch(setInputFieldsError({
+        page: 'entrance',
+        type: 'secretMessage',
+        error: true,
+      }));
     }
   };
 }

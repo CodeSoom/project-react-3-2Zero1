@@ -40,10 +40,6 @@ export default function EntranceContainer({
 }) {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(loadEntrance({ key: postcardKey }));
-  }, []);
-
   const {
     entrance,
     inputFields,
@@ -57,7 +53,18 @@ export default function EntranceContainer({
     postcardCount,
     writtenCount,
     isPrivate,
+    movePage,
   } = entrance;
+
+  useEffect(() => {
+    if (movePage) {
+      onHandleClickPostcard();
+    }
+
+    dispatch(loadEntrance({ key: postcardKey }));
+  }, []);
+
+  
 
   const { entrance: { secretMessage } } = inputFields;
 
@@ -78,7 +85,6 @@ export default function EntranceContainer({
     dispatch(checkValidPostcard({
       key,
       secretMessage: secretMessage.value,
-      onHandleClickPostcard,
     }));
   }
 

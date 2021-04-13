@@ -14,6 +14,7 @@ import reducer, {
   setWriteCompleteValues,
   resetPostcardInputFields,
   setPostcard,
+  admitPostcardAccess,
 
   loadEntrance,
   sendPhoto,
@@ -21,6 +22,8 @@ import reducer, {
   checkValidPostcard,
   loadPostcard,
 } from './slice';
+
+import { postCheckValidPostcard } from '../services/api';
 
 import entrance from '../fixtures/entrance';
 
@@ -84,6 +87,7 @@ describe('reducer', () => {
           isPrivate: false,
           postcardCount: 5,
           writtenCount: 0,
+          movePage: false,
         },
         postcard: {
           isFrontPage: true,
@@ -399,6 +403,20 @@ describe('reducer', () => {
     });
   });
 
+  describe('admitPostcardAccess', () => {
+    it('set movePage with true in Entrance', () => {
+      const initialState = {
+        entrance: {
+          movePage: false,
+        },
+      };
+
+      const state = reducer(initialState, admitPostcardAccess());
+
+      expect(state.entrance.movePage).toEqual(true);
+    });
+  });
+
   describe('loadEntrance', () => {
     beforeEach(() => {
       store = mockStore({});
@@ -468,16 +486,36 @@ describe('reducer', () => {
     beforeEach(() => {
       store = mockStore({});
     });
+    context('when response is success', () => {
+      it('calls admitPostcardAccess', async () => {
+        postCheckValidPostcard.mockImplementation(() => Promise.resolve({success: true}));
+        const key = 'test';
+        const secretMessage = 'secretMessage';
+  
+        await store.dispatch(checkValidPostcard({ key, secretMessage }));
+  
+        const actions = store.getActions();
+  
+        expect(actions[0]).toEqual(admitPostcardAccess());
+      });
+    });
 
-    it('runs changeInputFieldValue', async () => {
-      const key = 'test';
-      const secretMessage = 'secretMessage';
-
-      const onHandleClickPostcard = jest.fn();
-
-      await store.dispatch(checkValidPostcard({ key, secretMessage, onHandleClickPostcard }));
-
-      expect(onHandleClickPostcard).toBeCalled();
+    context('when response is not success', () => {
+      it('call setInputFieldsError', async () => {
+        postCheckValidPostcard.mockImplementation(() => Promise.resolve({ success: false }));
+        const key = 'test';
+        const secretMessage = 'secretMessage';
+  
+        await store.dispatch(checkValidPostcard({ key, secretMessage }));
+  
+        const actions = store.getActions();
+  
+        expect(actions[0]).toEqual(setInputFieldsError({
+          page: 'entrance',
+          type: 'secretMessage',
+          error: true,
+        }));
+      });
     });
   });
 
