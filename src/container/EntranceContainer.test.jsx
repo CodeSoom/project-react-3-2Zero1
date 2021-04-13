@@ -61,6 +61,7 @@ describe('EntranceContainer', () => {
 
       expect(dispatch).toBeCalledWith({
         payload: {
+          page: 'entrance',
           type: 'secretMessage',
           value: 'hello',
         },
@@ -106,12 +107,28 @@ describe('EntranceContainer', () => {
           expect(dispatch).toBeCalledWith({
             type: 'application/setInputFieldsError',
             payload: {
+              page: 'entrance',
               type: 'secretMessage',
               error: true,
             },
           });
         });
       });
+    });
+  });
+
+  context('when postcard is not private', () => {
+    it('does not show secretMessage input', () => {
+      useSelector.mockImplementation((selector) => selector({
+        entrance: {
+          ...entrance,
+          isPrivate: false,
+        },
+        inputFields,
+      }));
+      const { queryByPlaceholderText } = entranceRender();
+
+      expect(queryByPlaceholderText('5 ~ 20자')).toBeNull();
     });
   });
 
@@ -141,65 +158,6 @@ describe('EntranceContainer', () => {
         });
       });
     });
-
-    context('with isPrivate is true', () => {
-      beforeEach(() => {
-        useSelector.mockImplementation((selector) => selector({
-          entrance: {
-            ...entrance,
-            isPrivate: true,
-          },
-          inputFields,
-        }));
-      });
-
-      context('when postcard check button is clicked', () => {
-        it('checks secretMessage is valid', () => {
-          const { queryByText } = entranceRender();
-
-          fireEvent.click(queryByText('엽서 확인하기'));
-
-          expect(dispatch).toBeCalledWith({
-            type: 'application/setInputFieldsError',
-            payload: {
-              type: 'secretMessage',
-              error: true,
-            },
-          });
-        });
-        context('with valid secretMessage', () => {
-          it('request api to check input secretMessage is correct', () => {
-            const { queryByText } = entranceRender();
-
-            fireEvent.click(queryByText('엽서 확인하기'));
-
-            expect(dispatch).toBeCalledWith({
-              type: 'application/setInputFieldsError',
-              payload: {
-                type: 'secretMessage',
-                error: true,
-              },
-            });
-          });
-        });
-      });
-    });
-  });
-
-  it('shows check postcard button', () => {
-    const { getByText } = entranceRender();
-
-    expect(getByText('엽서 확인하기')).not.toBeNull();
-
-    // 공개 형이라면 바로 로드
-    // 비공개 형이라면 체크한 후에 로드
-    // expect(dispatch).toBeCalledWith({
-    //   type: 'application/changeInputFieldValue',
-    //   payload: {
-    //     type: 'secretMessage',
-    //     error: 'default'
-    //   },
-    // });
   });
 
   context('when postcardCount is 0', () => {
