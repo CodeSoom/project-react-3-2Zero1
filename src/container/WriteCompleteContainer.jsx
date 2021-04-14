@@ -19,11 +19,6 @@ const Title = styled.div(() => ({
   textAlign: 'center',
 }));
 
-const Text = styled.div(() => ({
-  textAlign: 'center',
-  margin: '10px 0',
-}));
-
 const CenterBox = styled.div(() => ({
   textAlign: 'center',
 }));
@@ -68,12 +63,12 @@ export default function WriteCompleteContainer({
         type="button"
         onClick={handleClickHome}
       >
-        홈로고
+        홈
       </Button>
       <Title>엽서 제작이 완료 되었습니다.</Title>
-      <Text>밑의 버튼을 클릭하면 전송 메시지가 복사됩니다.</Text>
-      <Text>카카오톡이나 문자 메시지에 붙혀 넣고 전송해보세요!</Text>
-      <Text>반드시 전송 메시지를 복사해주세요. 페이지를 이탈 시 해당 엽서는 찾을 수 없습니다.</Text>
+      <Information>밑의 버튼을 클릭하면 전송 메시지가 복사됩니다.</Information>
+      <Information>카카오톡이나 문자 메시지에 붙혀 넣고 전송해보세요!</Information>
+      <Information>반드시 전송 메시지를 복사해주세요. 페이지를 이탈 시 해당 엽서는 찾을 수 없습니다.</Information>
       <CenterBox>
         <CopyToClipboard text={copyText}>
           <Button type="button">

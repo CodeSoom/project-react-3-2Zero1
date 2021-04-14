@@ -5,7 +5,10 @@ import styled from '@emotion/styled';
 import ImagePart from './ImagePart';
 import InputPart from './InputPart';
 
-import { Button } from '../style/commonCss';
+import {
+  NextButton,
+  PreviousButton,
+} from '../style/commonCss';
 
 const Title = styled.span(() => ({
   position: 'absolute',
@@ -14,14 +17,6 @@ const Title = styled.span(() => ({
   textAlign: 'center',
   fontSize: '20px',
   transform: 'translateX(-50%)',
-}));
-
-const CompleteButton = styled.button(() => ({
-  position: 'absolute',
-  right: '10px',
-  top: '10px',
-  padding: '5px 8px',
-  fontSize: '16px',
 }));
 
 export default function PhotoForm({
@@ -39,18 +34,18 @@ export default function PhotoForm({
 
   return (
     <>
-      <Button
+      <PreviousButton
         type="button"
         onClick={handlePreviewClick}
       >
         이전
-      </Button>
-      <CompleteButton
+      </PreviousButton>
+      <NextButton
         type="button"
         onClick={onHandleNextClick}
       >
         미리보기
-      </CompleteButton>
+      </NextButton>
       <Title>이미지 첨부</Title>
       <ImagePart
         photo={photo}

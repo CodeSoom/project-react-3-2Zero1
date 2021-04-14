@@ -8,7 +8,7 @@ import PhotoFormContainer from '../container/PhotoFormContainer';
 import PreviewContainer from '../container/PreviewContainer';
 import WriteCompleteContainer from '../container/WriteCompleteContainer';
 
-import DefaultLayout from '../style/DefaultLayout';
+import { DefaultLayout } from '../style/commonCss';
 
 import {
   increaseWritePageIndex,

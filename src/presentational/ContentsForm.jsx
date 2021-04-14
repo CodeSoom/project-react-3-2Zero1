@@ -1,31 +1,17 @@
 import React from 'react';
 
 import styled from '@emotion/styled';
-import { Button } from '../style/commonCss';
+import { Error, NextButton, PreviousButton } from '../style/commonCss';
 
-const Title = styled.span(() => ({
-  position: 'absolute',
-  top: '10px',
-  left: '50%',
-  textAlign: 'center',
-  fontSize: '20px',
-  transform: 'translateX(-50%)',
-}));
-
-const CompleteButton = styled.button(() => ({
-  position: 'absolute',
-  right: '10px',
-  top: '10px',
-  padding: '5px 8px',
-  fontSize: '16px',
-}));
-
-const Error = styled.p(() => ({
-  marginTop: '2px',
-  fontSize: '12px',
-  color: 'red',
-  marginLeft: '20px',
-}));
+const Title = styled.span(() => (
+  {
+    position: 'absolute',
+    left: '50%',
+    textAlign: 'center',
+    fontSize: '20px',
+    transform: 'translateX(-50%)',
+  }
+));
 
 const Contents = styled.textarea(({ error }) => ({
   display: 'block',
@@ -59,18 +45,18 @@ export default function ContentsForm({
   return (
     <>
       <Title>내용 작성</Title>
-      <Button
+      <PreviousButton
         type="button"
         onClick={onClickPrevious}
       >
         이전
-      </Button>
-      <CompleteButton
+      </PreviousButton>
+      <NextButton
         type="button"
         onClick={handleClick}
       >
         다음
-      </CompleteButton>
+      </NextButton>
       <Contents
         value={value}
         placeholder={placeholder}
