@@ -41,3 +41,7 @@ ul {
   border: none;
   border-radius: 15px;
 }
+
+.inputClass{
+  border: 1px solid #d8d8d8
+};
