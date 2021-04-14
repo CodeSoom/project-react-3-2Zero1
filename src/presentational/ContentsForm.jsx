@@ -1,7 +1,7 @@
 import React from 'react';
 
 import styled from '@emotion/styled';
-import Button from '../style/Button';
+import { Button } from '../style/commonCss';
 
 const Title = styled.span(() => ({
   position: 'absolute',

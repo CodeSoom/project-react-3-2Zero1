@@ -4,9 +4,7 @@ import styled from '@emotion/styled';
 
 import InputPart from './InputPart';
 
-import Button from '../style/Button';
-
-import Information from '../style/Information';
+import { Button, Information } from '../style/commonCss';
 
 const Wrapper = styled.div(() => ({
   margin: '10px 0',

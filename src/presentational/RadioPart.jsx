@@ -2,9 +2,7 @@ import React from 'react';
 
 import styled from '@emotion/styled';
 
-import RadioButton from './RadioButton';
-
-import Information from '../style/Information';
+import { Information } from '../style/commonCss';
 
 const Wrapper = styled.div(() => ({
   textAlign: 'center',

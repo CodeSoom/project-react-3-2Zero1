@@ -5,7 +5,7 @@ import styled from '@emotion/styled';
 import PostcardFront from './PostcardFront';
 import PostcardBack from './PostcardBack';
 
-import Button from '../style/Button';
+import { Button } from '../style/commonCss';
 
 const PostcardLayout = styled.div(() => ({
   position: 'relative',

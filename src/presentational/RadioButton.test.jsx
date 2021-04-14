@@ -2,7 +2,7 @@ import React from 'react';
 
 import { fireEvent, render } from '@testing-library/react';
 
-import RadioButton from './RadioButton';
+import { Button } from '../style/commonCss';
 
 test('RadioButton', () => {
   const onChange = jest.fn();

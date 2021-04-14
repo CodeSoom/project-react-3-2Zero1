@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 
 import styled from '@emotion/styled';
 
-import Information from '../style/Information';
+import { Information } from '../style/Information';
 
 const Photo = styled.img(() => ({
   display: 'block',

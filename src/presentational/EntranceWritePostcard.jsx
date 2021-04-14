@@ -2,9 +2,7 @@ import React from 'react';
 
 import styled from '@emotion/styled';
 
-import Button from '../style/Button';
-
-import Information from '../style/Information';
+import { Button, Information } from '../style/commonCss';
 
 const Wrapper = styled.div(() => ({
   margin: '20px 0',
