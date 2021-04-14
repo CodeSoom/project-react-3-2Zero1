@@ -6,6 +6,7 @@ import InputPart from './InputPart';
 import RadioPart from './RadioPart';
 
 import Information from '../style/Information';
+import Button from '../style/Button';
 
 const Title = styled.span(() => ({
   position: 'absolute',
@@ -14,12 +15,6 @@ const Title = styled.span(() => ({
   textAlign: 'center',
   fontSize: '20px',
   transform: 'translateX(-50%)',
-}));
-
-const Button = styled.button(() => ({
-  fontSize: '16px',
-  margin: '10px',
-  padding: '5px 8px',
 }));
 
 const CompleteButton = styled.button(() => ({
