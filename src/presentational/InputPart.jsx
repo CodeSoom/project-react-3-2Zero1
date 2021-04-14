@@ -44,6 +44,7 @@ export default function InputPart({
       <Input
         id={id}
         type="text"
+        className="inputClass"
         value={value}
         placeholder={placeholder}
         onChange={handleChange}
