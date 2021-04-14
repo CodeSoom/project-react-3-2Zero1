@@ -4,6 +4,8 @@ import styled from '@emotion/styled';
 
 import RadioButton from './RadioButton';
 
+import Information from '../style/Information';
+
 const Wrapper = styled.div(() => ({
   textAlign: 'center',
 }));
@@ -11,12 +13,6 @@ const Wrapper = styled.div(() => ({
 const Label = styled.div(() => ({
   margin: '20px 20px 5px',
   fontSize: '20px',
-}));
-
-const Information = styled.p(() => ({
-  margin: '0 15px',
-  fontSize: '12px',
-  color: 'gray',
 }));
 
 export default function RadioPart({
