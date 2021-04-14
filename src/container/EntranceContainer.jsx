@@ -25,7 +25,6 @@ const Wrapper = styled.div(() => ({
 
 const Title = styled.div(() => ({
   fontSize: '20px',
-  color: '#585858',
 }));
 
 export default function EntranceContainer({
@@ -109,7 +108,7 @@ export default function EntranceContainer({
         postcardCount={postcardCount}
         onHandleClickWritePostcard={onHandleClickWritePostcard}
       />
-      <div>{`현재 까지 ${writtenCount}명의 엽서가 작성 되었습니다.`}</div>
+      <p>{`현재 까지 ${writtenCount}명의 엽서가 작성 되었습니다.`}</p>
       <Button type="button">다른 사람 엽서 보러가기</Button>
       <Button type="button">엽서 파기하기</Button>
     </Wrapper>
