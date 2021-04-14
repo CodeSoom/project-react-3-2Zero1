@@ -26,8 +26,8 @@ body, input, button, textarea, select {
 	padding: 15px;
 	border: 15px solid transparent;
 	background: linear-gradient(#FAFAFA, #FAFAFA) padding-box,
-	            repeating-linear-gradient(-45deg, red 0, red 12.5%, #ffffff 0, #ffffff 25%, 
-	              #58a 0, #58a 37.5%, #ffffff 0, #ffffff 50%) 0 / 6em 6em;
+	            repeating-linear-gradient(-45deg, red 0, red 12.5%, #FAFAFA 0, #FAFAFA 25%, 
+	              #58a 0, #58a 37.5%, #FAFAFA 0, #FAFAFA 50%) 0 / 6em 6em;
 	max-width: 350px;
 	font: 100%/1.6 Baskerville, Palatino, serif;
 }
