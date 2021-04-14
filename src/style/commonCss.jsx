@@ -8,39 +8,39 @@ export const Button = styled.button({
   borderRadius: '15px',
 });
 
-export const Information = styled.p(() => ({
+export const Information = styled.p({
   margin: '15px 15px',
   fontSize: '10px',
   color: 'gray',
   textAlign: 'center',
-}));
+});
 
-export const WarningInformation = styled.p(() => ({
+export const WarningInformation = styled.p({
   margin: '15px 15px',
   fontSize: '10px',
   color: 'red',
   textAlign: 'center',
-}));
+});
 
-export const Error = styled.p(() => ({
+export const Error = styled.p({
   marginTop: '2px',
   fontSize: '8px',
   color: 'red',
   marginLeft: '20px',
-}));
+});
 
-export const DefaultLayout = styled.div(() => ({
+export const DefaultLayout = styled.div({
   position: 'relative',
   width: '100%',
   height: '100%',
-}));
+});
 
-export const Text = styled.div(() => ({
+export const Text = styled.div({
   textAlign: 'center',
   marginTop: '10px',
-}));
+});
 
-export const NextButton = styled.button(() => ({
+export const NextButton = styled.button({
   background: 'transparent',
   border: 'none',
   position: 'absolute',
@@ -49,13 +49,13 @@ export const NextButton = styled.button(() => ({
   fontSize: '12px',
   fontWeight: 'bold',
   padding: '5px 8px',
-}));
+});
 
-export const PreviousButton = styled.button(() => ({
+export const PreviousButton = styled.button({
   background: 'transparent',
   border: 'none',
   fontSize: '12px',
   fontWeight: 'bold',
   padding: '5px 8px',
   margin: '9px 0 0 9px',
-}));
+});
