@@ -7,7 +7,7 @@ import styled from '@emotion/styled';
 
 import { resetPostcardInputFields } from '../state/slice';
 
-import { Button, Information } from '../style/commonCss';
+import { Button, Information, PreviousButton } from '../style/commonCss';
 
 const Wrapper = styled.div(() => ({
   margin: '0 20px',
@@ -59,12 +59,12 @@ export default function WriteCompleteContainer({
   }
   return (
     <Wrapper>
-      <Button
+      <PreviousButton
         type="button"
         onClick={handleClickHome}
       >
-        홈
-      </Button>
+        홈으로
+      </PreviousButton>
       <Title>엽서 제작이 완료 되었습니다.</Title>
       <Information>밑의 버튼을 클릭하면 전송 메시지가 복사됩니다.</Information>
       <Information>카카오톡이나 문자 메시지에 붙혀 넣고 전송해보세요!</Information>

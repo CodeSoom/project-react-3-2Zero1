@@ -24,7 +24,7 @@ const Wrapper = styled.div(() => ({
 }));
 
 const Title = styled.div(() => ({
-  fontSize: '20px',
+  fontSize: '24px',
 }));
 
 export default function EntranceContainer({
