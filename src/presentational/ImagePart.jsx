@@ -2,29 +2,20 @@ import React, { useRef } from 'react';
 
 import styled from '@emotion/styled';
 
-import { Information } from '../style/commonCss';
+import { Information, Error } from '../style/commonCss';
 
 const Photo = styled.img(() => ({
   display: 'block',
   width: '95%',
-  height: '60%',
   margin: '0 auto 0 auto',
 }));
 
 const DefaultImage = styled.div(() => ({
   width: '90%',
-  height: '60%',
   textAlign: 'center',
   margin: '10px auto 0',
-  paddingTop: '50%',
-  border: '1px solid #f9f9f9',
-}));
-
-const Error = styled.p(() => ({
-  marginTop: '2px',
-  fontSize: '12px',
-  color: 'red',
-  marginLeft: '20px',
+  padding: '50% 0',
+  border: '1px solid gray',
 }));
 
 export default function ImagePart({

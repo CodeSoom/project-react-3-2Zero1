@@ -2,24 +2,13 @@ import React from 'react';
 
 import styled from '@emotion/styled';
 
-const CompleteButton = styled.button(() => ({
-  position: 'absolute',
-  right: '10px',
-  top: '10px',
-  fontSize: '16px',
-  padding: '5px 8px',
-}));
+import { Text, NextButton } from '../style/commonCss';
 
 const Photo = styled.img(() => ({
   display: 'block',
   width: '95%',
   height: '90%',
   margin: '0 auto 0 auto',
-}));
-
-const Text = styled.div(() => ({
-  textAlign: 'center',
-  marginTop: '10px',
 }));
 
 export default function PostcardBack({
@@ -32,12 +21,12 @@ export default function PostcardBack({
     <div>
       {
         showCompleteButton ? (
-          <CompleteButton
+          <NextButton
             type="button"
             onClick={onHandleCompleteClick}
           >
             완료
-          </CompleteButton>
+          </NextButton>
         ) : null
       }
       <Photo src={photoUrl} alt="photoImage" />
