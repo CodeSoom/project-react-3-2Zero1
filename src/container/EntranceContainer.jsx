@@ -17,6 +17,8 @@ import {
   loadEntrance,
 } from '../state/slice';
 
+import Button from '../style/Button';
+
 const Wrapper = styled.div(() => ({
   textAlign: 'center',
 }));
@@ -24,12 +26,6 @@ const Wrapper = styled.div(() => ({
 const Title = styled.div(() => ({
   fontSize: '20px',
   color: '#585858',
-}));
-
-const Button = styled.button(() => ({
-  fontSize: '16px',
-  margin: '10px',
-  padding: '5px 8px',
 }));
 
 export default function EntranceContainer({

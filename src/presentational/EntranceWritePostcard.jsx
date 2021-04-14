@@ -2,20 +2,16 @@ import React from 'react';
 
 import styled from '@emotion/styled';
 
+import Button from '../style/Button';
+
 const Wrapper = styled.div(() => ({
   margin: '20px 0',
-}));
-
-const Button = styled.button(() => ({
-  fontSize: '16px',
-  margin: '10px',
-  padding: '5px 8px',
 }));
 
 const Information = styled.p(() => ({
   margin: '0 15px',
   fontSize: '12px',
-  color: 'gray',
+  color: '#A4A4A4',
 }));
 
 export default function EntranceWritePostcard({
