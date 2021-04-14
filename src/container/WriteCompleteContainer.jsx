@@ -45,7 +45,7 @@ export default function WriteCompleteContainer({
       },
     },
   } = inputFields;
-  const host = 'localhost:8080?key=';
+  const host = 'http://zero1s.shop/?key=';
 
   const secretMessageText = secretMessage ? `\n\n비밀 메시지: ${secretMessage}` : '';
 
