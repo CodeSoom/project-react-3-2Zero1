@@ -17,7 +17,7 @@ import {
   loadEntrance,
 } from '../state/slice';
 
-import Button from '../style/Button';
+import { Button } from '../style/commonCss';
 
 const Wrapper = styled.div(() => ({
   textAlign: 'center',

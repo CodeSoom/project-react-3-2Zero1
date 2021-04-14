@@ -5,7 +5,7 @@ import styled from '@emotion/styled';
 import ImagePart from './ImagePart';
 import InputPart from './InputPart';
 
-import Button from '../style/Button';
+import { Button } from '../style/commonCss';
 
 const Title = styled.span(() => ({
   position: 'absolute',
