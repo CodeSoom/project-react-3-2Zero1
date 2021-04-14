@@ -8,6 +8,7 @@ import styled from '@emotion/styled';
 import { resetPostcardInputFields } from '../state/slice';
 
 import Information from '../style/Information';
+import Button from '../style/Button';
 
 const Wrapper = styled.div(() => ({
   margin: '0 20px',
@@ -26,12 +27,6 @@ const Text = styled.div(() => ({
 
 const CenterBox = styled.div(() => ({
   textAlign: 'center',
-}));
-
-const Button = styled.button(() => ({
-  fontSize: '16px',
-  margin: '10px',
-  padding: '5px 8px',
 }));
 
 export default function WriteCompleteContainer({
