@@ -1,6 +1,5 @@
-const isProductVersion = true;
-
-const getDomain = (path) => `${isProductVersion ? 'http://ec2-52-78-19-244.ap-northeast-2.compute.amazonaws.com:3000' : 'http://localhost:3000'}/${path}`;
+const getDomain = (path) => `http://ec2-52-78-19-244.ap-northeast-2.compute.amazonaws.com:3000/${path}`;
+// 'http://localhost:3000'
 
 export async function fetchEntrance({ key }) {
   const url = getDomain('entrance');
