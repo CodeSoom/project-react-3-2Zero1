@@ -4,7 +4,10 @@
   box-sizing: border-box;
 }
 
-html, body, #app { height:100% }
+html, body, #app {
+  height: 100%;
+  background: #ffffff;
+}
 
 body {
   font-size: 16px;
@@ -12,14 +15,30 @@ body {
   background: #202020;
   color: #FFFFFF;
   word-break: keep-all;
-  max-width: 800px;
+  max-width: 350px;
   margin: 0 auto 0 auto;
 }
 
 body, input, button, textarea, select {
   font-family: 'Spoqa Han Sans Neo';
 }
+#app {
+	padding: 15px;
+	border: 15px solid transparent;
+	background: linear-gradient(#FAFAFA, #FAFAFA) padding-box,
+	            repeating-linear-gradient(-45deg, red 0, red 12.5%, #ffffff 0, #ffffff 25%, 
+	              #58a 0, #58a 37.5%, #ffffff 0, #ffffff 50%) 0 / 6em 6em;
+	max-width: 350px;
+	font: 100%/1.6 Baskerville, Palatino, serif;
+}
 
 ul {
   list-style: none;
+}
+
+.entranceButton {
+  font-size: 12px;
+  border: none;
+  border-radius: 15px;
+  color: #585858;
 }
