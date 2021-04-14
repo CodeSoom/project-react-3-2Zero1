@@ -40,7 +40,7 @@ describe('WriteCompleteContainer', () => {
 
     expect(checkValidAccess).toBeCalled();
 
-    expect(getByText('홈')).not.toBeNull();
+    expect(getByText('홈으로')).not.toBeNull();
 
     expect(getByText('엽서 제작이 완료 되었습니다.')).not.toBeNull();
     expect(getByText('밑의 버튼을 클릭하면 전송 메시지가 복사됩니다.')).not.toBeNull();

@@ -29,6 +29,7 @@ const Receiver = styled.div(() => ({
 const Contents = styled.div(() => ({
   wordBreak: 'break-all',
   margin: '55px 20px 0 20px',
+  fontSize: '20px',
 }));
 
 const Sender = styled.div(() => ({

@@ -389,9 +389,9 @@ describe('WritePage', () => {
         getByText,
       } = renderWritePage({ index: 4 });
 
-      expect(getByText('홈')).not.toBeNull();
+      expect(getByText('홈으로')).not.toBeNull();
 
-      fireEvent.click(getByText('홈'));
+      fireEvent.click(getByText('홈으로'));
 
       expect(mockGoBack).toBeCalled();
       expect(dispatch).toBeCalledWith({
