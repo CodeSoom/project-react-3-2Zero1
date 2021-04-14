@@ -17,7 +17,8 @@ export async function fetchEntrance({ key }) {
 }
 
 export async function postPhoto({ file }) {
-  const url = getDomain('photo');
+  const url = 'http://localhost:3000/photo';
+  // const url = getDomain('photo');
   const formData = new FormData();
   formData.append('photo', file);
 
