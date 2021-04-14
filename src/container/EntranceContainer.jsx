@@ -18,13 +18,12 @@ import {
 } from '../state/slice';
 
 const Wrapper = styled.div(() => ({
-  marginTop: '20px',
   textAlign: 'center',
 }));
 
 const Title = styled.div(() => ({
-  marginTop: '20px',
   fontSize: '20px',
+  color: '#585858',
 }));
 
 const Button = styled.button(() => ({
