@@ -2,12 +2,7 @@ import React, { useRef } from 'react';
 
 import styled from '@emotion/styled';
 
-const Information = styled.p(() => ({
-  margin: '5px 15px',
-  fontSize: '12px',
-  color: 'gray',
-  textAlign: 'center',
-}));
+import Information from '../style/Information';
 
 const Photo = styled.img(() => ({
   display: 'block',

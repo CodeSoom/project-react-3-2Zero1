@@ -4,14 +4,10 @@ import styled from '@emotion/styled';
 
 import Button from '../style/Button';
 
+import Information from '../style/Information';
+
 const Wrapper = styled.div(() => ({
   margin: '20px 0',
-}));
-
-const Information = styled.p(() => ({
-  margin: '0 15px',
-  fontSize: '12px',
-  color: '#A4A4A4',
 }));
 
 export default function EntranceWritePostcard({

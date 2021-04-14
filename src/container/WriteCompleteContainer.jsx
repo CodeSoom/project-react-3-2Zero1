@@ -7,6 +7,8 @@ import styled from '@emotion/styled';
 
 import { resetPostcardInputFields } from '../state/slice';
 
+import Information from '../style/Information';
+
 const Wrapper = styled.div(() => ({
   margin: '0 20px',
 }));
@@ -14,13 +16,6 @@ const Wrapper = styled.div(() => ({
 const Title = styled.div(() => ({
   fontSize: '20px',
   marginBottom: '20px',
-  textAlign: 'center',
-}));
-
-const Information = styled.p(() => ({
-  margin: '5px 15px',
-  fontSize: '12px',
-  color: 'gray',
   textAlign: 'center',
 }));
 

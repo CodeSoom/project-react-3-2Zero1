@@ -5,6 +5,8 @@ import styled from '@emotion/styled';
 import InputPart from './InputPart';
 import RadioPart from './RadioPart';
 
+import Information from '../style/Information';
+
 const Title = styled.span(() => ({
   position: 'absolute',
   top: '10px',
@@ -18,12 +20,6 @@ const Button = styled.button(() => ({
   fontSize: '16px',
   margin: '10px',
   padding: '5px 8px',
-}));
-
-const Information = styled.p(() => ({
-  margin: '0 15px',
-  fontSize: '12px',
-  color: 'gray',
 }));
 
 const CompleteButton = styled.button(() => ({
