@@ -16,7 +16,7 @@ import './assets/css/global.css';
 ReactDOM.render(
   (
     <Provider store={store}>
-      <BrowserRouter basename="/project-react-3-2Zero1">
+      <BrowserRouter>
         <App />
       </BrowserRouter>
     </Provider>
