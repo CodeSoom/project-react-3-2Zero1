@@ -17,6 +17,7 @@ import reducer, {
   admitPostcardAccess,
   setResponseError,
   initToast,
+  setToastTriggered,
 
   loadEntrance,
   sendPhoto,
@@ -497,6 +498,24 @@ describe('reducer', () => {
       expect(state.toast).toEqual({
         message: '',
         triggered: false,
+      });
+    });
+  });
+
+  describe('setToastTriggered', () => {
+    it('set triggered in toast', () => {
+      const initialState = {
+        toast: {
+          message: 'test',
+          triggered: false,
+        },
+      };
+
+      const state = reducer(initialState, setToastTriggered(true));
+
+      expect(state.toast).toEqual({
+        message: 'test',
+        triggered: true,
       });
     });
   });
