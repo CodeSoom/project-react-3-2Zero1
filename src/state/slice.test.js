@@ -15,6 +15,7 @@ import reducer, {
   resetPostcardInputFields,
   setPostcard,
   admitPostcardAccess,
+  setMovingPage,
 
   loadEntrance,
   sendPhoto,
@@ -23,7 +24,10 @@ import reducer, {
   loadPostcard,
 } from './slice';
 
-import { postCheckValidPostcard } from '../services/api';
+import {
+  postCheckValidPostcard,
+  fetchEntrance,
+} from '../services/api';
 
 import entrance from '../fixtures/entrance';
 
@@ -417,17 +421,52 @@ describe('reducer', () => {
     });
   });
 
+  describe('setMovingPage', () => {
+    it('set moving page', () => {
+      const initialState = {
+        movingPage: '',
+      };
+      const page = 'entrance';
+
+      const state = reducer(initialState, setMovingPage(page));
+
+      expect(state.movingPage).toEqual(page);
+    });
+  });
+
   describe('loadEntrance', () => {
     beforeEach(() => {
       store = mockStore({});
+
+      fetchEntrance.mockImplementation(() => Promise.resolve(given.response));
     });
 
-    it('runs setEntrance', async () => {
-      await store.dispatch(loadEntrance({ key: 'key' }));
+    context('when response has error', () => {
+      it('runs setMovingPage', async () => {
+        given('response', () => ({
+          error: {
+            move: 'notfound',
+          },
+        }));
+        await store.dispatch(loadEntrance({ key: 'key' }));
 
-      const actions = store.getActions();
+        const actions = store.getActions();
 
-      expect(actions[0]).toEqual(setEntrance([]));
+        expect(actions[0]).toEqual(setMovingPage('notfound'));
+      });
+    });
+
+    context('when response does not have error', () => {
+      it('runs setEntrance', async () => {
+        given('response', () => ({
+          data: {},
+        }));
+        await store.dispatch(loadEntrance({ key: 'key' }));
+
+        const actions = store.getActions();
+
+        expect(actions[0]).toEqual(setEntrance({}));
+      });
     });
   });
 

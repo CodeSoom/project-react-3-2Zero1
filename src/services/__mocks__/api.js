@@ -1,6 +1,4 @@
-export async function fetchEntrance() {
-  return { data: [] };
-}
+export const fetchEntrance = jest.fn();
 
 export async function postPhoto() {
   const fileName = 'test';
