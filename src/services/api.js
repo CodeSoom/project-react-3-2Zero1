@@ -107,5 +107,5 @@ export async function fetchPostcard({
   });
   const result = await response.json();
 
-  return result.data;
+  return result;
 }

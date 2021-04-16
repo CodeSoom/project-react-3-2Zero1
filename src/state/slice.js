@@ -285,10 +285,10 @@ export const {
 
 export function loadEntrance({ key }) {
   return async (dispatch) => {
-    const entrance = await fetchEntrance({ key });
+    const response = await fetchEntrance({ key });
 
-    if (entrance.error) {
-      const { move } = entrance.error;
+    if (response.error) {
+      const { move } = response.error;
       dispatch(setMovingPage(move));
       return;
     }
@@ -296,7 +296,7 @@ export function loadEntrance({ key }) {
     // 성공할 경우
     saveItem('postcardKey', key);
 
-    dispatch(setEntrance(entrance.data));
+    dispatch(setEntrance(response.data));
   };
 }
 
@@ -332,9 +332,9 @@ export function sendPostcard({ postcardValues, onClickNext }) {
 
 export function checkValidPostcard({ key, secretMessage }) {
   return async (dispatch) => {
-    const data = await postCheckValidPostcard({ key, secretMessage });
+    const response = await postCheckValidPostcard({ key, secretMessage });
 
-    if (data.success) {
+    if (response.success) {
       saveItem('secretMessage', secretMessage);
 
       dispatch(admitPostcardAccess());
@@ -350,14 +350,14 @@ export function checkValidPostcard({ key, secretMessage }) {
 
 export function loadPostcard({ key, secretMessage }) {
   return async (dispatch) => {
-    const data = await fetchPostcard({ key, secretMessage });
+    const response = await fetchPostcard({ key, secretMessage });
     const {
       sender,
       receiver,
       photo,
       contents,
       photoMessage,
-    } = data;
+    } = response.data;
     // TODO: dispatch를 이용하여 데이터를 작성 완료 페이지를 위한 상태를 넣어줌.
     dispatch(setPostcard({
       sender,
