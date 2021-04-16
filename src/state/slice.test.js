@@ -557,36 +557,61 @@ describe('reducer', () => {
   describe('checkValidPostcard', () => {
     beforeEach(() => {
       store = mockStore({});
+      postCheckValidPostcard.mockImplementation(() => Promise.resolve(given.response));
     });
-    context('when response is success', () => {
-      it('calls admitPostcardAccess', async () => {
-        postCheckValidPostcard.mockImplementation(() => Promise.resolve({ success: true }));
-        const key = 'test';
-        const secretMessage = 'secretMessage';
 
-        await store.dispatch(checkValidPostcard({ key, secretMessage }));
+    context('when response has error', () => {
+      it('runs setMovingPage', async () => {
+        given('response', () => ({
+          error: {
+            move: 'notfound',
+          },
+        }));
+        await store.dispatch(checkValidPostcard({ key: 'key' }));
 
         const actions = store.getActions();
 
-        expect(actions[0]).toEqual(admitPostcardAccess());
+        expect(actions[0]).toEqual(setMovingPage('notfound'));
       });
     });
 
-    context('when response is not success', () => {
-      it('call setInputFieldsError', async () => {
-        postCheckValidPostcard.mockImplementation(() => Promise.resolve({ success: false }));
-        const key = 'test';
-        const secretMessage = 'secretMessage';
+    context('when response does not have error', () => {
+      context('when response is success', () => {
+        it('calls admitPostcardAccess', async () => {
+          given('response', () => ({
+            data: { success: true },
+          }));
 
-        await store.dispatch(checkValidPostcard({ key, secretMessage }));
+          const key = 'test';
+          const secretMessage = 'secretMessage';
 
-        const actions = store.getActions();
+          await store.dispatch(checkValidPostcard({ key, secretMessage }));
 
-        expect(actions[0]).toEqual(setInputFieldsError({
-          page: 'entrance',
-          type: 'secretMessage',
-          error: true,
-        }));
+          const actions = store.getActions();
+
+          expect(actions[0]).toEqual(admitPostcardAccess());
+        });
+      });
+
+      context('when response is not success', () => {
+        it('call setInputFieldsError', async () => {
+          given('response', () => ({
+            data: { success: false },
+          }));
+
+          const key = 'test';
+          const secretMessage = 'secretMessage';
+
+          await store.dispatch(checkValidPostcard({ key, secretMessage }));
+
+          const actions = store.getActions();
+
+          expect(actions[0]).toEqual(setInputFieldsError({
+            page: 'entrance',
+            type: 'secretMessage',
+            error: true,
+          }));
+        });
       });
     });
   });
