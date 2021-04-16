@@ -2,6 +2,8 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 
+import { loadItem } from '../services/storage';
+
 import InformationFormContainer from '../container/InformationFormContainer';
 import ContentsFormContainer from '../container/ContentsFormContainer';
 import PhotoFormContainer from '../container/PhotoFormContainer';
@@ -56,8 +58,8 @@ export default function WritePage({ params }) {
   function checkValidAccess(indexInRedux) {
     if (index > indexInRedux) {
       // TODO:잘못된 접근이라고 표시한 후에
-      // 입장 페이지로 보내버림
-      history.push('/');
+      const key = loadItem('key');
+      history.push(`?key=${key}`);
     }
   }
 

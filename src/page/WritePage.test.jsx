@@ -8,6 +8,10 @@ import WritePage from './WritePage';
 
 import inputFields from '../fixtures/inputFields';
 
+import { loadItem } from '../services/storage';
+
+jest.mock('../services/storage');
+
 const mockGoBack = jest.fn();
 const mockReplace = jest.fn();
 const mockPush = jest.fn();
@@ -401,6 +405,8 @@ describe('WritePage', () => {
   });
 
   context('when invalid access', () => {
+    const key = 'test';
+
     beforeEach(() => {
       useSelector.mockImplementation((selector) => selector({
         writePageIndex: 1,
@@ -416,11 +422,13 @@ describe('WritePage', () => {
           },
         },
       }));
+
+      loadItem.mockImplementation(() => key);
     });
-    it("call push to '/'", () => {
+    it("call push to '?key=keyvalue'", () => {
       renderWritePage({ index: 4 });
 
-      expect(mockPush).toBeCalledWith('/');
+      expect(mockPush).toBeCalledWith(`?key=${key}`);
     });
   });
 });
