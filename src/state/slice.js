@@ -286,6 +286,15 @@ const { actions, reducer } = createSlice({
         },
       };
     },
+    setToastTriggered(state, { payload: value }) {
+      return {
+        ...state,
+        toast: {
+          ...state.toast,
+          triggered: value,
+        },
+      };
+    },
   },
 });
 
@@ -305,6 +314,7 @@ export const {
   admitPostcardAccess,
   setResponseError,
   initToast,
+  setToastTriggered,
 } = actions;
 
 export function loadEntrance({ key }) {
