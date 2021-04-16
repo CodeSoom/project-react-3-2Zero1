@@ -313,9 +313,15 @@ export function sendPhoto({ file }) {
 
 export function sendPostcard({ postcardValues, onClickNext }) {
   return async (dispatch) => {
-    const data = await postPostcard(postcardValues);
-    const { url, secretMessage } = data;
-    // TODO: dispatch를 이용하여 데이터를 작성 완료 페이지를 위한 상태를 넣어줌.
+    const response = await postPostcard(postcardValues);
+
+    if (response.error) {
+      const { move } = response.error;
+      dispatch(setMovingPage(move));
+      return;
+    }
+
+    const { url, secretMessage } = response.data;
     dispatch(setWriteCompleteValues({
       url,
       secretMessage,

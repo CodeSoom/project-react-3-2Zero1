@@ -27,6 +27,7 @@ import reducer, {
 import {
   postCheckValidPostcard,
   fetchEntrance,
+  postPostcard,
 } from '../services/api';
 
 import entrance from '../fixtures/entrance';
@@ -492,32 +493,64 @@ describe('reducer', () => {
   describe('sendPostcard', () => {
     beforeEach(() => {
       store = mockStore({});
+
+      postPostcard.mockImplementation(() => Promise.resolve(given.response));
     });
 
-    it('runs changeInputFieldValue', async () => {
-      const postcard = {
-        key: 'test', // TODO : 입장 페이지가 완료되면 key값을 받아 넣어주도록 변경해야함.
-        sender: 'sender',
-        receiver: 'receiver',
-        contents: 'contents',
-        photo: 'photo',
-        photoMessage: 'photoMessage',
-        secretMessage: 'secretMessage',
-        isPrivate: 'isPrivate',
-      };
+    const postcard = {
+      key: 'test', // TODO : 입장 페이지가 완료되면 key값을 받아 넣어주도록 변경해야함.
+      sender: 'sender',
+      receiver: 'receiver',
+      contents: 'contents',
+      photo: 'photo',
+      photoMessage: 'photoMessage',
+      secretMessage: 'secretMessage',
+      isPrivate: 'isPrivate',
+    };
+    const onClickNext = jest.fn();
 
-      const onClickNext = jest.fn();
-      await store.dispatch(sendPostcard({
-        postcard,
-        onClickNext,
-      }));
+    context('when response has error', () => {
+      it('runs setMovingPage', async () => {
+        given('response', () => ({
+          error: {
+            move: 'notfound',
+          },
+        }));
+        await store.dispatch(sendPostcard({
+          postcard,
+          onClickNext,
+        }));
 
-      const actions = store.getActions();
+        const actions = store.getActions();
 
-      expect(actions[0]).toEqual(setWriteCompleteValues({
-        url: 'url',
-        secretMessage: 'secretMessage',
-      }));
+        expect(actions[0]).toEqual(setMovingPage('notfound'));
+      });
+    });
+
+    context('when response does not have error', () => {
+      it('runs changeInputFieldValue', async () => {
+        const url = 'url';
+        const secretMessage = 'secretMessage';
+
+        given('response', () => ({
+          data: {
+            url,
+            secretMessage,
+          },
+        }));
+
+        await store.dispatch(sendPostcard({
+          postcard,
+          onClickNext,
+        }));
+
+        const actions = store.getActions();
+
+        expect(actions[0]).toEqual(setWriteCompleteValues({
+          url,
+          secretMessage,
+        }));
+      });
     });
   });
 

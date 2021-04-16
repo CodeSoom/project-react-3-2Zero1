@@ -5,12 +5,7 @@ export async function postPhoto() {
   return fileName;
 }
 
-export async function postPostcard() {
-  return {
-    url: 'url',
-    secretMessage: 'secretMessage',
-  };
-}
+export const postPostcard = jest.fn();
 
 export const postCheckValidPostcard = jest.fn();
 
