@@ -334,7 +334,15 @@ export function checkValidPostcard({ key, secretMessage }) {
   return async (dispatch) => {
     const response = await postCheckValidPostcard({ key, secretMessage });
 
-    if (response.success) {
+    if (response.error) {
+      const { move } = response.error;
+      dispatch(setMovingPage(move));
+      return;
+    }
+
+    const { success } = response.data;
+
+    if (success) {
       saveItem('secretMessage', secretMessage);
 
       dispatch(admitPostcardAccess());
