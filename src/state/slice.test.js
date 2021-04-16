@@ -486,8 +486,10 @@ describe('reducer', () => {
   describe('initToast', () => {
     it('initialize toast', () => {
       const initialState = {
-        message: 'test',
-        triggered: true,
+        toast: {
+          message: 'test',
+          triggered: true,
+        },
       };
 
       const state = reducer(initialState, initToast());
