@@ -15,7 +15,7 @@ import reducer, {
   resetPostcardInputFields,
   setPostcard,
   admitPostcardAccess,
-  setMovingPage,
+  setResponseError,
   initToast,
 
   loadEntrance,
@@ -33,6 +33,7 @@ import {
 } from '../services/api';
 
 import entrance from '../fixtures/entrance';
+import responseError from '../fixtures/responseError';
 
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
@@ -428,16 +429,57 @@ describe('reducer', () => {
     });
   });
 
-  describe('setMovingPage', () => {
-    it('set moving page', () => {
-      const initialState = {
-        movingPage: '',
-      };
-      const page = 'entrance';
+  describe('setResponseError', () => {
+    const page = 'entrance';
+    const method = 'toast';
+    context('when error has all properties', () => {
+      it('set moving page', () => {
+        const error = {
+          move: page,
+          method,
+          message: 'message',
+        };
 
-      const state = reducer(initialState, setMovingPage(page));
+        const initialState = {
+          movingPage: '',
+          toast: {
+            triggered: false,
+            message: '',
+          },
+        };
 
-      expect(state.movingPage).toEqual(page);
+        const state = reducer(initialState, setResponseError(error));
+
+        expect(state.movingPage).toEqual(page);
+        expect(state.toast).toEqual({
+          triggered: false,
+          message: 'message',
+        });
+      });
+    });
+
+    context('when error does not have all properties', () => {
+      it('set moving page', () => {
+        const error = {
+          move: page,
+        };
+
+        const initialState = {
+          movingPage: '',
+          toast: {
+            triggered: false,
+            message: '',
+          },
+        };
+
+        const state = reducer(initialState, setResponseError(error));
+
+        expect(state.movingPage).toEqual(page);
+        expect(state.toast).toEqual({
+          triggered: false,
+          message: '',
+        });
+      });
     });
   });
 
@@ -465,17 +507,15 @@ describe('reducer', () => {
     });
 
     context('when response has error', () => {
-      it('runs setMovingPage', async () => {
+      it('runs setResponseError', async () => {
         given('response', () => ({
-          error: {
-            move: 'notfound',
-          },
+          error: responseError,
         }));
         await store.dispatch(loadEntrance({ key: 'key' }));
 
         const actions = store.getActions();
 
-        expect(actions[0]).toEqual(setMovingPage('notfound'));
+        expect(actions[0]).toEqual(setResponseError(responseError));
       });
     });
 
@@ -534,10 +574,9 @@ describe('reducer', () => {
     context('when response has error', () => {
       it('runs setMovingPage', async () => {
         given('response', () => ({
-          error: {
-            move: 'notfound',
-          },
+          error: responseError,
         }));
+
         await store.dispatch(sendPostcard({
           postcard,
           onClickNext,
@@ -545,7 +584,7 @@ describe('reducer', () => {
 
         const actions = store.getActions();
 
-        expect(actions[0]).toEqual(setMovingPage('notfound'));
+        expect(actions[0]).toEqual(setResponseError(responseError));
       });
     });
 
@@ -585,15 +624,14 @@ describe('reducer', () => {
     context('when response has error', () => {
       it('runs setMovingPage', async () => {
         given('response', () => ({
-          error: {
-            move: 'notfound',
-          },
+          error: responseError,
         }));
+
         await store.dispatch(checkValidPostcard({ key: 'key' }));
 
         const actions = store.getActions();
 
-        expect(actions[0]).toEqual(setMovingPage('notfound'));
+        expect(actions[0]).toEqual(setResponseError(responseError));
       });
     });
 
@@ -659,15 +697,13 @@ describe('reducer', () => {
     context('when response has error', () => {
       it('runs setMovingPage', async () => {
         given('response', () => ({
-          error: {
-            move: 'notfound',
-          },
+          error: responseError,
         }));
         await store.dispatch(loadPostcard({ key, secretMessage }));
 
         const actions = store.getActions();
 
-        expect(actions[0]).toEqual(setMovingPage('notfound'));
+        expect(actions[0]).toEqual(setResponseError(responseError));
       });
     });
 

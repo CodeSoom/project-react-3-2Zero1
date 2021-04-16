@@ -261,10 +261,20 @@ const { actions, reducer } = createSlice({
         },
       };
     },
-    setMovingPage(state, { payload: value }) {
+    setResponseError(state, {
+      payload: {
+        move,
+        method = '',
+        message = '',
+      },
+    }) {
       return {
         ...state,
-        movingPage: value,
+        movingPage: move,
+        [method]: {
+          triggered: false,
+          message,
+        },
       };
     },
     initToast(state) {
@@ -293,7 +303,7 @@ export const {
   resetPostcardInputFields,
   setPostcard,
   admitPostcardAccess,
-  setMovingPage,
+  setResponseError,
   initToast,
 } = actions;
 
@@ -302,8 +312,7 @@ export function loadEntrance({ key }) {
     const response = await fetchEntrance({ key });
 
     if (response.error) {
-      const { move } = response.error;
-      dispatch(setMovingPage(move));
+      dispatch(setResponseError(response.error));
       return;
     }
 
@@ -330,8 +339,7 @@ export function sendPostcard({ postcardValues, onClickNext }) {
     const response = await postPostcard(postcardValues);
 
     if (response.error) {
-      const { move } = response.error;
-      dispatch(setMovingPage(move));
+      dispatch(setResponseError(response.error));
       return;
     }
 
@@ -349,8 +357,7 @@ export function checkValidPostcard({ key, secretMessage }) {
     const response = await postCheckValidPostcard({ key, secretMessage });
 
     if (response.error) {
-      const { move } = response.error;
-      dispatch(setMovingPage(move));
+      dispatch(setResponseError(response.error));
       return;
     }
 
@@ -375,8 +382,7 @@ export function loadPostcard({ key, secretMessage }) {
     const response = await fetchPostcard({ key, secretMessage });
 
     if (response.error) {
-      const { move } = response.error;
-      dispatch(setMovingPage(move));
+      dispatch(setResponseError(response.error));
       return;
     }
 
