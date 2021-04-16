@@ -9,14 +9,19 @@ import WritePage from './page/WritePage';
 import PostcardPage from './page/PostcardPage';
 import NotFoundPage from './page/NotFoundPage';
 
+import PageMoveManager from './middleware/PageMoveManager';
+
 export default function App() {
   return (
-    <Switch>
-      <Route exact path="/write/:index" component={WritePage} />
-      <Route exact path="/postcard" component={PostcardPage} />
-      <Route exact path="/entrance/:key" component={EntrancePage} />
-      <Route exact path="/" component={EntrancePage} />
-      <Route component={NotFoundPage} />
-    </Switch>
+    <>
+      <PageMoveManager />
+      <Switch>
+        <Route exact path="/write/:index" component={WritePage} />
+        <Route exact path="/postcard" component={PostcardPage} />
+        <Route exact path="/entrance/:key" component={EntrancePage} />
+        <Route exact path="/" component={EntrancePage} />
+        <Route component={NotFoundPage} />
+      </Switch>
+    </>
   );
 }

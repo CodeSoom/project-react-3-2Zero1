@@ -97,6 +97,7 @@ describe('reducer', () => {
           photoUrl: '',
           photoMessage: '',
         },
+        movingPage: '',
       };
       const state = reducer(undefined, { type: 'action' });
 
