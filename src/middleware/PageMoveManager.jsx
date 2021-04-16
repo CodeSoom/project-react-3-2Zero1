@@ -16,6 +16,5 @@ export default function PageMoveManager() {
     default: history.push(`/${movingPage}`);
     }
   }
-
-  return (<></>);
+  return null;
 }
