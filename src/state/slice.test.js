@@ -28,6 +28,7 @@ import {
   postCheckValidPostcard,
   fetchEntrance,
   postPostcard,
+  fetchPostcard,
 } from '../services/api';
 
 import entrance from '../fixtures/entrance';
@@ -619,23 +620,53 @@ describe('reducer', () => {
   describe('loadPostcard', () => {
     beforeEach(() => {
       store = mockStore({});
+
+      fetchPostcard.mockImplementation(() => Promise.resolve(given.response));
     });
 
-    it('runs setPostcard', async () => {
-      const key = 'test';
-      const secretMessage = 'secretMessage';
+    const key = 'test';
+    const secretMessage = 'secretMessage';
 
-      await store.dispatch(loadPostcard({ key, secretMessage }));
+    const response = {
+      sender: 'sender',
+      receiver: 'receiver',
+      photo: 'photoUrl',
+      contents: 'contents',
+      photoMessage: 'photoMessage',
+    };
 
-      const actions = store.getActions();
+    context('when response has error', () => {
+      it('runs setMovingPage', async () => {
+        given('response', () => ({
+          error: {
+            move: 'notfound',
+          },
+        }));
+        await store.dispatch(loadPostcard({ key, secretMessage }));
 
-      expect(actions[0]).toEqual(setPostcard({
-        sender: 'sender',
-        receiver: 'receiver',
-        photoUrl: 'photoUrl',
-        contents: 'contents',
-        photoMessage: 'photoMessage',
-      }));
+        const actions = store.getActions();
+
+        expect(actions[0]).toEqual(setMovingPage('notfound'));
+      });
+    });
+
+    context('when response does not have error', () => {
+      it('runs setEntrance', async () => {
+        given('response', () => ({
+          data: response,
+        }));
+        await store.dispatch(loadPostcard({ key, secretMessage }));
+
+        const actions = store.getActions();
+
+        expect(actions[0]).toEqual(setPostcard({
+          sender: 'sender',
+          receiver: 'receiver',
+          photoUrl: 'photoUrl',
+          contents: 'contents',
+          photoMessage: 'photoMessage',
+        }));
+      });
     });
   });
 });

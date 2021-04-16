@@ -9,14 +9,4 @@ export const postPostcard = jest.fn();
 
 export const postCheckValidPostcard = jest.fn();
 
-export async function fetchPostcard() {
-  return {
-    data: {
-      sender: 'sender',
-      receiver: 'receiver',
-      photo: 'photoUrl',
-      contents: 'contents',
-      photoMessage: 'photoMessage',
-    },
-  };
-}
+export const fetchPostcard = jest.fn();
