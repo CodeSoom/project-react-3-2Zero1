@@ -77,6 +77,7 @@ const { actions, reducer } = createSlice({
       photoUrl: '',
       photoMessage: '',
     },
+    movingPage: '',
   },
   reducers: {
     changeRadioChecked(state, { payload: value }) {
