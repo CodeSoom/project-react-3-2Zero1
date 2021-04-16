@@ -11,10 +11,12 @@ export const postCheckValidPostcard = jest.fn();
 
 export async function fetchPostcard() {
   return {
-    sender: 'sender',
-    receiver: 'receiver',
-    photo: 'photoUrl',
-    contents: 'contents',
-    photoMessage: 'photoMessage',
+    data: {
+      sender: 'sender',
+      receiver: 'receiver',
+      photo: 'photoUrl',
+      contents: 'contents',
+      photoMessage: 'photoMessage',
+    },
   };
 }

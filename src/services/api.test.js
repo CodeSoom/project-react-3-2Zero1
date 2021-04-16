@@ -130,11 +130,13 @@ describe('api', () => {
       const postcard = await fetchPostcard({ key: test, secretMessage: 'secretMessage' });
 
       expect(postcard).toEqual({
-        sender: 'sender',
-        receiver: 'receiver',
-        photoUrl: 'photoUrl',
-        contents: 'contents',
-        photoMessage: 'photoMessage',
+        data: {
+          sender: 'sender',
+          receiver: 'receiver',
+          photoUrl: 'photoUrl',
+          contents: 'contents',
+          photoMessage: 'photoMessage',
+        },
       });
     });
   });
