@@ -67,8 +67,10 @@ describe('api', () => {
       });
 
       expect(postcard).toEqual({
-        url,
-        secretMessage,
+        data: {
+          url,
+          secretMessage,
+        },
       });
     });
   });
@@ -89,7 +91,11 @@ describe('api', () => {
           secretMessage: 'secretMessage',
         });
 
-        expect(postcard.success).toEqual(true);
+        expect(postcard).toEqual({
+          data: {
+            success: true,
+          },
+        });
       });
     });
 
@@ -108,7 +114,11 @@ describe('api', () => {
           secretMessage: '',
         });
 
-        expect(postcard.success).toEqual(true);
+        expect(postcard).toEqual({
+          data: {
+            success: true,
+          },
+        });
       });
     });
   });

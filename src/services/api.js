@@ -63,7 +63,7 @@ export async function postPostcard({
   });
   const result = await response.json();
 
-  return result.data;
+  return result;
 }
 
 export async function postCheckValidPostcard({
@@ -85,7 +85,7 @@ export async function postCheckValidPostcard({
   });
   const result = await response.json();
 
-  return result.data;
+  return result;
 }
 
 export async function fetchPostcard({
