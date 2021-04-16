@@ -10,8 +10,12 @@ export default function PageMoveManager() {
 
   const history = useHistory();
 
-  history.push(movingPage === 'entrance'
-    ? `/entrance?key=${loadItem('key')}` : history.push(`/${movingPage}`));
+  if (movingPage) {
+    switch (movingPage) {
+    case 'entrance': history.push(`/entrance?key=${loadItem('key')}`); break;
+    default: history.push(`/${movingPage}`);
+    }
+  }
 
   return (<></>);
 }

@@ -27,6 +27,20 @@ describe('PageMoveManager', () => {
     movingPage: given.movingPage,
   }));
 
+  beforeEach(() => {
+    mockPush.mockClear();
+  });
+
+  context('when movingpage is empty', () => {
+    it('does not push in history', () => {
+      given('movingPage', () => '');
+
+      render((<PageMoveManager />));
+
+      expect(mockPush).not.toBeCalled();
+    });
+  });
+
   context('when movingpage is entrance', () => {
     it('push entrance page in history', () => {
       given('movingPage', () => 'entrance');
