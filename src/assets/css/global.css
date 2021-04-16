@@ -44,4 +44,53 @@ ul {
 
 .inputClass{
   border: 1px solid #d8d8d8
-};
+}
+
+.fade-out-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-block;
+  background: yellow;
+  padding: 10px 15px;
+  border-radius: 22.5px;
+  animation: fadeout 1.5s;
+  -moz-animation: fadeout 1.5s; /* Firefox */
+  -webkit-animation: fadeout 1.5s; /* Safari and Chrome */
+  -o-animation: fadeout 1.5s; /* Opera */
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeout {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+@-moz-keyframes fadeout { /* Firefox */
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+@-webkit-keyframes fadeout { /* Safari and Chrome */
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+@-o-keyframes fadeout { /* Opera */
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}

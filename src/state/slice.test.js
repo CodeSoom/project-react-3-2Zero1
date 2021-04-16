@@ -16,6 +16,7 @@ import reducer, {
   setPostcard,
   admitPostcardAccess,
   setMovingPage,
+  initToast,
 
   loadEntrance,
   sendPhoto,
@@ -104,6 +105,10 @@ describe('reducer', () => {
           photoMessage: '',
         },
         movingPage: '',
+        toast: {
+          triggered: false,
+          message: '',
+        },
       };
       const state = reducer(undefined, { type: 'action' });
 
@@ -433,6 +438,22 @@ describe('reducer', () => {
       const state = reducer(initialState, setMovingPage(page));
 
       expect(state.movingPage).toEqual(page);
+    });
+  });
+
+  describe('initToast', () => {
+    it('initialize toast', () => {
+      const initialState = {
+        message: 'test',
+        triggered: true,
+      };
+
+      const state = reducer(initialState, initToast());
+
+      expect(state.toast).toEqual({
+        message: '',
+        triggered: false,
+      });
     });
   });
 

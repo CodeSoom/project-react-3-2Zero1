@@ -78,6 +78,10 @@ const { actions, reducer } = createSlice({
       photoMessage: '',
     },
     movingPage: '',
+    toast: {
+      triggered: false,
+      message: '',
+    },
   },
   reducers: {
     changeRadioChecked(state, { payload: value }) {
@@ -263,6 +267,15 @@ const { actions, reducer } = createSlice({
         movingPage: value,
       };
     },
+    initToast(state) {
+      return {
+        ...state,
+        toast: {
+          triggered: false,
+          message: '',
+        },
+      };
+    },
   },
 });
 
@@ -281,6 +294,7 @@ export const {
   setPostcard,
   admitPostcardAccess,
   setMovingPage,
+  initToast,
 } = actions;
 
 export function loadEntrance({ key }) {
