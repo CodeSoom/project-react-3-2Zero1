@@ -129,7 +129,7 @@ describe('api', () => {
         data: {
           sender: 'sender',
           receiver: 'receiver',
-          photoUrl: 'photoUrl',
+          photo: 'photoUrl',
           contents: 'contents',
           photoMessage: 'photoMessage',
         },
@@ -143,7 +143,7 @@ describe('api', () => {
         data: {
           sender: 'sender',
           receiver: 'receiver',
-          photoUrl: 'photoUrl',
+          photo: 'photoUrl',
           contents: 'contents',
           photoMessage: 'photoMessage',
         },

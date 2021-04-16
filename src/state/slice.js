@@ -359,6 +359,13 @@ export function checkValidPostcard({ key, secretMessage }) {
 export function loadPostcard({ key, secretMessage }) {
   return async (dispatch) => {
     const response = await fetchPostcard({ key, secretMessage });
+
+    if (response.error) {
+      const { move } = response.error;
+      dispatch(setMovingPage(move));
+      return;
+    }
+
     const {
       sender,
       receiver,
@@ -366,7 +373,7 @@ export function loadPostcard({ key, secretMessage }) {
       contents,
       photoMessage,
     } = response.data;
-    // TODO: dispatch를 이용하여 데이터를 작성 완료 페이지를 위한 상태를 넣어줌.
+
     dispatch(setPostcard({
       sender,
       receiver,
