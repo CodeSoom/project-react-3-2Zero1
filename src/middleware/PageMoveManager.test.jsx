@@ -25,10 +25,15 @@ describe('PageMoveManager', () => {
 
   useSelector.mockImplementation((selector) => selector({
     movingPage: given.movingPage,
+    toast: {
+      triggered: given.triggered || false,
+      message: given.message || '',
+    },
   }));
 
   beforeEach(() => {
     mockPush.mockClear();
+    dispatch.mockClear();
   });
 
   context('when movingpage is empty', () => {
@@ -70,6 +75,36 @@ describe('PageMoveManager', () => {
       render((<PageMoveManager />));
 
       expect(mockPush).toBeCalledWith('/notfound');
+    });
+  });
+
+  context('with message in toast', () => {
+    it('change triggered with true', () => {
+      given('movingPage', () => 'notfound');
+      given('trigger', () => false);
+      given('message', () => '토스트 메시지');
+
+      render((<PageMoveManager />));
+
+      expect(dispatch).toBeCalledWith({
+        type: 'application/setToastTriggered',
+        payload: true,
+      });
+    });
+  });
+
+  context('without message in toast', () => {
+    it('change triggered with true', () => {
+      given('movingPage', () => 'notfound');
+      given('trigger', () => false);
+      given('message', () => '');
+
+      render((<PageMoveManager />));
+
+      expect(dispatch).not.toBeCalledWith({
+        type: 'application/setToastTriggered',
+        payload: true,
+      });
     });
   });
 });
