@@ -13,6 +13,6 @@ describe('NotFoundPage', () => {
       </MemoryRouter>
     ));
 
-    expect(getByText('not found')).not.toBeNull();
+    expect(getByText('존재하지 않는 엽서입니다.')).not.toBeNull();
   });
 });
