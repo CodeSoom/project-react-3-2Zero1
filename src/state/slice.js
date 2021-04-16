@@ -257,6 +257,12 @@ const { actions, reducer } = createSlice({
         },
       };
     },
+    setMovingPage(state, { payload: value }) {
+      return {
+        ...state,
+        movingPage: value,
+      };
+    },
   },
 });
 
@@ -274,11 +280,18 @@ export const {
   resetPostcardInputFields,
   setPostcard,
   admitPostcardAccess,
+  setMovingPage,
 } = actions;
 
 export function loadEntrance({ key }) {
   return async (dispatch) => {
     const entrance = await fetchEntrance({ key });
+
+    if (entrance.error) {
+      const { move } = entrance.error;
+      dispatch(setMovingPage(move));
+      return;
+    }
 
     // 성공할 경우
     saveItem('postcardKey', key);
