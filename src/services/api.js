@@ -109,3 +109,19 @@ export async function fetchPostcard({
 
   return result;
 }
+
+export async function fetchPostcards() {
+  const url = getDomain('postcards');
+
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Headers': '*',
+    },
+    body: JSON.stringify({}),
+  });
+  const result = await response.json();
+
+  return result;
+}

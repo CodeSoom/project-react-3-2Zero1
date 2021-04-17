@@ -20,12 +20,14 @@ import reducer, {
   setToastTriggered,
   initMovingPage,
   setToast,
+  setPostcards,
 
   loadEntrance,
   sendPhoto,
   sendPostcard,
   checkValidPostcard,
   loadPostcard,
+  loadPostcards,
 } from './slice';
 
 import {
@@ -37,6 +39,7 @@ import {
 
 import entrance from '../fixtures/entrance';
 import responseError from '../fixtures/responseError';
+import postcards from '../fixtures/postcards';
 
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
@@ -555,6 +558,18 @@ describe('reducer', () => {
     });
   });
 
+  describe('setPostcards', () => {
+    it('set postcards', () => {
+      const initialState = {
+        postcards: [],
+      };
+
+      const state = reducer(initialState, setPostcards(postcards));
+
+      expect(state.postcards).toEqual(postcards);
+    });
+  });
+
   describe('loadEntrance', () => {
     beforeEach(() => {
       store = mockStore({});
@@ -780,6 +795,23 @@ describe('reducer', () => {
           photoMessage: 'photoMessage',
         }));
       });
+    });
+  });
+
+  describe('loadPostcards', () => {
+    beforeEach(() => {
+      store = mockStore({});
+    });
+
+    it('runs setPostcards', async () => {
+      given('response', () => ({
+        error: responseError,
+      }));
+      await store.dispatch(loadPostcards());
+
+      const actions = store.getActions();
+
+      expect(actions[0]).toEqual(setPostcards([]));
     });
   });
 });

@@ -8,6 +8,7 @@ import {
   postPostcard,
   postCheckValidPostcard,
   fetchPostcard,
+  fetchPostcards,
 } from '../services/api';
 
 // import { saveItem } from './services/storage';
@@ -311,6 +312,12 @@ const { actions, reducer } = createSlice({
         },
       };
     },
+    setPostcards(state, { payload: value }) {
+      return {
+        ...state,
+        postcards: value,
+      };
+    },
   },
 });
 
@@ -333,6 +340,7 @@ export const {
   setToastTriggered,
   initMovingPage,
   setToast,
+  setPostcards,
 } = actions;
 
 export function loadEntrance({ key }) {
@@ -432,4 +440,11 @@ export function loadPostcard({ key, secretMessage }) {
   };
 }
 
+export function loadPostcards() {
+  return async (dispatch) => {
+    const response = await fetchPostcards();
+
+    dispatch(setPostcards(response.data));
+  };
+}
 export default reducer;
