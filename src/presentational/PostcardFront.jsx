@@ -13,8 +13,8 @@ const PostcardFrontLayout = styled.div(() => ({
 
 const Stamp = styled.img(() => ({
   position: 'absolute',
-  width: '60px',
-  height: '70px',
+  width: '90px',
+  height: '110px',
   top: '0px',
   right: '0px',
   margin: '10px 5px 0 0',
