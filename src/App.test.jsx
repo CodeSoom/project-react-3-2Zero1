@@ -30,6 +30,11 @@ describe('App', () => {
         receiver: '보낸이',
         contents: '이것은 내용입니다.',
       },
+      movingPage: '',
+      toast: {
+        triggered: false,
+        message: '',
+      },
     }));
   });
 
