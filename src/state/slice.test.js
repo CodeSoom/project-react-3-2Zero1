@@ -19,6 +19,7 @@ import reducer, {
   initToast,
   setToastTriggered,
   initMovingPage,
+  setToast,
 
   loadEntrance,
   sendPhoto,
@@ -516,6 +517,26 @@ describe('reducer', () => {
 
       expect(state.toast).toEqual({
         message: 'test',
+        triggered: true,
+      });
+    });
+  });
+
+  describe('setToast', () => {
+    it('set Toast', () => {
+      const initialState = {
+        toast: {
+          message: '',
+          triggered: false,
+        },
+      };
+
+      const message = 'message';
+
+      const state = reducer(initialState, setToast({ message, triggered: true }));
+
+      expect(state.toast).toEqual({
+        message,
         triggered: true,
       });
     });

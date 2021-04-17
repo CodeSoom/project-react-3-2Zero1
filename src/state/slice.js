@@ -301,6 +301,15 @@ const { actions, reducer } = createSlice({
         movingPage: '',
       };
     },
+    setToast(state, { payload: { triggered, message } }) {
+      return {
+        ...state,
+        toast: {
+          triggered,
+          message,
+        },
+      };
+    },
   },
 });
 
@@ -322,6 +331,7 @@ export const {
   initToast,
   setToastTriggered,
   initMovingPage,
+  setToast,
 } = actions;
 
 export function loadEntrance({ key }) {
