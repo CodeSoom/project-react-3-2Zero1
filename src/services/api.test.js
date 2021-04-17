@@ -123,7 +123,7 @@ describe('api', () => {
     });
   });
 
-  describe('setPostcard', () => {
+  describe('fetchPostcard', () => {
     beforeEach(() => {
       mockFetch({
         data: {
