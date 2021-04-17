@@ -1,7 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-import { setToastTriggered } from '../state/slice';
+import {
+  initMovingPage,
+  setToastTriggered,
+} from '../state/slice';
 
 import { loadItem } from '../services/storage';
 
@@ -15,11 +18,15 @@ export default function PageMoveManager() {
 
   const history = useHistory();
 
+  const key = loadItem('postcardKey');
+
   if (movingPage) {
     switch (movingPage) {
-    case 'entrance': history.push(`/entrance?key=${loadItem('key')}`); break;
+    case 'entrance': history.push(`/?key=${key}`); break;
     default: history.push(`/${movingPage}`);
     }
+
+    dispatch(initMovingPage());
 
     const { message } = toast;
     if (message) {

@@ -295,6 +295,12 @@ const { actions, reducer } = createSlice({
         },
       };
     },
+    initMovingPage(state) {
+      return {
+        ...state,
+        movingPage: '',
+      };
+    },
   },
 });
 
@@ -315,6 +321,7 @@ export const {
   setResponseError,
   initToast,
   setToastTriggered,
+  initMovingPage,
 } = actions;
 
 export function loadEntrance({ key }) {

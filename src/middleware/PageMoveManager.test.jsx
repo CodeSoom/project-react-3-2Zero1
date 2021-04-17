@@ -54,7 +54,9 @@ describe('PageMoveManager', () => {
 
       render((<PageMoveManager />));
 
-      expect(mockPush).toBeCalledWith(`/entrance?key=${loadItem('key')}`);
+      expect(mockPush).toBeCalledWith(`/?key=${loadItem('key')}`);
+
+      expect(dispatch).toBeCalledWith({ type: 'application/initMovingPage' });
     });
   });
 
@@ -65,6 +67,8 @@ describe('PageMoveManager', () => {
       render((<PageMoveManager />));
 
       expect(mockPush).toBeCalledWith('/postcard');
+
+      expect(dispatch).toBeCalledWith({ type: 'application/initMovingPage' });
     });
   });
 
@@ -75,6 +79,8 @@ describe('PageMoveManager', () => {
       render((<PageMoveManager />));
 
       expect(mockPush).toBeCalledWith('/notfound');
+
+      expect(dispatch).toBeCalledWith({ type: 'application/initMovingPage' });
     });
   });
 
