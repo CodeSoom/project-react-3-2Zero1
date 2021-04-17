@@ -26,7 +26,7 @@ describe('InformationForm', () => {
     },
     secretMessage: {
       id: 'secretMessage',
-      name: '비밀 메시지',
+      name: '엽서 암호',
       value: '',
       placeholder: placeholders.secretMessage,
       errorMessage: '',

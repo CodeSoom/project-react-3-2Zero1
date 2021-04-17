@@ -53,6 +53,8 @@ describe('PostcardPage', () => {
 
       fireEvent.click(getByText('이전'));
 
+      expect(mockGoBack).toBeCalled();
+
       expect(dispatch).toBeCalledWith({
         type: 'application/setPostcardFront',
       });

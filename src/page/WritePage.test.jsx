@@ -61,7 +61,7 @@ describe('WritePage', () => {
 
       expect(dispatch).not.toBeCalled();
 
-      fireEvent.change(getByLabelText('비밀 메시지'), { target: { value: 'hello' } });
+      fireEvent.change(getByLabelText('엽서 암호'), { target: { value: 'hello' } });
 
       expect(dispatch).toBeCalledWith({
         type: 'application/changeInputFieldValue',

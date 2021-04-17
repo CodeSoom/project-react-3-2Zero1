@@ -27,7 +27,7 @@ describe('InputPart', () => {
 
   context('without errorMessage', () => {
     it("doesn't show errorMessage", () => {
-      const name = '비밀 메시지';
+      const name = '엽서 암호';
       const value = 'hello';
       const type = 'secretMessage';
       const placeholder = placeholders[type];
@@ -50,7 +50,7 @@ describe('InputPart', () => {
 
   context('with errorMessage', () => {
     it('shows errorMessage', () => {
-      const name = '비밀 메시지';
+      const name = '엽서 암호';
       const value = '';
       const type = 'secretMessage';
 
