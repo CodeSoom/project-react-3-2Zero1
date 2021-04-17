@@ -77,6 +77,7 @@ const { actions, reducer } = createSlice({
       photoUrl: '',
       photoMessage: '',
     },
+    postcards: [],
     movingPage: '',
     toast: {
       triggered: false,

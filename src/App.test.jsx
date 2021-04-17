@@ -30,6 +30,7 @@ describe('App', () => {
         receiver: '보낸이',
         contents: '이것은 내용입니다.',
       },
+      postcards: [],
       movingPage: '',
       toast: {
         triggered: false,
@@ -68,6 +69,14 @@ describe('App', () => {
 
       expect(container).toHaveTextContent('to');
       expect(container).toHaveTextContent('from');
+    });
+  });
+
+  context('when path is /postcards', () => {
+    it('renders postcardsPage', () => {
+      const { container } = renderApp({ path: '/postcards' });
+
+      expect(container).toHaveTextContent('엽서 모음');
     });
   });
 });
