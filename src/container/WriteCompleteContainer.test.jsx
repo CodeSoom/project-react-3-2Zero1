@@ -50,6 +50,14 @@ describe('WriteCompleteContainer', () => {
 
     fireEvent.click(getByText('전송 메시지 복사'));
 
+    expect(dispatch).toBeCalledWith({
+      type: 'application/setToast',
+      payload: {
+        triggered: true,
+        message: '복사 되었습니다.',
+      },
+    });
+
     expect(getByText('링크와 비밀메시지는 관련된 사람 이외에 공유 하지 말아주세요! 공유가 된다면 다른 사람이 삭제할 수도 있어요! 링크를 지우지 말아주세요. 링크를 잊어 버린다면 다시는 엽서를 보지 못할 수도 있으며, 삭제도 할 수 없습니다.')).not.toBeNull();
   });
 });

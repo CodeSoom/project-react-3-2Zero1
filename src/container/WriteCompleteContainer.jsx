@@ -5,7 +5,10 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import styled from '@emotion/styled';
 
-import { resetPostcardInputFields } from '../state/slice';
+import {
+  resetPostcardInputFields,
+  setToast,
+} from '../state/slice';
 
 import { Button, Information, PreviousButton } from '../style/commonCss';
 
@@ -57,6 +60,11 @@ export default function WriteCompleteContainer({
     dispatch(resetPostcardInputFields());
     onClickHome();
   }
+
+  function handleCopyClick() {
+    dispatch(setToast({ triggered: true, message: '복사 되었습니다.' }));
+  }
+
   return (
     <Wrapper>
       <PreviousButton
@@ -71,7 +79,10 @@ export default function WriteCompleteContainer({
       <Information>반드시 전송 메시지를 복사해주세요. 페이지를 이탈 시 해당 엽서는 찾을 수 없습니다.</Information>
       <CenterBox>
         <CopyToClipboard text={copyText}>
-          <Button type="button">
+          <Button
+            type="button"
+            onClick={handleCopyClick}
+          >
             전송 메시지 복사
           </Button>
         </CopyToClipboard>
