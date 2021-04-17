@@ -52,13 +52,13 @@ ul {
   left: 50%;
   transform: translateX(-50%);
   display: inline-block;
-  background: yellow;
+  background: darkgray;
   padding: 10px 15px;
   border-radius: 22.5px;
-  animation: fadeout 1.5s;
-  -moz-animation: fadeout 1.5s; /* Firefox */
-  -webkit-animation: fadeout 1.5s; /* Safari and Chrome */
-  -o-animation: fadeout 1.5s; /* Opera */
+  animation: fadeout 3s;
+  -moz-animation: fadeout 3s; /* Firefox */
+  -webkit-animation: fadeout 3s; /* Safari and Chrome */
+  -o-animation: fadeout 3s; /* Opera */
   animation-fill-mode: forwards;
 }
 
