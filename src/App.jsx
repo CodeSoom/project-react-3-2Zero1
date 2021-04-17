@@ -10,11 +10,13 @@ import PostcardPage from './page/PostcardPage';
 import NotFoundPage from './page/NotFoundPage';
 
 import PageMoveManager from './middleware/PageMoveManager';
+import ToastManager from './middleware/ToastManager';
 
 export default function App() {
   return (
     <>
       <PageMoveManager />
+      <ToastManager />
       <Switch>
         <Route exact path="/write/:index" component={WritePage} />
         <Route exact path="/postcard" component={PostcardPage} />
