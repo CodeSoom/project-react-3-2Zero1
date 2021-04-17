@@ -1,13 +1,16 @@
 import React from 'react';
 
 import { fireEvent, render } from '@testing-library/react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import postcards from '../fixtures/postcards';
 
 import PostcardsContainer from './PostcardsContainer';
 
 describe('PostcardsPage', () => {
+  const dispatch = jest.fn();
+  useDispatch.mockImplementation(() => dispatch);
+
   useSelector.mockImplementation((selector) => selector({
     postcards,
   }));
