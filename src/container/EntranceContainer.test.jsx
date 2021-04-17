@@ -14,6 +14,7 @@ describe('EntranceContainer', () => {
   const dispatch = jest.fn();
   const onHandleClickPostcard = jest.fn();
   const onHandleClickWritePostcard = jest.fn();
+  const onHandleClickOtherPostcards = jest.fn();
 
   const postcardKey = 'test';
 
@@ -33,6 +34,7 @@ describe('EntranceContainer', () => {
         postcardKey={postcardKey}
         onHandleClickPostcard={onHandleClickPostcard}
         onHandleClickWritePostcard={onHandleClickWritePostcard}
+        onHandleClickOtherPostcards={onHandleClickOtherPostcards}
       />
     ));
   }
@@ -222,6 +224,10 @@ describe('EntranceContainer', () => {
       const { getByText } = entranceRender();
 
       expect(getByText('다른 사람 엽서 보러가기')).not.toBeNull();
+
+      fireEvent.click(getByText('다른 사람 엽서 보러가기'));
+      expect(onHandleClickOtherPostcards).toBeCalled();
+
       expect(getByText('엽서 파기하기')).not.toBeNull();
     });
   });
