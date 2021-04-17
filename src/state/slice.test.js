@@ -108,6 +108,7 @@ describe('reducer', () => {
           photoUrl: '',
           photoMessage: '',
         },
+        postcards: [],
         movingPage: '',
         toast: {
           triggered: false,
