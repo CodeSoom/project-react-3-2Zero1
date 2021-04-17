@@ -444,7 +444,7 @@ export function loadPostcards() {
   return async (dispatch) => {
     const response = await fetchPostcards();
 
-    dispatch(setPostcards(response.data));
+    dispatch(setPostcards(response.data.postcards));
   };
 }
 export default reducer;
