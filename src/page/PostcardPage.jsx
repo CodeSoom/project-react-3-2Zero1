@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import PostcardContainer from '../container/PostcardContainer';
 
 import { setPostcardFront } from '../state/slice';
