@@ -57,7 +57,7 @@ export default function InformationFormContainer({
     secretMessage: getField({
       field: secretMessage,
       id: 'secretMessage',
-      name: '비밀 메시지',
+      name: '엽서 암호',
       onChange: getChangeHandler('secretMessage'),
     }),
   };

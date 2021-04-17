@@ -25,7 +25,7 @@ export default function EntranceCheckForm({
         isPrivate ? (
           <>
             <InputPart field={field} />
-            <Information>비공개 엽서입니다. 문자로 받은 비밀 메시지를 입력 후 엽서 확인하기 버튼을 눌러주세요.</Information>
+            <Information>비공개 엽서입니다. 문자로 받은 엽서 암호를 입력 후 엽서 확인하기 버튼을 눌러주세요.</Information>
           </>
         ) : null
       }

@@ -50,8 +50,8 @@ describe('InformationFormContainer', () => {
     expect(getByLabelText('받는 사람')).not.toBeNull();
     expect(getByLabelText('받는 사람').placeholder).toBe(placeholders.receiver);
 
-    expect(getByLabelText('비밀 메시지')).not.toBeNull();
-    expect(getByLabelText('비밀 메시지').placeholder).toBe(placeholders.secretMessage);
+    expect(getByLabelText('엽서 암호')).not.toBeNull();
+    expect(getByLabelText('엽서 암호').placeholder).toBe(placeholders.secretMessage);
     expect(getByText('엽서를 확인 또는 파기하기 위해 사용되며 받는 사람에게도 공유됩니다.')).not.toBeNull();
 
     expect(getByLabelText('비공개')).not.toBeNull();

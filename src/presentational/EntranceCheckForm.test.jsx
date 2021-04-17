@@ -43,7 +43,7 @@ describe('EntranceCheckForm', () => {
       const { getByText, getByPlaceholderText } = renderEntranceCheckForm(true);
 
       expect(getByPlaceholderText('5 ~ 20자')).not.toBeNull();
-      expect(getByText('비공개 엽서입니다. 문자로 받은 비밀 메시지를 입력 후 엽서 확인하기 버튼을 눌러주세요.')).not.toBeNull();
+      expect(getByText('비공개 엽서입니다. 문자로 받은 엽서 암호를 입력 후 엽서 확인하기 버튼을 눌러주세요.')).not.toBeNull();
     });
   });
 
@@ -52,7 +52,7 @@ describe('EntranceCheckForm', () => {
       const { queryByText, queryByPlaceholderText } = renderEntranceCheckForm(false);
 
       expect(queryByPlaceholderText('5 ~ 20자')).toBeNull();
-      expect(queryByText('비공개 엽서입니다. 문자로 받은 비밀 메시지를 입력 후 엽서 확인하기 버튼을 눌러주세요.')).toBeNull();
+      expect(queryByText('비공개 엽서입니다. 문자로 받은 엽서 암호를 입력 후 엽서 확인하기 버튼을 눌러주세요.')).toBeNull();
     });
   });
 

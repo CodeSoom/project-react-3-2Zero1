@@ -50,7 +50,7 @@ export default function WriteCompleteContainer({
   } = inputFields;
   const host = 'http://zero1s.shop/?key=';
 
-  const secretMessageText = secretMessage ? `\n\n비밀 메시지: ${secretMessage}` : '';
+  const secretMessageText = secretMessage ? `\n\n엽서 암호: ${secretMessage}` : '';
 
   const copyText = `${senderName}님으로 부터 엽서가 도착했습니다.\n\n엽서 링크 :${host}${url} ${secretMessageText}\n\n링크와 비밀메시지는 관련된 사람 이외의 사람에게 공유하지 말아주세요!\n\n공유가 된다면 다른 사람에 의해 삭제될 수 있습니다.`;
 
