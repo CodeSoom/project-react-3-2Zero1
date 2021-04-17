@@ -18,6 +18,7 @@ import reducer, {
   setResponseError,
   initToast,
   setToastTriggered,
+  initMovingPage,
 
   loadEntrance,
   sendPhoto,
@@ -517,6 +518,18 @@ describe('reducer', () => {
         message: 'test',
         triggered: true,
       });
+    });
+  });
+
+  describe('initMovingPage', () => {
+    it('initializes movingPage', () => {
+      const initialState = {
+        movingPage: 'entrance',
+      };
+
+      const state = reducer(initialState, initMovingPage());
+
+      expect(state.movingPage).toEqual('');
     });
   });
 
