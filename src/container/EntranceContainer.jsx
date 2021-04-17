@@ -31,6 +31,7 @@ export default function EntranceContainer({
   postcardKey,
   onHandleClickPostcard,
   onHandleClickWritePostcard,
+  onHandleClickOtherPostcards,
 }) {
   const dispatch = useDispatch();
 
@@ -109,7 +110,12 @@ export default function EntranceContainer({
         onHandleClickWritePostcard={onHandleClickWritePostcard}
       />
       <p>{`현재 까지 ${writtenCount}명의 엽서가 작성 되었습니다.`}</p>
-      <Button type="button">다른 사람 엽서 보러가기</Button>
+      <Button
+        type="button"
+        onClick={onHandleClickOtherPostcards}
+      >
+        다른 사람 엽서 보러가기
+      </Button>
       <Button type="button">엽서 파기하기</Button>
     </Wrapper>
   );

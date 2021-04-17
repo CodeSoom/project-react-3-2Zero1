@@ -89,6 +89,21 @@ describe('EntrancePage', () => {
     });
   });
 
+  context("when '다른 사람 엽서 보러가기' button is clicked", () => {
+    it('call history push with /postcards', () => {
+      useSelector.mockImplementation((selector) => selector({
+        entrance,
+        inputFields,
+      }));
+
+      const { getByText } = renderEntrance({ key: '발신자' });
+
+      fireEvent.click(getByText('다른 사람 엽서 보러가기'));
+
+      expect(mockPush).toBeCalledWith('/postcards');
+    });
+  });
+
   context('when pageMove is true', () => {
     it('call history push with /postcard', () => {
       useSelector.mockImplementation((selector) => selector({

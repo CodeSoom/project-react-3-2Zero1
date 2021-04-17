@@ -19,11 +19,17 @@ export default function EntrancePage({ location }) {
     history.push(url);
   }
 
+  function handleClickOtherPostcards() {
+    const url = '/postcards';
+    history.push(url);
+  }
+
   return (
     <EntranceContainer
       postcardKey={key}
       onHandleClickPostcard={handleClickPostcard}
       onHandleClickWritePostcard={handleClickWritePostcard}
+      onHandleClickOtherPostcards={handleClickOtherPostcards}
     />
   );
 }
