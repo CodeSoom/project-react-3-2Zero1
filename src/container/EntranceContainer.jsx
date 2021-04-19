@@ -32,6 +32,7 @@ export default function EntranceContainer({
   onHandleClickPostcard,
   onHandleClickWritePostcard,
   onHandleClickOtherPostcards,
+  onHandleClickExpire,
 }) {
   const dispatch = useDispatch();
 
@@ -116,7 +117,12 @@ export default function EntranceContainer({
       >
         다른 사람 엽서 보러가기
       </Button>
-      <Button type="button">엽서 파기하기</Button>
+      <Button
+        type="button"
+        onClick={onHandleClickExpire}
+      >
+        엽서 파기하기
+      </Button>
     </Wrapper>
   );
 }

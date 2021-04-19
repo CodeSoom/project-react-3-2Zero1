@@ -15,6 +15,7 @@ describe('EntranceContainer', () => {
   const onHandleClickPostcard = jest.fn();
   const onHandleClickWritePostcard = jest.fn();
   const onHandleClickOtherPostcards = jest.fn();
+  const onHandleClickExpire = jest.fn();
 
   const postcardKey = 'test';
 
@@ -35,6 +36,7 @@ describe('EntranceContainer', () => {
         onHandleClickPostcard={onHandleClickPostcard}
         onHandleClickWritePostcard={onHandleClickWritePostcard}
         onHandleClickOtherPostcards={onHandleClickOtherPostcards}
+        onHandleClickExpire={onHandleClickExpire}
       />
     ));
   }
@@ -229,6 +231,8 @@ describe('EntranceContainer', () => {
       expect(onHandleClickOtherPostcards).toBeCalled();
 
       expect(getByText('엽서 파기하기')).not.toBeNull();
+      fireEvent.click(getByText('엽서 파기하기'));
+      expect(onHandleClickExpire).toBeCalled();
     });
   });
 });

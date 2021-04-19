@@ -7,7 +7,13 @@ import InputPart from '../presentational/InputPart';
 
 import { getField } from '../utils/utils';
 
-import { changeInputFieldValue } from '../state/slice';
+import {
+  changeInputFieldValue,
+  expirePostcard,
+  setInputFieldsError,
+} from '../state/slice';
+
+import { loadItem } from '../services/storage';
 
 import {
   PreviousButton,
@@ -51,6 +57,24 @@ export default function PostcardsContainer({ handlePreviousClick }) {
     onChange: getChangeHandler('secretMessage'),
   });
 
+  function handleClickExpire() {
+    const { value } = secretMessage;
+    if (value.length < 5 || value.length > 21) {
+      dispatch(setInputFieldsError({
+        page: 'expire',
+        type: 'secretMessage',
+        error: true,
+      }));
+      return;
+    }
+    const key = loadItem('postcardKey');
+
+    dispatch(expirePostcard({
+      key,
+      secretMessage: secretMessage.value,
+    }));
+  }
+
   return (
     <DefaultLayout>
       <PreviousButton
@@ -65,6 +89,7 @@ export default function PostcardsContainer({ handlePreviousClick }) {
       <InputPart field={secretMessageField} />
       <button
         type="button"
+        onClick={handleClickExpire}
       >
         파기
       </button>

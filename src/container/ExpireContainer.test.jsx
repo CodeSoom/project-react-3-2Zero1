@@ -3,9 +3,13 @@ import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import inputFields from '../fixtures/inputFields';
-
 import ExpireContainer from './ExpireContainer';
+
+import { loadItem } from '../services/storage';
+
+jest.mock('../services/storage');
+
+loadItem.mockImplementation(() => 'test');
 
 describe('ExpireContainer', () => {
   const dispatch = jest.fn();
@@ -17,8 +21,19 @@ describe('ExpireContainer', () => {
     entrance: {
       sender,
     },
-    inputFields,
+    inputFields: {
+      expire: {
+        secretMessage: {
+          error: false,
+          value: given.secretMessage,
+        },
+      },
+    },
   }));
+
+  beforeEach(() => {
+    dispatch.mockClear();
+  });
 
   const handlePreviousClick = jest.fn();
   function renderPostcardsPage() {
@@ -28,6 +43,8 @@ describe('ExpireContainer', () => {
   }
 
   it('shows postcards', () => {
+    given('secretMessage', () => 'secretMessage');
+
     const { getByText, getByPlaceholderText, getByLabelText } = renderPostcardsPage();
 
     expect(getByText('파기하기')).not.toBeNull();
@@ -54,7 +71,43 @@ describe('ExpireContainer', () => {
         value: 'hello',
       },
     });
+  });
 
-    expect(getByText('파기')).not.toBeNull();
+  context('with invalid secretMessage', () => {
+    it('call setInputFieldsError', () => {
+      given('secretMessage', () => '');
+
+      const { getByText } = renderPostcardsPage();
+
+      expect(getByText('파기')).not.toBeNull();
+      fireEvent.click(getByText('파기'));
+      expect(dispatch).toBeCalledWith({
+        type: 'application/setInputFieldsError',
+        payload: {
+          page: 'expire',
+          type: 'secretMessage',
+          error: true,
+        },
+      });
+    });
+  });
+
+  context('with valid secretMessage', () => {
+    it('does not call setInputFieldsError', () => {
+      given('secretMessage', () => 'secretMessage');
+
+      const { getByText } = renderPostcardsPage();
+
+      expect(getByText('파기')).not.toBeNull();
+      fireEvent.click(getByText('파기'));
+      expect(dispatch).not.toBeCalledWith({
+        type: 'application/setInputFieldsError',
+        payload: {
+          page: 'expire',
+          type: 'secretMessage',
+          error: true,
+        },
+      });
+    });
   });
 });
