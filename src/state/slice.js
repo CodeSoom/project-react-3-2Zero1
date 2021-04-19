@@ -325,6 +325,12 @@ const { actions, reducer } = createSlice({
         postcards: value,
       };
     },
+    setMovingPage(state, { payload: value }) {
+      return {
+        ...state,
+        movingPage: value,
+      };
+    },
   },
 });
 
@@ -348,6 +354,7 @@ export const {
   initMovingPage,
   setToast,
   setPostcards,
+  setMovingPage,
 } = actions;
 
 export function loadEntrance({ key }) {
@@ -468,6 +475,7 @@ export function expirePostcard({ key, secretMessage }) {
       triggered: false,
       message: '엽서가 삭제되었습니다.',
     }));
+    dispatch(setMovingPage({ movingPage: 'notfound' }));
   };
 }
 

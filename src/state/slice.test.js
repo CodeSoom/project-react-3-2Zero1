@@ -21,6 +21,7 @@ import reducer, {
   initMovingPage,
   setToast,
   setPostcards,
+  setMovingPage,
 
   loadEntrance,
   sendPhoto,
@@ -578,6 +579,18 @@ describe('reducer', () => {
     });
   });
 
+  describe('setMovingPage', () => {
+    it('set movingPage', () => {
+      const initialState = {
+        movingPage: '',
+      };
+
+      const state = reducer(initialState, setMovingPage('notfound'));
+
+      expect(state.movingPage).toEqual('notfound');
+    });
+  });
+
   describe('loadEntrance', () => {
     beforeEach(() => {
       store = mockStore({});
@@ -852,6 +865,10 @@ describe('reducer', () => {
         expect(actions[0]).toEqual(setToast({
           triggered: false,
           message: '엽서가 삭제되었습니다.',
+        }));
+
+        expect(actions[1]).toEqual(setMovingPage({
+          movingPage: 'notfound',
         }));
       });
     });
