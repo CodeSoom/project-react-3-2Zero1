@@ -9,6 +9,7 @@ import {
   postCheckValidPostcard,
   fetchPostcard,
   fetchPostcards,
+  postExpire,
 } from '../services/api';
 
 // import { saveItem } from './services/storage';
@@ -54,6 +55,12 @@ const initialInputFields = {
     complete: {
       key: '',
       secretMessage: '',
+    },
+  },
+  expire: {
+    secretMessage: {
+      value: '',
+      error: false,
     },
   },
 };
@@ -447,4 +454,21 @@ export function loadPostcards() {
     dispatch(setPostcards(response.data.postcards));
   };
 }
+
+export function expirePostcard({ key, secretMessage }) {
+  return async (dispatch) => {
+    const response = await postExpire({ key, secretMessage });
+
+    if (response.error) {
+      dispatch(setResponseError(response.error));
+      return;
+    }
+
+    dispatch(setToast({
+      triggered: false,
+      message: '엽서가 삭제되었습니다.',
+    }));
+  };
+}
+
 export default reducer;

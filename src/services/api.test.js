@@ -5,6 +5,7 @@ import {
   postCheckValidPostcard,
   fetchPostcard,
   fetchPostcards,
+  postExpire,
 } from './api';
 
 import ENTRANCE from '../fixtures/entrance';
@@ -175,6 +176,26 @@ describe('api', () => {
           receiver: '나 자신',
           photo: 'https://postcard-yh1.s3.ap-northeast-2.amazonaws.com/uploads/1618470403665_photoyh.jpeg',
           photoMessage: '힘들었지만 어느 때 보다 행복했던 그때를 기억하며..',
+        },
+      });
+    });
+  });
+
+  describe('postExpire', () => {
+    beforeEach(() => {
+      mockFetch({
+        data: {
+          success: true,
+        },
+      });
+    });
+
+    it('returns response', async () => {
+      const response = await postExpire({ key: 'key', secretMessage: 'secretMessage' });
+
+      expect(response).toEqual({
+        data: {
+          success: true,
         },
       });
     });

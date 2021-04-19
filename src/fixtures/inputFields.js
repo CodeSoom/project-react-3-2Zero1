@@ -35,6 +35,12 @@ const inputFields = {
       isFrontPage: true,
     },
   },
+  expire: {
+    secretMessage: {
+      value: '',
+      error: false,
+    },
+  },
 };
 
 export default inputFields;
