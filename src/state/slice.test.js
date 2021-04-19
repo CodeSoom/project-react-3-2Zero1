@@ -28,6 +28,7 @@ import reducer, {
   checkValidPostcard,
   loadPostcard,
   loadPostcards,
+  expirePostcard,
 } from './slice';
 
 import {
@@ -35,6 +36,7 @@ import {
   fetchEntrance,
   postPostcard,
   fetchPostcard,
+  postExpire,
 } from '../services/api';
 
 import entrance from '../fixtures/entrance';
@@ -90,6 +92,12 @@ describe('reducer', () => {
           complete: {
             key: '',
             secretMessage: '',
+          },
+        },
+        expire: {
+          secretMessage: {
+            value: '',
+            error: false,
           },
         },
       };
@@ -804,14 +812,48 @@ describe('reducer', () => {
     });
 
     it('runs setPostcards', async () => {
-      given('response', () => ({
-        error: responseError,
-      }));
       await store.dispatch(loadPostcards());
 
       const actions = store.getActions();
 
       expect(actions[0]).toEqual(setPostcards([]));
+    });
+  });
+
+  describe('expirePostcard', () => {
+    beforeEach(() => {
+      store = mockStore({});
+
+      postExpire.mockImplementation(() => Promise.resolve(given.response));
+    });
+
+    context('when response has error', () => {
+      it('runs setMovingPage', async () => {
+        given('response', () => ({
+          error: responseError,
+        }));
+        await store.dispatch(expirePostcard({ key: 'key', secretMessage: 'secretMessage' }));
+
+        const actions = store.getActions();
+
+        expect(actions[0]).toEqual(setResponseError(responseError));
+      });
+    });
+
+    context('when response does not have error', () => {
+      it('runs setToast', async () => {
+        given('response', () => ({
+          data: { success: true },
+        }));
+        await store.dispatch(expirePostcard({ key: 'key', secretMessage: 'secretMessage' }));
+
+        const actions = store.getActions();
+
+        expect(actions[0]).toEqual(setToast({
+          triggered: false,
+          message: '엽서가 삭제되었습니다.',
+        }));
+      });
     });
   });
 });

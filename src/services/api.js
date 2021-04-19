@@ -125,3 +125,19 @@ export async function fetchPostcards() {
 
   return result;
 }
+
+export async function postExpire({ key, secretMessage }) {
+  const url = getDomain('expire');
+
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Headers': '*',
+    },
+    body: JSON.stringify({ key, secretMessage }),
+  });
+  const result = await response.json();
+
+  return result;
+}

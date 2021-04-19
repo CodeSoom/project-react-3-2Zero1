@@ -7,7 +7,7 @@ import postcards from '../fixtures/postcards';
 
 import PostcardsContainer from './PostcardsContainer';
 
-describe('PostcardsPage', () => {
+describe('PostcardsContainer', () => {
   const dispatch = jest.fn();
   useDispatch.mockImplementation(() => dispatch);
 

@@ -79,4 +79,12 @@ describe('App', () => {
       expect(container).toHaveTextContent('엽서 모음');
     });
   });
+
+  context('when path is /expire', () => {
+    it('renders expirePage', () => {
+      const { container } = renderApp({ path: '/expire' });
+
+      expect(container).toHaveTextContent('파기하기');
+    });
+  });
 });

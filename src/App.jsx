@@ -8,6 +8,7 @@ import EntrancePage from './page/EntrancePage';
 import WritePage from './page/WritePage';
 import PostcardPage from './page/PostcardPage';
 import PostcardsPage from './page/PostcardsPage';
+import ExpirePage from './page/ExpirePage';
 import NotFoundPage from './page/NotFoundPage';
 
 import PageMoveManager from './middleware/PageMoveManager';
@@ -23,6 +24,7 @@ export default function App() {
         <Route exact path="/postcards" component={PostcardsPage} />
         <Route exact path="/postcard" component={PostcardPage} />
         <Route exact path="/entrance/:key" component={EntrancePage} />
+        <Route exact path="/expire" component={ExpirePage} />
         <Route exact path="/" component={EntrancePage} />
         <Route component={NotFoundPage} />
       </Switch>

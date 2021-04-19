@@ -14,3 +14,5 @@ export const fetchPostcard = jest.fn();
 export async function fetchPostcards() {
   return { data: { postcards: [] } };
 }
+
+export const postExpire = jest.fn();
