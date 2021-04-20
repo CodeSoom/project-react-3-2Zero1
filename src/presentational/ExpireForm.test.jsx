@@ -45,7 +45,7 @@ describe('ExpireContainer', () => {
 
     expect(handlePreviousClick).toBeCalled();
 
-    expect(getByText('발신자님으로 부터 받은 엽서를 파기하시겠습니까?')).not.toBeNull();
+    expect(getByText('발신자님으로 부터 받은 소중한 엽서를 파기하시겠습니까?')).not.toBeNull();
     expect(getByText('엽서 암호를 입력해주세요')).not.toBeNull();
     expect(getByPlaceholderText('5 ~ 20자')).not.toBeNull();
 
