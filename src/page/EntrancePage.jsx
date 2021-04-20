@@ -24,12 +24,18 @@ export default function EntrancePage({ location }) {
     history.push(url);
   }
 
+  function handleClickExpire() {
+    const url = '/expire';
+    history.push(url);
+  }
+
   return (
     <EntranceContainer
       postcardKey={key}
       onHandleClickPostcard={handleClickPostcard}
       onHandleClickWritePostcard={handleClickWritePostcard}
       onHandleClickOtherPostcards={handleClickOtherPostcards}
+      onHandleClickExpire={handleClickExpire}
     />
   );
 }

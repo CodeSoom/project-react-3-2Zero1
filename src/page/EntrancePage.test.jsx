@@ -104,6 +104,21 @@ describe('EntrancePage', () => {
     });
   });
 
+  context("when '엽서 파기하기' button is clicked", () => {
+    it('call history push with /expire', () => {
+      useSelector.mockImplementation((selector) => selector({
+        entrance,
+        inputFields,
+      }));
+
+      const { getByText } = renderEntrance({ key: '발신자' });
+
+      fireEvent.click(getByText('엽서 파기하기'));
+
+      expect(mockPush).toBeCalledWith('/expire');
+    });
+  });
+
   context('when pageMove is true', () => {
     it('call history push with /postcard', () => {
       useSelector.mockImplementation((selector) => selector({

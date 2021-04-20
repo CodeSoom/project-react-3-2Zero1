@@ -585,7 +585,7 @@ describe('reducer', () => {
         movingPage: '',
       };
 
-      const state = reducer(initialState, setMovingPage('notfound'));
+      const state = reducer(initialState, setMovingPage({ movingPage: 'notfound' }));
 
       expect(state.movingPage).toEqual('notfound');
     });
@@ -854,22 +854,41 @@ describe('reducer', () => {
     });
 
     context('when response does not have error', () => {
-      it('runs setToast', async () => {
-        given('response', () => ({
-          data: { success: true },
-        }));
-        await store.dispatch(expirePostcard({ key: 'key', secretMessage: 'secretMessage' }));
+      context('when success is true', () => {
+        it('runs setToast and setMovingPage', async () => {
+          given('response', () => ({
+            data: { success: true },
+          }));
+          await store.dispatch(expirePostcard({ key: 'key', secretMessage: 'secretMessage' }));
 
-        const actions = store.getActions();
+          const actions = store.getActions();
 
-        expect(actions[0]).toEqual(setToast({
-          triggered: false,
-          message: '엽서가 삭제되었습니다.',
-        }));
+          expect(actions[0]).toEqual(setToast({
+            triggered: false,
+            message: '엽서가 삭제되었습니다.',
+          }));
 
-        expect(actions[1]).toEqual(setMovingPage({
-          movingPage: 'notfound',
-        }));
+          expect(actions[1]).toEqual(setMovingPage({
+            movingPage: 'notfound',
+          }));
+        });
+      });
+
+      context('when success is false', () => {
+        it('runs setInputFieldsError', async () => {
+          given('response', () => ({
+            data: { success: false },
+          }));
+          await store.dispatch(expirePostcard({ key: 'key', secretMessage: 'secretMessage' }));
+
+          const actions = store.getActions();
+
+          expect(actions[0]).toEqual(setInputFieldsError({
+            page: 'expire',
+            type: 'secretMessage',
+            error: true,
+          }));
+        });
       });
     });
   });

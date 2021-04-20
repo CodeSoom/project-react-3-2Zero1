@@ -325,10 +325,10 @@ const { actions, reducer } = createSlice({
         postcards: value,
       };
     },
-    setMovingPage(state, { payload: value }) {
+    setMovingPage(state, { payload: { movingPage } }) {
       return {
         ...state,
-        movingPage: value,
+        movingPage,
       };
     },
   },
@@ -471,11 +471,21 @@ export function expirePostcard({ key, secretMessage }) {
       return;
     }
 
-    dispatch(setToast({
-      triggered: false,
-      message: '엽서가 삭제되었습니다.',
-    }));
-    dispatch(setMovingPage({ movingPage: 'notfound' }));
+    const { success } = response.data;
+
+    if (success) {
+      dispatch(setToast({
+        triggered: false,
+        message: '엽서가 삭제되었습니다.',
+      }));
+      dispatch(setMovingPage({ movingPage: 'notfound' }));
+    } else {
+      dispatch(setInputFieldsError({
+        page: 'expire',
+        type: 'secretMessage',
+        error: true,
+      }));
+    }
   };
 }
 
