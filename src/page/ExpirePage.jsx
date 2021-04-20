@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
-import ExpireContainer from '../container/ExpireContainer';
+import ExpireFormContainer from '../container/ExpireFormContainer';
 
 export default function ExpirePage() {
   const history = useHistory();
@@ -11,6 +11,6 @@ export default function ExpirePage() {
   }
 
   return (
-    <ExpireContainer handlePreviousClick={handlePrevousClick} />
+    <ExpireFormContainer handlePreviousClick={handlePrevousClick} />
   );
 }

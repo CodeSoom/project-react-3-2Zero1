@@ -3,7 +3,7 @@ import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import ExpireContainer from './ExpireContainer';
+import ExpireFormContainer from './ExpireFormContainer';
 
 import { loadItem } from '../services/storage';
 
@@ -11,7 +11,7 @@ jest.mock('../services/storage');
 
 loadItem.mockImplementation(() => 'test');
 
-describe('ExpireContainer', () => {
+describe('ExpireFormContainer', () => {
   const dispatch = jest.fn();
   useDispatch.mockImplementation(() => dispatch);
 
@@ -38,28 +38,20 @@ describe('ExpireContainer', () => {
   const handlePreviousClick = jest.fn();
   function renderPostcardsPage() {
     return render((
-      <ExpireContainer handlePreviousClick={handlePreviousClick} />
+      <ExpireFormContainer handlePreviousClick={handlePreviousClick} />
     ));
   }
 
   it('shows postcards', () => {
     given('secretMessage', () => 'secretMessage');
 
-    const { getByText, getByPlaceholderText, getByLabelText } = renderPostcardsPage();
-
-    expect(getByText('파기하기')).not.toBeNull();
+    const { getByText, getByLabelText } = renderPostcardsPage();
 
     expect(getByText('이전')).not.toBeNull();
 
     fireEvent.click(getByText('이전'));
 
     expect(handlePreviousClick).toBeCalled();
-
-    expect(getByText('발신자님으로 부터 받은 엽서를 파기하시겠습니까?')).not.toBeNull();
-
-    expect(getByText('엽서 암호를 입력해주세요')).not.toBeNull();
-
-    expect(getByPlaceholderText('5 ~ 20자')).not.toBeNull();
 
     fireEvent.change(getByLabelText('엽서 암호'), { target: { value: 'hello' } });
 
