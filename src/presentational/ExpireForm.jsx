@@ -21,14 +21,14 @@ const Title = styled.span({
 const Question = styled.div({
   marginTop: '20px',
   textAlign: 'center',
-  fontSize: '20px'
-})
+  fontSize: '20px',
+});
 
 const Information = styled.div({
   marginTop: '23px',
   textAlign: 'center',
   fontSize: '15px',
-})
+});
 
 export default function PostcardsContainer({
   sender,
