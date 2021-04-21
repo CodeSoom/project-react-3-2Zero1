@@ -421,7 +421,7 @@ export function checkValidPostcard({ key, secretMessage }) {
       dispatch(setInputFieldsError({
         page: 'entrance',
         type: 'secretMessage',
-        error: true,
+        error: 'wrong',
       }));
     }
   };
@@ -483,7 +483,7 @@ export function expirePostcard({ key, secretMessage }) {
       dispatch(setInputFieldsError({
         page: 'expire',
         type: 'secretMessage',
-        error: true,
+        error: 'wrong',
       }));
     }
   };

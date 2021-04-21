@@ -761,7 +761,7 @@ describe('reducer', () => {
           expect(actions[0]).toEqual(setInputFieldsError({
             page: 'entrance',
             type: 'secretMessage',
-            error: true,
+            error: 'wrong',
           }));
         });
       });
@@ -886,7 +886,7 @@ describe('reducer', () => {
           expect(actions[0]).toEqual(setInputFieldsError({
             page: 'expire',
             type: 'secretMessage',
-            error: true,
+            error: 'wrong',
           }));
         });
       });
