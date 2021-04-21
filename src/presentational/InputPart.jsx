@@ -21,7 +21,7 @@ const Error = styled.p(() => ({
 }));
 
 const Input = styled.input(({ error }) => ({
-  borderColor: error ? 'red' : '',
+  border: `1px solid ${error ? 'red' : '#d8d8d8'}`,
   padding: '5px',
   verticalAlign: 'middle',
 }));
@@ -40,14 +40,12 @@ export default function InputPart({
     const { target: { value: targetValue } } = event;
     onChange(targetValue);
   }
-
   return (
     <InputText>
       <Label htmlFor={id}>{name}</Label>
       <Input
         id={id}
         type="text"
-        className="inputClass"
         value={value}
         placeholder={placeholder}
         onChange={handleChange}
