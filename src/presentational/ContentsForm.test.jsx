@@ -14,6 +14,8 @@ describe('ContentsForm', () => {
   const handlePreviousClick = jest.fn();
   const handleChange = jest.fn();
 
+  const { default: errorMessage } = errorMessages.contents;
+
   useSelector.mockImplementation((selector) => selector({
     inputFields,
   }));
@@ -23,7 +25,7 @@ describe('ContentsForm', () => {
       id: 'contents',
       value: '안녕하십니까 이것은 테스트를 위한 값입니다. 테스트 테스트 테스트 테스트',
       placeholder: placeholders.contents,
-      errorMessage: isError ? errorMessages.contents : '',
+      errorMessage: isError ? errorMessage : '',
       onChange: handleChange,
     };
     return render((
@@ -57,7 +59,7 @@ describe('ContentsForm', () => {
       const { getByPlaceholderText, getByText } = renderContentsForm(true);
 
       expect(getByPlaceholderText(placeholders.contents)).not.toBeNull();
-      expect(getByText(errorMessages.contents)).not.toBeNull();
+      expect(getByText(errorMessage)).not.toBeNull();
     });
   });
 });

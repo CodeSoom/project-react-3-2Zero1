@@ -1,5 +1,5 @@
 import placeholders from '../text/placeholders';
-import errorMessages from '../text/errorMessages';
+import getErrorMessage from './getErrorMessage';
 
 export function get(key) {
   return (obj) => obj[key];
@@ -20,7 +20,7 @@ export function getField({
     name,
     value,
     placeholder: placeholders[id],
-    errorMessage: error ? errorMessages[id] : '',
+    errorMessage: getErrorMessage({ type: id, error }),
     onChange,
   });
 }
