@@ -652,7 +652,7 @@ describe('reducer', () => {
     });
 
     const postcard = {
-      key: 'test', // TODO : 입장 페이지가 완료되면 key값을 받아 넣어주도록 변경해야함.
+      key: 'test',
       sender: 'sender',
       receiver: 'receiver',
       contents: 'contents',
