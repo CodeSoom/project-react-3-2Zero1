@@ -1,6 +1,6 @@
 const messages = {
   secretMessage: {
-    wrong: '올바른 메시지를 입력해주세요',
+    wrong: '올바른 엽서 암호를 입력해주세요',
     default: '엽서 암호 길이는 5자 ~ 15자 입니다.',
   },
   sender: {
