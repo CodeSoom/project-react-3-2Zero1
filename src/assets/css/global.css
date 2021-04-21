@@ -36,12 +36,6 @@ ul {
   list-style: none;
 }
 
-.entranceButton {
-  font-size: 12px;
-  border: none;
-  border-radius: 15px;
-}
-
 .fade-out-box {
   position: absolute;
   top: 50%;
