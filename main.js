@@ -1474,7 +1474,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({\n  secretMessage: '엽서 암호 길이는 5자 ~ 15자 입니다.',\n  sender: '이름 길이는 2자 ~ 5자 입니다.',\n  receiver: '이름 길이는 2자 ~ 5자 입니다.',\n  contents: '내용의 길이는 30 ~ 200자 입니다.',\n  photoMessage: '사진 메시지 길이는 10자 ~ 30자 입니다.',\n  photo: '이미지를 선택해주세요.',\n});\n\n\n//# sourceURL=webpack://postcard/./src/text/errorMessages.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst messages = {\n  secretMessage: {\n    wrong: '올바른 메시지를 입력해주세요',\n    default: '엽서 암호 길이는 5자 ~ 15자 입니다.',\n  },\n  sender: {\n    default: '이름 길이는 2자 ~ 5자 입니다.',\n  },\n  receiver: {\n    default: '이름 길이는 2자 ~ 5자 입니다.',\n  },\n  contents: {\n    default: '내용의 길이는 30 ~ 200자 입니다.',\n  },\n  photoMessage: {\n    default: '사진 메시지 길이는 10자 ~ 30자 입니다.',\n  },\n  photo: {\n    default: '이미지를 선택해주세요.',\n  },\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (messages);\n\n\n//# sourceURL=webpack://postcard/./src/text/errorMessages.js?");
 
 /***/ }),
 
@@ -1489,6 +1489,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
+/***/ "./src/utils/getErrorMessage.js":
+/*!**************************************!*\
+  !*** ./src/utils/getErrorMessage.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ getErrorMessage)\n/* harmony export */ });\n/* harmony import */ var _text_errorMessages__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../text/errorMessages */ \"./src/text/errorMessages.js\");\n\n\nfunction getErrorMessage({ type, error }) {\n  if (!error) return '';\n\n  if (!_text_errorMessages__WEBPACK_IMPORTED_MODULE_0__.default[type][error]) {\n    return _text_errorMessages__WEBPACK_IMPORTED_MODULE_0__.default[type].default;\n  }\n\n  return _text_errorMessages__WEBPACK_IMPORTED_MODULE_0__.default[type][error];\n}\n\n\n//# sourceURL=webpack://postcard/./src/utils/getErrorMessage.js?");
+
+/***/ }),
+
 /***/ "./src/utils/utils.js":
 /*!****************************!*\
   !*** ./src/utils/utils.js ***!
@@ -1496,7 +1507,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"get\": () => (/* binding */ get),\n/* harmony export */   \"equal\": () => (/* binding */ equal),\n/* harmony export */   \"getField\": () => (/* binding */ getField)\n/* harmony export */ });\n/* harmony import */ var _text_placeholders__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../text/placeholders */ \"./src/text/placeholders.js\");\n/* harmony import */ var _text_errorMessages__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../text/errorMessages */ \"./src/text/errorMessages.js\");\n\n\n\nfunction get(key) {\n  return (obj) => obj[key];\n}\n\nfunction equal(key, value) {\n  return (obj) => obj[key] === value;\n}\n\nfunction getField({\n  field: { value, error },\n  id,\n  name,\n  onChange,\n}) {\n  return ({\n    id,\n    name,\n    value,\n    placeholder: _text_placeholders__WEBPACK_IMPORTED_MODULE_0__.default[id],\n    errorMessage: error ? _text_errorMessages__WEBPACK_IMPORTED_MODULE_1__.default[id] : '',\n    onChange,\n  });\n}\n\n\n//# sourceURL=webpack://postcard/./src/utils/utils.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"get\": () => (/* binding */ get),\n/* harmony export */   \"equal\": () => (/* binding */ equal),\n/* harmony export */   \"getField\": () => (/* binding */ getField)\n/* harmony export */ });\n/* harmony import */ var _text_placeholders__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../text/placeholders */ \"./src/text/placeholders.js\");\n/* harmony import */ var _getErrorMessage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./getErrorMessage */ \"./src/utils/getErrorMessage.js\");\n\n\n\nfunction get(key) {\n  return (obj) => obj[key];\n}\n\nfunction equal(key, value) {\n  return (obj) => obj[key] === value;\n}\n\nfunction getField({\n  field: { value, error },\n  id,\n  name,\n  onChange,\n}) {\n  return ({\n    id,\n    name,\n    value,\n    placeholder: _text_placeholders__WEBPACK_IMPORTED_MODULE_0__.default[id],\n    errorMessage: (0,_getErrorMessage__WEBPACK_IMPORTED_MODULE_1__.default)({ type: id, error }),\n    onChange,\n  });\n}\n\n\n//# sourceURL=webpack://postcard/./src/utils/utils.js?");
 
 /***/ }),
 
