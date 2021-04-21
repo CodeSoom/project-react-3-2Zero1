@@ -55,7 +55,7 @@ describe('InputPart', () => {
       const type = 'secretMessage';
 
       const placeholder = placeholders[type];
-      const errorMessage = errorMessages[type];
+      const errorMessage = errorMessages[type].default;
 
       const {
         getByPlaceholderText,

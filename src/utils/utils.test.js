@@ -26,15 +26,13 @@ test('equal', () => {
 });
 
 describe('getFields', () => {
-  const id = 'sender';
-  const withValue = 'sender';
-  const withoutValue = '';
-  const name = 'sender';
-
   const onChange = jest.fn();
 
-  context('with error', () => {
-    it('return fields with errorMessage', () => {
+  context('without error', () => {
+    const id = 'sender';
+    const withValue = 'sender';
+    const name = 'sender';
+    it('return fields without errorMessage', () => {
       expect(getField({
         field: { value: withValue, error: false },
         id,
@@ -51,20 +49,42 @@ describe('getFields', () => {
     });
   });
 
-  context('without error', () => {
-    it('return fields without errorMessage', () => {
-      expect(getField({
-        field: { value: withoutValue, error: true },
-        id,
-        name,
-        onChange,
-      })).toEqual({
-        id,
-        name,
-        value: withoutValue,
-        placeholder: placeholders[id],
-        errorMessage: errorMessages[id],
-        onChange,
+  context('with error', () => {
+    const id = 'secretMessage';
+    const withoutValue = '';
+    const name = 'secretMessage';
+    context('when error is default', () => {
+      it('return fields with default errorMessage', () => {
+        expect(getField({
+          field: { value: withoutValue, error: 'wrong' },
+          id,
+          name,
+          onChange,
+        })).toEqual({
+          id,
+          name,
+          value: withoutValue,
+          placeholder: placeholders[id],
+          errorMessage: errorMessages[id].wrong,
+          onChange,
+        });
+      });
+    });
+    context('when error is other error', () => {
+      it('return fields with other errorMessage', () => {
+        expect(getField({
+          field: { value: withoutValue, error: 'wrong' },
+          id,
+          name,
+          onChange,
+        })).toEqual({
+          id,
+          name,
+          value: withoutValue,
+          placeholder: placeholders[id],
+          errorMessage: errorMessages[id].wrong,
+          onChange,
+        });
       });
     });
   });

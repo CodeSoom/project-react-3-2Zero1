@@ -34,7 +34,8 @@ describe('ImagePart', () => {
 
   context('with error message', () => {
     it("renders error message('이미지를 선택해주세요.')", () => {
-      const { getByText } = renderImage({ errorMessage: errorMessages.photo });
+      const { default: error } = errorMessages.photo;
+      const { getByText } = renderImage({ errorMessage: error });
 
       expect(getByText('이미지를 선택해 주세요')).not.toBeNull();
     });
