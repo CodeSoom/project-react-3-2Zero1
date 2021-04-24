@@ -26,6 +26,8 @@
           var segmentCount = 0;
 
           var l = window.location;
+          console.log('404');
+          console.log(l.pathname);
           l.replace(
               l.protocol + '//' + l.hostname + (l.port ?   ':' + l.port : '') +
               l.pathname.split('/').slice(0, 1 +  segmentCount).join('/') + '/?p=/' +
