@@ -68,6 +68,7 @@ describe('PostcardPage', () => {
 
     it('shows back Page', () => {
       const { getByText } = renderPostcardPage();
+      expect(getByText('앞면')).not.toBeNull();
 
       expect(getByText('ㄱ나니? 너와 그때 그시절.....')).not.toBeNull();
     });
