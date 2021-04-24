@@ -44,9 +44,16 @@ export default function PostcardFront({
   receiver,
   contents,
   stampUrl,
+  onHandleClickGoToBack,
 }) {
   return (
     <PostcardFrontLayout>
+      <button
+        type="button"
+        onClick={onHandleClickGoToBack}
+      >
+        뒷면
+      </button>
       <Receiver class="receiver">{`to ${receiver}`}</Receiver>
       <Sender class="sender">{`from ${sender}`}</Sender>
       <Stamp src={stampUrl} alt="stamp" />

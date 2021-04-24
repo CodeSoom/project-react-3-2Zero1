@@ -58,6 +58,8 @@ describe('PostcardPage', () => {
       expect(dispatch).toBeCalledWith({
         type: 'application/setPostcardFront',
       });
+
+      expect(getByText('뒷면')).not.toBeNull();
     });
   });
 
