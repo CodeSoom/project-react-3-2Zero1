@@ -12,7 +12,7 @@ import {
 
 import Postcard from '../presentational/Postcard';
 
-export default function PostcardContainer({ onHandlePrivousClick }) {
+export default function PostcardContainer({ onHandlePreviousClick }) {
   const key = loadItem('postcardKey');
   const secretMessage = loadItem('secretMessage');
 
@@ -33,7 +33,7 @@ export default function PostcardContainer({ onHandlePrivousClick }) {
     <Postcard
       postcard={postcard}
       isFrontPage={isFrontPage}
-      onHandlePrivousClick={onHandlePrivousClick}
+      onHandlePreviousClick={onHandlePreviousClick}
       onHandleClickPage={handleClickPage}
       showCompleteButton={false}
     />

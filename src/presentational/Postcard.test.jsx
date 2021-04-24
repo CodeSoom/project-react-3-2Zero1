@@ -16,7 +16,7 @@ describe('Postcard', () => {
   };
 
   const handleClickPage = jest.fn();
-  const onHandlePrivousClick = jest.fn();
+  const onHandlePreviousClick = jest.fn();
   const handleCompleteClick = jest.fn();
 
   function renderPostcard({
@@ -28,7 +28,7 @@ describe('Postcard', () => {
         postcard={postcard}
         isFrontPage={isFrontPage}
         onHandleClickPage={handleClickPage}
-        onHandlePrivousClick={onHandlePrivousClick}
+        onHandlePreviousClick={onHandlePreviousClick}
         showCompleteButton={showCompleteButton}
         onHandleCompleteClick={handleCompleteClick}
       />

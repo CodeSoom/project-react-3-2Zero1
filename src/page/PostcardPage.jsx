@@ -10,7 +10,7 @@ export default function PostcardPage() {
 
   const dispatch = useDispatch();
 
-  function handlePrivousClick(e) {
+  function onHandlePreviousClick(e) {
     e.stopPropagation();
     dispatch(setPostcardFront());
     history.goBack();
@@ -18,7 +18,7 @@ export default function PostcardPage() {
 
   return (
     <PostcardContainer
-      onHandlePrivousClick={handlePrivousClick}
+      onHandlePreviousClick={onHandlePreviousClick}
     />
   );
 }

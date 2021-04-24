@@ -18,7 +18,7 @@ export default function Postcard({
   },
   isFrontPage,
   onHandleClickPage,
-  onHandlePrivousClick,
+  onHandlePreviousClick,
   showCompleteButton,
   onHandleCompleteClick,
 }) {
@@ -26,7 +26,7 @@ export default function Postcard({
     <DefaultLayout>
       <PreviousButton
         type="button"
-        onClick={onHandlePrivousClick}
+        onClick={onHandlePreviousClick}
       >
         이전
       </PreviousButton>

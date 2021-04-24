@@ -69,7 +69,7 @@ export default function PreviewContainer({
         postcard={postcard}
         isFrontPage={preview.isFrontPage}
         onHandleClickPage={handleClickPage}
-        onHandlePrivousClick={onClickPrevious}
+        onHandlePreviousClick={onClickPrevious}
         showCompleteButton={showCompleteButton}
         onHandleCompleteClick={handleCompleteClick}
       />
