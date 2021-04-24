@@ -11,6 +11,7 @@ test('PostcardFront', () => {
   const stampUrl = 'url';
 
   const onHandleClickGoToBack = jest.fn();
+  const onHandleClickPrevious = jest.fn();
 
   const { getByText } = render((
     <PostcardFront
@@ -18,9 +19,14 @@ test('PostcardFront', () => {
       receiver={receiver}
       contents={contents}
       stampUrl={stampUrl}
+      onHandleClickPrevious={onHandleClickPrevious}
       onHandleClickGoToBack={onHandleClickGoToBack}
     />
   ));
+
+  expect(getByText('이전')).not.toBeNull();
+  fireEvent.click(getByText('이전'));
+  expect(onHandleClickPrevious).toBeCalled();
 
   expect(getByText(`to ${receiver}`)).not.toBeNull();
   expect(getByText(`from ${sender}`)).not.toBeNull();

@@ -329,9 +329,9 @@ describe('WritePage', () => {
     });
 
     it('renders preview', () => {
-      const {
-        getByText,
-      } = renderWritePage({ index: 3 });
+      given('isFrontPage', () => true);
+
+      const { getByText } = renderWritePage({ index: 3 });
 
       expect(getByText('이전')).not.toBeNull();
 

@@ -44,10 +44,17 @@ export default function PostcardFront({
   receiver,
   contents,
   stampUrl,
+  onHandleClickPrevious,
   onHandleClickGoToBack,
 }) {
   return (
     <PostcardFrontLayout>
+      <button
+        type="button"
+        onClick={onHandleClickPrevious}
+      >
+        이전
+      </button>
       <button
         type="button"
         onClick={onHandleClickGoToBack}
