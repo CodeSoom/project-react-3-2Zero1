@@ -46,6 +46,7 @@ export default function Postcard({
               photoMessage={photoMessage}
               showCompleteButton={showCompleteButton}
               onHandleCompleteClick={onHandleCompleteClick}
+              onHandleClickGoToFront={onHandleClickPage}
             />
           )
       }

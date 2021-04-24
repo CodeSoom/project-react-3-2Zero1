@@ -12,10 +12,14 @@ describe('PostcardContainer', () => {
   }
 
   useDispatch.mockImplementation(() => dispatch);
+
+  beforeEach(() => {
+    dispatch.mockClear();
+  });
   useSelector.mockImplementation((selector) => selector(
     {
       postcard: {
-        isFrontPage: true,
+        isFrontPage: given.isFrontPage,
         sender: '보낸이',
         receiver: '받는이',
         contents: '이것은 내용입니다.',
@@ -26,54 +30,36 @@ describe('PostcardContainer', () => {
   ));
 
   context('when isFrontPage is true', () => {
+    given('isFrontPage', () => true);
     it('show front Page', () => {
-      useSelector.mockImplementation((selector) => selector({
-        postcard: {
-          isFrontPage: true,
-          sender: '보낸이',
-          receiver: '받는이',
-          contents: '이것은 내용입니다.',
-          photoUrl: 'http://fpost.co.kr/board/data/editor/1905/af0187ebd1e86d0b3a359707fba988b3_1557538963_0631.jpg',
-          photoMessage: 'ㄱ나니? 너와 그때 그시절.....',
-        },
-      }));
       const { getByText } = renderPostcard();
       expect(getByText('to 받는이')).not.toBeNull();
       expect(getByText('from 보낸이')).not.toBeNull();
       expect(getByText('이것은 내용입니다.')).not.toBeNull();
     });
+    context("when click '뒷면' button", () => {
+      it('change isFrontPage oppositely', () => {
+        const { getByText } = renderPostcard();
+        fireEvent.click(getByText('뒷면'));
+
+        expect(dispatch).toBeCalledWith({
+          type: 'application/flipPostcard',
+        });
+      });
+    });
   });
 
   context('when isFrontPage is false', () => {
+    given('isFrontPage', () => false);
     it('show back Page', () => {
-      useSelector.mockImplementation((selector) => selector({
-        postcard: {
-          isFrontPage: false,
-          sender: '보낸이',
-          receiver: '받는이',
-          contents: '이것은 내용입니다.',
-          photoUrl: 'http://fpost.co.kr/board/data/editor/1905/af0187ebd1e86d0b3a359707fba988b3_1557538963_0631.jpg',
-          photoMessage: 'ㄱ나니? 너와 그때 그시절.....',
-        },
-      }));
       const { getByText } = renderPostcard();
       expect(getByText('ㄱ나니? 너와 그때 그시절.....')).not.toBeNull();
     });
   });
-  context('when click page and previuous button', () => {
+  context("when click '앞면' button", () => {
     it('change isFrontPage oppositely', () => {
-      useSelector.mockImplementation((selector) => selector({
-        postcard: {
-          isFrontPage: true,
-          sender: '보낸이',
-          receiver: '받는이',
-          contents: '이것은 내용입니다.',
-          photoUrl: 'http://fpost.co.kr/board/data/editor/1905/af0187ebd1e86d0b3a359707fba988b3_1557538963_0631.jpg',
-          photoMessage: 'ㄱ나니? 너와 그때 그시절.....',
-        },
-      }));
       const { getByText } = renderPostcard();
-      fireEvent.click(getByText('뒷면'));
+      fireEvent.click(getByText('앞면'));
 
       expect(dispatch).toBeCalledWith({
         type: 'application/flipPostcard',

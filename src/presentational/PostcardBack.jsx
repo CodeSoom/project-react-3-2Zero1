@@ -16,9 +16,16 @@ export default function PostcardBack({
   photoUrl,
   showCompleteButton,
   onHandleCompleteClick,
+  onHandleClickGoToFront,
 }) {
   return (
     <div>
+      <button
+        type="button"
+        onClick={onHandleClickGoToFront}
+      >
+        앞면
+      </button>
       {
         showCompleteButton ? (
           <NextButton
