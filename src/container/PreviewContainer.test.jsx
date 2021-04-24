@@ -58,8 +58,8 @@ describe('PreviewContainer', () => {
 
       expect(checkValidAccess).toBeCalled();
 
-      fireEvent.click(getByText('to 받는이'));
-      expect(getByText('to 받는이')).not.toBeNull();
+      fireEvent.click(getByText('뒷면'));
+      expect(getByText('뒷면')).not.toBeNull();
 
       expect(dispatch).toBeCalledWith({
         type: 'application/flipPreviewPostcard',

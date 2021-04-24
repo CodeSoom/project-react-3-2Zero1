@@ -73,7 +73,7 @@ describe('PostcardContainer', () => {
         },
       }));
       const { getByText } = renderPostcard();
-      fireEvent.click(getByText('to 받는이'));
+      fireEvent.click(getByText('뒷면'));
 
       expect(dispatch).toBeCalledWith({
         type: 'application/flipPostcard',
