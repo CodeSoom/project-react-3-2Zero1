@@ -7,8 +7,15 @@ import PostcardContainer from './PostcardContainer';
 
 describe('PostcardContainer', () => {
   const dispatch = jest.fn();
+
+  const onHandlePreviousClick = jest.fn();
+
   function renderPostcard() {
-    return render((<PostcardContainer />));
+    return render((
+      <PostcardContainer
+        onHandlePreviousClick={onHandlePreviousClick}
+      />
+    ));
   }
 
   useDispatch.mockImplementation(() => dispatch);
@@ -36,6 +43,9 @@ describe('PostcardContainer', () => {
       expect(getByText('to 받는이')).not.toBeNull();
       expect(getByText('from 보낸이')).not.toBeNull();
       expect(getByText('이것은 내용입니다.')).not.toBeNull();
+
+      fireEvent.click(getByText('이전'));
+      expect(onHandlePreviousClick).toBeCalled();
     });
     context("when click '뒷면' button", () => {
       it('change isFrontPage oppositely', () => {
