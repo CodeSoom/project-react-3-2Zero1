@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>postcard</title>
+    <!-- Start Single Page Apps for GitHub Pages -->
+    <script type="text/javascript">
+      // Single Page Apps for GitHub Pages
+      // https://github.com/rafrex/spa-github-pages
+      // Copyright (c) 2016 Rafael Pedicini, licensed under the MIT License
+      // ----------------------------------------------------------------------
+      // This script checks to see if a redirect is present in the query string
+      // and converts it back into the correct url and adds it to the
+      // browser's history using window.history.replaceState(...),
+      // which won't cause the browser to attempt to load the new url.
+      // When the single page app is loaded further down in this file,
+      // the correct url will be waiting in the browser's history for
+      // the single page app to route accordingly.
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
+    <!-- End Single Page Apps for GitHub Pages -->
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <!--구글 애널리틱스-->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BYMWNCGCGD"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-BYMWNCGCGD');
+    </script>
+    <!--구글 애널리틱스-->
+    <!--오픈 그래프-->
+    <meta property="og:title" content="소중한 사람으로 부터 온 엽서" >
+    <meta property="og:description" content="소중한 지인으로 부터 사진과 메시지가 담긴 엽서가 도착했어요! 받은 엽서로 5번의 엽서를 작성하실 수 있어요!" >
+    <meta property="og:image" content="https://postcard-yh1.s3.amazonaws.com/uploads/1618485395311_postcard.png" >
+    <!--오픈 그래프-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+  <script defer src="main.js"></script></head>
+  <body>
+    <div id="app"></div>
+    <script src="/main.js"></script>
+  </body>
+</html>
