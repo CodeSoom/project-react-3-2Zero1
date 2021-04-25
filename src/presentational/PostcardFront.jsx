@@ -2,6 +2,8 @@ import React from 'react';
 
 import styled from '@emotion/styled';
 
+import { PreviousButton, NextButton } from '../style/commonCss';
+
 const PostcardFrontLayout = styled.div(() => ({
   position: 'absolute',
   height: '100%',
@@ -15,13 +17,13 @@ const Stamp = styled.img(() => ({
   position: 'absolute',
   width: '90px',
   height: '110px',
-  top: '0px',
+  top: '40px',
   right: '0px',
   margin: '10px 5px 0 0',
 }));
 
 const Receiver = styled.div(() => ({
-  marginTop: '30px',
+  marginTop: '20px',
   textAlign: 'center',
   fontSize: '25px',
 }));
@@ -49,18 +51,18 @@ export default function PostcardFront({
 }) {
   return (
     <PostcardFrontLayout>
-      <button
+      <PreviousButton
         type="button"
         onClick={onHandleClickPrevious}
       >
         이전
-      </button>
-      <button
+      </PreviousButton>
+      <NextButton
         type="button"
         onClick={onHandleClickGoToBack}
       >
         뒷면
-      </button>
+      </NextButton>
       <Receiver class="receiver">{`to ${receiver}`}</Receiver>
       <Sender class="sender">{`from ${sender}`}</Sender>
       <Stamp src={stampUrl} alt="stamp" />
