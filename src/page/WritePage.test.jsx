@@ -425,10 +425,10 @@ describe('WritePage', () => {
 
       loadItem.mockImplementation(() => key);
     });
-    it("call push to '?key=keyvalue'", () => {
+    it("call push to '/write/reactIndex'", () => {
       renderWritePage({ index: 4 });
 
-      expect(mockPush).toBeCalledWith(`?key=${key}`);
+      expect(mockReplace).toBeCalledWith('/write/1');
     });
   });
 });
