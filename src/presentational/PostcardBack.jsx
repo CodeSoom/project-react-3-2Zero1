@@ -2,7 +2,7 @@ import React from 'react';
 
 import styled from '@emotion/styled';
 
-import { Text, NextButton } from '../style/commonCss';
+import { Text, NextButton, PreviousButton } from '../style/commonCss';
 
 const Photo = styled.img(() => ({
   display: 'block',
@@ -20,12 +20,12 @@ export default function PostcardBack({
 }) {
   return (
     <div>
-      <button
+      <PreviousButton
         type="button"
         onClick={onHandleClickGoToFront}
       >
         앞면
-      </button>
+      </PreviousButton>
       {
         showCompleteButton ? (
           <NextButton
