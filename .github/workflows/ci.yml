@@ -23,7 +23,10 @@ jobs:
           HEADLESS: true
       - name: Lint
         run: npm run lint
-      - run: npm run build
+      - name: Build
+        run: |
+          npm run build
+          cp dist/index.html dist/404.html
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         if: github.ref == 'refs/heads/main'
