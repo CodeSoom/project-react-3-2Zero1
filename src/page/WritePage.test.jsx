@@ -162,7 +162,6 @@ describe('WritePage', () => {
       expect(dispatch).toBeCalledWith({
         type: 'application/decreaseWritePageIndex',
       });
-      // TODO : 다음 버튼 클릭시 에러 메시지 있으면 넘어가지 않도록 하는 테스트 코드 작성해야함.
     });
 
     context('when contents are valid', () => {
