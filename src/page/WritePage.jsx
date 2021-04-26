@@ -49,13 +49,11 @@ export default function WritePage({ params }) {
   }
 
   function handleHomeClick() {
-    // TODO : input Fields의 값들 모두 초기화 해야함.
     history.goBack();
   }
 
   function checkValidAccess(indexInRedux) {
     if (index > indexInRedux) {
-      // TODO:잘못된 접근이라고 표시한 후에
       history.replace(`/write/${indexInRedux}`);
     }
   }
