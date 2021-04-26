@@ -35,7 +35,7 @@ describe('ContentsFormContainer', () => {
     },
   ));
 
-  it('show contest textarea', () => {
+  it('show contents textarea', () => {
     const {
       getByPlaceholderText,
     } = renderContentsForm();
