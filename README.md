@@ -7,7 +7,6 @@
 ## 웹사이트
 
 <http://zero1s.shop/?key=c46815f6b68e8e5b8dabe6d360384a1f3d4cf6fa729cc4c3b69163d0f0af9689>
-(현재 aws 문제로 인하여 동작하지 않고 있음.)
 
 ## 사용법
 
