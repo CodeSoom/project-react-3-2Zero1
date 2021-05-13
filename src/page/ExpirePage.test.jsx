@@ -35,7 +35,7 @@ describe('ExpirePage', () => {
   }
 
   it('renders expire page', () => {
-    const { getByText, getByPlaceholderText, getByLabelText } = renderExpirePage();
+    const { getByText } = renderExpirePage();
 
     expect(getByText('이전')).not.toBeNull();
 
