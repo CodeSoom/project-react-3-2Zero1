@@ -34,13 +34,15 @@ describe('ExpirePage', () => {
     ));
   }
 
-  it('renders expire page', () => {
-    const { getByText } = renderExpirePage();
+  context('when previous button is clicked', () => {
+    it('history calls goBack', () => {
+      const { getByText } = renderExpirePage();
 
-    expect(getByText('이전')).not.toBeNull();
-
-    fireEvent.click(getByText('이전'));
-
-    expect(mockGoBack).toBeCalled();
+      expect(getByText('이전')).not.toBeNull();
+  
+      fireEvent.click(getByText('이전'));
+  
+      expect(mockGoBack).toBeCalled();
+    });
   });
 });
