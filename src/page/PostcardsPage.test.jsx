@@ -32,20 +32,15 @@ describe('PostcardsPage', () => {
     ));
   }
 
-  it('shows postcards', () => {
-    const { getByText } = renderPostcardsPage();
+  context('when previous button is clicked', () => {
+    it('hisotry calls goBack', () => {
+      const { getByText } = renderPostcardsPage();
 
-    expect(getByText('엽서 모음')).not.toBeNull();
+      expect(getByText('이전')).not.toBeNull();
 
-    expect(getByText('이전')).not.toBeNull();
+      fireEvent.click(getByText('이전'));
 
-    fireEvent.click(getByText('이전'));
-
-    expect(mockGoBack).toBeCalled();
-
-    postcards.forEach((postcard) => {
-      expect(getByText(`${postcard.receiver}님이 받은 엽서`)).not.toBeNull();
-      expect(getByText(postcard.photoMessage)).not.toBeNull();
+      expect(mockGoBack).toBeCalled();
     });
   });
 });
