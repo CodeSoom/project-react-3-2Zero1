@@ -41,15 +41,11 @@ describe('PostcardPage', () => {
     ));
   }
 
-  context('when isFrontPage is true', () => {
+  context('when previous button is clicked', () => {
     given('isFrontPage', () => true);
 
-    it('shows front Page', () => {
+    it('history calls goBack and set to show frontpage', () => {
       const { getByText } = renderPostcardPage();
-
-      expect(getByText('to 받는이')).not.toBeNull();
-      expect(getByText('from 보낸이')).not.toBeNull();
-      expect(getByText('이것은 내용입니다.')).not.toBeNull();
 
       fireEvent.click(getByText('이전'));
 
@@ -58,19 +54,6 @@ describe('PostcardPage', () => {
       expect(dispatch).toBeCalledWith({
         type: 'application/setPostcardFront',
       });
-
-      expect(getByText('뒷면')).not.toBeNull();
-    });
-  });
-
-  context('when isFrontPage is false', () => {
-    given('isFrontPage', () => false);
-
-    it('shows back Page', () => {
-      const { getByText } = renderPostcardPage();
-      expect(getByText('앞면')).not.toBeNull();
-
-      expect(getByText('ㄱ나니? 너와 그때 그시절.....')).not.toBeNull();
     });
   });
 });
