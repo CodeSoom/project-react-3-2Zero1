@@ -39,9 +39,9 @@ describe('ExpirePage', () => {
       const { getByText } = renderExpirePage();
 
       expect(getByText('이전')).not.toBeNull();
-  
+
       fireEvent.click(getByText('이전'));
-  
+
       expect(mockGoBack).toBeCalled();
     });
   });
