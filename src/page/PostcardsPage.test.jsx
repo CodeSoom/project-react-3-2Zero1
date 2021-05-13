@@ -35,11 +35,11 @@ describe('PostcardsPage', () => {
   context('when previous button is clicked', () => {
     it('hisotry calls goBack', () => {
       const { getByText } = renderPostcardsPage();
-  
+
       expect(getByText('이전')).not.toBeNull();
-  
+
       fireEvent.click(getByText('이전'));
-  
+
       expect(mockGoBack).toBeCalled();
     });
   });
