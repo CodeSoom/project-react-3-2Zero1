@@ -51,7 +51,6 @@ describe('WritePage', () => {
     it('renders InformationFormPage', () => {
       const {
         getByText,
-        getByLabelText,
       } = renderWritePage({ index: 0 });
 
       expect(getByText('엽서 작성하기')).not.toBeNull();
@@ -60,17 +59,6 @@ describe('WritePage', () => {
       fireEvent.click(getByText('이전'));
 
       expect(dispatch).not.toBeCalled();
-
-      fireEvent.change(getByLabelText('엽서 암호'), { target: { value: 'hello' } });
-
-      expect(dispatch).toBeCalledWith({
-        type: 'application/changeInputFieldValue',
-        payload: {
-          page: 'write',
-          type: 'secretMessage',
-          value: 'hello',
-        },
-      });
     });
 
     context('when all inputs are not valid', () => {

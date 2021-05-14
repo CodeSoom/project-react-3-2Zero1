@@ -10,12 +10,12 @@ import { getField } from '../utils/utils';
 import {
   changeRadioChecked,
   setInputFieldsError,
+  changeInputFieldValue,
 } from '../state/slice';
 
 export default function InformationFormContainer({
   onClickNext,
   onClickPrevious,
-  getChangeHandler,
   checkValidAccess,
 }) {
   const dispatch = useDispatch();
@@ -29,6 +29,14 @@ export default function InformationFormContainer({
       inputFields: state.inputFields,
     }
   ));
+
+  const getChangeHandler = (page, type) => ((value) => {
+    dispatch(changeInputFieldValue({
+      page,
+      type,
+      value,
+    }));
+  });
 
   const {
     write: {
@@ -46,19 +54,19 @@ export default function InformationFormContainer({
       field: sender,
       id: 'sender',
       name: '보내는 사람',
-      onChange: getChangeHandler('sender'),
+      onChange: getChangeHandler('write', 'sender'),
     }),
     receiver: getField({
       field: receiver,
       id: 'receiver',
       name: '받는 사람',
-      onChange: getChangeHandler('receiver'),
+      onChange: getChangeHandler('write', 'receiver'),
     }),
     secretMessage: getField({
       field: secretMessage,
       id: 'secretMessage',
       name: '엽서 암호',
-      onChange: getChangeHandler('secretMessage'),
+      onChange: getChangeHandler('write', 'secretMessage'),
     }),
   };
 

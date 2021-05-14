@@ -11,8 +11,6 @@ import inputFields from '../fixtures/inputFields';
 describe('InformationFormContainer', () => {
   const dispatch = jest.fn();
 
-  const getChangeHandler = () => jest.fn();
-
   const handleNextClick = jest.fn();
   const handlePreviousClick = jest.fn();
   const checkValidAccess = jest.fn();
@@ -20,7 +18,6 @@ describe('InformationFormContainer', () => {
   function renderInformationForm() {
     return render((
       <InformationFormContainer
-        getChangeHandler={getChangeHandler}
         onClickNext={handleNextClick}
         onClickPrevious={handlePreviousClick}
         checkValidAccess={checkValidAccess}
@@ -36,7 +33,7 @@ describe('InformationFormContainer', () => {
     },
   ));
 
-  it('render InformationFormContainer', () => {
+  it('render InformationFormContainer and change input fields', () => {
     const {
       getByLabelText,
       getByText,
@@ -44,14 +41,41 @@ describe('InformationFormContainer', () => {
 
     expect(checkValidAccess).toBeCalled();
 
-    expect(getByLabelText('보내는 사람')).not.toBeNull();
-    expect(getByLabelText('보내는 사람').placeholder).toBe(placeholders.sender);
+    const labels = [
+      {
+        label: '보내는 사람',
+        id: 'sender',
+      },
+      {
+        label: '받는 사람',
+        id: 'receiver',
+      },
+      {
+        label: '엽서 암호',
+        id: 'secretMessage',
+      },
+    ];
 
-    expect(getByLabelText('받는 사람')).not.toBeNull();
-    expect(getByLabelText('받는 사람').placeholder).toBe(placeholders.receiver);
+    labels.forEach(({ label, id }) => {
+      expect(getByLabelText(label)).not.toBeNull();
+      expect(getByLabelText(label).placeholder).toBe(placeholders[id]);
 
-    expect(getByLabelText('엽서 암호')).not.toBeNull();
-    expect(getByLabelText('엽서 암호').placeholder).toBe(placeholders.secretMessage);
+      fireEvent.change(getByLabelText(label), {
+        target: {
+          value: 'test',
+        },
+      });
+
+      expect(dispatch).toBeCalledWith({
+        type: 'application/changeInputFieldValue',
+        payload: {
+          page: 'write',
+          type: id,
+          value: 'test',
+        },
+      });
+    });
+
     expect(getByText('엽서를 확인 또는 파기하기 위해 사용되며 받는 사람에게도 공유됩니다.')).not.toBeNull();
 
     expect(getByLabelText('비공개')).not.toBeNull();

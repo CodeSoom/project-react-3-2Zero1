@@ -26,9 +26,9 @@ export default function ExpireFormContainer({ handlePreviousClick }) {
     inputFields: state.inputFields,
   }));
 
-  const getChangeHandler = (type) => ((value) => {
+  const getChangeHandler = (page, type) => ((value) => {
     dispatch(changeInputFieldValue({
-      page: 'expire',
+      page,
       type,
       value,
     }));
@@ -38,7 +38,7 @@ export default function ExpireFormContainer({ handlePreviousClick }) {
     field: secretMessage,
     id: 'secretMessage',
     name: '엽서 암호',
-    onChange: getChangeHandler('secretMessage'),
+    onChange: getChangeHandler('expire', 'secretMessage'),
   });
 
   function handleClickExpire() {
