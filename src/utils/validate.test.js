@@ -1,6 +1,6 @@
-import validate from './validate';
+import validator from './validate';
 
-describe('validate', () => {
+describe('validator', () => {
   const completeFunction = jest.fn();
   const setInputFieldsError = jest.fn();
 
@@ -22,7 +22,7 @@ describe('validate', () => {
         },
       };
 
-      validate(fields, setInputFieldsError, completeFunction);
+      validator(fields, setInputFieldsError, completeFunction);
       expect(completeFunction).toBeCalled();
     });
   });
@@ -39,7 +39,7 @@ describe('validate', () => {
           error: false,
         },
       };
-      validate(fields, setInputFieldsError, completeFunction);
+      validator(fields, setInputFieldsError, completeFunction);
 
       expect(setInputFieldsError).toBeCalled();
       expect(completeFunction).not.toBeCalled();
