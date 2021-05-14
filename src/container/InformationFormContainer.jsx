@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import InformationForm from '../presentational/InformationForm';
 
-import validator from '../utils/validate';
+import validator from '../utils/validator';
 import { getField } from '../utils/utils';
 
 import {
@@ -75,20 +75,16 @@ export default function InformationFormContainer({
     dispatch(changeRadioChecked(value === 'true'));
   }
 
+  function handleError([key, checked]) {
+    dispatch(setInputFieldsError({
+      page: 'write',
+      type: key,
+      error: !checked,
+    }));
+  }
+
   function handleClick() {
-    const checks = validator(fields);
-
-    checks.forEach(([key, checked]) => {
-      dispatch(setInputFieldsError({
-        page: 'write',
-        type: key,
-        error: !checked,
-      }));
-    });
-
-    if (checks.filter(([, check]) => !check).length === 0) {
-      onClickNext();
-    }
+    validator(fields, handleError, onClickNext);
   }
 
   return (
