@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import PhotoForm from '../presentational/PhotoForm';
 
 import { getField } from '../utils/utils';
-import validator from '../utils/validator';
+import validate from '../utils/validate';
 
 import {
   setInputFieldsError,
@@ -68,7 +68,7 @@ export default function PhotoFormContainer({
   }
 
   function handleNextClick() {
-    validator(fields, handleError, onClickNext);
+    validate(fields, handleError, onClickNext);
   }
 
   function handleFileChange(event) {
