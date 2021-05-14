@@ -7,7 +7,7 @@ const conditions = {
   photo: (value) => !!value,
 };
 
-function validator(fields, setInputFieldsError, completeFunction) {
+function validate(fields, setInputFieldsError, completeFunction) {
   const checkResults = Object.entries(fields)
     .map(([key, field]) => ([key, conditions[key](field.value)]));
 
@@ -19,4 +19,4 @@ function validator(fields, setInputFieldsError, completeFunction) {
     completeFunction();
   }
 }
-export default validator;
+export default validate;

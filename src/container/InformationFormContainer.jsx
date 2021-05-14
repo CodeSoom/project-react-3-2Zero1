@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import InformationForm from '../presentational/InformationForm';
 
-import validator from '../utils/validator';
+import validate from '../utils/validate';
 import { getField } from '../utils/utils';
 
 import {
@@ -84,7 +84,7 @@ export default function InformationFormContainer({
   }
 
   function handleClick() {
-    validator(fields, handleError, onClickNext);
+    validate(fields, handleError, onClickNext);
   }
 
   return (
