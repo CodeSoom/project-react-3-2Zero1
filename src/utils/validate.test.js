@@ -1,9 +1,17 @@
-import validate from './validate';
+import validator from './validator';
 
-describe('validate', () => {
+describe('validator', () => {
+  const completeFunction = jest.fn();
+  const setInputFieldsError = jest.fn();
+
+  beforeEach(() => {
+    completeFunction.mockClear();
+    setInputFieldsError.mockClear();
+  });
+
   context('when the value is satisfied condition', () => {
-    it('return array with name and true', () => {
-      expect(validate({
+    it('calls completeFunction', () => {
+      const fields = {
         sender: {
           value: 'name',
           error: false,
@@ -12,26 +20,29 @@ describe('validate', () => {
           value: 'name2',
           error: false,
         },
-      })).toEqual([
-        ['sender', true], ['receiver', true],
-      ]);
+      };
+
+      validator(fields, setInputFieldsError, completeFunction);
+      expect(completeFunction).toBeCalled();
     });
   });
 
   context('when the value is not satisfied condition', () => {
-    it('return array with name and false', () => {
-      expect(validate({
+    it('calls setInputFieldsError and does not call completeFunction', () => {
+      const fields = {
         sender: {
           value: '',
-          error: false,
+          error: true,
         },
         receiver: {
           value: '',
           error: false,
         },
-      })).toEqual([
-        ['sender', false], ['receiver', false],
-      ]);
+      };
+      validator(fields, setInputFieldsError, completeFunction);
+
+      expect(setInputFieldsError).toBeCalled();
+      expect(completeFunction).not.toBeCalled();
     });
   });
 });

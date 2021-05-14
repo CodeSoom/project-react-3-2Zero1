@@ -7,7 +7,16 @@ const conditions = {
   photo: (value) => !!value,
 };
 
-function validate(fields) {
-  return Object.entries(fields).map(([key, field]) => ([key, conditions[key](field.value)]));
+function validator(fields, setInputFieldsError, completeFunction) {
+  const checkResults = Object.entries(fields)
+    .map(([key, field]) => ([key, conditions[key](field.value)]));
+
+  checkResults.forEach((item) => {
+    setInputFieldsError(item);
+  });
+
+  if (checkResults.filter(([, check]) => !check).length === 0) {
+    completeFunction();
+  }
 }
-export default validate;
+export default validator;

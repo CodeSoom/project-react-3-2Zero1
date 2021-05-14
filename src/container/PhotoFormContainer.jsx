@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import PhotoForm from '../presentational/PhotoForm';
 
 import { getField } from '../utils/utils';
-import validate from '../utils/validate';
+import validator from '../utils/validator';
 
 import {
   setInputFieldsError,
@@ -59,20 +59,16 @@ export default function PhotoFormContainer({
     }),
   };
 
+  function handleError([key, checked]) {
+    dispatch(setInputFieldsError({
+      page: 'write',
+      type: key,
+      error: !checked,
+    }));
+  }
+
   function handleNextClick() {
-    const checks = validate(fields);
-
-    checks.forEach(([key, checked]) => {
-      dispatch(setInputFieldsError({
-        page: 'write',
-        type: key,
-        error: !checked,
-      }));
-    });
-
-    if (checks.filter(([, check]) => !check).length === 0) {
-      onClickNext();
-    }
+    validator(fields, handleError, onClickNext);
   }
 
   function handleFileChange(event) {
