@@ -11,8 +11,6 @@ import inputFields from '../fixtures/inputFields';
 
 describe('ContentsFormContainer', () => {
   const dispatch = jest.fn();
-  const changeHandler = jest.fn();
-  const getChangeHandler = () => changeHandler;
   const handleNextClick = jest.fn();
   const handlePreviousClick = jest.fn();
   const checkValidAccess = jest.fn();
@@ -20,7 +18,6 @@ describe('ContentsFormContainer', () => {
   function renderContentsForm() {
     return render((
       <ContentsFormContainer
-        getChangeHandler={getChangeHandler}
         onClickNext={handleNextClick}
         onClickPrevious={handlePreviousClick}
         checkValidAccess={checkValidAccess}
@@ -55,7 +52,14 @@ describe('ContentsFormContainer', () => {
         target: { value: 'Hello' },
       });
 
-      expect(changeHandler).toBeCalled();
+      expect(dispatch).toBeCalledWith({
+        type: 'application/changeInputFieldValue',
+        payload: {
+          page: 'write',
+          type: 'contents',
+          value: 'Hello',
+        },
+      });
     });
   });
 

@@ -11,8 +11,6 @@ describe('PhotoFormContainer', () => {
   window.URL.createObjectURL = jest.fn();
 
   const dispatch = jest.fn();
-  const imageChangeHandler = jest.fn();
-  const getChangeHandler = () => imageChangeHandler;
   const handleNextClick = jest.fn();
   const handlePreviousClick = jest.fn();
   const checkValidAccess = jest.fn();
@@ -20,7 +18,6 @@ describe('PhotoFormContainer', () => {
   function renderSecondPage() {
     return render((
       <PhotoFormContainer
-        getChangeHandler={getChangeHandler}
         onClickNext={handleNextClick}
         onClickPrevious={handlePreviousClick}
         checkValidAccess={checkValidAccess}
@@ -52,6 +49,19 @@ describe('PhotoFormContainer', () => {
 
     expect(getByLabelText('사진 메시지')).not.toBeNull();
     expect(getByLabelText('사진 메시지').placeholder).toBe('10 ~ 30자');
+
+    fireEvent.change(getByLabelText('사진 메시지'), {
+      target: { value: 'Hello' },
+    });
+
+    expect(dispatch).toBeCalledWith({
+      type: 'application/changeInputFieldValue',
+      payload: {
+        page: 'write',
+        type: 'photoMessage',
+        value: 'Hello',
+      },
+    });
 
     expect(getByText('미리보기')).not.toBeNull();
   });

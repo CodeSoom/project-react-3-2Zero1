@@ -13,7 +13,6 @@ import { DefaultLayout } from '../style/commonCss';
 import {
   increaseWritePageIndex,
   decreaseWritePageIndex,
-  changeInputFieldValue,
 } from '../state/slice';
 
 export default function WritePage({ params }) {
@@ -22,14 +21,6 @@ export default function WritePage({ params }) {
   const history = useHistory();
 
   const dispatch = useDispatch();
-
-  const getChangeHandler = (type) => ((value) => {
-    dispatch(changeInputFieldValue({
-      page: 'write',
-      type,
-      value,
-    }));
-  });
 
   function handleNextClick() {
     dispatch(increaseWritePageIndex());
@@ -63,7 +54,6 @@ export default function WritePage({ params }) {
       <InformationFormContainer
         onClickNext={handleNextClick}
         onClickPrevious={handlePreviousClick}
-        getChangeHandler={getChangeHandler}
         checkValidAccess={checkValidAccess}
       />
     ),
@@ -71,7 +61,6 @@ export default function WritePage({ params }) {
       <ContentsFormContainer
         onClickNext={handleNextClick}
         onClickPrevious={handlePreviousClick}
-        getChangeHandler={getChangeHandler}
         checkValidAccess={checkValidAccess}
       />
     ),
@@ -79,7 +68,6 @@ export default function WritePage({ params }) {
       <PhotoFormContainer
         onClickNext={handleNextClick}
         onClickPrevious={handlePreviousClick}
-        getChangeHandler={getChangeHandler}
         checkValidAccess={checkValidAccess}
       />
     ),
@@ -87,7 +75,6 @@ export default function WritePage({ params }) {
       <PreviewContainer
         onClickNext={handleNextClick}
         onClickPrevious={handlePreviousClick}
-        getChangeHandler={getChangeHandler}
         checkValidAccess={checkValidAccess}
       />
     ),

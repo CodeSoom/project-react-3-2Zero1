@@ -9,12 +9,12 @@ import validate from '../utils/validate';
 import {
   setInputFieldsError,
   sendPhoto,
+  changeInputFieldValue,
 } from '../state/slice';
 
 export default function PhotoFormContainer({
   onClickNext,
   onClickPrevious,
-  getChangeHandler,
   checkValidAccess,
 }) {
   const dispatch = useDispatch();
@@ -38,6 +38,14 @@ export default function PhotoFormContainer({
 
   checkValidAccess(writePageIndex);
 
+  const getChangeHandler = (page, type) => ((value) => {
+    dispatch(changeInputFieldValue({
+      page,
+      type,
+      value,
+    }));
+  });
+
   const fields = {
     photo: getField({
       field: photo,
@@ -47,7 +55,7 @@ export default function PhotoFormContainer({
       field: photoMessage,
       id: 'photoMessage',
       name: '사진 메시지',
-      onChange: getChangeHandler('photoMessage'),
+      onChange: getChangeHandler('write', 'photoMessage'),
     }),
   };
 

@@ -8,12 +8,12 @@ import ContentsForm from '../presentational/ContentsForm';
 
 import {
   setInputFieldsError,
+  changeInputFieldValue,
 } from '../state/slice';
 
 export default function ContentsFormContainer({
   onClickNext,
   onClickPrevious,
-  getChangeHandler,
   checkValidAccess,
 }) {
   const dispatch = useDispatch();
@@ -28,6 +28,14 @@ export default function ContentsFormContainer({
     }
   ));
 
+  const getChangeHandler = (page, type) => ((value) => {
+    dispatch(changeInputFieldValue({
+      page,
+      type,
+      value,
+    }));
+  });
+
   const {
     write: { contents },
   } = inputFields;
@@ -38,7 +46,7 @@ export default function ContentsFormContainer({
     contents: getField({
       field: contents,
       id: 'contents',
-      onChange: getChangeHandler('contents'),
+      onChange: getChangeHandler('write', 'contents'),
     }),
   };
 
