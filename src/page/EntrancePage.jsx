@@ -9,7 +9,7 @@ export default function EntrancePage({ location }) {
 
   const history = useHistory();
 
-  function handleClickPostcard() {
+  function moveToPostcardPage() {
     const url = '/postcard';
     history.push(url);
   }
@@ -32,7 +32,7 @@ export default function EntrancePage({ location }) {
   return (
     <EntranceContainer
       postcardKey={key}
-      onHandleClickPostcard={handleClickPostcard}
+      moveToPostcardPage={moveToPostcardPage}
       onHandleClickWritePostcard={handleClickWritePostcard}
       onHandleClickOtherPostcards={handleClickOtherPostcards}
       onHandleClickExpire={handleClickExpire}
