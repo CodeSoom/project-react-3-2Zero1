@@ -15,7 +15,7 @@ describe('Postcard', () => {
     photoMessage: 'ㄱ나니? 너와 그때 그시절.....',
   };
 
-  const handleClickPage = jest.fn();
+  const handleClickFlip = jest.fn();
   const onHandlePreviousClick = jest.fn();
   const handleCompleteClick = jest.fn();
 
@@ -27,7 +27,7 @@ describe('Postcard', () => {
       <Postcard
         postcard={postcard}
         isFrontPage={isFrontPage}
-        onHandleClickPage={handleClickPage}
+        onHandleClickFlip={handleClickFlip}
         onHandlePreviousClick={onHandlePreviousClick}
         showCompleteButton={showCompleteButton}
         onHandleCompleteClick={handleCompleteClick}
