@@ -26,7 +26,7 @@ export default function PostcardContainer({ onHandlePreviousClick }) {
 
   const { isFrontPage } = postcard;
 
-  function handleClickPage() {
+  function handleClickFlipButton() {
     dispatch(flipPostcard());
   }
   return (
@@ -34,7 +34,7 @@ export default function PostcardContainer({ onHandlePreviousClick }) {
       postcard={postcard}
       isFrontPage={isFrontPage}
       onHandlePreviousClick={onHandlePreviousClick}
-      onHandleClickPage={handleClickPage}
+      onHandleClickFlip={handleClickFlipButton}
       showCompleteButton={false}
     />
   );

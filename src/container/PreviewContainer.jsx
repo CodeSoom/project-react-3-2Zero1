@@ -54,7 +54,7 @@ export default function PreviewContainer({
 
   const showCompleteButton = true;
 
-  function handleClickPage(e) {
+  function handleClickFlip(e) {
     e.stopPropagation();
     dispatch(flipPreviewPostcard());
   }
@@ -68,7 +68,7 @@ export default function PreviewContainer({
       <Postcard
         postcard={postcard}
         isFrontPage={preview.isFrontPage}
-        onHandleClickPage={handleClickPage}
+        onHandleClickFlip={handleClickFlip}
         onHandlePreviousClick={onClickPrevious}
         showCompleteButton={showCompleteButton}
         onHandleCompleteClick={handleCompleteClick}

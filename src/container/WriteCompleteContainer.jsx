@@ -48,6 +48,7 @@ export default function WriteCompleteContainer({
       },
     },
   } = inputFields;
+
   const host = 'http://zero1s.shop/?key=';
 
   const secretMessageText = secretMessage ? `\n\n엽서 암호: ${secretMessage}` : '';
