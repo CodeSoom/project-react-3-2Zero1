@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import validator from '../utils/validate';
+import validate from '../utils/validate';
 import { getField } from '../utils/utils';
 
 import ContentsForm from '../presentational/ContentsForm';
@@ -59,7 +59,7 @@ export default function ContentsFormContainer({
   }
 
   function handleClick() {
-    validator(fields, handleError, onClickNext);
+    validate(fields, handleError, onClickNext);
   }
 
   return ((
