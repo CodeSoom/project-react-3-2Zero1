@@ -1,4 +1,4 @@
-const getDomain = (path) => `http://ec2-13-209-84-113.ap-northeast-2.compute.amazonaws.com:80/${path}`;
+const getDomain = (path) => `http://ec2-52-79-249-161.ap-northeast-2.compute.amazonaws.com:80/${path}`;
 // 'http://localhost:3000'
 
 export async function fetchEntrance({ key }) {
