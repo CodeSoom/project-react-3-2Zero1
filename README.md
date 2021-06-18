@@ -6,7 +6,7 @@
 
 ## 웹사이트
 
-<http://zero1s.shop/?key=3ead694ca3c284b592cb3a4debedc75ff149606e007c70b700c18fe4994f2a6c>
+<http://zero1s.shop/?key=c46815f6b68e8e5b8dabe6d360384a1f3d4cf6fa729cc4c3b69163d0f0af9689>
 
 ## 사용법
 
