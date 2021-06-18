@@ -11,7 +11,7 @@ import {
   changeRadioChecked,
   setInputFieldsError,
   changeInputFieldValue,
-} from '../state/slice';
+} from '../state/commonSlice';
 
 export default function InformationFormContainer({
   onClickNext,

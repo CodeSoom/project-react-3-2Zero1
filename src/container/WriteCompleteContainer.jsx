@@ -8,7 +8,7 @@ import styled from '@emotion/styled';
 import {
   resetPostcardInputFields,
   setToast,
-} from '../state/slice';
+} from '../state/commonSlice';
 
 import { Button, Information, PreviousButton } from '../style/commonCss';
 

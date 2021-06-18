@@ -9,7 +9,7 @@ import {
   changeInputFieldValue,
   expirePostcard,
   setInputFieldsError,
-} from '../state/slice';
+} from '../state/commonSlice';
 
 import { loadItem } from '../services/storage';
 

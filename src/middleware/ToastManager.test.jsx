@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import ToastManager from './ToastManager';
 
-import { initToast } from '../state/slice';
+import { initToast } from '../state/commonSlice';
 
 jest.mock('../services/storage');
 

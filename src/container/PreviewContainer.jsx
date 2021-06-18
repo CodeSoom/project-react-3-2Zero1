@@ -6,7 +6,7 @@ import { loadItem } from '../services/storage';
 import {
   flipPreviewPostcard,
   sendPostcard,
-} from '../state/slice';
+} from '../state/commonSlice';
 
 import Postcard from '../presentational/Postcard';
 
