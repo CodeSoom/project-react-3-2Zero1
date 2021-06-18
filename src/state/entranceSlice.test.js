@@ -36,12 +36,12 @@ describe('reducer', () => {
   describe('setEntrance', () => {
     it('set entrance variables', () => {
       const initialState = {
-        entrance: {
-          sender: '',
-          isPrivate: '',
-          postcardCount: 0,
-          writtenCount: 0,
-        },
+        writePageIndex: 0,
+        sender: '테스트',
+        isPrivate: false,
+        postcardCount: 5,
+        writtenCount: 0,
+        movePage: false,
       };
 
       const state = reducer(initialState, setEntrance(entrance));

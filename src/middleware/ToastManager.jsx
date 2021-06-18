@@ -7,7 +7,7 @@ export default function ToastManager() {
   const dispatch = useDispatch();
 
   const { toast } = useSelector((state) => ({
-    toast: state.toast,
+    toast: state.common.toast,
   }));
 
   const { triggered, message } = toast;

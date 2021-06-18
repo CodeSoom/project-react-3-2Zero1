@@ -12,8 +12,8 @@ export default function PageMoveManager() {
   const dispatch = useDispatch();
 
   const { movingPage, toast } = useSelector((state) => ({
-    movingPage: state.movingPage,
-    toast: state.toast,
+    movingPage: state.common.movingPage,
+    toast: state.common.toast,
   }));
 
   const history = useHistory();
