@@ -7,7 +7,7 @@ import {
   // postPhoto,
   // postPostcard,
   // postCheckValidPostcard,
-  fetchPostcard,
+  // fetchPostcard,
   fetchPostcards,
   postExpire,
 } from '../services/api';
@@ -77,14 +77,14 @@ const { actions, reducer } = createSlice({
     //   writtenCount: 0,
     //   movePage: false,
     // },
-    postcard: {
-      isFrontPage: true,
-      sender: '',
-      receiver: '',
-      contents: '',
-      photoUrl: '',
-      photoMessage: '',
-    },
+    // postcard: {
+    //   isFrontPage: true,
+    //   sender: '',
+    //   receiver: '',
+    //   contents: '',
+    //   photoUrl: '',
+    //   photoMessage: '',
+    // },
     postcards: [],
     movingPage: '',
     toast: {
@@ -162,26 +162,26 @@ const { actions, reducer } = createSlice({
     //     },
     //   };
     // },
-    flipPostcard(state) {
-      const { postcard } = state;
-      const { isFrontPage } = postcard;
-      return {
-        ...state,
-        postcard: {
-          ...postcard,
-          isFrontPage: !isFrontPage,
-        },
-      };
-    },
-    setPostcardFront(state) {
-      return {
-        ...state,
-        postcard: {
-          ...state.postcard,
-          isFrontPage: true,
-        },
-      };
-    },
+    // flipPostcard(state) {
+    //   const { postcard } = state;
+    //   const { isFrontPage } = postcard;
+    //   return {
+    //     ...state,
+    //     postcard: {
+    //       ...postcard,
+    //       isFrontPage: !isFrontPage,
+    //     },
+    //   };
+    // },
+    // setPostcardFront(state) {
+    //   return {
+    //     ...state,
+    //     postcard: {
+    //       ...state.postcard,
+    //       isFrontPage: true,
+    //     },
+    //   };
+    // },
     // setEntrance(state, { payload: value }) {
     //   return {
     //     ...state,
@@ -252,15 +252,15 @@ const { actions, reducer } = createSlice({
     //     },
     //   };
     // },
-    setPostcard(state, { payload: value }) {
-      return {
-        ...state,
-        postcard: {
-          ...state.postcard,
-          ...value,
-        },
-      };
-    },
+    // setPostcard(state, { payload: value }) {
+    //   return {
+    //     ...state,
+    //     postcard: {
+    //       ...state.postcard,
+    //       ...value,
+    //     },
+    //   };
+    // },
     // admitPostcardAccess(state) {
     //   return {
     //     ...state,
@@ -346,7 +346,7 @@ export const {
   // setEntrance,
   setWriteCompleteValues,
   // resetPostcardInputFields,
-  setPostcard,
+  // setPostcard,
   admitPostcardAccess,
   setResponseError,
   initToast,
@@ -427,32 +427,32 @@ export const {
 //   };
 // }
 
-export function loadPostcard({ key, secretMessage }) {
-  return async (dispatch) => {
-    const response = await fetchPostcard({ key, secretMessage });
+// export function loadPostcard({ key, secretMessage }) {
+//   return async (dispatch) => {
+//     const response = await fetchPostcard({ key, secretMessage });
 
-    if (response.error) {
-      dispatch(setResponseError(response.error));
-      return;
-    }
+//     if (response.error) {
+//       dispatch(setResponseError(response.error));
+//       return;
+//     }
 
-    const {
-      sender,
-      receiver,
-      photo,
-      contents,
-      photoMessage,
-    } = response.data;
+//     const {
+//       sender,
+//       receiver,
+//       photo,
+//       contents,
+//       photoMessage,
+//     } = response.data;
 
-    dispatch(setPostcard({
-      sender,
-      receiver,
-      photoUrl: photo,
-      contents,
-      photoMessage,
-    }));
-  };
-}
+//     dispatch(setPostcard({
+//       sender,
+//       receiver,
+//       photoUrl: photo,
+//       contents,
+//       photoMessage,
+//     }));
+//   };
+// }
 
 export function loadPostcards() {
   return async (dispatch) => {

@@ -52,7 +52,7 @@ describe('PostcardPage', () => {
       expect(mockGoBack).toBeCalled();
 
       expect(dispatch).toBeCalledWith({
-        type: 'application/setPostcardFront',
+        type: 'postcard/setPostcardFront',
       });
     });
   });
