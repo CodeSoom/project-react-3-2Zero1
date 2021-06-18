@@ -6,9 +6,12 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import styled from '@emotion/styled';
 
 import {
-  resetPostcardInputFields,
   setToast,
 } from '../state/commonSlice';
+
+import {
+  resetPostcardInputFields,
+} from '../state/writeSlice';
 
 import { Button, Information, PreviousButton } from '../style/commonCss';
 

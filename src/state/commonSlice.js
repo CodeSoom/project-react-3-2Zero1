@@ -4,8 +4,8 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import {
   // fetchEntrance,
-  postPhoto,
-  postPostcard,
+  // postPhoto,
+  // postPostcard,
   // postCheckValidPostcard,
   fetchPostcard,
   fetchPostcards,
@@ -68,7 +68,7 @@ const initialInputFields = {
 const { actions, reducer } = createSlice({
   name: 'application',
   initialState: {
-    writePageIndex: 0,
+    // writePageIndex: 0,
     inputFields: initialInputFields,
     // entrance: {
     //   sender: '테스트',
@@ -93,18 +93,18 @@ const { actions, reducer } = createSlice({
     },
   },
   reducers: {
-    changeRadioChecked(state, { payload: value }) {
-      return {
-        ...state,
-        inputFields: {
-          ...state.inputFields,
-          write: {
-            ...state.inputFields.write,
-            isPrivate: value,
-          },
-        },
-      };
-    },
+    // changeRadioChecked(state, { payload: value }) {
+    //   return {
+    //     ...state,
+    //     inputFields: {
+    //       ...state.inputFields,
+    //       write: {
+    //         ...state.inputFields.write,
+    //         isPrivate: value,
+    //       },
+    //     },
+    //   };
+    // },
     changeInputFieldValue(state, { payload: { page, type, value } }) {
       return {
         ...state,
@@ -135,33 +135,33 @@ const { actions, reducer } = createSlice({
         },
       };
     },
-    increaseWritePageIndex(state) {
-      return {
-        ...state,
-        writePageIndex: (+state.writePageIndex) + 1,
-      };
-    },
-    decreaseWritePageIndex(state) {
-      return {
-        ...state,
-        writePageIndex: (+state.writePageIndex) - 1,
-      };
-    },
-    flipPreviewPostcard(state) {
-      return {
-        ...state,
-        inputFields: {
-          ...state.inputFields,
-          write: {
-            ...state.inputFields.write,
-            preview: {
-              ...state.inputFields.write.preview,
-              isFrontPage: !state.inputFields.write.preview.isFrontPage,
-            },
-          },
-        },
-      };
-    },
+    // increaseWritePageIndex(state) {
+    //   return {
+    //     ...state,
+    //     writePageIndex: (+state.writePageIndex) + 1,
+    //   };
+    // },
+    // decreaseWritePageIndex(state) {
+    //   return {
+    //     ...state,
+    //     writePageIndex: (+state.writePageIndex) - 1,
+    //   };
+    // },
+    // flipPreviewPostcard(state) {
+    //   return {
+    //     ...state,
+    //     inputFields: {
+    //       ...state.inputFields,
+    //       write: {
+    //         ...state.inputFields.write,
+    //         preview: {
+    //           ...state.inputFields.write.preview,
+    //           isFrontPage: !state.inputFields.write.preview.isFrontPage,
+    //         },
+    //       },
+    //     },
+    //   };
+    // },
     flipPostcard(state) {
       const { postcard } = state;
       const { isFrontPage } = postcard;
@@ -190,68 +190,68 @@ const { actions, reducer } = createSlice({
     //     },
     //   };
     // },
-    setWriteCompleteValues(state, { payload: { url, secretMessage } }) {
-      return {
-        ...state,
-        inputFields: {
-          ...state.inputFields,
-          write: {
-            ...state.inputFields.write,
-            complete: {
-              url,
-              secretMessage,
-            },
-          },
-        },
-      };
-    },
-    resetPostcardInputFields(state) {
-      return {
-        ...state,
-        inputFields: {
-          entrance: {
-            secretMessage: {
-              value: '',
-              error: false,
-            },
-          },
-          write: {
-            isPrivate: true,
-            secretMessage: {
-              value: '',
-              error: false,
-            },
-            sender: {
-              value: '',
-              error: false,
-            },
-            receiver: {
-              value: '',
-              error: false,
-            },
-            contents: {
-              value: '',
-              error: '',
-            },
-            photo: {
-              value: '',
-              error: false,
-            },
-            photoMessage: {
-              value: '',
-              error: false,
-            },
-            preview: {
-              isFrontPage: true,
-            },
-            complete: {
-              key: '',
-              secretMessage: '',
-            },
-          },
-        },
-      };
-    },
+    // setWriteCompleteValues(state, { payload: { url, secretMessage } }) {
+    //   return {
+    //     ...state,
+    //     inputFields: {
+    //       ...state.inputFields,
+    //       write: {
+    //         ...state.inputFields.write,
+    //         complete: {
+    //           url,
+    //           secretMessage,
+    //         },
+    //       },
+    //     },
+    //   };
+    // },
+    // resetPostcardInputFields(state) {
+    //   return {
+    //     ...state,
+    //     inputFields: {
+    //       entrance: {
+    //         secretMessage: {
+    //           value: '',
+    //           error: false,
+    //         },
+    //       },
+    //       write: {
+    //         isPrivate: true,
+    //         secretMessage: {
+    //           value: '',
+    //           error: false,
+    //         },
+    //         sender: {
+    //           value: '',
+    //           error: false,
+    //         },
+    //         receiver: {
+    //           value: '',
+    //           error: false,
+    //         },
+    //         contents: {
+    //           value: '',
+    //           error: '',
+    //         },
+    //         photo: {
+    //           value: '',
+    //           error: false,
+    //         },
+    //         photoMessage: {
+    //           value: '',
+    //           error: false,
+    //         },
+    //         preview: {
+    //           isFrontPage: true,
+    //         },
+    //         complete: {
+    //           key: '',
+    //           secretMessage: '',
+    //         },
+    //       },
+    //     },
+    //   };
+    // },
     setPostcard(state, { payload: value }) {
       return {
         ...state,
@@ -345,7 +345,7 @@ export const {
   setPostcardFront,
   // setEntrance,
   setWriteCompleteValues,
-  resetPostcardInputFields,
+  // resetPostcardInputFields,
   setPostcard,
   admitPostcardAccess,
   setResponseError,
@@ -373,34 +373,34 @@ export const {
 //   };
 // }
 
-export function sendPhoto({ file }) {
-  return async (dispatch) => {
-    const photo = await postPhoto({ file });
-    dispatch(changeInputFieldValue({
-      page: 'write',
-      type: 'photo',
-      value: photo,
-    }));
-  };
-}
+// export function sendPhoto({ file }) {
+//   return async (dispatch) => {
+//     const photo = await postPhoto({ file });
+//     dispatch(changeInputFieldValue({
+//       page: 'write',
+//       type: 'photo',
+//       value: photo,
+//     }));
+//   };
+// }
 
-export function sendPostcard({ postcardValues, onClickNext }) {
-  return async (dispatch) => {
-    const response = await postPostcard(postcardValues);
+// export function sendPostcard({ postcardValues, onClickNext }) {
+//   return async (dispatch) => {
+//     const response = await postPostcard(postcardValues);
 
-    if (response.error) {
-      dispatch(setResponseError(response.error));
-      return;
-    }
+//     if (response.error) {
+//       dispatch(setResponseError(response.error));
+//       return;
+//     }
 
-    const { url, secretMessage } = response.data;
-    dispatch(setWriteCompleteValues({
-      url,
-      secretMessage,
-    }));
-    onClickNext();
-  };
-}
+//     const { url, secretMessage } = response.data;
+//     dispatch(setWriteCompleteValues({
+//       url,
+//       secretMessage,
+//     }));
+//     onClickNext();
+//   };
+// }
 
 // export function checkValidPostcard({ key, secretMessage }) {
 //   return async (dispatch) => {

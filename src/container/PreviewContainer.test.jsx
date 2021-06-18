@@ -62,7 +62,7 @@ describe('PreviewContainer', () => {
       expect(getByText('뒷면')).not.toBeNull();
 
       expect(dispatch).toBeCalledWith({
-        type: 'application/flipPreviewPostcard',
+        type: 'write/flipPreviewPostcard',
       });
     });
   });

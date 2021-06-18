@@ -13,7 +13,7 @@ import { DefaultLayout } from '../style/commonCss';
 import {
   increaseWritePageIndex,
   decreaseWritePageIndex,
-} from '../state/commonSlice';
+} from '../state/writeSlice';
 
 export default function WritePage({ params }) {
   const { index } = params || useParams();
