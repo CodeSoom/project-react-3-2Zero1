@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import {
   initMovingPage,
   setToastTriggered,
-} from '../state/slice';
+} from '../state/commonSlice';
 
 import { loadItem } from '../services/storage';
 

@@ -8,7 +8,7 @@ import { loadItem } from '../services/storage';
 import {
   flipPostcard,
   loadPostcard,
-} from '../state/slice';
+} from '../state/commonSlice';
 
 import Postcard from '../presentational/Postcard';
 

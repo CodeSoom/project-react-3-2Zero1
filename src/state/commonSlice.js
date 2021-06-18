@@ -1,12 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { saveItem } from '../services/storage';
+// import { saveItem } from '../services/storage';
 
 import {
-  fetchEntrance,
+  // fetchEntrance,
   postPhoto,
   postPostcard,
-  postCheckValidPostcard,
+  // postCheckValidPostcard,
   fetchPostcard,
   fetchPostcards,
   postExpire,
@@ -70,13 +70,13 @@ const { actions, reducer } = createSlice({
   initialState: {
     writePageIndex: 0,
     inputFields: initialInputFields,
-    entrance: {
-      sender: '테스트',
-      isPrivate: false,
-      postcardCount: 5,
-      writtenCount: 0,
-      movePage: false,
-    },
+    // entrance: {
+    //   sender: '테스트',
+    //   isPrivate: false,
+    //   postcardCount: 5,
+    //   writtenCount: 0,
+    //   movePage: false,
+    // },
     postcard: {
       isFrontPage: true,
       sender: '',
@@ -182,14 +182,14 @@ const { actions, reducer } = createSlice({
         },
       };
     },
-    setEntrance(state, { payload: value }) {
-      return {
-        ...state,
-        entrance: {
-          ...value,
-        },
-      };
-    },
+    // setEntrance(state, { payload: value }) {
+    //   return {
+    //     ...state,
+    //     entrance: {
+    //       ...value,
+    //     },
+    //   };
+    // },
     setWriteCompleteValues(state, { payload: { url, secretMessage } }) {
       return {
         ...state,
@@ -261,15 +261,15 @@ const { actions, reducer } = createSlice({
         },
       };
     },
-    admitPostcardAccess(state) {
-      return {
-        ...state,
-        entrance: {
-          ...state.entrance,
-          movePage: true,
-        },
-      };
-    },
+    // admitPostcardAccess(state) {
+    //   return {
+    //     ...state,
+    //     entrance: {
+    //       ...state.entrance,
+    //       movePage: true,
+    //     },
+    //   };
+    // },
     setResponseError(state, {
       payload: {
         move,
@@ -343,7 +343,7 @@ export const {
   flipPostcard,
   flipPreviewPostcard,
   setPostcardFront,
-  setEntrance,
+  // setEntrance,
   setWriteCompleteValues,
   resetPostcardInputFields,
   setPostcard,
@@ -357,21 +357,21 @@ export const {
   setMovingPage,
 } = actions;
 
-export function loadEntrance({ key }) {
-  return async (dispatch) => {
-    const response = await fetchEntrance({ key });
+// export function loadEntrance({ key }) {
+//   return async (dispatch) => {
+//     const response = await fetchEntrance({ key });
 
-    if (response.error) {
-      dispatch(setResponseError(response.error));
-      return;
-    }
+//     if (response.error) {
+//       dispatch(setResponseError(response.error));
+//       return;
+//     }
 
-    // 성공할 경우
-    saveItem('postcardKey', key);
+//     // 성공할 경우
+//     saveItem('postcardKey', key);
 
-    dispatch(setEntrance(response.data));
-  };
-}
+//     dispatch(setEntrance(response.data));
+//   };
+// }
 
 export function sendPhoto({ file }) {
   return async (dispatch) => {
@@ -402,30 +402,30 @@ export function sendPostcard({ postcardValues, onClickNext }) {
   };
 }
 
-export function checkValidPostcard({ key, secretMessage }) {
-  return async (dispatch) => {
-    const response = await postCheckValidPostcard({ key, secretMessage });
+// export function checkValidPostcard({ key, secretMessage }) {
+//   return async (dispatch) => {
+//     const response = await postCheckValidPostcard({ key, secretMessage });
 
-    if (response.error) {
-      dispatch(setResponseError(response.error));
-      return;
-    }
+//     if (response.error) {
+//       dispatch(setResponseError(response.error));
+//       return;
+//     }
 
-    const { success } = response.data;
+//     const { success } = response.data;
 
-    if (success) {
-      saveItem('secretMessage', secretMessage);
+//     if (success) {
+//       saveItem('secretMessage', secretMessage);
 
-      dispatch(admitPostcardAccess());
-    } else {
-      dispatch(setInputFieldsError({
-        page: 'entrance',
-        type: 'secretMessage',
-        error: 'wrong',
-      }));
-    }
-  };
-}
+//       dispatch(admitPostcardAccess());
+//     } else {
+//       dispatch(setInputFieldsError({
+//         page: 'entrance',
+//         type: 'secretMessage',
+//         error: 'wrong',
+//       }));
+//     }
+//   };
+// }
 
 export function loadPostcard({ key, secretMessage }) {
   return async (dispatch) => {

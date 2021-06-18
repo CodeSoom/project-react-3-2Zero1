@@ -9,7 +9,7 @@ import ContentsForm from '../presentational/ContentsForm';
 import {
   setInputFieldsError,
   changeInputFieldValue,
-} from '../state/slice';
+} from '../state/commonSlice';
 
 export default function ContentsFormContainer({
   onClickNext,

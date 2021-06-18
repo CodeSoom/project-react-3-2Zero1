@@ -8,11 +8,14 @@ import { getField } from '../utils/utils';
 import { loadItem } from '../services/storage';
 
 import {
-  changeInputFieldValue,
-  setInputFieldsError,
   checkValidPostcard,
   loadEntrance,
-} from '../state/slice';
+} from '../state/entranceSlice';
+
+import {
+  setInputFieldsError,
+  changeInputFieldValue,
+} from '../state/commonSlice';
 
 export default function EntranceContainer({
   postcardKey,

@@ -5,7 +5,7 @@ import styled from '@emotion/styled';
 
 import PostcardItem from '../presentational/PostcardItem';
 
-import { loadPostcards } from '../state/slice';
+import { loadPostcards } from '../state/commonSlice';
 
 import {
   PreviousButton,

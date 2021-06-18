@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { initToast } from '../state/slice';
+import { initToast } from '../state/commonSlice';
 
 export default function ToastManager() {
   const dispatch = useDispatch();

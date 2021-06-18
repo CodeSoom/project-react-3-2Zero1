@@ -10,7 +10,7 @@ import {
   setInputFieldsError,
   sendPhoto,
   changeInputFieldValue,
-} from '../state/slice';
+} from '../state/commonSlice';
 
 export default function PhotoFormContainer({
   onClickNext,
