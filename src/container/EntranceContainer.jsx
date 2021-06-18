@@ -31,7 +31,7 @@ export default function EntranceContainer({
     inputFields,
   } = useSelector((state) => ({
     entrance: state.entrance,
-    inputFields: state.inputFields,
+    inputFields: state.common.inputFields,
   }));
 
   const {

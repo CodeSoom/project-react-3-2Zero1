@@ -15,6 +15,11 @@ import {
 
 const initialState = {
   writePageIndex: 0,
+  sender: '테스트',
+  isPrivate: false,
+  postcardCount: 5,
+  writtenCount: 0,
+  movePage: false,
 };
 
 const { actions, reducer } = createSlice({
