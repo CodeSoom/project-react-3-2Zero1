@@ -8,10 +8,13 @@ import validate from '../utils/validate';
 import { getField } from '../utils/utils';
 
 import {
-  changeRadioChecked,
   setInputFieldsError,
   changeInputFieldValue,
 } from '../state/commonSlice';
+
+import {
+  changeRadioChecked,
+} from '../state/writeSlice';
 
 export default function InformationFormContainer({
   onClickNext,

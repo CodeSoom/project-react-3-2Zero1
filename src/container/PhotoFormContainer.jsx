@@ -8,9 +8,10 @@ import validate from '../utils/validate';
 
 import {
   setInputFieldsError,
-  sendPhoto,
   changeInputFieldValue,
 } from '../state/commonSlice';
+
+import { sendPhoto } from '../state/writeSlice';
 
 export default function PhotoFormContainer({
   onClickNext,

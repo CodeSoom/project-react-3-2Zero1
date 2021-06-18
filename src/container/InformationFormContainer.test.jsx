@@ -84,7 +84,7 @@ describe('InformationFormContainer', () => {
     fireEvent.click(getByLabelText('공개'));
 
     expect(dispatch).toBeCalledWith({
-      type: 'application/changeRadioChecked',
+      type: 'write/changeRadioChecked',
       payload: false,
     });
 

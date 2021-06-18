@@ -81,7 +81,7 @@ describe('WritePage', () => {
         fireEvent.click(getByText('다음'));
 
         expect(dispatch).not.toBeCalledWith({
-          type: 'application/increaseWritePageIndex',
+          type: 'write/increaseWritePageIndex',
         });
       });
     });
@@ -123,7 +123,7 @@ describe('WritePage', () => {
         fireEvent.click(getByText('다음'));
 
         expect(dispatch).toBeCalledWith({
-          type: 'application/increaseWritePageIndex',
+          type: 'write/increaseWritePageIndex',
         });
       });
     });
@@ -148,7 +148,7 @@ describe('WritePage', () => {
       fireEvent.click(getByText('이전'));
 
       expect(dispatch).toBeCalledWith({
-        type: 'application/decreaseWritePageIndex',
+        type: 'write/decreaseWritePageIndex',
       });
     });
 
@@ -179,7 +179,7 @@ describe('WritePage', () => {
         fireEvent.click(getByText('다음'));
 
         expect(dispatch).toBeCalledWith({
-          type: 'application/increaseWritePageIndex',
+          type: 'write/increaseWritePageIndex',
         });
       });
     });
@@ -202,7 +202,7 @@ describe('WritePage', () => {
         fireEvent.click(getByText('다음'));
 
         expect(dispatch).not.toBeCalledWith({
-          type: 'application/increaseWritePageIndex',
+          type: 'write/increaseWritePageIndex',
         });
       });
     });
@@ -227,7 +227,7 @@ describe('WritePage', () => {
       fireEvent.click(getByText('이전'));
 
       expect(dispatch).toBeCalledWith({
-        type: 'application/decreaseWritePageIndex',
+        type: 'write/decreaseWritePageIndex',
       });
     });
 
@@ -249,7 +249,7 @@ describe('WritePage', () => {
         fireEvent.click(getByText('미리보기'));
 
         expect(dispatch).not.toBeCalledWith({
-          type: 'application/increaseWritePageIndex',
+          type: 'write/increaseWritePageIndex',
         });
       });
     });
@@ -285,7 +285,7 @@ describe('WritePage', () => {
         fireEvent.click(getByText('미리보기'));
 
         expect(dispatch).toBeCalledWith({
-          type: 'application/increaseWritePageIndex',
+          type: 'write/increaseWritePageIndex',
         });
       });
     });
@@ -325,7 +325,7 @@ describe('WritePage', () => {
       fireEvent.click(getByText('이전'));
 
       expect(dispatch).toBeCalledWith({
-        type: 'application/decreaseWritePageIndex',
+        type: 'write/decreaseWritePageIndex',
       });
     });
 
@@ -352,7 +352,7 @@ describe('WritePage', () => {
         fireEvent.click(getByText('완료'));
 
         expect(dispatch).toBeCalledWith({
-          type: 'application/increaseWritePageIndex',
+          type: 'write/increaseWritePageIndex',
         });
       });
     });
@@ -386,7 +386,7 @@ describe('WritePage', () => {
 
       expect(mockGoBack).toBeCalled();
       expect(dispatch).toBeCalledWith({
-        type: 'application/resetPostcardInputFields',
+        type: 'write/resetPostcardInputFields',
       });
     });
   });

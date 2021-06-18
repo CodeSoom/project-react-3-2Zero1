@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+
 import { saveItem } from '../services/storage';
 
 import {
@@ -13,13 +14,7 @@ import {
 } from './commonSlice';
 
 const initialState = {
-  entrance: {
-    sender: '테스트',
-    isPrivate: false,
-    postcardCount: 5,
-    writtenCount: 0,
-    movePage: false,
-  },
+  writePageIndex: 0,
 };
 
 const { actions, reducer } = createSlice({
