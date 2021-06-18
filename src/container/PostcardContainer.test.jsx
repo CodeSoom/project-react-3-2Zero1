@@ -48,7 +48,7 @@ describe('PostcardContainer', () => {
     fireEvent.click(getByText('뒷면'));
 
     expect(dispatch).toBeCalledWith({
-      type: 'application/flipPostcard',
+      type: 'postcard/flipPostcard',
     });
   });
 });

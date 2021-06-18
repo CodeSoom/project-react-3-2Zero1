@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import PostcardContainer from '../container/PostcardContainer';
 
-import { setPostcardFront } from '../state/commonSlice';
+import { setPostcardFront } from '../state/postcardSlice';
 
 export default function PostcardPage() {
   const history = useHistory();

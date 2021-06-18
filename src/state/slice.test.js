@@ -8,12 +8,12 @@ import reducer, {
   // increaseWritePageIndex,
   // decreaseWritePageIndex,
   // flipPreviewPostcard,
-  flipPostcard,
-  setPostcardFront,
+  // flipPostcard,
+  // setPostcardFront,
   // setEntrance,
   // setWriteCompleteValues,
   // resetPostcardInputFields,
-  setPostcard,
+  // setPostcard,
   // admitPostcardAccess,
   setResponseError,
   initToast,
@@ -27,7 +27,7 @@ import reducer, {
   // sendPhoto,
   // sendPostcard,
   // checkValidPostcard,
-  loadPostcard,
+  // loadPostcard,
   loadPostcards,
   expirePostcard,
 } from './commonSlice';
@@ -36,7 +36,7 @@ import {
   // postCheckValidPostcard,
   // fetchEntrance,
   // postPostcard,
-  fetchPostcard,
+  // fetchPostcard,
   postExpire,
 } from '../services/api';
 
@@ -112,14 +112,14 @@ describe('reducer', () => {
         //   writtenCount: 0,
         //   movePage: false,
         // },
-        postcard: {
-          isFrontPage: true,
-          sender: '',
-          receiver: '',
-          contents: '',
-          photoUrl: '',
-          photoMessage: '',
-        },
+        // postcard: {
+        //   isFrontPage: true,
+        //   sender: '',
+        //   receiver: '',
+        //   contents: '',
+        //   photoUrl: '',
+        //   photoMessage: '',
+        // },
         postcards: [],
         movingPage: '',
         toast: {
@@ -241,32 +241,32 @@ describe('reducer', () => {
   //   });
   // });
 
-  describe('flipPostcard', () => {
-    it('change isFrontPage in postcard', () => {
-      const initialState = {
-        postcard: {
-          isFrontPage: false,
-        },
-      };
+  // describe('flipPostcard', () => {
+  //   it('change isFrontPage in postcard', () => {
+  //     const initialState = {
+  //       postcard: {
+  //         isFrontPage: false,
+  //       },
+  //     };
 
-      const state = reducer(initialState, flipPostcard());
+  //     const state = reducer(initialState, flipPostcard());
 
-      expect(state.postcard.isFrontPage).toBe(true);
-    });
-  });
+  //     expect(state.postcard.isFrontPage).toBe(true);
+  //   });
+  // });
 
-  describe('setPostcardFront', () => {
-    it('set isFrontPage in postcard with true', () => {
-      const initialState = {
-        postcard: {
-          isFrontPage: false,
-        },
-      };
-      const state = reducer(initialState, setPostcardFront());
+  // describe('setPostcardFront', () => {
+  //   it('set isFrontPage in postcard with true', () => {
+  //     const initialState = {
+  //       postcard: {
+  //         isFrontPage: false,
+  //       },
+  //     };
+  //     const state = reducer(initialState, setPostcardFront());
 
-      expect(state.postcard.isFrontPage).toBe(true);
-    });
-  });
+  //     expect(state.postcard.isFrontPage).toBe(true);
+  //   });
+  // });
 
   // describe('setEntrance', () => {
   //   it('set entrance variables', () => {
@@ -406,30 +406,30 @@ describe('reducer', () => {
   //   });
   // });
 
-  describe('setPostcard', () => {
-    it('set postcard variables', () => {
-      const initialState = {
-        postcard: {
-          sender: '',
-          receiver: '',
-          photoUrl: '',
-          contents: '',
-          photoMessage: '',
-        },
-      };
-      const postcard = {
-        sender: 'sender',
-        receiver: 'receiver',
-        photoUrl: 'photoUrl',
-        contents: 'contents',
-        photoMessage: 'photoMessage',
-      };
+  // describe('setPostcard', () => {
+  //   it('set postcard variables', () => {
+  //     const initialState = {
+  //       postcard: {
+  //         sender: '',
+  //         receiver: '',
+  //         photoUrl: '',
+  //         contents: '',
+  //         photoMessage: '',
+  //       },
+  //     };
+  //     const postcard = {
+  //       sender: 'sender',
+  //       receiver: 'receiver',
+  //       photoUrl: 'photoUrl',
+  //       contents: 'contents',
+  //       photoMessage: 'photoMessage',
+  //     };
 
-      const state = reducer(initialState, setPostcard(postcard));
+  //     const state = reducer(initialState, setPostcard(postcard));
 
-      expect(state.postcard).toEqual(postcard);
-    });
-  });
+  //     expect(state.postcard).toEqual(postcard);
+  //   });
+  // });
 
   // describe('admitPostcardAccess', () => {
   //   it('set movePage with true in Entrance', () => {
@@ -768,56 +768,56 @@ describe('reducer', () => {
   //   });
   // });
 
-  describe('loadPostcard', () => {
-    beforeEach(() => {
-      store = mockStore({});
+  // describe('loadPostcard', () => {
+  //   beforeEach(() => {
+  //     store = mockStore({});
 
-      fetchPostcard.mockImplementation(() => Promise.resolve(given.response));
-    });
+  //     fetchPostcard.mockImplementation(() => Promise.resolve(given.response));
+  //   });
 
-    const key = 'test';
-    const secretMessage = 'secretMessage';
+  //   const key = 'test';
+  //   const secretMessage = 'secretMessage';
 
-    const response = {
-      sender: 'sender',
-      receiver: 'receiver',
-      photo: 'photoUrl',
-      contents: 'contents',
-      photoMessage: 'photoMessage',
-    };
+  //   const response = {
+  //     sender: 'sender',
+  //     receiver: 'receiver',
+  //     photo: 'photoUrl',
+  //     contents: 'contents',
+  //     photoMessage: 'photoMessage',
+  //   };
 
-    context('when response has error', () => {
-      it('runs setMovingPage', async () => {
-        given('response', () => ({
-          error: responseError,
-        }));
-        await store.dispatch(loadPostcard({ key, secretMessage }));
+  //   context('when response has error', () => {
+  //     it('runs setMovingPage', async () => {
+  //       given('response', () => ({
+  //         error: responseError,
+  //       }));
+  //       await store.dispatch(loadPostcard({ key, secretMessage }));
 
-        const actions = store.getActions();
+  //       const actions = store.getActions();
 
-        expect(actions[0]).toEqual(setResponseError(responseError));
-      });
-    });
+  //       expect(actions[0]).toEqual(setResponseError(responseError));
+  //     });
+  //   });
 
-    context('when response does not have error', () => {
-      it('runs setEntrance', async () => {
-        given('response', () => ({
-          data: response,
-        }));
-        await store.dispatch(loadPostcard({ key, secretMessage }));
+  //   context('when response does not have error', () => {
+  //     it('runs setEntrance', async () => {
+  //       given('response', () => ({
+  //         data: response,
+  //       }));
+  //       await store.dispatch(loadPostcard({ key, secretMessage }));
 
-        const actions = store.getActions();
+  //       const actions = store.getActions();
 
-        expect(actions[0]).toEqual(setPostcard({
-          sender: 'sender',
-          receiver: 'receiver',
-          photoUrl: 'photoUrl',
-          contents: 'contents',
-          photoMessage: 'photoMessage',
-        }));
-      });
-    });
-  });
+  //       expect(actions[0]).toEqual(setPostcard({
+  //         sender: 'sender',
+  //         receiver: 'receiver',
+  //         photoUrl: 'photoUrl',
+  //         contents: 'contents',
+  //         photoMessage: 'photoMessage',
+  //       }));
+  //     });
+  //   });
+  // });
 
   describe('loadPostcards', () => {
     beforeEach(() => {
