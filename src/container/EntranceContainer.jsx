@@ -12,6 +12,7 @@ import {
   changeInputFieldValue,
   checkValidPostcard,
   loadEntrance,
+  resetAdmitPostcardAccess,
 } from '../state/entranceSlice';
 
 export default function EntranceContainer({
@@ -38,8 +39,10 @@ export default function EntranceContainer({
 
   useEffect(() => {
     if (movePage) {
+      dispatch(resetAdmitPostcardAccess());
       moveToPostcardPage();
       // TODO: dispatch로 movingpage 부분 false로 변경해줘야함.
+      return;
     }
 
     dispatch(loadEntrance({ key: postcardKey }));

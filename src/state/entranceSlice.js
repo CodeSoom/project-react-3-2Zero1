@@ -43,6 +43,12 @@ const { actions, reducer } = createSlice({
         movePage: true,
       };
     },
+    resetAdmitPostcardAccess(state) {
+      return {
+        ...state,
+        movePage: false,
+      };
+    },
     changeInputFieldValue(state, { payload: { type, value } }) {
       return {
         ...state,
@@ -73,6 +79,7 @@ const { actions, reducer } = createSlice({
 export const {
   setEntrance,
   admitPostcardAccess,
+  resetAdmitPostcardAccess,
   setInputFieldsError,
   changeInputFieldValue,
 } = actions;

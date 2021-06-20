@@ -14,6 +14,7 @@ import reducer, {
   loadEntrance,
   checkValidPostcard,
   admitPostcardAccess,
+  resetAdmitPostcardAccess,
 } from './entranceSlice';
 
 import {
@@ -60,6 +61,18 @@ describe('reducer', () => {
       const state = reducer(initialState, admitPostcardAccess());
 
       expect(state.movePage).toEqual(true);
+    });
+  });
+
+  describe('resetAdmitPostcardAccess', () => {
+    it('set movePage with true in Entrance', () => {
+      const initialState = {
+        movePage: true,
+      };
+
+      const state = reducer(initialState, resetAdmitPostcardAccess());
+
+      expect(state.movePage).toEqual(false);
     });
   });
 
