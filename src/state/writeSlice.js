@@ -96,7 +96,7 @@ const { actions, reducer } = createSlice({
           ...state.inputFields,
           preview: {
             ...state.inputFields.preview,
-            isFrontPage: !state.inputFields.isFrontPage,
+            isFrontPage: !state.inputFields.preview.isFrontPage,
           },
         },
       };
