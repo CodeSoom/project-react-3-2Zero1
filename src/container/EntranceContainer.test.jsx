@@ -52,6 +52,9 @@ describe('EntranceContainer', () => {
     it('moves to PostcardPage', () => {
       entranceRender();
       expect(moveToPostcardPage).toBeCalled();
+      expect(dispatch).toBeCalledWith({
+        type: 'entrance/resetAdmitPostcardAccess',
+      });
     });
   });
 
