@@ -19,24 +19,22 @@ export default function PreviewContainer({
 
   const key = loadItem('postcardKey');
 
-  const { writePageIndex, inputFields } = useSelector((state) => (
-    {
-      writePageIndex: state.writePageIndex,
-      inputFields: state.inputFields,
-    }
-  ));
+  const { write } = useSelector((state) => ({ write: state.write }));
 
   const {
-    write: {
-      sender,
-      receiver,
-      contents,
-      preview,
-      photoMessage,
-      secretMessage,
-      photo,
-      isPrivate,
-    },
+    writePageIndex,
+    inputFields,
+  } = write;
+
+  const {
+    sender,
+    receiver,
+    contents,
+    preview,
+    photoMessage,
+    secretMessage,
+    photo,
+    isPrivate,
   } = inputFields;
 
   checkValidAccess(writePageIndex);

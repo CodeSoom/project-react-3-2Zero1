@@ -21,20 +21,38 @@ describe('App', () => {
   beforeEach(() => {
     useDispatch.mockImplementation(() => dispatch);
     useSelector.mockImplementation((selector) => selector({
-      writePageIndex: 0,
-      entrance,
-      inputFields,
+      write: {
+        writePageIndex: 0,
+        inputFields: {
+          ...inputFields.write,
+        },
+      },
+      entrance: {
+        ...entrance,
+        inputFields: {
+          ...inputFields.entrance,
+        },
+      },
       postcard: {
         isFrontPage: true,
         sender: '받는이',
         receiver: '보낸이',
         contents: '이것은 내용입니다.',
       },
-      postcards: [],
-      movingPage: '',
-      toast: {
-        triggered: false,
-        message: '',
+      expire: {
+        inputFields: {
+          ...inputFields.expire,
+        },
+      },
+      postcards: {
+        postcards: [],
+      },
+      common: {
+        movingPage: '',
+        toast: {
+          triggered: false,
+          message: '',
+        },
       },
     }));
   });

@@ -22,7 +22,9 @@ describe('PostcardsPage', () => {
   useDispatch.mockImplementation(() => dispatch);
 
   useSelector.mockImplementation((selector) => selector({
-    postcards,
+    postcards: {
+      postcards,
+    },
   }));
   function renderPostcardsPage() {
     return render((

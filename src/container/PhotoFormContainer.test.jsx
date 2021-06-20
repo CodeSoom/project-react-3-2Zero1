@@ -28,8 +28,12 @@ describe('PhotoFormContainer', () => {
   useDispatch.mockImplementation(() => dispatch);
   useSelector.mockImplementation((selector) => selector(
     {
-      writePageIndex: 2,
-      inputFields,
+      write: {
+        writePageIndex: 2,
+        inputFields: {
+          ...inputFields.write,
+        },
+      },
     },
   ));
 
@@ -55,9 +59,8 @@ describe('PhotoFormContainer', () => {
     });
 
     expect(dispatch).toBeCalledWith({
-      type: 'application/changeInputFieldValue',
+      type: 'write/changeInputFieldValue',
       payload: {
-        page: 'write',
         type: 'photoMessage',
         value: 'Hello',
       },
@@ -109,10 +112,9 @@ describe('PhotoFormContainer', () => {
 
       useSelector.mockImplementation((selector) => selector(
         {
-          writePageIndex: 2,
-          inputFields: {
-            ...inputFields,
-            write: {
+          write: {
+            writePageIndex: 2,
+            inputFields: {
               ...inputFields.write,
               photo: {
                 ...inputFields.write.photo,
@@ -144,8 +146,12 @@ describe('PhotoFormContainer', () => {
 
       useSelector.mockImplementation((selector) => selector(
         {
-          writePageIndex: 2,
-          inputFields,
+          write: {
+            writePageIndex: 2,
+            inputFields: {
+              ...inputFields.write,
+            },
+          },
         },
       ));
     });

@@ -28,8 +28,12 @@ describe('ContentsFormContainer', () => {
   useDispatch.mockImplementation(() => dispatch);
   useSelector.mockImplementation((selector) => selector(
     {
-      writePageIndex: 1,
-      inputFields,
+      write: {
+        writePageIndex: 1,
+        inputFields: {
+          ...inputFields.write,
+        },
+      },
     },
   ));
 
@@ -53,9 +57,8 @@ describe('ContentsFormContainer', () => {
       });
 
       expect(dispatch).toBeCalledWith({
-        type: 'application/changeInputFieldValue',
+        type: 'write/changeInputFieldValue',
         payload: {
-          page: 'write',
           type: 'contents',
           value: 'Hello',
         },

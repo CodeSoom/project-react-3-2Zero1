@@ -39,8 +39,10 @@ describe('EntrancePage', () => {
       entrance: {
         ...entrance,
         isPrivate: false,
+        inputFields: {
+          ...inputFields.entrance,
+        },
       },
-      inputFields,
     }));
 
     const { getByText } = renderEntrance({
@@ -58,8 +60,12 @@ describe('EntrancePage', () => {
   context('when postcardCount is bigger than 0', () => {
     it('renders postcard write button', () => {
       useSelector.mockImplementation((selector) => selector({
-        entrance,
-        inputFields,
+        entrance: {
+          ...entrance,
+          inputFields: {
+            ...inputFields.entrance,
+          },
+        },
       }));
 
       const { getByText } = renderEntrance({ key: '발신자' });
@@ -79,8 +85,10 @@ describe('EntrancePage', () => {
         entrance: {
           ...entrance,
           postcardCount: 0,
+          inputFields: {
+            ...inputFields.entrance,
+          },
         },
-        inputFields,
       }));
 
       const { queryByText } = renderEntrance({ key: '발신자' });
@@ -92,8 +100,12 @@ describe('EntrancePage', () => {
   context("when '다른 사람 엽서 보러가기' button is clicked", () => {
     it('call history push with /postcards', () => {
       useSelector.mockImplementation((selector) => selector({
-        entrance,
-        inputFields,
+        entrance: {
+          ...entrance,
+          inputFields: {
+            ...inputFields.entrance,
+          },
+        },
       }));
 
       const { getByText } = renderEntrance({ key: '발신자' });
@@ -107,8 +119,12 @@ describe('EntrancePage', () => {
   context("when '엽서 파기하기' button is clicked", () => {
     it('call history push with /expire', () => {
       useSelector.mockImplementation((selector) => selector({
-        entrance,
-        inputFields,
+        entrance: {
+          ...entrance,
+          inputFields: {
+            ...inputFields.entrance,
+          },
+        },
       }));
 
       const { getByText } = renderEntrance({ key: '발신자' });
@@ -126,8 +142,10 @@ describe('EntrancePage', () => {
           ...entrance,
           postcardCount: 0,
           movePage: true,
+          inputFields: {
+            ...inputFields.entrance,
+          },
         },
-        inputFields,
       }));
 
       const { queryByText } = renderEntrance({ key: '발신자' });

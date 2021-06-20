@@ -8,14 +8,11 @@ import { getField } from '../utils/utils';
 import { loadItem } from '../services/storage';
 
 import {
+  setInputFieldsError,
+  changeInputFieldValue,
   checkValidPostcard,
   loadEntrance,
 } from '../state/entranceSlice';
-
-import {
-  setInputFieldsError,
-  changeInputFieldValue,
-} from '../state/commonSlice';
 
 export default function EntranceContainer({
   postcardKey,
@@ -26,12 +23,8 @@ export default function EntranceContainer({
 }) {
   const dispatch = useDispatch();
 
-  const {
-    entrance,
-    inputFields,
-  } = useSelector((state) => ({
+  const { entrance } = useSelector((state) => ({
     entrance: state.entrance,
-    inputFields: state.common.inputFields,
   }));
 
   const {
@@ -40,23 +33,24 @@ export default function EntranceContainer({
     writtenCount,
     isPrivate,
     movePage,
+    inputFields,
   } = entrance;
 
   useEffect(() => {
     if (movePage) {
       moveToPostcardPage();
+      // TODO: dispatch로 movingpage 부분 false로 변경해줘야함.
     }
 
     dispatch(loadEntrance({ key: postcardKey }));
   }, [movePage]);
 
-  const { entrance: { secretMessage } } = inputFields;
+  const { secretMessage } = inputFields;
 
   function handleCheckPostcardClick(v) {
     if (isPrivate) {
       if (v.length < 5 || v.length > 21) {
         dispatch(setInputFieldsError({
-          page: 'entrance',
           type: 'secretMessage',
           error: true,
         }));
@@ -87,7 +81,6 @@ export default function EntranceContainer({
 
   function handleChange(v) {
     dispatch(changeInputFieldValue({
-      page: 'entrance',
       type: 'secretMessage',
       value: v,
     }));

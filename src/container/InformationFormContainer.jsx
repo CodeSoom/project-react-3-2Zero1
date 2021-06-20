@@ -10,9 +10,6 @@ import { getField } from '../utils/utils';
 import {
   setInputFieldsError,
   changeInputFieldValue,
-} from '../state/commonSlice';
-
-import {
   changeRadioChecked,
 } from '../state/writeSlice';
 
@@ -23,31 +20,25 @@ export default function InformationFormContainer({
 }) {
   const dispatch = useDispatch();
 
+  const { write } = useSelector((state) => ({ write: state.write }));
+
   const {
     writePageIndex,
     inputFields,
-  } = useSelector((state) => (
-    {
-      writePageIndex: state.writePageIndex,
-      inputFields: state.inputFields,
-    }
-  ));
+  } = write;
 
-  const getChangeHandler = (page, type) => ((value) => {
+  const getChangeHandler = (type) => ((value) => {
     dispatch(changeInputFieldValue({
-      page,
       type,
       value,
     }));
   });
 
   const {
-    write: {
-      sender,
-      receiver,
-      secretMessage,
-      isPrivate,
-    },
+    sender,
+    receiver,
+    secretMessage,
+    isPrivate,
   } = inputFields;
 
   checkValidAccess(writePageIndex);
@@ -57,19 +48,19 @@ export default function InformationFormContainer({
       field: sender,
       id: 'sender',
       name: '보내는 사람',
-      onChange: getChangeHandler('write', 'sender'),
+      onChange: getChangeHandler('sender'),
     }),
     receiver: getField({
       field: receiver,
       id: 'receiver',
       name: '받는 사람',
-      onChange: getChangeHandler('write', 'receiver'),
+      onChange: getChangeHandler('receiver'),
     }),
     secretMessage: getField({
       field: secretMessage,
       id: 'secretMessage',
       name: '엽서 암호',
-      onChange: getChangeHandler('write', 'secretMessage'),
+      onChange: getChangeHandler('secretMessage'),
     }),
   };
 
@@ -80,7 +71,6 @@ export default function InformationFormContainer({
 
   function handleError([key, checked]) {
     dispatch(setInputFieldsError({
-      page: 'write',
       type: key,
       error: !checked,
     }));

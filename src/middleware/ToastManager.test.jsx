@@ -22,9 +22,11 @@ describe('ToastManager', () => {
     dispatch.mockClear();
 
     useSelector.mockImplementation((selector) => selector({
-      toast: {
-        triggered: given.triggered,
-        message: given.message,
+      common: {
+        toast: {
+          triggered: given.triggered,
+          message: given.message,
+        },
       },
     }));
   });

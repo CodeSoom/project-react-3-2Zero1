@@ -9,26 +9,26 @@ import {
   changeInputFieldValue,
   expirePostcard,
   setInputFieldsError,
-} from '../state/commonSlice';
+} from '../state/expireSlice';
 
 import { loadItem } from '../services/storage';
 
 export default function ExpireFormContainer({ handlePreviousClick }) {
   const dispatch = useDispatch();
 
-  const {
-    entrance: { sender },
-    inputFields: {
-      expire: { secretMessage },
-    },
-  } = useSelector((state) => ({
+  const { expire, entrance } = useSelector((state) => ({
+    expire: state.expire,
     entrance: state.entrance,
-    inputFields: state.inputFields,
   }));
 
-  const getChangeHandler = (page, type) => ((value) => {
+  const {
+    inputFields: { secretMessage },
+  } = expire;
+
+  const { sender } = entrance;
+
+  const getChangeHandler = (type) => ((value) => {
     dispatch(changeInputFieldValue({
-      page,
       type,
       value,
     }));
@@ -38,14 +38,13 @@ export default function ExpireFormContainer({ handlePreviousClick }) {
     field: secretMessage,
     id: 'secretMessage',
     name: '엽서 암호',
-    onChange: getChangeHandler('expire', 'secretMessage'),
+    onChange: getChangeHandler('secretMessage'),
   });
 
   function handleClickExpire() {
     const { value } = secretMessage;
     if (value.length < 5 || value.length > 21) {
       dispatch(setInputFieldsError({
-        page: 'expire',
         type: 'secretMessage',
         error: true,
       }));

@@ -43,8 +43,12 @@ describe('WritePage', () => {
   context('when writePageIndex is 0', () => {
     beforeEach(() => {
       useSelector.mockImplementation((selector) => selector({
-        writePageIndex: 0,
-        inputFields,
+        write: {
+          writePageIndex: 0,
+          inputFields: {
+            ...inputFields.write,
+          },
+        },
       }));
     });
 
@@ -66,8 +70,12 @@ describe('WritePage', () => {
         dispatch.mockClear();
 
         useSelector.mockImplementation((selector) => selector({
-          writePageIndex: 0,
-          inputFields,
+          write: {
+            writePageIndex: 0,
+            inputFields: {
+              ...inputFields.write,
+            },
+          },
         }));
       });
 
@@ -91,10 +99,9 @@ describe('WritePage', () => {
         dispatch.mockClear();
 
         useSelector.mockImplementation((selector) => selector({
-          writePageIndex: 0,
-          inputFields: {
-            ...inputFields,
-            write: {
+          write: {
+            writePageIndex: 0,
+            inputFields: {
               ...inputFields.write,
               sender: {
                 ...inputFields.write.sender,
@@ -132,8 +139,12 @@ describe('WritePage', () => {
   context('when writePageIndex is 1', () => {
     beforeEach(() => {
       useSelector.mockImplementation((selector) => selector({
-        writePageIndex: 1,
-        inputFields,
+        write: {
+          writePageIndex: 1,
+          inputFields: {
+            ...inputFields.write,
+          },
+        },
       }));
     });
 
@@ -157,10 +168,9 @@ describe('WritePage', () => {
         dispatch.mockClear();
 
         useSelector.mockImplementation((selector) => selector({
-          writePageIndex: 1,
-          inputFields: {
-            ...inputFields,
-            write: {
+          write: {
+            writePageIndex: 1,
+            inputFields: {
               ...inputFields.write,
               contents: {
                 ...inputFields.write.contents,
@@ -189,8 +199,12 @@ describe('WritePage', () => {
         dispatch.mockClear();
 
         useSelector.mockImplementation((selector) => selector({
-          writePageIndex: 1,
-          inputFields,
+          write: {
+            writePageIndex: 1,
+            inputFields: {
+              ...inputFields.write,
+            },
+          },
         }));
       });
 
@@ -211,8 +225,12 @@ describe('WritePage', () => {
   context('when writePageIndex is 2', () => {
     beforeEach(() => {
       useSelector.mockImplementation((selector) => selector({
-        writePageIndex: 2,
-        inputFields,
+        write: {
+          writePageIndex: 2,
+          inputFields: {
+            ...inputFields.write,
+          },
+        },
       }));
     });
 
@@ -236,8 +254,12 @@ describe('WritePage', () => {
         dispatch.mockClear();
 
         useSelector.mockImplementation((selector) => selector({
-          writePageIndex: 2,
-          inputFields,
+          write: {
+            writePageIndex: 2,
+            inputFields: {
+              ...inputFields.write,
+            },
+          },
         }));
       });
 
@@ -259,10 +281,9 @@ describe('WritePage', () => {
         dispatch.mockClear();
 
         useSelector.mockImplementation((selector) => selector({
-          writePageIndex: 2,
-          inputFields: {
-            ...inputFields,
-            write: {
+          write: {
+            writePageIndex: 2,
+            inputFields: {
               ...inputFields.write,
               photo: {
                 ...inputFields.write.photo,
@@ -294,10 +315,9 @@ describe('WritePage', () => {
   context('when writePageIndex is 3', () => {
     beforeEach(() => {
       useSelector.mockImplementation((selector) => selector({
-        writePageIndex: 3,
-        inputFields: {
-          ...inputFields,
-          write: {
+        write: {
+          writePageIndex: 3,
+          inputFields: {
             ...inputFields.write,
             photo: {
               ...inputFields.write.photo,
@@ -361,9 +381,10 @@ describe('WritePage', () => {
   context('when writePageIndex is 4', () => {
     beforeEach(() => {
       useSelector.mockImplementation((selector) => selector({
-        writePageIndex: 4,
-        inputFields: {
-          write: {
+        write: {
+          writePageIndex: 1,
+          inputFields: {
+            ...inputFields.write,
             sender: {
               value: 'sender',
             },
@@ -396,15 +417,16 @@ describe('WritePage', () => {
 
     beforeEach(() => {
       useSelector.mockImplementation((selector) => selector({
-        writePageIndex: 1,
-        inputFields: {
-          write: {
+        write: {
+          writePageIndex: 1,
+          inputFields: {
+            ...inputFields.write,
             sender: {
-              value: '',
+              value: 'sender',
             },
             complete: {
-              url: '',
-              secretMessage: '',
+              url: 'localhost',
+              secretMessage: 'secretMessage',
             },
           },
         },

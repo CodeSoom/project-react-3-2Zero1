@@ -15,9 +15,9 @@ describe('WriteCompleteContainer', () => {
 
   useSelector.mockImplementation((selector) => selector(
     {
-      writePageIndex: 3,
-      inputFields: {
-        write: {
+      write: {
+        writePageIndex: 3,
+        inputFields: {
           sender: {
             value: 'sender',
           },
