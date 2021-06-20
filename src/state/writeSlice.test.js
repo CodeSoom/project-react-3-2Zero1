@@ -59,10 +59,8 @@ describe('reducer', () => {
     it('change isFrontPage in preview inputField', () => {
       const initialState = {
         inputFields: {
-          write: {
-            preview: {
-              isFrontPage: false,
-            },
+          preview: {
+            isFrontPage: false,
           },
         },
       };
