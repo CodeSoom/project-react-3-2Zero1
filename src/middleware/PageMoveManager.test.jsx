@@ -24,10 +24,12 @@ describe('PageMoveManager', () => {
   useDispatch.mockImplementation(() => dispatch);
 
   useSelector.mockImplementation((selector) => selector({
-    movingPage: given.movingPage,
-    toast: {
-      triggered: given.triggered || false,
-      message: given.message || '',
+    common: {
+      movingPage: given.movingPage,
+      toast: {
+        triggered: given.triggered || false,
+        message: given.message || '',
+      },
     },
   }));
 

@@ -12,7 +12,9 @@ describe('PostcardsContainer', () => {
   useDispatch.mockImplementation(() => dispatch);
 
   useSelector.mockImplementation((selector) => selector({
-    postcards,
+    postcards: {
+      postcards,
+    },
   }));
 
   const handlePreviousClick = jest.fn();

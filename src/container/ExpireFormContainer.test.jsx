@@ -18,16 +18,16 @@ describe('ExpireFormContainer', () => {
   const sender = '발신자';
 
   useSelector.mockImplementation((selector) => selector({
-    entrance: {
-      sender,
-    },
-    inputFields: {
-      expire: {
+    expire: {
+      inputFields: {
         secretMessage: {
           error: false,
           value: given.secretMessage,
         },
       },
+    },
+    entrance: {
+      sender,
     },
   }));
 
@@ -56,9 +56,8 @@ describe('ExpireFormContainer', () => {
     fireEvent.change(getByLabelText('엽서 암호'), { target: { value: 'hello' } });
 
     expect(dispatch).toBeCalledWith({
-      type: 'application/changeInputFieldValue',
+      type: 'expire/changeInputFieldValue',
       payload: {
-        page: 'expire',
         type: 'secretMessage',
         value: 'hello',
       },
@@ -74,9 +73,8 @@ describe('ExpireFormContainer', () => {
       expect(getByText('파기')).not.toBeNull();
       fireEvent.click(getByText('파기'));
       expect(dispatch).toBeCalledWith({
-        type: 'application/setInputFieldsError',
+        type: 'expire/setInputFieldsError',
         payload: {
-          page: 'expire',
           type: 'secretMessage',
           error: true,
         },
@@ -93,9 +91,8 @@ describe('ExpireFormContainer', () => {
       expect(getByText('파기')).not.toBeNull();
       fireEvent.click(getByText('파기'));
       expect(dispatch).not.toBeCalledWith({
-        type: 'application/setInputFieldsError',
+        type: 'expire/setInputFieldsError',
         payload: {
-          page: 'expire',
           type: 'secretMessage',
           error: true,
         },

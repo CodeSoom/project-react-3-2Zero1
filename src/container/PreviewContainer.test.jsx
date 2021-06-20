@@ -26,10 +26,9 @@ describe('PreviewContainer', () => {
   useDispatch.mockImplementation(() => dispatch);
   useSelector.mockImplementation((selector) => selector(
     {
-      writePageIndex: 3,
-      inputFields: {
-        ...inputFields,
-        write: {
+      write: {
+        writePageIndex: 3,
+        inputFields: {
           ...inputFields.write,
           sender: {
             error: false,

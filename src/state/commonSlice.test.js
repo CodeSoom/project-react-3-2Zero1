@@ -1,126 +1,23 @@
-import thunk from 'redux-thunk';
-import configureStore from 'redux-mock-store';
-
 import reducer, {
-  // changeRadioChecked,
-  changeInputFieldValue,
-  setInputFieldsError,
-  // increaseWritePageIndex,
-  // decreaseWritePageIndex,
-  // flipPreviewPostcard,
-  // flipPostcard,
-  // setPostcardFront,
-  // setEntrance,
-  // setWriteCompleteValues,
-  // resetPostcardInputFields,
-  // setPostcard,
-  // admitPostcardAccess,
   setResponseError,
   initToast,
   setToastTriggered,
   initMovingPage,
   setToast,
-  setPostcards,
   setMovingPage,
-
-  // loadEntrance,
-  // sendPhoto,
-  // sendPostcard,
-  // checkValidPostcard,
-  // loadPostcard,
-  loadPostcards,
-  expirePostcard,
 } from './commonSlice';
 
-import {
-  // postCheckValidPostcard,
-  // fetchEntrance,
-  // postPostcard,
-  // fetchPostcard,
-  postExpire,
-} from '../services/api';
-
-// import entrance from '../fixtures/entrance';
-import responseError from '../fixtures/responseError';
-import postcards from '../fixtures/postcards';
-
-const middlewares = [thunk];
-const mockStore = configureStore(middlewares);
+// const middlewares = [thunk];
+// const mockStore = configureStore(middlewares);
 
 jest.mock('../services/api');
 
 describe('reducer', () => {
-  let store;
+  // let store;
 
   context('when previous state is undefined', () => {
     it('returns initialState', () => {
-      const initialInputFields = {
-        entrance: {
-          secretMessage: {
-            value: '',
-            error: false,
-          },
-        },
-        write: {
-          isPrivate: true,
-          secretMessage: {
-            value: '',
-            error: false,
-          },
-          sender: {
-            value: '',
-            error: false,
-          },
-          receiver: {
-            value: '',
-            error: false,
-          },
-          contents: {
-            value: '',
-            error: '',
-          },
-          photo: {
-            value: '',
-            error: false,
-          },
-          photoMessage: {
-            value: '',
-            error: false,
-          },
-          preview: {
-            isFrontPage: true,
-          },
-          complete: {
-            key: '',
-            secretMessage: '',
-          },
-        },
-        expire: {
-          secretMessage: {
-            value: '',
-            error: false,
-          },
-        },
-      };
       const initialState = {
-        // writePageIndex: 0,
-        inputFields: initialInputFields,
-        // entrance: {
-        //   sender: '테스트',
-        //   isPrivate: false,
-        //   postcardCount: 5,
-        //   writtenCount: 0,
-        //   movePage: false,
-        // },
-        // postcard: {
-        //   isFrontPage: true,
-        //   sender: '',
-        //   receiver: '',
-        //   contents: '',
-        //   photoUrl: '',
-        //   photoMessage: '',
-        // },
-        postcards: [],
         movingPage: '',
         toast: {
           triggered: false,
@@ -148,7 +45,7 @@ describe('reducer', () => {
   //     expect(state.inputFields.write.isPrivate.value).toBe(true);
   //   });
   // });
-
+  /*
   describe('changeInputFieldValue', () => {
     it('changes InputFieldValue', () => {
       const page = 'entrance';
@@ -198,7 +95,7 @@ describe('reducer', () => {
       expect(state.inputFields.entrance.secretMessage.error).toBe(true);
     });
   });
-
+*/
   // describe('increaseWritePageIndex', () => {
   //   it('increases writePageIndex + 1', () => {
   //     const initialState = {
@@ -567,17 +464,17 @@ describe('reducer', () => {
     });
   });
 
-  describe('setPostcards', () => {
-    it('set postcards', () => {
-      const initialState = {
-        postcards: [],
-      };
+  // describe('setPostcards', () => {
+  //   it('set postcards', () => {
+  //     const initialState = {
+  //       postcards: [],
+  //     };
 
-      const state = reducer(initialState, setPostcards(postcards));
+  //     const state = reducer(initialState, setPostcards(postcards));
 
-      expect(state.postcards).toEqual(postcards);
-    });
-  });
+  //     expect(state.postcards).toEqual(postcards);
+  //   });
+  // });
 
   describe('setMovingPage', () => {
     it('set movingPage', () => {
@@ -819,77 +716,77 @@ describe('reducer', () => {
   //   });
   // });
 
-  describe('loadPostcards', () => {
-    beforeEach(() => {
-      store = mockStore({});
-    });
+  // describe('loadPostcards', () => {
+  //   beforeEach(() => {
+  //     store = mockStore({});
+  //   });
 
-    it('runs setPostcards', async () => {
-      await store.dispatch(loadPostcards());
+  //   it('runs setPostcards', async () => {
+  //     await store.dispatch(loadPostcards());
 
-      const actions = store.getActions();
+  //     const actions = store.getActions();
 
-      expect(actions[0]).toEqual(setPostcards([]));
-    });
-  });
+  //     expect(actions[0]).toEqual(setPostcards([]));
+  //   });
+  // });
 
-  describe('expirePostcard', () => {
-    beforeEach(() => {
-      store = mockStore({});
+  // describe('expirePostcard', () => {
+  //   beforeEach(() => {
+  //     store = mockStore({});
 
-      postExpire.mockImplementation(() => Promise.resolve(given.response));
-    });
+  //     postExpire.mockImplementation(() => Promise.resolve(given.response));
+  //   });
 
-    context('when response has error', () => {
-      it('runs setMovingPage', async () => {
-        given('response', () => ({
-          error: responseError,
-        }));
-        await store.dispatch(expirePostcard({ key: 'key', secretMessage: 'secretMessage' }));
+  //   context('when response has error', () => {
+  //     it('runs setMovingPage', async () => {
+  //       given('response', () => ({
+  //         error: responseError,
+  //       }));
+  //       await store.dispatch(expirePostcard({ key: 'key', secretMessage: 'secretMessage' }));
 
-        const actions = store.getActions();
+  //       const actions = store.getActions();
 
-        expect(actions[0]).toEqual(setResponseError(responseError));
-      });
-    });
+  //       expect(actions[0]).toEqual(setResponseError(responseError));
+  //     });
+  //   });
 
-    context('when response does not have error', () => {
-      context('when success is true', () => {
-        it('runs setToast and setMovingPage', async () => {
-          given('response', () => ({
-            data: { success: true },
-          }));
-          await store.dispatch(expirePostcard({ key: 'key', secretMessage: 'secretMessage' }));
+  //   context('when response does not have error', () => {
+  //     context('when success is true', () => {
+  //       it('runs setToast and setMovingPage', async () => {
+  //         given('response', () => ({
+  //           data: { success: true },
+  //         }));
+  //         await store.dispatch(expirePostcard({ key: 'key', secretMessage: 'secretMessage' }));
 
-          const actions = store.getActions();
+  //         const actions = store.getActions();
 
-          expect(actions[0]).toEqual(setToast({
-            triggered: false,
-            message: '엽서가 삭제되었습니다.',
-          }));
+  //         expect(actions[0]).toEqual(setToast({
+  //           triggered: false,
+  //           message: '엽서가 삭제되었습니다.',
+  //         }));
 
-          expect(actions[1]).toEqual(setMovingPage({
-            movingPage: 'notfound',
-          }));
-        });
-      });
+  //         expect(actions[1]).toEqual(setMovingPage({
+  //           movingPage: 'notfound',
+  //         }));
+  //       });
+  //     });
 
-      context('when success is false', () => {
-        it('runs setInputFieldsError', async () => {
-          given('response', () => ({
-            data: { success: false },
-          }));
-          await store.dispatch(expirePostcard({ key: 'key', secretMessage: 'secretMessage' }));
+  //     context('when success is false', () => {
+  //       it('runs setInputFieldsError', async () => {
+  //         given('response', () => ({
+  //           data: { success: false },
+  //         }));
+  //         await store.dispatch(expirePostcard({ key: 'key', secretMessage: 'secretMessage' }));
 
-          const actions = store.getActions();
+  //         const actions = store.getActions();
 
-          expect(actions[0]).toEqual(setInputFieldsError({
-            page: 'expire',
-            type: 'secretMessage',
-            error: 'wrong',
-          }));
-        });
-      });
-    });
-  });
+  //         expect(actions[0]).toEqual(setInputFieldsError({
+  //           page: 'expire',
+  //           type: 'secretMessage',
+  //           error: 'wrong',
+  //         }));
+  //       });
+  //     });
+  //   });
+  // });
 });

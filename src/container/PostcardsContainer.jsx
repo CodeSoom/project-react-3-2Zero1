@@ -5,7 +5,7 @@ import styled from '@emotion/styled';
 
 import PostcardItem from '../presentational/PostcardItem';
 
-import { loadPostcards } from '../state/commonSlice';
+import { loadPostcards } from '../state/postcardsSlice';
 
 import {
   PreviousButton,
@@ -30,7 +30,11 @@ const List = styled.ul({
 export default function PostcardsContainer({ handlePreviousClick }) {
   const dispatch = useDispatch();
 
-  const { postcards } = useSelector((state) => ({
+  const {
+    postcards: {
+      postcards: list,
+    },
+  } = useSelector((state) => ({
     postcards: state.postcards,
   }));
 
@@ -48,7 +52,7 @@ export default function PostcardsContainer({ handlePreviousClick }) {
       </PreviousButton>
       <Title>엽서 모음</Title>
       <List>
-        {postcards.map((postcard) => (<PostcardItem key={postcard.rid} postcardItem={postcard} />))}
+        {list.map((postcard) => (<PostcardItem key={postcard.rid} postcardItem={postcard} />))}
       </List>
     </DefaultLayout>
   );

@@ -7,9 +7,9 @@ import { getField } from '../utils/utils';
 import ContentsForm from '../presentational/ContentsForm';
 
 import {
-  setInputFieldsError,
   changeInputFieldValue,
-} from '../state/commonSlice';
+  setInputFieldsError,
+} from '../state/writeSlice';
 
 export default function ContentsFormContainer({
   onClickNext,
@@ -18,27 +18,22 @@ export default function ContentsFormContainer({
 }) {
   const dispatch = useDispatch();
 
+  const { write } = useSelector((state) => ({ write: state.write }));
+
   const {
     writePageIndex,
     inputFields,
-  } = useSelector((state) => (
-    {
-      writePageIndex: state.writePageIndex,
-      inputFields: state.inputFields,
-    }
-  ));
+  } = write;
 
-  const getChangeHandler = (page, type) => ((value) => {
+  const getChangeHandler = (type) => ((value) => {
     dispatch(changeInputFieldValue({
-      page,
+
       type,
       value,
     }));
   });
 
-  const {
-    write: { contents },
-  } = inputFields;
+  const { contents } = inputFields;
 
   checkValidAccess(writePageIndex);
 
@@ -46,13 +41,12 @@ export default function ContentsFormContainer({
     contents: getField({
       field: contents,
       id: 'contents',
-      onChange: getChangeHandler('write', 'contents'),
+      onChange: getChangeHandler('contents'),
     }),
   };
 
   function handleError([key, checked]) {
     dispatch(setInputFieldsError({
-      page: 'write',
       type: key,
       error: !checked,
     }));

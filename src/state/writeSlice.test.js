@@ -7,6 +7,8 @@ import {
 
 import reducer, {
   changeRadioChecked,
+  changeInputFieldValue,
+  setInputFieldsError,
   flipPreviewPostcard,
   increaseWritePageIndex,
   decreaseWritePageIndex,
@@ -18,7 +20,6 @@ import reducer, {
 
 import {
   setResponseError,
-  changeInputFieldValue,
 } from './commonSlice';
 
 import responseError from '../fixtures/responseError';
@@ -68,7 +69,7 @@ describe('reducer', () => {
 
       const state = reducer(initialState, flipPreviewPostcard());
 
-      expect(state.inputFields.write.preview.isFrontPage).toBe(true);
+      expect(state.inputFields.preview.isFrontPage).toBe(true);
     });
   });
 
@@ -84,7 +85,6 @@ describe('reducer', () => {
       const actions = store.getActions();
 
       expect(actions[0]).toEqual(changeInputFieldValue({
-        page: 'write',
         type: 'photo',
         value: fileName,
       }));
@@ -155,7 +155,6 @@ describe('reducer', () => {
   });
   describe('setWriteCompleteValues', () => {
     it('set WriteCompleteValues in inputFields', () => {
-      const page = 'write';
       const type = 'complete';
 
       const url = 'url';
@@ -163,11 +162,9 @@ describe('reducer', () => {
 
       const initialState = {
         inputFields: {
-          [page]: {
-            [type]: {
-              url: '',
-              secretMessage: '',
-            },
+          [type]: {
+            url: '',
+            secretMessage: '',
           },
         },
       };
@@ -177,8 +174,8 @@ describe('reducer', () => {
         secretMessage,
       }));
 
-      expect(state.inputFields[page][type].url).toBe(url);
-      expect(state.inputFields[page][type].secretMessage).toBe(secretMessage);
+      expect(state.inputFields[type].url).toBe(url);
+      expect(state.inputFields[type].secretMessage).toBe(secretMessage);
     });
   });
   describe('changeRadioChecked', () => {
@@ -193,49 +190,43 @@ describe('reducer', () => {
 
       const state = reducer(initialState, changeRadioChecked({ value: true }));
 
-      expect(state.inputFields.write.isPrivate.value).toBe(true);
+      expect(state.inputFields.isPrivate.value).toBe(true);
     });
   });
   describe('resetPostcardInputFields', () => {
     it('reset resetPostcardInputFields in inputFields', () => {
       const inputFields = {
-        entrance: {
-          value: '1',
-          error: 'false',
+        isPrivate: true,
+        secretMessage: {
+          value: 'secretMessage',
+          error: false,
         },
-        write: {
-          isPrivate: true,
-          secretMessage: {
-            value: 'secretMessage',
-            error: false,
-          },
-          sender: {
-            value: 'sender',
-            error: false,
-          },
-          receiver: {
-            value: 'receiver',
-            error: false,
-          },
-          contents: {
-            value: 'contents',
-            error: '',
-          },
-          photo: {
-            value: 'photo',
-            error: false,
-          },
-          photoMessage: {
-            value: 'photoMessage',
-            error: false,
-          },
-          preview: {
-            isFrontPage: true,
-          },
-          complete: {
-            key: 'complete',
-            secretMessage: '',
-          },
+        sender: {
+          value: 'sender',
+          error: false,
+        },
+        receiver: {
+          value: 'receiver',
+          error: false,
+        },
+        contents: {
+          value: 'contents',
+          error: '',
+        },
+        photo: {
+          value: 'photo',
+          error: false,
+        },
+        photoMessage: {
+          value: 'photoMessage',
+          error: false,
+        },
+        preview: {
+          isFrontPage: true,
+        },
+        complete: {
+          key: 'complete',
+          secretMessage: '',
         },
       };
 
@@ -244,47 +235,80 @@ describe('reducer', () => {
       const state = reducer(initialState, resetPostcardInputFields());
 
       expect(state.inputFields).toEqual({
-        entrance: {
-          secretMessage: {
-            value: '',
-            error: false,
-          },
+        isPrivate: true,
+        secretMessage: {
+          value: '',
+          error: false,
         },
-        write: {
-          isPrivate: true,
-          secretMessage: {
-            value: '',
-            error: false,
-          },
-          sender: {
-            value: '',
-            error: false,
-          },
-          receiver: {
-            value: '',
-            error: false,
-          },
-          contents: {
-            value: '',
-            error: '',
-          },
-          photo: {
-            value: '',
-            error: false,
-          },
-          photoMessage: {
-            value: '',
-            error: false,
-          },
-          preview: {
-            isFrontPage: true,
-          },
-          complete: {
-            key: '',
-            secretMessage: '',
-          },
+        sender: {
+          value: '',
+          error: false,
+        },
+        receiver: {
+          value: '',
+          error: false,
+        },
+        contents: {
+          value: '',
+          error: '',
+        },
+        photo: {
+          value: '',
+          error: false,
+        },
+        photoMessage: {
+          value: '',
+          error: false,
+        },
+        preview: {
+          isFrontPage: true,
+        },
+        complete: {
+          key: '',
+          secretMessage: '',
         },
       });
+    });
+  });
+  describe('changeInputFieldValue', () => {
+    it('changes InputFieldValue', () => {
+      const type = 'secretMessage';
+
+      const initialState = {
+        inputFields: {
+          [type]: {
+            value: '',
+          },
+        },
+      };
+
+      const state = reducer(initialState, changeInputFieldValue({
+        type,
+        value: 'hello',
+      }));
+
+      expect(state.inputFields[type].value).toBe('hello');
+    });
+  });
+
+  describe('setInputFieldsError', () => {
+    it('change error in InputFields', () => {
+      const type = 'secretMessage';
+
+      const initialState = {
+        inputFields: {
+          [type]: {
+            error: false,
+          },
+        },
+      };
+
+      const state = reducer(initialState, setInputFieldsError({
+        type,
+        error: true,
+      }));
+
+      expect(state.inputFields.secretMessage.error).toBe(true);
     });
   });
 });

@@ -26,9 +26,11 @@ describe('EntranceContainer', () => {
     useSelector.mockImplementation((selector) => selector({
       entrance: {
         ...entrance,
+        inputFields: {
+          ...inputFields.entrance,
+        },
         movePage: given.movePage,
       },
-      inputFields,
     }));
   });
 
@@ -73,11 +75,10 @@ describe('EntranceContainer', () => {
 
         expect(dispatch).toBeCalledWith({
           payload: {
-            page: 'entrance',
             type: 'secretMessage',
             value: 'hello',
           },
-          type: 'application/changeInputFieldValue',
+          type: 'entrance/changeInputFieldValue',
         });
       });
 
@@ -86,8 +87,12 @@ describe('EntranceContainer', () => {
           inputFields.entrance.secretMessage.value = 'happy day!';
 
           useSelector.mockImplementation((selector) => selector({
-            entrance,
-            inputFields,
+            entrance: {
+              ...entrance,
+              inputFields: {
+                ...inputFields.entrance,
+              },
+            },
           }));
         });
 
@@ -107,8 +112,12 @@ describe('EntranceContainer', () => {
         beforeEach(() => {
           inputFields.entrance.secretMessage.value = '';
           useSelector.mockImplementation((selector) => selector({
-            entrance,
-            inputFields,
+            entrance: {
+              ...entrance,
+              inputFields: {
+                ...inputFields.entrance,
+              },
+            },
           }));
         });
 
@@ -116,9 +125,8 @@ describe('EntranceContainer', () => {
           const { getByText } = entranceRender();
           fireEvent.click(getByText('엽서 확인하기'));
           expect(dispatch).toBeCalledWith({
-            type: 'application/setInputFieldsError',
+            type: 'entrance/setInputFieldsError',
             payload: {
-              page: 'entrance',
               type: 'secretMessage',
               error: true,
             },
@@ -133,8 +141,10 @@ describe('EntranceContainer', () => {
           entrance: {
             ...entrance,
             isPrivate: false,
+            inputFields: {
+              ...inputFields.entrance,
+            },
           },
-          inputFields,
         }));
       });
 
@@ -144,7 +154,7 @@ describe('EntranceContainer', () => {
         fireEvent.click(queryByText('엽서 확인하기'));
 
         expect(dispatch).not.toBeCalledWith({
-          type: 'application/setInputFieldsError',
+          type: 'write/setInputFieldsError',
           payload: {
             type: 'secretMessage',
             error: true,

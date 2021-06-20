@@ -7,16 +7,44 @@ import {
 
 import {
   setResponseError,
-  changeInputFieldValue,
+  // changeInputFieldValue,
 } from './commonSlice';
 
 const initialState = {
-  entrance: {
-    sender: '테스트',
-    isPrivate: false,
-    postcardCount: 5,
-    writtenCount: 0,
-    movePage: false,
+  writePageIndex: 0,
+  inputFields: {
+    isPrivate: true,
+    secretMessage: {
+      value: '',
+      error: false,
+    },
+    sender: {
+      value: '',
+      error: false,
+    },
+    receiver: {
+      value: '',
+      error: false,
+    },
+    contents: {
+      value: '',
+      error: '',
+    },
+    photo: {
+      value: '',
+      error: false,
+    },
+    photoMessage: {
+      value: '',
+      error: false,
+    },
+    preview: {
+      isFrontPage: true,
+    },
+    complete: {
+      key: '',
+      secretMessage: '',
+    },
   },
 };
 
@@ -24,6 +52,30 @@ const { actions, reducer } = createSlice({
   name: 'write',
   initialState,
   reducers: {
+    changeInputFieldValue(state, { payload: { type, value } }) {
+      return {
+        ...state,
+        inputFields: {
+          ...state.inputFields,
+          [type]: {
+            ...state.inputFields[type],
+            value,
+          },
+        },
+      };
+    },
+    setInputFieldsError(state, { payload: { type, error } }) {
+      return {
+        ...state,
+        inputFields: {
+          ...state.inputFields,
+          [type]: {
+            ...state.inputFields[type],
+            error,
+          },
+        },
+      };
+    },
     increaseWritePageIndex(state) {
       return {
         ...state,
@@ -37,16 +89,14 @@ const { actions, reducer } = createSlice({
       };
     },
     flipPreviewPostcard(state) {
+      // state는 이곳의 slice에서 init한 상태만 가져온다. 그렇기 때문에 밑의 inputFields는 다 common에만 이씅ㅁ.
       return {
         ...state,
         inputFields: {
           ...state.inputFields,
-          write: {
-            ...state.inputFields.write,
-            preview: {
-              ...state.inputFields.write.preview,
-              isFrontPage: !state.inputFields.write.preview.isFrontPage,
-            },
+          preview: {
+            ...state.inputFields.preview,
+            isFrontPage: !state.inputFields.isFrontPage,
           },
         },
       };
@@ -56,12 +106,9 @@ const { actions, reducer } = createSlice({
         ...state,
         inputFields: {
           ...state.inputFields,
-          write: {
-            ...state.inputFields.write,
-            complete: {
-              url,
-              secretMessage,
-            },
+          complete: {
+            url,
+            secretMessage,
           },
         },
       };
@@ -71,10 +118,7 @@ const { actions, reducer } = createSlice({
         ...state,
         inputFields: {
           ...state.inputFields,
-          write: {
-            ...state.inputFields.write,
-            isPrivate: value,
-          },
+          isPrivate: value,
         },
       };
     },
@@ -82,45 +126,37 @@ const { actions, reducer } = createSlice({
       return {
         ...state,
         inputFields: {
-          entrance: {
-            secretMessage: {
-              value: '',
-              error: false,
-            },
+          isPrivate: true,
+          secretMessage: {
+            value: '',
+            error: false,
           },
-          write: {
-            isPrivate: true,
-            secretMessage: {
-              value: '',
-              error: false,
-            },
-            sender: {
-              value: '',
-              error: false,
-            },
-            receiver: {
-              value: '',
-              error: false,
-            },
-            contents: {
-              value: '',
-              error: '',
-            },
-            photo: {
-              value: '',
-              error: false,
-            },
-            photoMessage: {
-              value: '',
-              error: false,
-            },
-            preview: {
-              isFrontPage: true,
-            },
-            complete: {
-              key: '',
-              secretMessage: '',
-            },
+          sender: {
+            value: '',
+            error: false,
+          },
+          receiver: {
+            value: '',
+            error: false,
+          },
+          contents: {
+            value: '',
+            error: '',
+          },
+          photo: {
+            value: '',
+            error: false,
+          },
+          photoMessage: {
+            value: '',
+            error: false,
+          },
+          preview: {
+            isFrontPage: true,
+          },
+          complete: {
+            key: '',
+            secretMessage: '',
           },
         },
       };
@@ -135,13 +171,14 @@ export const {
   setWriteCompleteValues,
   changeRadioChecked,
   resetPostcardInputFields,
+  changeInputFieldValue,
+  setInputFieldsError,
 } = actions;
 
 export function sendPhoto({ file }) {
   return async (dispatch) => {
     const photo = await postPhoto({ file });
     dispatch(changeInputFieldValue({
-      page: 'write',
       type: 'photo',
       value: photo,
     }));

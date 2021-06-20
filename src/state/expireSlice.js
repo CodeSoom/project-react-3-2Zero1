@@ -1,24 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { saveItem } from '../services/storage';
-
 import {
-  fetchEntrance,
-  postCheckValidPostcard,
+  postExpire,
 } from '../services/api';
 
 import {
-  // setInputFieldsError,
   setResponseError,
-  // changeInputFieldValue,
+  setMovingPage,
+  setToast,
 } from './commonSlice';
 
 const initialState = {
-  sender: '테스트',
-  isPrivate: false,
-  postcardCount: 5,
-  writtenCount: 0,
-  movePage: false,
   inputFields: {
     secretMessage: {
       value: '',
@@ -28,21 +20,9 @@ const initialState = {
 };
 
 const { actions, reducer } = createSlice({
-  name: 'entrance',
+  name: 'expire',
   initialState,
   reducers: {
-    setEntrance(state, { payload: value }) {
-      return {
-        ...state,
-        ...value,
-      };
-    },
-    admitPostcardAccess(state) {
-      return {
-        ...state,
-        movePage: true,
-      };
-    },
     changeInputFieldValue(state, { payload: { type, value } }) {
       return {
         ...state,
@@ -71,31 +51,13 @@ const { actions, reducer } = createSlice({
 });
 
 export const {
-  setEntrance,
-  admitPostcardAccess,
-  setInputFieldsError,
   changeInputFieldValue,
+  setInputFieldsError,
 } = actions;
 
-export function loadEntrance({ key }) {
+export function expirePostcard({ key, secretMessage }) {
   return async (dispatch) => {
-    const response = await fetchEntrance({ key });
-
-    if (response.error) {
-      dispatch(setResponseError(response.error));
-      return;
-    }
-
-    // 성공할 경우
-    saveItem('postcardKey', key);
-
-    dispatch(setEntrance(response.data));
-  };
-}
-
-export function checkValidPostcard({ key, secretMessage }) {
-  return async (dispatch) => {
-    const response = await postCheckValidPostcard({ key, secretMessage });
+    const response = await postExpire({ key, secretMessage });
 
     if (response.error) {
       dispatch(setResponseError(response.error));
@@ -105,9 +67,11 @@ export function checkValidPostcard({ key, secretMessage }) {
     const { success } = response.data;
 
     if (success) {
-      saveItem('secretMessage', secretMessage);
-
-      dispatch(admitPostcardAccess());
+      dispatch(setToast({
+        triggered: false,
+        message: '엽서가 삭제되었습니다.',
+      }));
+      dispatch(setMovingPage({ movingPage: 'notfound' }));
     } else {
       dispatch(setInputFieldsError({
         type: 'secretMessage',

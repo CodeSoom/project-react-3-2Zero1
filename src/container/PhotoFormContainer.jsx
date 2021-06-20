@@ -7,11 +7,10 @@ import { getField } from '../utils/utils';
 import validate from '../utils/validate';
 
 import {
+  sendPhoto,
   setInputFieldsError,
   changeInputFieldValue,
-} from '../state/commonSlice';
-
-import { sendPhoto } from '../state/writeSlice';
+} from '../state/writeSlice';
 
 export default function PhotoFormContainer({
   onClickNext,
@@ -20,28 +19,22 @@ export default function PhotoFormContainer({
 }) {
   const dispatch = useDispatch();
 
+  const { write } = useSelector((state) => ({ write: state.write }));
+
   const {
     writePageIndex,
     inputFields,
-  } = useSelector((state) => (
-    {
-      writePageIndex: state.writePageIndex,
-      inputFields: state.inputFields,
-    }
-  ));
+  } = write;
 
   const {
-    write: {
-      photo,
-      photoMessage,
-    },
+    photo,
+    photoMessage,
   } = inputFields;
 
   checkValidAccess(writePageIndex);
 
-  const getChangeHandler = (page, type) => ((value) => {
+  const getChangeHandler = (type) => ((value) => {
     dispatch(changeInputFieldValue({
-      page,
       type,
       value,
     }));
@@ -56,13 +49,12 @@ export default function PhotoFormContainer({
       field: photoMessage,
       id: 'photoMessage',
       name: '사진 메시지',
-      onChange: getChangeHandler('write', 'photoMessage'),
+      onChange: getChangeHandler('photoMessage'),
     }),
   };
 
   function handleError([key, checked]) {
     dispatch(setInputFieldsError({
-      page: 'write',
       type: key,
       error: !checked,
     }));

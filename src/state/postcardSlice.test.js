@@ -33,13 +33,11 @@ describe('reducer', () => {
   describe('setPostcard', () => {
     it('set postcard variables', () => {
       const initialState = {
-        postcard: {
-          sender: '',
-          receiver: '',
-          photoUrl: '',
-          contents: '',
-          photoMessage: '',
-        },
+        sender: '',
+        receiver: '',
+        contents: '',
+        photoUrl: '',
+        photoMessage: '',
       };
       const postcard = {
         sender: 'sender',
@@ -51,33 +49,29 @@ describe('reducer', () => {
 
       const state = reducer(initialState, setPostcard(postcard));
 
-      expect(state.postcard).toEqual(postcard);
+      expect(state).toEqual(postcard);
     });
   });
   describe('flipPostcard', () => {
     it('change isFrontPage in postcard', () => {
       const initialState = {
-        postcard: {
-          isFrontPage: false,
-        },
+        isFrontPage: false,
       };
 
       const state = reducer(initialState, flipPostcard());
 
-      expect(state.postcard.isFrontPage).toBe(true);
+      expect(state.isFrontPage).toBe(true);
     });
   });
 
   describe('setPostcardFront', () => {
     it('set isFrontPage in postcard with true', () => {
       const initialState = {
-        postcard: {
-          isFrontPage: false,
-        },
+        isFrontPage: false,
       };
       const state = reducer(initialState, setPostcardFront());
 
-      expect(state.postcard.isFrontPage).toBe(true);
+      expect(state.isFrontPage).toBe(true);
     });
   });
 

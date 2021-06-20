@@ -24,7 +24,11 @@ describe('ExpirePage', () => {
 
   useSelector.mockImplementation((selector) => selector({
     entrance,
-    inputFields,
+    expire: {
+      inputFields: {
+        ...inputFields.expire,
+      },
+    },
   }));
   function renderExpirePage() {
     return render((

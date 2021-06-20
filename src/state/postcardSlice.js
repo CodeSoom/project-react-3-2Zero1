@@ -23,32 +23,22 @@ const { actions, reducer } = createSlice({
   initialState,
   reducers: {
     flipPostcard(state) {
-      const { postcard } = state;
-      const { isFrontPage } = postcard;
+      const { isFrontPage } = state;
       return {
         ...state,
-        postcard: {
-          ...postcard,
-          isFrontPage: !isFrontPage,
-        },
+        isFrontPage: !isFrontPage,
       };
     },
     setPostcardFront(state) {
       return {
         ...state,
-        postcard: {
-          ...state.postcard,
-          isFrontPage: true,
-        },
+        isFrontPage: true,
       };
     },
     setPostcard(state, { payload: value }) {
       return {
         ...state,
-        postcard: {
-          ...state.postcard,
-          ...value,
-        },
+        ...value,
       };
     },
   },

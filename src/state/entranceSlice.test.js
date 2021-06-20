@@ -2,12 +2,14 @@ import thunk from 'redux-thunk';
 import configureStore from 'redux-mock-store';
 
 import {
-  setInputFieldsError,
+  // setInputFieldsError,
   setResponseError,
   // changeInputFieldValue,
 } from './commonSlice';
 
 import reducer, {
+  setInputFieldsError,
+  changeInputFieldValue,
   setEntrance,
   loadEntrance,
   checkValidPostcard,
@@ -36,7 +38,6 @@ describe('reducer', () => {
   describe('setEntrance', () => {
     it('set entrance variables', () => {
       const initialState = {
-        writePageIndex: 0,
         sender: '테스트',
         isPrivate: false,
         postcardCount: 5,
@@ -46,21 +47,19 @@ describe('reducer', () => {
 
       const state = reducer(initialState, setEntrance(entrance));
 
-      expect(state.entrance).toEqual(entrance);
+      expect(state).toEqual(entrance);
     });
   });
 
   describe('admitPostcardAccess', () => {
     it('set movePage with true in Entrance', () => {
       const initialState = {
-        entrance: {
-          movePage: false,
-        },
+        movePage: false,
       };
 
       const state = reducer(initialState, admitPostcardAccess());
 
-      expect(state.entrance.movePage).toEqual(true);
+      expect(state.movePage).toEqual(true);
     });
   });
 
@@ -150,12 +149,52 @@ describe('reducer', () => {
           const actions = store.getActions();
 
           expect(actions[0]).toEqual(setInputFieldsError({
-            page: 'entrance',
             type: 'secretMessage',
             error: 'wrong',
           }));
         });
       });
+    });
+  });
+  describe('changeInputFieldValue', () => {
+    it('changes InputFieldValue', () => {
+      const type = 'secretMessage';
+
+      const initialState = {
+        inputFields: {
+          [type]: {
+            value: '',
+          },
+        },
+      };
+
+      const state = reducer(initialState, changeInputFieldValue({
+        type,
+        value: 'hello',
+      }));
+
+      expect(state.inputFields[type].value).toBe('hello');
+    });
+  });
+
+  describe('setInputFieldsError', () => {
+    it('change error in InputFields', () => {
+      const type = 'secretMessage';
+
+      const initialState = {
+        inputFields: {
+          [type]: {
+            error: false,
+          },
+        },
+      };
+
+      const state = reducer(initialState, setInputFieldsError({
+        type,
+        error: true,
+      }));
+
+      expect(state.inputFields.secretMessage.error).toBe(true);
     });
   });
 });
