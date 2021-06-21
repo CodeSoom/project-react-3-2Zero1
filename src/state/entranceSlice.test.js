@@ -2,9 +2,7 @@ import thunk from 'redux-thunk';
 import configureStore from 'redux-mock-store';
 
 import {
-  // setInputFieldsError,
   setResponseError,
-  // changeInputFieldValue,
 } from './commonSlice';
 
 import reducer, {
@@ -20,14 +18,10 @@ import reducer, {
 import {
   postCheckValidPostcard,
   fetchEntrance,
-  // postPostcard,
-  // fetchPostcard,
-  // postExpire,
 } from '../services/api';
 
 import entrance from '../fixtures/entrance';
 import responseError from '../fixtures/responseError';
-// import postcards from '../fixtures/postcards';
 
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);

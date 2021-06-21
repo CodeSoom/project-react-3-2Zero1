@@ -17,9 +17,7 @@ import {
   postExpire,
 } from '../services/api';
 
-// import entrance from '../fixtures/entrance';
 import responseError from '../fixtures/responseError';
-// import postcards from '../fixtures/postcards';
 
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);

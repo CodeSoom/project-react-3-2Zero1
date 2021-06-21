@@ -8,9 +8,7 @@ import {
 } from '../services/api';
 
 import {
-  // setInputFieldsError,
   setResponseError,
-  // changeInputFieldValue,
 } from './commonSlice';
 
 const initialState = {
