@@ -2,9 +2,7 @@ import thunk from 'redux-thunk';
 import configureStore from 'redux-mock-store';
 
 import {
-  // setInputFieldsError,
   setResponseError,
-  // changeInputFieldValue,
 } from './commonSlice';
 
 import reducer, {
